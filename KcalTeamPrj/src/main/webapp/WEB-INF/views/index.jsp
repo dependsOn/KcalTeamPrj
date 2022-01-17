@@ -7,9 +7,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="${path}/resources/css/default.css" />
-<link rel="stylesheet" href="${path}/resources/css/index.css" />
-<script type="text/javascript" src="${path}/resources/js/jquery-3.6.0.min.js"></script>
+<link rel="stylesheet" href="css/default.css" />
+<link rel="stylesheet" href="css/index.css" />
+<script type="text/javascript" src="js/jquery-3.6.0.min.js"></script>
 </head>
 <body>
 	<div class="container">
