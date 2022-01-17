@@ -1,13 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="path" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-<link rel="stylesheet" href="css/default.css" />
-<link rel="stylesheet" href="css/index.css" />
-<script type="text/javascript" src="js/jquery-3.6.0.min.js"></script>
+	<title>Insert title here</title>
+	<link rel="stylesheet" href="css/default.css" />
+	<link rel="stylesheet" href="css/index.css" />
+	<script type="text/javascript" src="js/jquery-3.6.0.min.js"></script>
 </head>
 <body>
 	<div class="container">
@@ -34,11 +36,15 @@
                 </ul>
                 <ul>
                     <li>회원가입</li>
-                    <li>로그인</li>
+                    <li id="login">로그인</li>
                 </ul>
             </div>
         </header>
     </div>
-    <script type="text/javascript"></script>
+    <script type="text/javascript">
+	    document.getElementById('login').addEventListener('click', function() {
+	        location.href = '${path}/member/login'
+	    });
+    </script>
 </body>
 </html>
