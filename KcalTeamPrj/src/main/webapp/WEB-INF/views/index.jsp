@@ -9,6 +9,7 @@
 	<title>Insert title here</title>
 	<link rel="stylesheet" href="css/default.css" />
 	<link rel="stylesheet" href="css/index.css" />
+	<link href="https://fonts.googleapis.com/css2?family=Dongle:wght@700&display=swap" rel="stylesheet">
 	<script type="text/javascript" src="js/jquery-3.6.0.min.js"></script>
 </head>
 <body>
@@ -31,8 +32,8 @@
             </div>
             <div class="menuRight">
                 <ul>
-                    <li><button class="admin">관리자 페이지</button></li>
-                    <li><button class="community">커뮤니티</button></li>
+                    <li><button class="rightBtn admin">관리자 페이지</button></li>
+                    <li><button class="rightBtn community">커뮤니티</button></li>
                 </ul>
                 <ul>
                     <li>회원가입</li>
