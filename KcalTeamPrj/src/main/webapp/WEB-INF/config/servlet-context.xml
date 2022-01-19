@@ -15,6 +15,7 @@
 	
 	<!-- 스캔한 bean 들이 모여있는 패키지를 지정한다. -->
 	<context:component-scan base-package="controller"/>
+	<context:component-scan base-package="service"/>
 	
 	<!-- Controller의 메서드에서 반환하는 문자열 앞 뒤에 붙일 경로 정보를 세팅 -->
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
