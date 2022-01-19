@@ -18,7 +18,7 @@
             <div class="logo">
                 <img src="logoImg/logo.png" alt="">
                 <ul>
-                    <li>확찐자 구조대</li>
+                    <li>확찐자구조대</li>
                 </ul> 
             </div>
             <div class="menuCenter">
