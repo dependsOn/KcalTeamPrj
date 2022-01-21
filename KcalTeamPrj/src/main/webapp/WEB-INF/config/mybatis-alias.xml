@@ -6,5 +6,6 @@
 <configuration>
 	<typeAliases>
 		<typeAlias type="vo.MemberVO" alias="mvo"/>
+		<typeAlias type="vo.LetterVO" alias="letterVO"/>
 	</typeAliases>
 </configuration>

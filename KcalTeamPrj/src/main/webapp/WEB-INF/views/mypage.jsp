@@ -19,7 +19,7 @@
 			<li class="tab" data-tab="modifyPw">비밀번호변경</li>
 			<li class="tab" data-tab="withdraw">회원탈퇴</li>
 			<li class="tabTitle">내 활동관리</li>
-			<li class="tab" data-tab="message">쪽지함</li>
+			<li class="tab" data-tab="letter">쪽지함</li>
 			<li class="tab" data-tab="myPost">작성글</li>
 			<li class="tab" data-tab="myComments">작성댓글</li>
 			<li class="tab" data-tab="myTips">찜한 꿀팁</li>
@@ -91,7 +91,9 @@
 				</ul>
 			</div>
 
-			<div id="message" class="content"></div>
+			<div id="letter" class="content">
+			
+			</div>
 
 			<div id="myPost" class="content"></div>
 
