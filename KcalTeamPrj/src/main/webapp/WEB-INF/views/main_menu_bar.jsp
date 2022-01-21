@@ -57,6 +57,10 @@
 	    });
 	 	
 		$(function(){
+			$('.logo').click(function() {
+				location.href = '${path}/index';
+			});
+			
 			$("#login").click(function(){
 				location.href = '${path}/member/goLogin';
 			});

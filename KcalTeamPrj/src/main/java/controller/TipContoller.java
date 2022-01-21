@@ -11,6 +11,6 @@ public class TipContoller {
 	@GetMapping("/goTip")
 	public String goTip() {
 		
-		return "";
+		return "tip";
 	}
 }
