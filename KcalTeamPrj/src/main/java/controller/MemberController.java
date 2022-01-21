@@ -22,6 +22,7 @@ public class MemberController {
 	@Autowired
 	MemberService memberService;
 	
+	// 로그인
 	@GetMapping("/goLogin")
 	public String goLogin() {
 		
@@ -39,16 +40,12 @@ public class MemberController {
 		return "index";
 	}
 	
-	
-	
+	// 마이페이지
 	@GetMapping("/mypage")
 	public String mypage(Model model, @RequestParam(defaultValue = "memberInfo") String currTab) {
 		model.addAttribute("currTab", currTab);
 		return "mypage";
 	}
-	
-	
-	
 	
 	@ResponseBody 
 	@PostMapping("/checkEmail")
