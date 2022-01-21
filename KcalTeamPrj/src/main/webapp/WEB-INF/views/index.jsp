@@ -7,18 +7,18 @@
 <head>
 <meta charset="UTF-8">
 	<title>Insert title here</title>
-	<link rel="stylesheet" href="css/default.css" />
-	<link rel="stylesheet" href="css/index.css" />
+	<link rel="stylesheet" href="${path}/css/default.css" />
+	<link rel="stylesheet" href="${path}/css/index.css" />
 	<link href="https://fonts.googleapis.com/css2?family=Dongle:wght@700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">
-	<script type="text/javascript" src="js/jquery-3.6.0.min.js"></script>
+	<script type="text/javascript" src="${path}/js/jquery-3.6.0.min.js"></script>
 </head>
 <body>
 	<div class="container">
     <header>
         <div class="logo">
-            <img src="images/logoImg/logo.png" alt="">
+            <img src="${path}/images/logoImg/logo.png" alt="">
             <ul>
                 <li>확찐자구조대</li>
             </ul> 
@@ -47,7 +47,7 @@
     <div class="main">
         <div class="mainImgBox">
             <div class="mainImg">
-                <img id="mainImgSlide" src="images/main/main1.jpg" alt="">
+                <img id="mainImgSlide" src="${path}/images/main/main1.jpg" alt="">
             </div>
 
             <div class="mainMent">
@@ -69,7 +69,7 @@
 
             <div class="firstContents">
                 <div class="fCImg">
-                    <img src="images/main/fcimg.jpg" alt="">
+                    <img src="${path}/images/main/fcimg.jpg" alt="">
                 </div>
 
                 <div class="fCMent">
@@ -87,7 +87,7 @@
 
             <div class="secondContents">
                 <div class="sCImg">
-                    <img src="images/main/scimg.jpg" alt="">
+                    <img src="${path}/images/main/scimg.jpg" alt="">
                 </div>
                 <div class="sCMent">
                     <p>칼로리 계산기</p>
@@ -103,7 +103,7 @@
 
             <div class="thirdContents">
                 <div class="tCImg">
-                    <img src="images/main/tcimg.jpg" alt="">
+                    <img src="${path}/images/main/tcimg.jpg" alt="">
                 </div>
                 <div class="tCMent">
                     <p>내 주변 시설</p>
@@ -118,7 +118,7 @@
 
             <div class="fourthContents">
                 <div class="fourCImg">
-                    <img src="images/main/fourcimg.jpg" alt="">
+                    <img src="${path}/images/main/fourcimg.jpg" alt="">
                 </div>
                 <div class="fourCMent">
                     <p>고객센터</p>
@@ -133,7 +133,7 @@
 
             <div class="fiveContents">
                 <div class="fiveCImg">
-                    <img src="images/main/fivecimg.png" alt="">
+                    <img src="${path}/images/main/fivecimg.png" alt="">
                 </div>
                 <div class="fiveCMent">
                     <p>커뮤니티</p>
@@ -152,7 +152,7 @@
 </div>
     <script type="text/javascript">
 	    document.getElementById('login').addEventListener('click', function() {
-	        location.href = '${path}/member/login'
+	        location.href = '${path}/member/goLogin'
 	    });
 	   
         const imgSlide = document.getElementById('mainImgSlide');
@@ -160,7 +160,7 @@
         let imgIndex = 0;
 
         function imgShow() {
-            imgSlide.setAttribute('src', 'images/main/' + imgArray[imgIndex]);
+            imgSlide.setAttribute('src', '${path}/images/main/' + imgArray[imgIndex]);
             imgIndex++;
             if (imgIndex >= imgArray.length) {
                 imgIndex = 0;

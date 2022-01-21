@@ -94,41 +94,44 @@
 			<h2>확찐자구조대</h2>
 			
 		
-
-			<div class="login_id">
-				<h4>이메일</h4>
-				<input type="email" placeholder="이메일">
-			</div>
-			
-			<div class="login_pw">
-				<h4>비밀번호</h4>
-				<input type="password" placeholder="비밀번호">
-			</div>
-
-			<div class="login_etc">
+			<form action="${path}/member/login" method="post">
+				<div class="login_id">
+					<h4>아이디</h4>
+					<input type="id" placeholder="아이디" name="id">
+				</div>
 				
-			</div>
+				<div class="login_pw">
+					<h4>비밀번호</h4>
+					<input type="password" placeholder="비밀번호" name="password">
+				</div>
+	
+				<div class="login_etc">
+					
+				</div>
+					
+				<div class="a_box">
+					<i class="fas fa-address-card">
+					</i><a href=""> 회원가입</a> /
 				
-			<div>
-				<i class="fas fa-address-card">
-				</i><a href=""> 회원가입</a> /
-			
-				<i class="fas fa-search"></i>
-				<a href="">아이디 찾기</a> / 
-				<i class="fas fa-key"> </i>
-				<a href="">비밀번호 찾기</a>
-				
-			</div>
-
-			<div class="submit">
-				<input type="submit" value="로그인"> 
-			</div>
+					<i class="fas fa-search"></i>
+					<a href="">아이디 찾기</a> / 
+					<i class="fas fa-key"> </i>
+					<a href="">비밀번호 찾기</a>
+					
+				</div>
+	
+				<div class="submit">
+					<button type="submit">로그인</button>
+					<!-- <input type="submit" value="로그인">  -->
+				</div>
+			</form>
 			
 				  <div class="login_sns">
             <li><a href=""><i class="fab fa-instagram"></i></a></li>
             <li><a href=""><i class="fab fa-facebook-f"></i></a></li>
             <li><a href=""><i class="fab fa-twitter"></i></a></li>
             </div>
+            
 			
 			
 			<div id="naverIdLogin"></div>

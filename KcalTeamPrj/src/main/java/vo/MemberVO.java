@@ -9,11 +9,13 @@ public class MemberVO {
 	private String addr1;
 	private String addr2;
 	private String addr3;
-	private String coment;
+	private String comment;
 	private String p_isopen;
 	private String d_isopen;
 	private String i_isopen;
 	private String e_isopen;
+	private String isdelete;
+	private String isadmin;
 	private String img_localname;
 	private String img_servername;
 	
@@ -85,12 +87,12 @@ public class MemberVO {
 		this.addr3 = addr3;
 	}
 
-	public String getComent() {
-		return coment;
+	public String getComment() {
+		return comment;
 	}
 
-	public void setComent(String coment) {
-		this.coment = coment;
+	public void setComment(String coment) {
+		this.comment = coment;
 	}
 
 	public String getP_isopen() {
@@ -123,6 +125,22 @@ public class MemberVO {
 
 	public void setE_isopen(String e_isopen) {
 		this.e_isopen = e_isopen;
+	}
+
+	public String getIsdelete() {
+		return isdelete;
+	}
+
+	public void setIsdelete(String isdelete) {
+		this.isdelete = isdelete;
+	}
+
+	public String getIsadmin() {
+		return isadmin;
+	}
+
+	public void setIsadmin(String isadmin) {
+		this.isadmin = isadmin;
 	}
 
 	public String getImg_localname() {
