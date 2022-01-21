@@ -33,6 +33,12 @@ public class MemberController {
 		return memberService.isLogin(vo, session);
 	}
 	
+	@GetMapping("/logout")
+	public String logout(HttpSession session) {
+		session.invalidate();
+		return "index";
+	}
+	
 	
 	
 	@GetMapping("/mypage")

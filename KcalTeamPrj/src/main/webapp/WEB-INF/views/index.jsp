@@ -39,8 +39,14 @@
                 <li><button class="rightBtn community">커뮤니티</button></li>
             </ul>
             <ul>
-                <li>회원가입</li>
-                <li id="login">로그인</li>
+            	<c:if test="${empty sessionScope.account}">
+	                <li>회원가입</li>
+	                <li id="login">로그인</li>
+                </c:if>
+            	<c:if test="${!empty sessionScope.account}">
+	                <li>${sessionScope.account.nickname}</li>
+	                <li id="logout">로그아웃</li>
+                </c:if>
             </ul>
         </div>
     </header>
@@ -151,10 +157,20 @@
     </div>
 </div>
     <script type="text/javascript">
-	    document.getElementById('login').addEventListener('click', function() {
-	        location.href = '${path}/member/goLogin'
-	    });
-	   
+	    /* document.getElementById('login').addEventListener('click', function() {
+	        location.href = '${path}/member/goLogin';
+	    }); */
+
+	    $(function(){
+	    	$("#login").click(function(){
+	    		location.href = '${path}/member/goLogin';
+	    	})
+	    	
+	    	$("#logout").click(function(){
+	    		location.href = '${path}/member/logout';
+	    	})
+	    })
+	    
         const imgSlide = document.getElementById('mainImgSlide');
         let imgArray = ['main1.jpg', 'main2.jpg', 'main3.jpg', 'main4.jpg'];
         let imgIndex = 0;
