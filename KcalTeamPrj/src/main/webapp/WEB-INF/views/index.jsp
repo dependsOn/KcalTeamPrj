@@ -100,7 +100,7 @@
 	                        회원님의 궁금증을 풀어드립니다. QnA 혹은 1:1 문의를 통한 답변
 	                        궁금한게 있으시다면 문의를 남겨주세요!
 	                    </p>
-	                    <button class='notice'>문의하러 가기</button>
+	                    <button class='cs'>문의하러 가기</button>
 	                </div>
 	            </div>
 	

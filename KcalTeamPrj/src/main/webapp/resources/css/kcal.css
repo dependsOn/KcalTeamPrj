@@ -1,26 +1,26 @@
 @charset "UTF-8";
 
-.tipBox {
+.kcalBox {
     width: 80%;
     height: 1500px;
     margin: 0 auto;
     font-family: 'Noto Sans', sans-serif;
 }
 
-.tipImg {
+.kcalImg {
     width: 100%;
     height: 350px;
     overflow: hidden;
     position: relative;
 }
 
-.tipImg > img {
+.kcalImg > img {
     width: 100%;
     height: 100%;
     filter: brightness(40%);
 }
 
-.tipImgMent {
+.kcalImgMent {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -31,33 +31,33 @@
     font-family: 'Dongle', sans-serif;
 }
 
-.tipTitle {
-    background-color: #026F6C;
+.kcalTitle {
+    background-color: #E27451;
     height: 55px;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
 }
 
-.tipTitle > button {
+.kcalTitle > button {
     border: none;
     background: none;
     font-size: 15px;
     font-weight: bold;
     color: rgba(255, 255, 255, 0.9);
     cursor: pointer;
-    letter-spacing: 5px;
+    letter-spacing: 2px;
 }
 
-.tipTitle > button:hover {
+.kcalTitle > button:hover {
     color: yellow;
     transition: .5s;
 }
 
-.tipTitle button.active {
+.kcalTitle button.active {
     color: yellow;
 }
 
-.tabContent {
+.kcalContent {
     display: none;
 }

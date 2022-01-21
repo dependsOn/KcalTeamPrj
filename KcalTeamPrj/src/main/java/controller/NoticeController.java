@@ -11,6 +11,6 @@ public class NoticeController {
 	@GetMapping("/goNotice")
 	public String goNotice() {
 		
-		return "";
+		return "notice";
 	}
 }

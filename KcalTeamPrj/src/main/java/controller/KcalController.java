@@ -11,6 +11,6 @@ public class KcalController {
 	@GetMapping("/goKcal")
 	public String goKcal() {
 		
-		return "";
+		return "kcal";
 	}
 }

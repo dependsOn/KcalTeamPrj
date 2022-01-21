@@ -11,6 +11,6 @@ public class CsController {
 	@GetMapping("/goCs")
 	public String goCs() {
 		
-		return "";
+		return "cs";
 	}
 }

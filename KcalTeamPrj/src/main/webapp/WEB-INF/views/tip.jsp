@@ -15,7 +15,7 @@
 		<jsp:include page="main_menu_bar.jsp"></jsp:include>
 		<div class="tipBox">
             <div class="tipImg">
-                <img src="${path}/images/tip/tipImg.jpg" alt="">
+                <img src="${path}/images/menu/tipImg.jpg" alt="">
                 <div class="tipImgMent">
                     <p>Diet Tips</p>
                 </div>
