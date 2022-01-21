@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+ <mapper namespace="letter">
+	<select id="selectLetterCount" resultType="int">
+		select count(*)
+		from letter
+		<choose>
+			<when test="rnick != null">
+				rnick = #{rnick}
+			</when>
+			<when test="snick != null">
+				snick = #{snick}
+			</when>
+		</choose>
+	</select>	
+	
+	<select id="selectLetterList" parameterType="letterVO" resultType="letterVO">
+		select lnum, rnick, snick, title, content, date, ischeck
+		from letter
+		<choose>
+			<when test="rnick != null">
+				rnick = #{rnick}
+			</when>
+			<when test="snick != null">
+				snick = #{snick}
+			</when>
+		</choose>
+		order by date desc
+		limit #{start}, #{count}
+	</select>
+	
+	<select id="selectLetter" parameterType="letterVO" resultType="letterVO">
+		select lnum, rnick, snick, title, content, date, ischeck
+		from letter
+		where lnum = #{lnum}
+	</select>
+	
+	<insert id="insertLetter" parameterType="letterVO"
+	useGeneratedKeys="true" keyProperty="num">
+		insert into letter(rnick, snick, title, content, date)
+		values(#{rnick}, #{snick}, #{title}, #{content}, #{date})
+	</insert>
+	
+	<update id="updateLetter" parameterType="letterVO">
+		update letter set ischeck = 'Y' where lnum = #{lnum}
+	</update>
+	
+	<delete id="deleteLetter" parameterType="letterVO">
+		delete from letter
+		where lnum = ${lnum}
+		<choose>
+			<when test="rnick != null">
+				and rnick = #{rnick}
+			</when>
+			<when test="snick != null">
+				and snick = #{snick}
+			</when>
+		</choose>
+	</delete>
+</mapper>
