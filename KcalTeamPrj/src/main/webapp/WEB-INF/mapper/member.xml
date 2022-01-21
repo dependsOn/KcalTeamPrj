@@ -133,11 +133,14 @@
 			<if test="id != null">
 				,id = #{id}
 			</if>
-			<if test="nickname != null">
-				,nickname = #{nickname}
+			<if test="password != null">
+				,password = #{password}
 			</if>
 			<if test="email != null">
 				,email = #{email}
+			</if>
+			<if test="nickname != null">
+				,nickname = #{nickname}
 			</if>
 			<if test="addr1 != null">
 				,addr1 = #{addr1}
@@ -147,6 +150,33 @@
 			</if>
 			<if test="addr3 != null">
 				,addr3 = #{addr3}
+			</if>
+			<if test="comment != null">
+				,comment = #{comment}
+			</if>
+			<if test="p_isopen != null">
+				,p_isopen = #{p_isopen}
+			</if>
+			<if test="d_isopen != null">
+				,d_isopen = #{d_isopen}
+			</if>
+			<if test="i_isopen != null">
+				,i_isopen = #{i_isopen}
+			</if>
+			<if test="e_isopen != null">
+				,e_isopen = #{e_isopen}
+			</if>
+			<if test="isdelete != null">
+				,isdelete = #{isdelete}
+			</if>
+			<if test="isadmin != null">
+				,isadmin = #{isadmin}
+			</if>
+			<if test="img_localname != null">
+				,img_localname = #{img_localname}
+			</if>
+			<if test="img_servername != null">
+				,img_servername = #{img_servername}
 			</if>
 		</set>
 		where unum = #{unum}
