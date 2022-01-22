@@ -121,10 +121,8 @@
 	</select>
 	
 	<insert id="insertMember" parameterType="mvo">
-		insert into member(id, password, email, nickname, addr1, addr2, addr3, comment,
-			   p_isopen, d_isopen, i_isopen, e_isopen, isdelete, isadmin, img_localname, img_servername) 
-		values(#{id}, #{password}, #{email}, #{#nickname}, #{addr1}, #{addr2}, #{addr3}, #{comment},
-			   #{p_isopen}, #{d_isopen}, #{i_isopen}, #{e_isopen}, #{isdelete}, #{isadmin}, #{img_localname}, #{img_servername})
+		insert into member(id, password, email, nickname, addr1, addr2, addr3) 
+		values(#{id}, #{password}, #{email}, #{nickname}, #{addr1}, #{addr2}, #{addr3})
 	</insert>
 	
 	<update id="updateMember" parameterType="mvo">

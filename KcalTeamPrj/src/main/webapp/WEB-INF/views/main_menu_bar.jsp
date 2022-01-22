@@ -41,7 +41,7 @@
         </ul>
         <ul>
         	<c:if test="${empty sessionScope.account}">
-                <li>회원가입</li>
+                <li id="signUp">회원가입</li>
                 <li id="login">로그인</li>
             </c:if>
         	<c:if test="${!empty sessionScope.account}">
@@ -67,6 +67,10 @@
 			
 			$("#logout").click(function(){
 				location.href = '${path}/member/logout';
+			});
+			
+			$('#signUp').click(function() {
+				location.href = '${path}/member/creatMember'
 			});
 			
 			$(".tip").click(function(){

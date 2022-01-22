@@ -29,6 +29,18 @@ public class MemberController {
 		return "login";
 	}
 	
+	@GetMapping("/creatMember")
+	public String creatMember() {
+		
+		return "signUp";
+	}
+	
+	@PostMapping("/signUp")
+	public String signUp(MemberVO vo) {
+		memberService.joinMember(vo);
+		return "login";
+	}
+	
 	@PostMapping("/login")
 	public String login(MemberVO vo, HttpSession session) {
 		return memberService.isLogin(vo, session);

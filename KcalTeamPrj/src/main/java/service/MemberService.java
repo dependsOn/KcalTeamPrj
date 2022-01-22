@@ -24,6 +24,10 @@ public class MemberService {
 		}
 	}
 	
+	public void joinMember(MemberVO vo) {
+		sqlSessionTemplate.insert("member.insertMember", vo);
+	}
+	
 
 	public MemberVO updateMember(MemberVO vo, HttpSession session) {
 		sqlSessionTemplate.update("member.updateMember", vo);
