@@ -92,7 +92,46 @@
 			</div>
 
 			<div id="letter" class="content">
-			
+				<ul class="letterTabs">
+					<li class="ltab" data-tab="receive">받은 쪽지</li>
+					<li class="ltab" data-tab="send">보낸 쪽지</li>
+				</ul>
+				<table class="lcon receive">
+					<thead>
+						<tr>
+							<th>제목</th>
+							<th>보낸이</th>
+							<th>날짜</th>
+						</tr>
+					</thead>
+					<tbody>
+						<c:forEach var="item" items="${receiveLetterList}">
+						<tr>
+							<th>${item.title}</th>
+							<th>${item.snick}</th>
+							<th>${item.date}</th>
+						</tr>
+						</c:forEach>
+					</tbody>
+				</table>
+				<table class="lcon send">
+					<thead>
+						<tr>
+							<th>제목</th>
+							<th>받는이</th>
+							<th>날짜</th>
+						</tr>
+					</thead>
+					<tbody>
+						<c:forEach var="item" items="${sendLetterList}">
+						<tr>
+							<th>${item.title}</th>
+							<th>${item.snick}</th>
+							<th>${item.date}</th>
+						</tr>
+						</c:forEach>
+					</tbody>
+				</table>
 			</div>
 
 			<div id="myPost" class="content"></div>
@@ -120,6 +159,12 @@
 	
 	            $(this).addClass("selected");
 	            $("#"+tabId).addClass("selected");
+	            
+	            
+	            // 클릭한게 쪽지함일때
+	            if($(this).attr("data-tab") == "letter") {
+	            	alert("쪽지함 클릭");
+	            }
 	        });
 	
 	        // 주소검색 클릭시 주소찾기 팝업

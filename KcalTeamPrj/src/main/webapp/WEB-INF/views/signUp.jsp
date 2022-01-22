@@ -7,6 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript" src="${path}/js/jquery-3.6.0.min.js"></script>
 </head>
 <body>
 	<table cellspacing=0 cellpadding=0 border="0">
@@ -120,6 +121,8 @@
                         </td>
                         <td width="75%" class="t1">&nbsp;
                             <input type="text" name="email" id="email" maxlength="30" size="30" class="TXTFLD">
+                            <p class="emailCheckResult"></p>
+							<input type="hidden" class="isPossible" value="possible" />
                         </td>
         
             </tr>
@@ -178,5 +181,40 @@
             <td height=20><spacer type=BLOCK height=10 width=100%></td>
         </tr>
     </table>
+    
+    
+    <script type="text/javascript">
+    	$(function(){
+    		// 이메일 중복 실시간 확인
+	        $("#email").on("keyup", function(){
+	        	let email = $("#email").val();
+	        	
+	        	if(email == "") {
+	        		$(".emailCheckResult").text("이메일을 입력해주세요.");
+	        		$(".emailCheckResult").css("color", "red");
+	        	}else {
+		        	$.ajax({
+		        		url: "${path}/member/checkEmail",
+		        		type: "POST",
+		        		data: {
+		        			"email" : email,
+		        			"id" : "${sessionScope.account.id}"
+		        		},	        		
+		        		success: function(data) {
+		        			if(data == "possible") {
+		        				$(".emailCheckResult").text("사용가능한 이메일입니다.");
+		        				$(".emailCheckResult").css("color", "blue");
+		        				$(".isPossible").val(data);
+		        			}else {
+		        				$(".emailCheckResult").text("이미 사용중인 이메일입니다.");
+		        				$(".emailCheckResult").css("color", "red");
+		        				$(".isPossible").val(data);
+		        			}
+		        		}
+		        	})	        		
+	        	}	        	
+	        });	
+    	})
+    </script>
 </body>
 </html>
