@@ -40,7 +40,7 @@
 	                                </li>
 	                                <li>
 	                                    <label class="pwLabel2"><span>* </span>비밀번호 확인</label>
-	                                    <input type="password" id="password" name="password">
+	                                    <input type="password" id="password2" name="password2">
 	                                </li>
 	                                <li>
 	                                    <label class="nickLabel"><span>* </span>닉네임</label>
