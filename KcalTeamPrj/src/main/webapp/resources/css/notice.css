@@ -30,3 +30,15 @@
     font-weight: bold;
     font-family: 'Dongle', sans-serif;
 }
+
+.noticeTitle {
+    background-color: #6F1602;
+    height: 55px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 15px;
+    font-weight: bold;
+    color: yellow;
+    letter-spacing: 2px;
+}

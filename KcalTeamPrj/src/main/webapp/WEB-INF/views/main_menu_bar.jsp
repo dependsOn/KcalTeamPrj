@@ -25,11 +25,11 @@
     </div>
     <div class="menuCenter">
         <ul>
-            <li class='tip'>다이어트 꿀팁</li>
-            <li class='kcal'>칼로리 계산기</li>
-            <li class='map'>내 주변 시설</li>
-            <li class='notice'>공지사항</li>
-            <li class='cs'>고객센터</li>
+            <li id='curTip' class='menu tip active' onclick='curPageFn(curTip)'>다이어트 꿀팁</li>
+            <li id='curKcal' class='menu kcal active' onclick='curPageFn(curKcal)'>칼로리 계산기</li>
+            <li id='curMap' class='menu map active' onclick='curPageFn(curMap)'>내 주변 시설</li>
+            <li id='curNotice' class='menu notice active' onclick='curPageFn(curNotice)'>공지사항</li>
+            <li id='curCs' class='menu cs active' onclick='curPageFn(curCs)'>고객센터</li>
         </ul>
     </div>
     <div class="menuRight">
@@ -56,6 +56,20 @@
 	        window.scrollTo(0,0);
 	    });
 	 	
+	 	let curPageFn = function(cur) {
+	 		if (cur === curTip) {
+	 			location.href = '${path}/tip/goTip?curPage=curTip';
+	 		} else if (cur === curKcal) {
+	 			location.href = '${path}/kcal/goKcal?curPage=curKcal';
+	 		} else if (cur === curMap) {
+	 			location.href = '${path}/map/goMap?curPage=curMap';
+	 		} else if (cur === curNotice) {
+	 			location.href = '${path}/notice/goNotice?curPage=curNotice';
+	 		} else if (cur === curCs) {
+	 			location.href = '${path}/cs/goCs?curPage=curCs';
+	 		}
+	 	}
+	 	
 		$(function(){
 			$('.logo').click(function() {
 				location.href = '${path}/index';
@@ -73,33 +87,11 @@
 				location.href = '${path}/member/creatMember'
 			});
 			
-			$(".tip").click(function(){
-				location.href = '${path}/tip/goTip';
-			});
+			$('.menu').removeClass('active');
 			
-			$(".kcal").click(function(){
-				location.href = '${path}/kcal/goKcal';
-			});
+			let curPage = "<c:out value = '${param.curPage}' />";
 			
-			$(".map").click(function(){
-				location.href = '${path}/map/goMap';
-			});
-			
-			$(".notice").click(function(){
-				location.href = '${path}/notice/goNotice';
-			});
-			
-			$(".cs").click(function(){
-				location.href = '${path}/cs/goCs';
-			});
-			
-			$(".admin").click(function(){
-				location.href = '${path}/admin/goAdmin';
-			});
-			
-			$(".community").click(function(){
-				location.href = '${path}/community/goCommunity';
-			});
+			$('#'+curPage).addClass('active');
 		});
     </script>
 </body>

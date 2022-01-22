@@ -53,6 +53,7 @@
 
 .csTitle > button:hover {
     color: yellow;
+    transform: scale(1.1);
     transition: .5s;
 }
 

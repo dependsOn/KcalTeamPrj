@@ -89,6 +89,10 @@ header {
     transition: .7s;
 }
 
+.active {
+	color:orangered;
+}
+
 /* 오른쪽 메뉴 */
 
 .menuRight {

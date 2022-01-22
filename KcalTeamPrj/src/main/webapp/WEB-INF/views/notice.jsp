@@ -20,6 +20,15 @@
                     <p>Notice</p>
                 </div>
             </div>
+
+            <div class="noticeContents">
+                <div class="noticeTitle">
+                    <p>공지사항</p>
+                </div>
+                <div class="noticeContent">
+                    <p>메뉴</p>
+                </div>
+            </div>
         </div>
 	</div>
 </body>
