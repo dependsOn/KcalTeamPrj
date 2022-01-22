@@ -20,7 +20,10 @@
 	    <div class="main">
 	        <div class="mainImgBox">
 	            <div class="mainImg">
-	                <img id="mainImgSlide" src="${path}/images/main/main1.jpg" alt="">
+	                <img class="imgSlide" src="${path}/images/main/main1.jpg" alt="">
+	                <img class="imgSlide" src="${path}/images/main/main2.jpg" alt="">
+	                <img class="imgSlide" src="${path}/images/main/main3.jpg" alt="">
+	                <img class="imgSlide" src="${path}/images/main/main4.jpg" alt="">
 	            </div>
 	
 	            <div class="mainMent">
@@ -121,19 +124,29 @@
 	    <jsp:include page="footer.jsp"></jsp:include>
 	</div>
     <script type="text/javascript">
-        const imgSlide = document.getElementById('mainImgSlide');
-        let imgArray = ['main1.jpg', 'main2.jpg', 'main3.jpg', 'main4.jpg'];
-        let imgIndex = 0;
-
-        function imgShow() {
-            imgSlide.setAttribute('src', '${path}/images/main/' + imgArray[imgIndex]);
-            imgIndex++;
-            if (imgIndex >= imgArray.length) {
-                imgIndex = 0;
-            }
-        }
-
-        setInterval(imgShow, 2000);
+	    let index = 0;
+	
+	    function slideShow() {
+	        const mainImg = document.querySelector('mainImg');
+	        let img = document.getElementsByClassName('imgSlide');
+	        
+	        for (i = 0; i < img.length; i++) {
+	            img[i].style.display = 'none';
+	            img[i].style.opacity = '0';             
+	        }
+	
+	        index++;
+	
+	        if (index > img.length) {
+	            index = 1;
+	        }
+	        img[index-1].style.display = 'block';
+	        img[index-1].style.opacity = '1';
+	
+	        setTimeout(slideShow, 4000);
+	    }
+	    
+	    slideShow();
         
         $("#communityBtn").click(function(){
 			location.href = '${path}/community/goCommunity';
