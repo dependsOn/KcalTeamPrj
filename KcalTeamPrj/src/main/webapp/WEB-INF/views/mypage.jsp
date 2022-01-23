@@ -95,43 +95,11 @@
 				<ul class="letterTabs">
 					<li class="ltab" data-tab="receive">받은 쪽지</li>
 					<li class="ltab" data-tab="send">보낸 쪽지</li>
-				</ul>
-				<table class="lcon receive">
-					<thead>
-						<tr>
-							<th>제목</th>
-							<th>보낸이</th>
-							<th>날짜</th>
-						</tr>
-					</thead>
-					<tbody>
-						<c:forEach var="item" items="${receiveLetterList}">
-						<tr>
-							<th>${item.title}</th>
-							<th>${item.snick}</th>
-							<th>${item.date}</th>
-						</tr>
-						</c:forEach>
-					</tbody>
-				</table>
-				<table class="lcon send">
-					<thead>
-						<tr>
-							<th>제목</th>
-							<th>받는이</th>
-							<th>날짜</th>
-						</tr>
-					</thead>
-					<tbody>
-						<c:forEach var="item" items="${sendLetterList}">
-						<tr>
-							<th>${item.title}</th>
-							<th>${item.snick}</th>
-							<th>${item.date}</th>
-						</tr>
-						</c:forEach>
-					</tbody>
-				</table>
+				</ul>			
+				<div class="lcon receive" id="receive">		
+				</div>
+				<div class="lcon send" id="send">					
+				</div>
 			</div>
 
 			<div id="myPost" class="content"></div>
@@ -159,13 +127,85 @@
 	
 	            $(this).addClass("selected");
 	            $("#"+tabId).addClass("selected");
-	            
-	            
-	            // 클릭한게 쪽지함일때
-	            if($(this).attr("data-tab") == "letter") {
-	            	alert("쪽지함 클릭");
-	            }
 	        });
+	        
+	       
+	        
+	        // 쪽지리스트 부르는 함수
+	        let getLetter = function(num){
+	        	$.ajax({
+		        	url: "${path}/letter/letterList",
+		        	type: "GET",	
+		        	dataType : "text",
+		        	data: { "nickname" : "${sessionScope.account.nickname}",
+		        			"num" : num
+		        	},
+		        	success: function(result) {		        		
+		        		let html = jQuery('<div>').html(result);
+		        		let rl = html.find("div#rl").html(); 
+		        		let sl = html.find("div#sl").html(); 
+		        		$("#receive").html(rl);
+		        		$("#send").html(sl);
+		        	},
+		        	error: function(result) {
+		        		alert("error");
+		        	}
+		        })
+	        }
+	        
+	            
+	        
+	       // 받은쪽지함 페이징 
+	        $(document).on('click', '#preBlock', function(){ 
+	        	minBlock = parseInt($("#minBlock").val());
+	        	num = minBlock-1; 
+	        	getLetter(num);
+	        })
+	        $(document).on('click', '#pre', function(){ 
+	        	num = parseInt($(".currPage").text())-1;
+	        	getLetter(num);
+	        })
+	        $(document).on('click', '.page', function(){ 
+	        	num = $(this).text();	        	
+	        	getLetter(num);
+	        })
+	        $(document).on('click', '#next', function(){ 
+	        	num = parseInt($(".currPage").text())+1;
+	        	getLetter(num);
+	        })
+	        $(document).on('click', '#nextBlock', function(){ 
+	        	maxBlock = parseInt($("#maxBlock").val());
+	        	num = maxBlock+1; 
+	        	getLetter(num);
+	        })
+	        
+	        // 보낸쪽지함 페이징
+	        
+	        
+	        // 쪽지 하위탭	        
+	        $(document).on('click', '.letterTabs .ltab', function(){
+	        	let tabId = $(this).attr("data-tab");
+	        	
+	        	$(".letterTabs .ltab").removeClass("selected");
+	            $(".lcon").removeClass("selected");
+	            
+	            $(this).addClass("selected");
+	            $("#"+tabId).addClass("selected");
+	            
+	            getLetter(1);	            
+	        });
+	        
+	        // 쪽지함 클릭
+	        $(".tab[data-tab='letter']").click(function(){
+	        	$(".letterTabs .ltab").removeClass("selected");
+	            $(".lcon").removeClass("selected");
+	            
+	            $(".ltab[data-tab='receive']").addClass("selected");
+	            $("#receive").addClass("selected");
+		        
+		        getLetter(1);
+	        });
+	        
 	
 	        // 주소검색 클릭시 주소찾기 팝업
 	        $(".findAddr").click(function() {

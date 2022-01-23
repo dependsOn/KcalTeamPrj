@@ -72,6 +72,9 @@
 			   p_isopen, d_isopen, i_isopen, e_isopen, isdelete, isadmin, img_localname, img_servername
 		from member
 		<where>
+			<if test="unum != 0">
+				and unum like #{unum}
+			</if>
 			<if test="id != null">
 				and id like #{id}
 			</if>
