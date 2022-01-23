@@ -163,6 +163,57 @@ li {list-style-type: none;}
 }
 
 
+/* 쪽지함 */
+#letter .letterTabs {
+	display: flex;
+	
+}
+
+#letter .letterTabs .ltab {
+	flex-grow: 1;
+	cursor: pointer;
+	text-align: center;
+	font-size: 1.2rem;
+}
+#letter .letterTabs .ltab.selected {
+    font-weight: bold;
+}
+
+.lcon {
+    display: none;
+}
+.lcon.selected {
+    display: block;
+}
+#letter .lcon table {
+	width: 100%;
+	border-collapse: collapse;
+	border-spacing: 5px 0;
+	margin-top: 20px;
+} 
+#letter table tbody td:nth-child(1) {
+	padding-left: 15px;
+}
+#letter table tbody td:nth-child(2) {
+	text-align: center;
+	width: 20%;
+}
+#letter table tbody td:nth-child(3) {
+	text-align: center;
+	width: 20%;
+	min-width: 83px;
+}
+#letter table th{
+	background-color: #eee;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+#letter table td {
+	border-bottom: 1px solid #ccc;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
 
 
 

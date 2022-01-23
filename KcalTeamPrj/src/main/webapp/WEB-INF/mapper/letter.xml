@@ -7,6 +7,7 @@
 	<select id="selectLetterCount" resultType="int">
 		select count(*)
 		from letter
+		where
 		<choose>
 			<when test="rnick != null">
 				rnick = #{rnick}
@@ -20,6 +21,7 @@
 	<select id="selectLetterList" parameterType="letterVO" resultType="letterVO">
 		select lnum, rnick, snick, title, content, date, ischeck
 		from letter
+		where
 		<choose>
 			<when test="rnick != null">
 				rnick = #{rnick}

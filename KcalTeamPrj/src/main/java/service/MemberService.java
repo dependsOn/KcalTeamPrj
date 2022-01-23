@@ -43,7 +43,6 @@ public class MemberService {
 	}
 
 	
-	
 	public String checkEmail(MemberVO vo, String id) {
 		MemberVO vo1 = sqlSessionTemplate.selectOne("member.selectMemberList", vo);
 		String check = "possible";

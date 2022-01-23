@@ -10,9 +10,12 @@ public class LetterVO {
 	private String content;
 	private Date date;
 	private String ischeck;
+	private int start;
+	private int count;
 	
 	public LetterVO() {
-
+		this.start = 0;
+		this.count = 10;
 	}
 
 	public int getLnum() {
@@ -70,6 +73,24 @@ public class LetterVO {
 	public void setIscheck(String ischeck) {
 		this.ischeck = ischeck;
 	}
+
+	public int getStart() {
+		return start;
+	}
+
+	public void setStart(int start) {
+		this.start = start;
+	}
+
+	public int getCount() {
+		return count;
+	}
+
+	public void setCount(int count) {
+		this.count = count;
+	}
+	
+	
 	
 	
 }
