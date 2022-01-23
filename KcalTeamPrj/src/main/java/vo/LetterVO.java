@@ -10,11 +10,13 @@ public class LetterVO {
 	private String content;
 	private Date date;
 	private String ischeck;
-	private int start;
+	private int rstart;
+	private int sstart;
 	private int count;
 	
 	public LetterVO() {
-		this.start = 0;
+		this.rstart = 0;
+		this.sstart = 0;
 		this.count = 10;
 	}
 
@@ -74,12 +76,22 @@ public class LetterVO {
 		this.ischeck = ischeck;
 	}
 
-	public int getStart() {
-		return start;
+	
+
+	public int getRstart() {
+		return rstart;
 	}
 
-	public void setStart(int start) {
-		this.start = start;
+	public void setRstart(int rstart) {
+		this.rstart = rstart;
+	}
+
+	public int getSstart() {
+		return sstart;
+	}
+
+	public void setSstart(int sstart) {
+		this.sstart = sstart;
 	}
 
 	public int getCount() {

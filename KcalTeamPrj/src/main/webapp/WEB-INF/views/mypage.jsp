@@ -8,6 +8,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="${path}/css/mypage.css">
+<script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 <script type="text/javascript" src="${path}/js/jquery-3.6.0.min.js"></script>
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 </head>
@@ -132,13 +133,14 @@
 	       
 	        
 	        // 쪽지리스트 부르는 함수
-	        let getLetter = function(num){
+	        let getLetter = function(rnum, snum){
 	        	$.ajax({
 		        	url: "${path}/letter/letterList",
 		        	type: "GET",	
 		        	dataType : "text",
 		        	data: { "nickname" : "${sessionScope.account.nickname}",
-		        			"num" : num
+		        			"rnum" : rnum,
+		        			"snum" : snum
 		        	},
 		        	success: function(result) {		        		
 		        		let html = jQuery('<div>').html(result);
@@ -153,34 +155,66 @@
 		        })
 	        }
 	        
+	     // 쪽지함 클릭
+	        $(".tab[data-tab='letter']").click(function(){
+	        	$(".letterTabs .ltab").removeClass("selected");
+	            $(".lcon").removeClass("selected");
+	            
+	            $(".ltab[data-tab='receive']").addClass("selected");
+	            $("#receive").addClass("selected");
+		        
+		        getLetter(1,1);
+	        });
+	        
 	            
 	        
 	       // 받은쪽지함 페이징 
-	        $(document).on('click', '#preBlock', function(){ 
-	        	minBlock = parseInt($("#minBlock").val());
-	        	num = minBlock-1; 
-	        	getLetter(num);
+	        $(document).on('click', '#r_preBlock', function(){ 
+	        	rminBlock = parseInt($("#r_minBlock").val());
+	        	rnum = rminBlock-1; 
+	        	getLetter(rnum, 1);
 	        })
-	        $(document).on('click', '#pre', function(){ 
-	        	num = parseInt($(".currPage").text())-1;
-	        	getLetter(num);
+	        $(document).on('click', '#r_pre', function(){ 
+	        	rnum = parseInt($(".r_currPage").text())-1;
+	        	getLetter(rnum, 1);
 	        })
-	        $(document).on('click', '.page', function(){ 
-	        	num = $(this).text();	        	
-	        	getLetter(num);
+	        $(document).on('click', '.r_page', function(){ 
+	        	rnum = $(this).text();	        	
+	        	getLetter(rnum, 1);
 	        })
-	        $(document).on('click', '#next', function(){ 
-	        	num = parseInt($(".currPage").text())+1;
-	        	getLetter(num);
+	        $(document).on('click', '#r_next', function(){ 
+	        	rnum = parseInt($(".r_currPage").text())+1;
+	        	getLetter(rnum, 1);
 	        })
-	        $(document).on('click', '#nextBlock', function(){ 
-	        	maxBlock = parseInt($("#maxBlock").val());
-	        	num = maxBlock+1; 
-	        	getLetter(num);
+	        $(document).on('click', '#r_nextBlock', function(){ 
+	        	rmaxBlock = parseInt($("#r_maxBlock").val());
+	        	rnum = rmaxBlock+1; 
+	        	getLetter(rnum, 1);
 	        })
 	        
 	        // 보낸쪽지함 페이징
-	        
+	        $(document).on('click', '#s_preBlock', function(){ 
+	        	sminBlock = parseInt($("#s_minBlock").val());
+	        	snum = sminBlock-1; 
+	        	getLetter(1, snum);
+	        })
+	        $(document).on('click', '#s_pre', function(){ 
+	        	snum = parseInt($(".s_currPage").text())-1;
+	        	getLetter(1, snum);
+	        })
+	        $(document).on('click', '.s_page', function(){ 
+	        	snum = $(this).text();	        	
+	        	getLetter(1, snum);
+	        })
+	        $(document).on('click', '#s_next', function(){ 
+	        	snum = parseInt($(".s_currPage").text())+1;
+	        	getLetter(1, snum);
+	        })
+	        $(document).on('click', '#s_nextBlock', function(){ 
+	        	smaxBlock = parseInt($("#s_maxBlock").val());
+	        	snum = smaxBlock+1; 
+	        	getLetter(1, snum);
+	        })
 	        
 	        // 쪽지 하위탭	        
 	        $(document).on('click', '.letterTabs .ltab', function(){
@@ -192,19 +226,13 @@
 	            $(this).addClass("selected");
 	            $("#"+tabId).addClass("selected");
 	            
-	            getLetter(1);	            
+	            getLetter(1,1);	            
 	        });
+	       
+	       // 체크한 쪽지 삭제
+	       
 	        
-	        // 쪽지함 클릭
-	        $(".tab[data-tab='letter']").click(function(){
-	        	$(".letterTabs .ltab").removeClass("selected");
-	            $(".lcon").removeClass("selected");
-	            
-	            $(".ltab[data-tab='receive']").addClass("selected");
-	            $("#receive").addClass("selected");
-		        
-		        getLetter(1);
-	        });
+	        
 	        
 	
 	        // 주소검색 클릭시 주소찾기 팝업

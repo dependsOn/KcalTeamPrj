@@ -20,10 +20,9 @@ public class LetterController {
 
 //	@ResponseBody
 	@GetMapping("/letterList")
-	public String getBBSList(Model model, String nickname, @RequestParam(defaultValue = "1") int num) {
+	public String getBBSList(Model model, String nickname, @RequestParam(defaultValue = "1") int rnum, @RequestParam(defaultValue = "1") int snum) {
 		
-		letterService.selectLetterList(model, nickname, num);
-		System.out.println(nickname);
+		letterService.selectLetterList(model, nickname, rnum, snum);
 		
 		return "letterList";
 	}

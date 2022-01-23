@@ -31,7 +31,15 @@
 			</when>
 		</choose>
 		order by date desc
-		limit #{start}, #{count}
+		<choose>
+			<when test="rnick != null">
+				limit #{rstart},
+			</when>
+			<when test="snick != null">
+				limit #{sstart},
+			</when>
+		</choose>
+		#{count}
 	</select>
 	
 	<select id="selectLetter" parameterType="letterVO" resultType="letterVO">
