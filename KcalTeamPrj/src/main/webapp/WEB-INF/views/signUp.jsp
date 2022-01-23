@@ -49,9 +49,7 @@
 	                                </li>
 	                                <li>
 	                                    <label class="emailLabel"><span>* </span>이메일</label>
-	                                    <input type="email" id="email" name="email">
-	                                    
-	                                    
+	                                    <input type="email" id="email" name="email">	                                           
 	                                </li>
 	                                <li>
 	                                    <label class="addr1Label"><span>* </span>주소</label>
