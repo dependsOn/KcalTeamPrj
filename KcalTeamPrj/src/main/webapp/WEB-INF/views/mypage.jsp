@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<c:set var="path" value="${pageContext.request.contextPath}"/>
+<c:set var="path" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,7 +10,8 @@
 <link rel="stylesheet" type="text/css" href="${path}/css/mypage.css">
 <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 <script type="text/javascript" src="${path}/js/jquery-3.6.0.min.js"></script>
-<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script
+	src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 </head>
 <body>
 	<div id="mypageWrap">
@@ -30,40 +31,39 @@
 		<div class="contents">
 			<div id="memberInfo" class="content memberCon">
 				<span class="subTitle">회원정보</span>
-					<table>
-						<tr>
-							<th>아이디</th>
-							<td>${sessionScope.account.id}</td>
-						</tr>
-						<tr>
-							<th>비밀번호</th>
-							<td>
-								<input type="password" name="password" class="password">
-							</td>
-						</tr>
-						<tr>
-							<th>닉네임</th>
-							<td>${sessionScope.account.nickname}</td>
-						</tr>
-						<tr>
-							<th>이메일</th>
-							<td>
-								<input type="email" value="${sessionScope.account.email}" name="email" class="email" required>
-								<p class="emailCheckResult"></p>
-								<input type="hidden" class="isPossible" value="possible" />
-							</td>
-						</tr>
-						<tr>
-							<th>주소</th>
-							<td>
-								<input type="text" value="${sessionScope.account.addr1}" class="addr addr1" name="addr1" readonly>
-								<button type="button" class="findAddr">주소검색</button><br />
-								<input type="text" value="${sessionScope.account.addr2}" class="addr addr2" name="addr2" readonly><br> 
-								<input type="text" value="${sessionScope.account.addr3}" class="addr addr3" name="addr3" required>
-							</td>
-						</tr>
-					</table>
-					<button type="button" class="modifyMember">회원정보 수정</button>
+				<table>
+					<tr>
+						<th>아이디</th>
+						<td>${sessionScope.account.id}</td>
+					</tr>
+					<tr>
+						<th>비밀번호</th>
+						<td><input type="password" name="password" class="password">
+						</td>
+					</tr>
+					<tr>
+						<th>닉네임</th>
+						<td>${sessionScope.account.nickname}</td>
+					</tr>
+					<tr>
+						<th>이메일</th>
+						<td><input type="email" value="${sessionScope.account.email}"
+							name="email" class="email" required>
+							<p class="emailCheckResult"></p> <input type="hidden"
+							class="isPossible" value="possible" /></td>
+					</tr>
+					<tr>
+						<th>주소</th>
+						<td><input type="text" value="${sessionScope.account.addr1}"
+							class="addr addr1" name="addr1" readonly>
+							<button type="button" class="findAddr">주소검색</button>
+							<br /> <input type="text" value="${sessionScope.account.addr2}"
+							class="addr addr2" name="addr2" readonly><br> <input
+							type="text" value="${sessionScope.account.addr3}"
+							class="addr addr3" name="addr3" required></td>
+					</tr>
+				</table>
+				<button type="button" class="modifyMember">회원정보 수정</button>
 			</div>
 
 			<div id="modifyPw" class="content memberCon">
@@ -85,8 +85,10 @@
 				<ul>
 					<li class="wdNotice">※ 탈퇴 후 복구가 불가능합니다.</li>
 					<li><span>아이디</span> <span>${sessionScope.account.id}</span></li>
-					<li><span>비밀번호</span> <input type="password" class="wdPassword" required></li>
-					<li><span>회원탈퇴 입력</span> <input type="text" class="confirmWord" placeholder="'회원탈퇴'를 입력해주세요." required>
+					<li><span>비밀번호</span> <input type="password"
+						class="wdPassword" required></li>
+					<li><span>회원탈퇴 입력</span> <input type="text"
+						class="confirmWord" placeholder="'회원탈퇴'를 입력해주세요." required>
 					</li>
 					<li><button type="button" class="withdraw">탈퇴하기</button></li>
 				</ul>
@@ -96,11 +98,9 @@
 				<ul class="letterTabs">
 					<li class="ltab" data-tab="receive">받은 쪽지</li>
 					<li class="ltab" data-tab="send">보낸 쪽지</li>
-				</ul>			
-				<div class="lcon receive" id="receive">		
-				</div>
-				<div class="lcon send" id="send">					
-				</div>
+				</ul>
+				<div class="lcon receive" id="receive"></div>
+				<div class="lcon send" id="send"></div>
 			</div>
 
 			<div id="myPost" class="content"></div>
@@ -230,7 +230,54 @@
 	        });
 	       
 	       // 체크한 쪽지 삭제
+	       $(document).on('click', '.letterDelete', function(){
+	    	   let chkLetter = [];
+	    	   $('input[name="delete"]:checked').each(function(){
+	               chkLetter.push($(this).val());
+	           });
+
+	    	   if(chkLetter.length == 0) {
+	    		   alert("선택한 쪽지가 없습니다.");
+	    	   }else {
+		    	   let ldConfirm = confirm("선택한 쪽지를 삭제하시겠습니까?");
+		    	   if(ldConfirm) {
+		    		   $.ajax({
+			    		   url: "${path}/letter/deleteLetter",	
+			    		   traditional: true,
+		                   type:   "POST",
+		                   data: { "deleteLetterList" : chkLetter },
+		                   success: function(data){
+		                	   getLetter(parseInt($(".r_currPage").text()), parseInt($(".s_currPage").text()));
+		                	   alert("선택한 쪽지 " + data + "개가 삭제되었습니다.");
+		                   },
+		                   error: function(data) {
+		                	   alert("error");
+		                   }
+			    	   })
+	    	   		}
+		       }   
+	       })
 	       
+	       // 쪽지 제목 클릭시 쪽지 보기
+	       $(document).on('click', '.letterTitle', function(){
+	    	   let lnum = parseInt($(this).attr("data-lnum"));
+	    	   
+	    	   
+	    	   $.ajax({
+	    		   url: "${path}/letter/letterDetail",	
+	    		   traditional: true,
+                   type:   "POST",
+                   data: { "lnum" : lnum },
+                   success: function(result){
+                	   /* let letterUrl = "${path}/letter/openLetter";
+        	    	   let popOption = "width=600, height=800, resizable=no";
+                	   window.open(letterUrl, "쪽지", popOption); */
+                   },
+                   error: function(result) {
+                	   alert("error");
+                   }
+	    	   })
+	       })
 	        
 	        
 	        

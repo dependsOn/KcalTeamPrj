@@ -61,13 +61,13 @@
 	<delete id="deleteLetter" parameterType="letterVO">
 		delete from letter
 		where lnum = ${lnum}
-		<choose>
+		<!-- <choose>
 			<when test="rnick != null">
 				and rnick = #{rnick}
 			</when>
 			<when test="snick != null">
 				and snick = #{snick}
 			</when>
-		</choose>
+		</choose> -->
 	</delete>
 </mapper>

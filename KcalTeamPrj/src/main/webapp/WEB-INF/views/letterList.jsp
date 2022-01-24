@@ -23,8 +23,8 @@
 			<tbody>
 				<c:forEach var="item" items="${receiveLetterList}">
 					<tr>
-						<td><input type="checkbox" name="r_delete" value="${item.lnum}"/></td>
-						<td>${item.title}</td>
+						<td><input type="checkbox" name="delete" value="${item.lnum}"/></td>
+						<td class="letterTitle" data-lnum="${item.lnum}">${item.title}</td>
 						<td>${item.snick}</td>
 						<td>${item.date}</td>
 					</tr>
@@ -49,8 +49,8 @@
       
    %>
    <div>
-   		<button type="button">선택쪽지 삭제</button>
-   		<button type="button">새 쪽지</button>
+   		<button type="button" class="letterDelete">선택쪽지 삭제</button>
+   		<button type="button" class="newLetter">새 쪽지</button>
    </div>
    <input type="hidden" value="${rnum}" id="r_num" />
    <input type="hidden" value="${rminBlock}" id="r_minBlock" />
@@ -119,8 +119,8 @@
 			<tbody>
 				<c:forEach var="item" items="${sendLetterList}">
 					<tr>
-						<td><input type="checkbox" name="s_delete" value="${item.lnum}"/></td>
-						<td>${item.title}</td>
+						<td><input type="checkbox" name="delete" value="${item.lnum}"/></td>
+						<td class="letterTitle" data-lnum="${item.lnum}">${item.title}</td>
 						<td>${item.rnick}</td>
 						<td>${item.date}</td>
 					</tr>
@@ -144,6 +144,10 @@
       pageContext.setAttribute("smaxBlock", smaxBlock);
       
    %>
+   <div>
+   		<button type="button" class="letterDelete">선택쪽지 삭제</button>
+   		<button type="button" class="newLetter">새 쪽지</button>
+   </div>
    <input type="hidden" value="${snum}" id="s_num" />
    <input type="hidden" value="${sminBlock}" id="s_minBlock" />
    <input type="hidden" value="${smaxBlock}" id="s_maxBlock" />

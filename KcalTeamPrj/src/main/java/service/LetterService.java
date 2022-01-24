@@ -2,6 +2,8 @@ package service;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,6 +33,31 @@ public class LetterService {
 		model.addAttribute("scount", sqlSessionTemplate.selectOne("letter.selectLetterCount", svo));
 		model.addAttribute("rnum", rnum);
 		model.addAttribute("snum", snum);
+	}
+
+	public int deleteLetter(List<Integer> deleteLetterList) {
+		int deleteCnt = 0;
+		for(int lnum : deleteLetterList) {
+			System.out.println(lnum);
+			
+			LetterVO vo = new LetterVO();
+			vo.setLnum(lnum);
+			sqlSessionTemplate.delete("letter.deleteLetter", vo);
+			deleteCnt += 1;
+		}		
+		
+		return deleteCnt;
+	}
+
+	public void selectLetterOne(Model model, int lnum) {
+		LetterVO vo = new LetterVO();
+		vo.setLnum(lnum);
+		LetterVO vo2 = sqlSessionTemplate.selectOne("letter.selectLetter", vo);
+		System.out.println(vo2.getLnum());
+		System.out.println(vo2.getTitle());
+		System.out.println(vo2.getContent());
+		model.addAttribute("letter", vo2);
+		
 	}
 
 	
