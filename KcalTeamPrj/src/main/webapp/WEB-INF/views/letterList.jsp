@@ -128,7 +128,7 @@
 			</tbody>
 		</table>
 		<%
-	// snum : 보낸쪽지 현재 페이지
+	// snum : 보낸 쪽지 현재 페이지
       int snum = (Integer)request.getAttribute("snum");
 	// scount : 보낸쪽지 전체 데이터 개수
       int scount = (Integer)request.getAttribute("scount");
