@@ -27,10 +27,6 @@ html {
     color: white;
 }
 
-.plan_ment > p > span {
-    color: #18FFFF;
-}
-
 .signUpTitle {
     width: 80%;
     display: flex;
@@ -75,7 +71,7 @@ html {
     height: 50px;
     display: flex;
     align-items: center;
-    border-bottom: 2px solid #12c2e9;  /* fallback for old browsers */
+    border-bottom: 2px solid #ff8d64;  /* fallback for old browsers */
 }
 
 .signUpContentTitle > p {
@@ -97,10 +93,6 @@ html {
     color: dimgray;
     border: 1px solid #ccc;
     border-radius: 5px;
-}
-
-span {
-    color: deeppink;
 }
 
 .signUpInfoBox > ul > li {
@@ -178,28 +170,14 @@ span {
 }
 
 .Btn:hover {
-    background-color: #6aafe6;
+    background-color: #ff8d64;
     color: white;
-    
     cursor: pointer;
     transition: 0.25s;
 }
 
-
-
-
 input:focus {
-    outline: 2px solid #00d0ff;
-    transition: .5s;
-}
-
-select:focus {
-    outline: 1px solid #00d0ff;
-    transition: .5s;
-}
-
-textarea:focus {
-    outline: 1px solid #00d0ff;
+    outline: 2px solid #ff8d64;
     transition: .5s;
 }
 
@@ -220,13 +198,13 @@ input[type="checkbox"] {
     font-size: 16px;
     font-weight: bold;
     color: #6e6e6e;
-    border: 2px solid #34aaf8;
+    border: 2px solid orangered;
     background-color: white;
     border-radius: 15px;
     padding: 10px 30px;
 }
 #signUpBtn:hover {
-    background-color: #6aafe6;
+    background-color: #ff8d64;
     color: white;
     letter-spacing: 1px;
     transform: scale(1);
