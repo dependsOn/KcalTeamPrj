@@ -63,7 +63,7 @@
 							class="addr addr3" name="addr3" required></td>
 					</tr>
 				</table>
-				<button type="button" class="modifyMember">회원정보 수정</button>
+				<div style="text-align:center;"><button type="button" class="modifyMember">회원정보 수정</button></div>
 			</div>
 
 			<div id="modifyPw" class="content memberCon">
@@ -112,6 +112,38 @@
 			<div id="myAsk" class="content"></div>
 		</div>
 	</div>
+	
+	<div id="letterModalBg">
+		<div id="letterModal">
+			<span id="letterCloseBtn"><i class="far fa-times-circle fa-2x"></i></span>
+			<ul>
+				<li>
+					<c:if test="${sessionScope.account.nickname eq letter.rnick}">
+						<span>보낸이</span>${letter.snick}
+					</c:if>
+					<c:if test="${sessionScope.account.nickname eq letter.snick}">
+						<span>받는이</span>${letter.rnick}
+					</c:if>
+				</li>
+				<li><span>제목</span>${letter.title}</li>
+				<li><p>${letter.content}</p></li>
+				<li><button type="button" id="replyBtn">답장</button></li>
+			</ul>
+		</div>
+	</div>
+	
+	<div id="sendLetterBg">
+		<form action="" id="sendLetter">
+			<ul>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+			</ul>
+		</form>
+	</div>
+	
+	<%-- <jsp:include page="footer.jsp"></jsp:include> --%>
 
 	<script type="text/javascript">
 		$(function(){
@@ -216,6 +248,7 @@
 	        	getLetter(1, snum);
 	        })
 	        
+	        
 	        // 쪽지 하위탭	        
 	        $(document).on('click', '.letterTabs .ltab', function(){
 	        	let tabId = $(this).attr("data-tab");
@@ -228,6 +261,7 @@
 	            
 	            getLetter(1,1);	            
 	        });
+	       
 	       
 	       // 체크한 쪽지 삭제
 	       $(document).on('click', '.letterDelete', function(){
@@ -258,9 +292,10 @@
 		       }   
 	       })
 	       
+	       
 	       // 쪽지 제목 클릭시 쪽지 보기
 	       $(document).on('click', '.letterTitle', function(){
-	    	   let lnum = parseInt($(this).attr("data-lnum"));
+	    	   /* let lnum = parseInt($(this).attr("data-lnum"));
 	    	   
 	    	   
 	    	   $.ajax({
@@ -269,16 +304,38 @@
                    type:   "POST",
                    data: { "lnum" : lnum },
                    success: function(result){
-                	   /* let letterUrl = "${path}/letter/openLetter";
-        	    	   let popOption = "width=600, height=800, resizable=no";
-                	   window.open(letterUrl, "쪽지", popOption); */
+                	   
+                   },
+                   error: function(result) {
+                	   alert("error");
+                   }
+	    	   }) */
+	    	   $("#letterModalBg").addClass("clicked");
+	    	   
+	    	   $.ajax({
+	    		   url: "${path}/letter/letterDetail",	
+	    		   traditional: true,
+                   type:   "POST",
+                   data: { "lnum" : lnum },
+	               dataType : 'json',
+                   success: function(result){
+                	   console.log(result.lnum);
+                	   console.log(result.snick);
+                	   console.log(result.rnick);
+                	   console.log(result.date);
+                	   alert("success");
                    },
                    error: function(result) {
                 	   alert("error");
                    }
 	    	   })
 	       })
-	        
+	       
+	       
+	       
+	       $(document).on('click', '#letterCloseBtn', function(){
+	    	   $("#letterModalBg").removeClass("clicked");
+	       })
 	        
 	        
 	
@@ -291,6 +348,7 @@
 	                }
 	            }).open();
 	        });
+	       
 	        
 	        // 이메일 중복 실시간 확인
 	        $(".email").on("keyup", function(){
@@ -320,7 +378,8 @@
 		        		}
 		        	})	        		
 	        	}	        	
-	        });	                
+	        });	
+	        
 	        
 	        // 회원정보수정
 	        $(".modifyMember").click(function(){	
@@ -330,7 +389,7 @@
 	        			"addr1" : $(".addr1").val(),
 	        			"addr2" : $(".addr2").val(),
 	        			"addr3" : $(".addr3").val()
-	        			}	
+	        	}	
 	        	
 	        	if($(".addr3").val() == "") {
 	        		alert("상세주소를 입력해주세요.");
@@ -356,6 +415,7 @@
 		        	})
 	        	}
 	        })
+	        
 	        
 	        // 비밀번호 수정
 	        $(".modifyPw").click(function(){
@@ -387,6 +447,7 @@
 	        	}
 	        })
 	        
+	        
 	        // 회원탈퇴	        
 	        $(".withdraw").click(function(){
 	        	if($(".wdPassword").val() != ${sessionScope.account.password}) {
@@ -400,6 +461,7 @@
 	        		}
 	        	}
 	        })
+	        
 	    })
 	</script>
 

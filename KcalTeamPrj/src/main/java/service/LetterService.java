@@ -49,15 +49,12 @@ public class LetterService {
 		return deleteCnt;
 	}
 
-	public void selectLetterOne(Model model, int lnum) {
+	public LetterVO selectLetterOne(Model model, int lnum) {
 		LetterVO vo = new LetterVO();
 		vo.setLnum(lnum);
-		LetterVO vo2 = sqlSessionTemplate.selectOne("letter.selectLetter", vo);
-		System.out.println(vo2.getLnum());
-		System.out.println(vo2.getTitle());
-		System.out.println(vo2.getContent());
-		model.addAttribute("letter", vo2);
-		
+		vo = sqlSessionTemplate.selectOne("letter.selectLetter", vo);
+
+		return vo;
 	}
 
 	

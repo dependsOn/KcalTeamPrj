@@ -15,7 +15,7 @@
 	<script type="text/javascript" src="${path}/js/jquery-3.6.0.min.js"></script>
 </head>
 <body>
-	<header>
+	<header class="header">
 		<div id="top">Top</div>
 	    <div class="logo">
 	        <img src="${path}/images/logoImg/logo.png" alt="">

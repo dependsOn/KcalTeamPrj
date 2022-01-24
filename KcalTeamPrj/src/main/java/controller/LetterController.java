@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import service.LetterService;
+import vo.LetterVO;
 
 @Controller
 @RequestMapping("/letter")
@@ -42,16 +43,10 @@ public class LetterController {
 		return deleteCnt;
 	}
 	
+	@ResponseBody
 	@PostMapping("/letterDetail")
-	public String letterDetail(Model model, @RequestParam int lnum, HttpSession session) {
-		
-		letterService.selectLetterOne(model, lnum);
-		
-		return "letter_detail";
-	}
-	
-	@GetMapping("/openLetter")
-	public String openLetter() {
-		return "letter_detail";
+	public LetterVO letterDetail(Model model, @RequestParam int lnum, HttpSession session) {
+			
+		return letterService.selectLetterOne(model, lnum);
 	}
 }
