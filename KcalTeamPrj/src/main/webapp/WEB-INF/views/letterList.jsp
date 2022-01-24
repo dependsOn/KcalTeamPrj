@@ -14,6 +14,7 @@
 		<table id="rlTable">
 			<thead>
 				<tr>
+					<th>삭제</th>
 					<th>제목</th>
 					<th>보낸이</th>
 					<th>날짜</th>
@@ -22,7 +23,8 @@
 			<tbody>
 				<c:forEach var="item" items="${receiveLetterList}">
 					<tr>
-						<td>${item.title}</td>
+						<td><input type="checkbox" name="delete" value="${item.lnum}"/></td>
+						<td class="letterTitle" data-lnum="${item.lnum}">${item.title}</td>
 						<td>${item.snick}</td>
 						<td>${item.date}</td>
 					</tr>
@@ -30,76 +32,85 @@
 			</tbody>
 		</table>
 	<%
-	// num : 현재 페이지
-      int num = (Integer)request.getAttribute("num");
-	// count : 전체 데이터 개수
-      int count = (Integer)request.getAttribute("count");
-	// total : 전체 페이지 개수
-      int total = count/10+((count%10==0)?0:1);
-	// minBlock : 한 블럭의 가장 작은번호인 페이지 num
-      int minBlock = (((num-1)/5)*5)+1;
-	// maxBlock : 한 블럭의 가장 큰 번호인 페이지 num
-      int maxBlock = (((num-1)/5)+1)*5;
+	// rnum : 받은쪽지 현재 페이지
+      int rnum = (Integer)request.getAttribute("rnum");
+	// rcount : 받은쪽지 전체 데이터 개수
+      int rcount = (Integer)request.getAttribute("rcount");
+	// rtotal : 받은쪽지 전체 페이지 개수
+      int rtotal = rcount/10 + ((rcount % 10 == 0) ? 0 : 1);
+	// rminBlock : 받은쪽지 한 블럭의 가장 작은번호인 페이지 num
+      int rminBlock = (((rnum-1)/5)*5)+1;
+	// rmaxBlock : 받은쪽지 한 블럭의 가장 큰 번호인 페이지 num
+      int rmaxBlock = (((rnum-1)/5)+1)*5;
       
-      pageContext.setAttribute("total", total);
-      pageContext.setAttribute("minBlock", minBlock);
-      pageContext.setAttribute("maxBlock", maxBlock);
+      pageContext.setAttribute("rtotal", rtotal);
+      pageContext.setAttribute("rminBlock", rminBlock);
+      pageContext.setAttribute("rmaxBlock", rmaxBlock);
       
    %>
-   <input type="hidden" value="${num}" id="num" />
-   <input type="hidden" value="${minBlock}" id="minBlock" />
-   <input type="hidden" value="${maxBlock}" id="maxBlock" />
-   <c:choose>
-   	<c:when test="${minBlock-1 < 1}">
-   		<span>◀◀</span>
-   	</c:when>
-   	<c:otherwise>
-   		<a id="preBlock">◀◀</a>
-   	</c:otherwise>
-   </c:choose>
-   &nbsp;&nbsp;
-   <c:choose>
-      <c:when test="${num==1}">
-         <span>◀</span>
-      </c:when>
-      <c:otherwise>
-         <a id="pre">◀</a>
-      </c:otherwise>
-   </c:choose>
-   <c:forEach begin="${minBlock}" end="${(total<maxBlock)?total:maxBlock}" step="1" var="i">
-      <c:choose>
-         <c:when test="${num == i}">
-            <span class="currPage">${i}</span>
-         </c:when>
-         <c:otherwise>
-            <a class="page">${i}</a>
-         </c:otherwise>
-      </c:choose>
-
-   </c:forEach>
-   <c:choose>
-      <c:when test="${num == total}">
-         <span>▶</span>
-      </c:when>
-      <c:otherwise>
-         <a id="next">▶</a>    
-      </c:otherwise>
-   </c:choose>
-   &nbsp;&nbsp;
-   <c:choose>
-   	<c:when test="${maxBlock > total}">
-   		<span>▶▶</span>
-   	</c:when>
-   	<c:otherwise>
-   		<a id="nextBlock">▶▶</a>
-	</c:otherwise>
-   </c:choose>
+   <div>
+   		<button type="button" class="letterDelete">선택쪽지 삭제</button>
+   		<button type="button" class="newLetter">새 쪽지</button>
+   </div>
+   <input type="hidden" value="${rnum}" id="r_num" />
+   <input type="hidden" value="${rminBlock}" id="r_minBlock" />
+   <input type="hidden" value="${rmaxBlock}" id="r_maxBlock" />
+   <div id="rl_pages">
+	   <c:choose>
+	   	<c:when test="${rminBlock-1 < 1}">
+	   		<span><i class="fas fa-angle-double-left"></i></span>
+	   	</c:when>
+	   	<c:otherwise>
+	   		<span id="r_preBlock" class="clickable"><i class="fas fa-angle-double-left"></i></span>
+	   	</c:otherwise>
+	   </c:choose>
+	   &nbsp;&nbsp;
+	   <c:choose>
+	      <c:when test="${rnum == 1}">
+	         <span><i class="fas fa-angle-left"></i></span>
+	      </c:when>
+	      <c:otherwise>
+	         <span id="r_pre" class="clickable"><i class="fas fa-angle-left"></i></span>
+	      </c:otherwise>
+	   </c:choose>
+	   &nbsp;&nbsp;
+	   <c:forEach begin="${rminBlock}" end="${(rtotal < rmaxBlock) ? rtotal : rmaxBlock}" step="1" var="i">
+	      <c:choose>
+	         <c:when test="${rnum == i}">
+	            <span class="r_currPage">${i}</span>
+	         </c:when>
+	         <c:otherwise>
+	            <span class="r_page" style="cursor:pointer;">${i}</span>
+	         </c:otherwise>
+	      </c:choose>
+	
+	   </c:forEach>
+	   &nbsp;&nbsp;
+	   <c:choose>
+	      <c:when test="${rnum == rtotal}">
+	         <span><i class="fas fa-angle-right"></i></span>
+	      </c:when>
+	      <c:otherwise>
+	         <span id="r_next" class="clickable"><i class="fas fa-angle-right"></i></i></span>    
+	      </c:otherwise>
+	   </c:choose>
+	   &nbsp;&nbsp;
+	   <c:choose>
+		   	<c:when test="${rmaxBlock >= rtotal}">
+		   		<span><i class="fas fa-angle-double-right"></i></span>
+		   	</c:when>
+		   	<c:otherwise>
+		   		<span id="r_nextBlock" class="clickable"><i class="fas fa-angle-double-right"></i></span>
+			</c:otherwise>
+	   </c:choose>
+   </div>
 	</div>
 	
 	<div id="sl">
 		<table id="slTable">
 			<thead>
 				<tr>
+					<th>삭제</th>
 					<th>제목</th>
 					<th>받는이</th>
 					<th>날짜</th>
@@ -108,13 +119,87 @@
 			<tbody>
 				<c:forEach var="item" items="${sendLetterList}">
 					<tr>
-						<td>${item.title}</td>
+						<td><input type="checkbox" name="delete" value="${item.lnum}"/></td>
+						<td class="letterTitle" data-lnum="${item.lnum}">${item.title}</td>
 						<td>${item.rnick}</td>
 						<td>${item.date}</td>
 					</tr>
 				</c:forEach>
 			</tbody>
 		</table>
+		<%
+	// snum : 보낸쪽지 현재 페이지
+      int snum = (Integer)request.getAttribute("snum");
+	// scount : 보낸쪽지 전체 데이터 개수
+      int scount = (Integer)request.getAttribute("scount");
+	// stotal : 보낸쪽지 전체 페이지 개수
+      int stotal = scount/10 + ((scount % 10 == 0) ? 0 : 1);
+	// sminBlock : 보낸쪽지 한 블럭의 가장 작은번호인 페이지 num
+      int sminBlock = (((snum-1)/5)*5)+1;
+	// smaxBlock : 보낸쪽지 한 블럭의 가장 큰 번호인 페이지 num
+      int smaxBlock = (((snum-1)/5)+1)*5;
+      
+      pageContext.setAttribute("stotal", stotal);
+      pageContext.setAttribute("sminBlock", sminBlock);
+      pageContext.setAttribute("smaxBlock", smaxBlock);
+      
+   %>
+   <div>
+   		<button type="button" class="letterDelete">선택쪽지 삭제</button>
+   		<button type="button" class="newLetter">새 쪽지</button>
+   </div>
+   <input type="hidden" value="${snum}" id="s_num" />
+   <input type="hidden" value="${sminBlock}" id="s_minBlock" />
+   <input type="hidden" value="${smaxBlock}" id="s_maxBlock" />
+   <div id="sl_pages">
+	   <c:choose>
+	   	<c:when test="${sminBlock-1 < 1}">
+	   		<span><i class="fas fa-angle-double-left"></i></span>
+	   	</c:when>
+	   	<c:otherwise>
+	   		<span id="s_preBlock" class="clickable"><i class="fas fa-angle-double-left"></i></span>
+	   	</c:otherwise>
+	   </c:choose>
+	   &nbsp;&nbsp;
+	   <c:choose>
+	      <c:when test="${snum == 1}">
+	         <span><i class="fas fa-angle-left"></i></span>
+	      </c:when>
+	      <c:otherwise>
+	         <span id="s_pre" class="clickable"><i class="fas fa-angle-left"></i></span>
+	      </c:otherwise>
+	   </c:choose>
+	   &nbsp;&nbsp;
+	   <c:forEach begin="${sminBlock}" end="${(stotal  <smaxBlock) ? stotal : smaxBlock}" step="1" var="i">
+	      <c:choose>
+	         <c:when test="${snum == i}">
+	            <span class="s_currPage">${i}</span>
+	         </c:when>
+	         <c:otherwise>
+	            <span class="s_page" style="cursor:pointer;">${i}</span>
+	         </c:otherwise>
+	      </c:choose>
+	
+	   </c:forEach>
+	   &nbsp;&nbsp;
+	   <c:choose>
+	      <c:when test="${snum == stotal}">
+	         <span><i class="fas fa-angle-right"></i></span>
+	      </c:when>
+	      <c:otherwise>
+	         <span id="s_next" class="clickable"><i class="fas fa-angle-right"></i></span>    
+	      </c:otherwise>
+	   </c:choose>
+	   &nbsp;&nbsp;
+	   <c:choose>
+		   	<c:when test="${smaxBlock >= stotal}">
+		   		<span><i class="fas fa-angle-double-right"></i></span>
+		   	</c:when>
+		   	<c:otherwise>
+		   		<span id="s_nextBlock" class="clickable"><i class="fas fa-angle-double-right"></i></span>
+			</c:otherwise>
+	   </c:choose>
+   </div>
 	</div>
 </body>
 </html>

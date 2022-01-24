@@ -57,7 +57,7 @@
 	                        그 상태를 유지하기란 힘들기 때문. 해마다 다이어트 계획을 세웠는데도 
 	                        번번이 실패했다면 이번은 속다이어트를 시도해보면 어떨까?
 	                    </p>
-	                    <button class='tip'>칼럼 보러가기</button>
+	                    <button class='tip' onclick='curPageFn(curTip)'>칼럼 보러가기</button>
 	                </div>
 	            </div>
 	
@@ -73,7 +73,7 @@
 	                        편리한 기능입니다. 오늘 섭취한 칼로리를 알고싶다면 지금 바로 
 	                        계산하고 운동하러 갑시다!
 	                    </p>
-	                    <button class='kcal'>계산하러 가기</button>
+	                    <button class='kcal' onclick='curPageFn(curKcal)'>계산하러 가기</button>
 	                </div>
 	            </div>
 	
@@ -88,7 +88,7 @@
 	                        내 주변 시설 검색기능은 회원님의 주소를 기준으로 반경 몇km 이내에
 	                        공원, 수영장, 헬스장, 등등 운동시설 검색이 가능한 서비스입니다.
 	                    </p>
-	                    <button class='map'>검색하러 가기</button>
+	                    <button class='map' onclick='curPageFn(curMap)'>검색하러 가기</button>
 	                </div>
 	            </div>
 	
@@ -103,7 +103,7 @@
 	                        회원님의 궁금증을 풀어드립니다. QnA 혹은 1:1 문의를 통한 답변
 	                        궁금한게 있으시다면 문의를 남겨주세요!
 	                    </p>
-	                    <button class='cs'>문의하러 가기</button>
+	                    <button class='cs' onclick='curPageFn(curNotice)'>문의하러 가기</button>
 	                </div>
 	            </div>
 	
@@ -148,9 +148,11 @@
 	    
 	    slideShow();
         
-        $("#communityBtn").click(function(){
-			location.href = '${path}/community/goCommunity';
-		});
+	    /* $(function(){
+			$('.tip').click(function() {
+				location.href = '${path}/goTip?curPage=curTip';
+			});
+		}); */
     </script>
 </body>
 </html>

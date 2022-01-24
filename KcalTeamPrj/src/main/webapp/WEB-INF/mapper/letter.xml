@@ -31,7 +31,15 @@
 			</when>
 		</choose>
 		order by date desc
-		limit #{start}, #{count}
+		<choose>
+			<when test="rnick != null">
+				limit #{rstart},
+			</when>
+			<when test="snick != null">
+				limit #{sstart},
+			</when>
+		</choose>
+		#{count}
 	</select>
 	
 	<select id="selectLetter" parameterType="letterVO" resultType="letterVO">
@@ -53,13 +61,13 @@
 	<delete id="deleteLetter" parameterType="letterVO">
 		delete from letter
 		where lnum = ${lnum}
-		<choose>
+		<!-- <choose>
 			<when test="rnick != null">
 				and rnick = #{rnick}
 			</when>
 			<when test="snick != null">
 				and snick = #{snick}
 			</when>
-		</choose>
+		</choose> -->
 	</delete>
 </mapper>
