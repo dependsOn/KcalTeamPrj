@@ -24,7 +24,7 @@
 				<c:forEach var="item" items="${receiveLetterList}">
 					<tr>
 						<td><input type="checkbox" name="delete" value="${item.lnum}"/></td>
-						<td class="letterTitle" data-lnum="${item.lnum}">${item.title}</td>
+						<td class="letterTitle readLetter" data-lnum="${item.lnum}" data-ischeck="${item.ischeck}">${item.title}</td>
 						<td>${item.snick}</td>
 						<td>${item.date}</td>
 					</tr>
@@ -128,7 +128,7 @@
 			</tbody>
 		</table>
 		<%
-	// snum : 보낸 쪽지 현재 페이지
+	// snum : 보낸쪽지 현재 페이지
       int snum = (Integer)request.getAttribute("snum");
 	// scount : 보낸쪽지 전체 데이터 개수
       int scount = (Integer)request.getAttribute("scount");

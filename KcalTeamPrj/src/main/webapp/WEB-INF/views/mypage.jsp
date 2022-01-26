@@ -117,29 +117,27 @@
 		<div id="letterModal">
 			<span id="letterCloseBtn"><i class="far fa-times-circle fa-2x"></i></span>
 			<ul>
+				<li id="letter-date"></li>
+				<li id="letter-nickname"></li>
+				<li id="letter-title"></li>
 				<li>
-					<c:if test="${sessionScope.account.nickname eq letter.rnick}">
-						<span>보낸이</span>${letter.snick}
-					</c:if>
-					<c:if test="${sessionScope.account.nickname eq letter.snick}">
-						<span>받는이</span>${letter.rnick}
-					</c:if>
+					<textarea rows="17" id="letter-content" disabled></textarea>
 				</li>
-				<li><span>제목</span>${letter.title}</li>
-				<li><p>${letter.content}</p></li>
 				<li><button type="button" id="replyBtn">답장</button></li>
 			</ul>
 		</div>
 	</div>
 	
 	<div id="sendLetterBg">
-		<form action="" id="sendLetter">
+		<form action="${path}/letter/replyLetter" id="sendLetterModal" method="POST">
+			<span id="sendCloseBtn"><i class="far fa-times-circle fa-2x"></i></span>
 			<ul>
-				<li></li>
-				<li></li>
-				<li></li>
-				<li></li>
+				<li><span>받는이</span><input type="text" id="reply-recipient" name="rnick" readonly/></li>
+				<li><input type="text" id="reply-title" name="title" placeholder="제목"/></li>
+				<li><textarea rows="17" id="reply-content" name="content" placeholder="내용"></textarea></li>
+				<li><button type="button" id="replySubmit">전송</button></li>
 			</ul>
+			<input type="hidden" name="snick" value="${sessionScope.account.nickname}" />
 		</form>
 	</div>
 	
@@ -292,38 +290,53 @@
 		       }   
 	       })
 	       
-	       
-	       // 쪽지 제목 클릭시 쪽지 보기
-	       $(document).on('click', '.letterTitle', function(){
-	    	   /* let lnum = parseInt($(this).attr("data-lnum"));
-	    	   
+	       // 쪽지제목 클릭시 읽음 업데이트
+	       $(document).on('click', '.readLetter', function(){
+	    	   let lnum = parseInt($(this).attr("data-lnum"));
 	    	   
 	    	   $.ajax({
-	    		   url: "${path}/letter/letterDetail",	
-	    		   traditional: true,
+	    		   url: "${path}/letter/readLetter",
                    type:   "POST",
                    data: { "lnum" : lnum },
-                   success: function(result){
-                	   
+                   success: function(data){
+                	   if(data != 0) {
+	                	    $("td[data-lnum="+data+"]").css("color", "#ccc");                		   
+                	   }
                    },
-                   error: function(result) {
+                   error: function(data) {
                 	   alert("error");
                    }
-	    	   }) */
-	    	   $("#letterModalBg").addClass("clicked");
+	    	   })
+	       })
+	       
+	       // 쪽지제목 클릭시 쪽지 모달창
+	       $(document).on('click', '.letterTitle', function(){
+	    	   let lnum = parseInt($(this).attr("data-lnum"));
+	    	   
+	    	   $("#letterModalBg").css("display","block");
 	    	   
 	    	   $.ajax({
-	    		   url: "${path}/letter/letterDetail",	
-	    		   traditional: true,
+	    		   url: "${path}/letter/letterDetail",
                    type:   "POST",
                    data: { "lnum" : lnum },
-	               dataType : 'json',
-                   success: function(result){
-                	   console.log(result.lnum);
-                	   console.log(result.snick);
-                	   console.log(result.rnick);
-                	   console.log(result.date);
-                	   alert("success");
+                   dataType : "json",
+                   success: function(letter){
+                	    $("#letter-nickname").empty();
+                	    $("#letter-date").empty();
+						$("#letter-title").empty();
+						$("#letter-content").empty();
+                	   
+						if(letter.snick == "${sessionScope.account.nickname}") {
+							$("#letter-nickname").append("<span>받는이</span>" + letter.rnick);	
+							$("#replyBtn").css("display", "none");
+						}
+						if(letter.rnick == "${sessionScope.account.nickname}") {
+							$("#letter-nickname").append("<span>보낸이</span><span id='lmSnick'>" + letter.snick + "</span>");	
+							$("#replyBtn").css("display", "inline-block");
+						}
+						$("#letter-date").append("<span>날짜</span>" + letter.date);
+						$("#letter-title").append("<span>제목</span>" + letter.title);
+						$("#letter-content").append(letter.content);
                    },
                    error: function(result) {
                 	   alert("error");
@@ -331,11 +344,50 @@
 	    	   })
 	       })
 	       
-	       
-	       
+	       // 쪽지보기 모달창 닫기버튼
 	       $(document).on('click', '#letterCloseBtn', function(){
-	    	   $("#letterModalBg").removeClass("clicked");
+	    	   $("#letterModalBg").css("display", "none");
 	       })
+	       
+	       // 쪽지 답장 클릭시 답장 모달창
+	       $(document).on('click', '#replyBtn', function(){
+	    	   $("#letterModalBg").css("display", "none");
+	    	   $("#sendLetterBg").css("display", "block");  
+	    	   $("#reply-recipient").val($("#lmSnick").text());
+	       })
+	       
+	       // 쪽지 답장 전송 클릭
+	       $(document).on('click', '#replySubmit', function(){
+	    	   let send = confirm("쪽지를 전송하시겠습니까?");
+	    	   if(send) {
+	    		   $.ajax({
+	    			   url: "${path}/letter/replyLetter",
+	                   type:   "POST",
+	                   data: $("#sendLetterModal").serialize(), 
+	                   success: function(data){
+	                	   if(data == "s") {
+	                		   alert("쪽지를 성공적으로 전송했습니다.");
+				    		   $("#sendLetterBg").css("display", "none");
+				    		   $("#reply-title").val("");
+				    		   $("#reply-content").val("");				    		   
+	                	   }else {
+	                		   alert("error");
+	                	   }
+	                   }
+	    		   })
+	    		   
+	    	   }
+	       })
+	       
+	       // 쪽지 답장 모달창 닫기버튼
+	       $(document).on('click', '#sendCloseBtn', function(){
+	    	   $("#sendLetterBg").css("display", "none");
+	    	   $("#reply-title").val("");
+    		   $("#reply-content").val("");
+	       })
+	       
+	       
+	       
 	        
 	        
 	

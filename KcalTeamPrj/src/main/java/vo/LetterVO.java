@@ -1,14 +1,12 @@
 package vo;
 
-import java.sql.Date;
-
 public class LetterVO {
 	private int lnum;
 	private String rnick;
 	private String snick;
 	private String title;
 	private String content;
-	private Date date;
+	private String date;
 	private String ischeck;
 	private int rstart;
 	private int sstart;
@@ -60,11 +58,13 @@ public class LetterVO {
 		this.content = content;
 	}
 
-	public Date getDate() {
+	
+
+	public String getDate() {
 		return date;
 	}
 
-	public void setDate(Date date) {
+	public void setDate(String date) {
 		this.date = date;
 	}
 

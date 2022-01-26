@@ -57,5 +57,25 @@ public class LetterService {
 		return vo;
 	}
 
+	public int updateLetter(int lnum) {
+		int result = 0;
+		LetterVO vo = new LetterVO();
+		vo.setLnum(lnum);
+		int i = sqlSessionTemplate.update("letter.updateLetter", vo);
+		if(i > 0) {
+			result = lnum;
+		}
+		return result;
+	}
+
+	public String insertLetter(LetterVO vo) {
+		String result = "f";
+		int i = sqlSessionTemplate.insert("letter.insertLetter", vo);
+		if(i > 0) {
+			result = "s";
+		}
+		return result;
+	}
+
 	
 }

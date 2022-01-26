@@ -1,6 +1,6 @@
 package controller;
 
-import java.util.ArrayList;
+
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -45,8 +45,25 @@ public class LetterController {
 	
 	@ResponseBody
 	@PostMapping("/letterDetail")
-	public LetterVO letterDetail(Model model, @RequestParam int lnum, HttpSession session) {
-			
+	public LetterVO letterDetail(Model model, @RequestParam int lnum) {
+	
 		return letterService.selectLetterOne(model, lnum);
+	}
+	
+	@ResponseBody
+	@PostMapping("/readLetter")
+	public int readLetter(@RequestParam int lnum) {
+		return letterService.updateLetter(lnum);
+	}
+	
+	@ResponseBody
+	@PostMapping("/replyLetter")
+	public String replyLetter(LetterVO vo) {
+		System.out.println(vo.getTitle());
+		System.out.println(vo.getContent());
+		System.out.println(vo.getSnick());
+		System.out.println(vo.getRnick());		
+		
+		return letterService.insertLetter(vo);
 	}
 }
