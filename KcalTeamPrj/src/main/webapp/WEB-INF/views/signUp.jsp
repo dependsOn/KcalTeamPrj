@@ -102,7 +102,7 @@
 	        		success: function(data) {
 	        			if(data == "possible") {
 	        				$(".idCheckResult").text("사용가능한 ID입니다.");
-	        				$(".idCheckResult").css("color", "blue");
+	        				$(".idCheckResult").css("color", "royalblue");
 	        				$("#idCheck").val(data);
 	        			}else {
 	        				$(".idCheckResult").text("이미 사용중인 아이디입니다.");
@@ -135,7 +135,7 @@
 	        		success: function(data) {
 	        			if(data == "possible") {
 	        				$(".nicknameCheckResult").text("사용가능한 닉네임입니다.");
-	        				$(".nicknameCheckResult").css("color", "blue");
+	        				$(".nicknameCheckResult").css("color", "royalblue");
 	        				$("#nicknameCheck").val(data);
 	        			}else {
 	        				$(".nicknameCheckResult").text("이미 사용중인 닉네임입니다.");
@@ -169,7 +169,7 @@
 		        		success: function(data) {
 		        			if(data == "possible") {
 		        				$(".emailCheckResult").text("사용가능한 이메일입니다.");
-		        				$(".emailCheckResult").css("color", "blue");
+		        				$(".emailCheckResult").css("color", "royalblue");
 		        				$("#emailCheck").val(data);
 		        			}else {
 		        				$(".emailCheckResult").text("이미 사용중인 이메일입니다.");
@@ -206,7 +206,7 @@
           $('#chkNotice').attr('color', 'red');
         } else{
           $('#chkNotice').html('비밀번호 일치함<br><br>');
-          $('#chkNotice').attr('color', 'blue');
+          $('#chkNotice').attr('color', 'royalblue');
         }
 
     });

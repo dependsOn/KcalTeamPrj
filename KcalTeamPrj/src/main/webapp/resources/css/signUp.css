@@ -211,3 +211,11 @@ input[type="checkbox"] {
     cursor: pointer;
     transition: 0.25s;
 }
+
+.idCheckResult,
+#chkNotice,
+.nicknameCheckResult,
+.emailCheckResult {
+	margin-left: 10px;
+	font-size: 14px;
+}

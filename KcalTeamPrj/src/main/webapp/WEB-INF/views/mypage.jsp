@@ -105,11 +105,15 @@
 
 			<div id="myPost" class="content">
 				<ul class="myPostTabs">
-					<li class="ptab" data-tab="receive">자유게시판</li>
-					<li class="ptab" data-tab="send">고민 & 질문</li>
-					<li class="ptab" data-tab="send">팁 & 노하우</li>
-					<li class="ptab" data-tab="send">운동메이트</li>
+					<li class="ptab" data-tab="free">자유게시판</li>
+					<li class="ptab" data-tab="question">고민 & 질문</li>
+					<li class="ptab" data-tab="tip">팁 & 노하우</li>
+					<li class="ptab" data-tab="emate">운동메이트</li>
 				</ul>
+				<div class="pcon free" id="free"></div>
+				<div class="pcon question" id="question"></div>
+				<div class="pcon tip" id="tip"></div>
+				<div class="pcon emate" id="emate"></div>
 			</div>
 
 			<div id="myComments" class="content"></div>
@@ -422,7 +426,7 @@
 		        		success: function(data) {
 		        			if(data == "possible") {
 		        				$(".emailCheckResult").text("사용가능한 이메일입니다.");
-		        				$(".emailCheckResult").css("color", "blue");
+		        				$(".emailCheckResult").css("color", "royalblue");
 		        				$(".isPossible").val(data);
 		        			}else {
 		        				$(".emailCheckResult").text("이미 사용중인 이메일입니다.");
