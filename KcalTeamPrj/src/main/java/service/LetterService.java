@@ -49,15 +49,32 @@ public class LetterService {
 		return deleteCnt;
 	}
 
-	public void selectLetterOne(Model model, int lnum) {
+	public LetterVO selectLetterOne(Model model, int lnum) {
 		LetterVO vo = new LetterVO();
 		vo.setLnum(lnum);
-		LetterVO vo2 = sqlSessionTemplate.selectOne("letter.selectLetter", vo);
-		System.out.println(vo2.getLnum());
-		System.out.println(vo2.getTitle());
-		System.out.println(vo2.getContent());
-		model.addAttribute("letter", vo2);
-		
+		vo = sqlSessionTemplate.selectOne("letter.selectLetter", vo);
+
+		return vo;
+	}
+
+	public int updateLetter(int lnum) {
+		int result = 0;
+		LetterVO vo = new LetterVO();
+		vo.setLnum(lnum);
+		int i = sqlSessionTemplate.update("letter.updateLetter", vo);
+		if(i > 0) {
+			result = lnum;
+		}
+		return result;
+	}
+
+	public String insertLetter(LetterVO vo) {
+		String result = "f";
+		int i = sqlSessionTemplate.insert("letter.insertLetter", vo);
+		if(i > 0) {
+			result = "s";
+		}
+		return result;
 	}
 
 	

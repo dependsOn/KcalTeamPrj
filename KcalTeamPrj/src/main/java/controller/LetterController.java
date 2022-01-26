@@ -1,6 +1,6 @@
 package controller;
 
-import java.util.ArrayList;
+
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import service.LetterService;
+import vo.LetterVO;
 
 @Controller
 @RequestMapping("/letter")
@@ -42,16 +43,27 @@ public class LetterController {
 		return deleteCnt;
 	}
 	
+	@ResponseBody
 	@PostMapping("/letterDetail")
-	public String letterDetail(Model model, @RequestParam int lnum, HttpSession session) {
-		
-		letterService.selectLetterOne(model, lnum);
-		
-		return "letter_detail";
+	public LetterVO letterDetail(Model model, @RequestParam int lnum) {
+	
+		return letterService.selectLetterOne(model, lnum);
 	}
 	
-	@GetMapping("/openLetter")
-	public String openLetter() {
-		return "letter_detail";
+	@ResponseBody
+	@PostMapping("/readLetter")
+	public int readLetter(@RequestParam int lnum) {
+		return letterService.updateLetter(lnum);
+	}
+	
+	@ResponseBody
+	@PostMapping("/replyLetter")
+	public String replyLetter(LetterVO vo) {
+		System.out.println(vo.getTitle());
+		System.out.println(vo.getContent());
+		System.out.println(vo.getSnick());
+		System.out.println(vo.getRnick());		
+		
+		return letterService.insertLetter(vo);
 	}
 }

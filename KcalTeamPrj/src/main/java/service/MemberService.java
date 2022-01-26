@@ -44,16 +44,26 @@ public class MemberService {
 
 	
 	public String checkEmail(MemberVO vo, String id) {
-		MemberVO vo1 = sqlSessionTemplate.selectOne("member.selectMemberList", vo);
 		String check = "possible";
-		
-		if((vo1 != null) && (vo1.getId().equals(id))) {			
-			check = "possible";
-		}else if((vo1 != null) && (!vo1.getId().equals(id))) {
-			check = "impossible";
-		}else if(vo1 == null) {
-			check = "possible";
-		}
+	      
+	      System.out.println(id);
+	      if(id == "") {
+	         int cnt = sqlSessionTemplate.selectOne("member.selectMemberCount", vo);
+	         if(cnt != 0) {
+	            check = "impossible";
+	         }else {
+	            check = "possible";
+	         }
+	      }else {
+	         MemberVO vo1 = sqlSessionTemplate.selectOne("member.selectMemberList", vo);
+	         if((vo1 != null) && (vo1.getId().equals(id))) {         
+	            check = "possible";
+	         }else if((vo1 != null) && (!vo1.getId().equals(id))) {
+	            check = "impossible";
+	         }else if(vo1 == null) {
+	            check = "possible";
+	         }         
+	      }
 		
 		return check;
 	}

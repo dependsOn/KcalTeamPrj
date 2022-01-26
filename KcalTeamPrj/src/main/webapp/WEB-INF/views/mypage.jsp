@@ -63,7 +63,7 @@
 							class="addr addr3" name="addr3" required></td>
 					</tr>
 				</table>
-				<button type="button" class="modifyMember">회원정보 수정</button>
+				<div style="text-align:center;"><button type="button" class="modifyMember">회원정보 수정</button></div>
 			</div>
 
 			<div id="modifyPw" class="content memberCon">
@@ -103,7 +103,14 @@
 				<div class="lcon send" id="send"></div>
 			</div>
 
-			<div id="myPost" class="content"></div>
+			<div id="myPost" class="content">
+				<ul class="myPostTabs">
+					<li class="ptab" data-tab="receive">자유게시판</li>
+					<li class="ptab" data-tab="send">고민 & 질문</li>
+					<li class="ptab" data-tab="send">팁 & 노하우</li>
+					<li class="ptab" data-tab="send">운동메이트</li>
+				</ul>
+			</div>
 
 			<div id="myComments" class="content"></div>
 
@@ -112,6 +119,36 @@
 			<div id="myAsk" class="content"></div>
 		</div>
 	</div>
+	
+	<div id="letterModalBg">
+		<div id="letterModal">
+			<span id="letterCloseBtn"><i class="far fa-times-circle fa-2x"></i></span>
+			<ul>
+				<li id="letter-date"></li>
+				<li id="letter-nickname"></li>
+				<li id="letter-title"></li>
+				<li>
+					<textarea rows="17" id="letter-content" disabled></textarea>
+				</li>
+				<li><button type="button" id="replyBtn">답장</button></li>
+			</ul>
+		</div>
+	</div>
+	
+	<div id="sendLetterBg">
+		<form action="${path}/letter/replyLetter" id="sendLetterModal" method="POST">
+			<span id="sendCloseBtn"><i class="far fa-times-circle fa-2x"></i></span>
+			<ul>
+				<li><span>받는이</span><input type="text" id="reply-recipient" name="rnick" readonly/></li>
+				<li><input type="text" id="reply-title" name="title" placeholder="제목"/></li>
+				<li><textarea rows="17" id="reply-content" name="content" placeholder="내용"></textarea></li>
+				<li><button type="button" id="replySubmit">전송</button></li>
+			</ul>
+			<input type="hidden" name="snick" value="${sessionScope.account.nickname}" />
+		</form>
+	</div>
+	
+	<%-- <jsp:include page="footer.jsp"></jsp:include> --%>
 
 	<script type="text/javascript">
 		$(function(){
@@ -216,6 +253,7 @@
 	        	getLetter(1, snum);
 	        })
 	        
+	        
 	        // 쪽지 하위탭	        
 	        $(document).on('click', '.letterTabs .ltab', function(){
 	        	let tabId = $(this).attr("data-tab");
@@ -228,6 +266,7 @@
 	            
 	            getLetter(1,1);	            
 	        });
+	       
 	       
 	       // 체크한 쪽지 삭제
 	       $(document).on('click', '.letterDelete', function(){
@@ -258,30 +297,102 @@
 		       }   
 	       })
 	       
-	       // 쪽지 제목 클릭시 쪽지 보기
+	       // 쪽지제목 클릭시 읽음 업데이트
+	       $(document).on('click', '.readLetter', function(){
+	    	   let lnum = parseInt($(this).attr("data-lnum"));
+	    	   
+	    	   $.ajax({
+	    		   url: "${path}/letter/readLetter",
+                   type:   "POST",
+                   data: { "lnum" : lnum },
+                   success: function(data){
+                	   if(data != 0) {
+	                	    $("td[data-lnum="+data+"]").css("color", "#ccc");                		   
+                	   }
+                   },
+                   error: function(data) {
+                	   alert("error");
+                   }
+	    	   })
+	       })
+	       
+	       // 쪽지제목 클릭시 쪽지 모달창
 	       $(document).on('click', '.letterTitle', function(){
 	    	   let lnum = parseInt($(this).attr("data-lnum"));
 	    	   
+	    	   $("#letterModalBg").css("display","block");
 	    	   
 	    	   $.ajax({
-	    		   url: "${path}/letter/letterDetail",	
-	    		   traditional: true,
+	    		   url: "${path}/letter/letterDetail",
                    type:   "POST",
                    data: { "lnum" : lnum },
-                   success: function(result){
-                	   /* let letterUrl = "${path}/letter/openLetter";
-        	    	   let popOption = "width=600, height=800, resizable=no";
-                	   window.open(letterUrl, "쪽지", popOption); */
+                   dataType : "json",
+                   success: function(letter){
+                	    $("#letter-nickname").empty();
+                	    $("#letter-date").empty();
+						$("#letter-title").empty();
+						$("#letter-content").empty();
+                	   
+						if(letter.snick == "${sessionScope.account.nickname}") {
+							$("#letter-nickname").append("<span>받는이</span>" + letter.rnick);	
+							$("#replyBtn").css("display", "none");
+						}
+						if(letter.rnick == "${sessionScope.account.nickname}") {
+							$("#letter-nickname").append("<span>보낸이</span><span id='lmSnick'>" + letter.snick + "</span>");	
+							$("#replyBtn").css("display", "inline-block");
+						}
+						$("#letter-date").append("<span>날짜</span>" + letter.date);
+						$("#letter-title").append("<span>제목</span>" + letter.title);
+						$("#letter-content").append(letter.content);
                    },
                    error: function(result) {
                 	   alert("error");
                    }
 	    	   })
 	       })
-	        
-	        
-	        
-	
+	       
+	       // 쪽지보기 모달창 닫기버튼
+	       $(document).on('click', '#letterCloseBtn', function(){
+	    	   $("#letterModalBg").css("display", "none");
+	       })
+	       
+	       // 쪽지 답장 클릭시 답장 모달창
+	       $(document).on('click', '#replyBtn', function(){
+	    	   $("#letterModalBg").css("display", "none");
+	    	   $("#sendLetterBg").css("display", "block");  
+	    	   $("#reply-recipient").val($("#lmSnick").text());
+	       })
+	       
+	       // 쪽지 답장 전송 클릭
+	       $(document).on('click', '#replySubmit', function(){
+	    	   let send = confirm("쪽지를 전송하시겠습니까?");
+	    	   if(send) {
+	    		   $.ajax({
+	    			   url: "${path}/letter/replyLetter",
+	                   type:   "POST",
+	                   data: $("#sendLetterModal").serialize(), 
+	                   success: function(data){
+	                	   if(data == "s") {
+	                		   alert("쪽지를 성공적으로 전송했습니다.");
+				    		   $("#sendLetterBg").css("display", "none");
+				    		   $("#reply-title").val("");
+				    		   $("#reply-content").val("");				    		   
+	                	   }else {
+	                		   alert("error");
+	                	   }
+	                   }
+	    		   })
+	    		   
+	    	   }
+	       })
+	       
+	       // 쪽지 답장 모달창 닫기버튼
+	       $(document).on('click', '#sendCloseBtn', function(){
+	    	   $("#sendLetterBg").css("display", "none");
+	    	   $("#reply-title").val("");
+    		   $("#reply-content").val("");
+	       })
+	       
 	        // 주소검색 클릭시 주소찾기 팝업
 	        $(".findAddr").click(function() {
 	            new daum.Postcode({
@@ -291,6 +402,7 @@
 	                }
 	            }).open();
 	        });
+	       
 	        
 	        // 이메일 중복 실시간 확인
 	        $(".email").on("keyup", function(){
@@ -320,7 +432,8 @@
 		        		}
 		        	})	        		
 	        	}	        	
-	        });	                
+	        });	
+	        
 	        
 	        // 회원정보수정
 	        $(".modifyMember").click(function(){	
@@ -330,7 +443,7 @@
 	        			"addr1" : $(".addr1").val(),
 	        			"addr2" : $(".addr2").val(),
 	        			"addr3" : $(".addr3").val()
-	        			}	
+	        	}	
 	        	
 	        	if($(".addr3").val() == "") {
 	        		alert("상세주소를 입력해주세요.");
@@ -356,6 +469,7 @@
 		        	})
 	        	}
 	        })
+	        
 	        
 	        // 비밀번호 수정
 	        $(".modifyPw").click(function(){
@@ -387,6 +501,7 @@
 	        	}
 	        })
 	        
+	        
 	        // 회원탈퇴	        
 	        $(".withdraw").click(function(){
 	        	if($(".wdPassword").val() != ${sessionScope.account.password}) {
@@ -400,6 +515,7 @@
 	        		}
 	        	}
 	        })
+	        
 	    })
 	</script>
 

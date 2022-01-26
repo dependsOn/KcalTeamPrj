@@ -24,7 +24,7 @@
 				<c:forEach var="item" items="${receiveLetterList}">
 					<tr>
 						<td><input type="checkbox" name="delete" value="${item.lnum}"/></td>
-						<td class="letterTitle" data-lnum="${item.lnum}">${item.title}</td>
+						<td class="letterTitle readLetter" data-lnum="${item.lnum}" data-ischeck="${item.ischeck}">${item.title}</td>
 						<td>${item.snick}</td>
 						<td>${item.date}</td>
 					</tr>

@@ -11,6 +11,7 @@
 body {
     font-family: 'Noto Sans KR', sans-serif;
     background-color: #fff;
+    position: relative;
 }
 
 a {
@@ -73,7 +74,9 @@ li {list-style-type: none;}
     font-size: 1.2em;
     font-weight: bold;
 }
-
+.contents .memberCon {
+	height: 540px;
+}
 .contents .memberCon table {
     padding: 30px 10px 30px 50px;
     border-collapse: separate;
@@ -82,6 +85,8 @@ li {list-style-type: none;}
 .contents .memberCon th {
     width: 85px;
     min-width: 45px;
+    font-weight: bold;
+    text-align: left;
 }
 
 .memberCon input {
@@ -136,7 +141,7 @@ li {list-style-type: none;}
 #modifyPw ul li span:first-child,
 #withdraw ul li span:first-child {
     display: inline-block;
-    width: 120px;
+    width: 130px;
     font-weight: bold;
 }
 
@@ -211,6 +216,7 @@ li {list-style-type: none;}
 	background-color: #eee;
 	padding-top: 10px;
 	padding-bottom: 10px;
+	font-weight: bold;
 }
 #letter table td {
 	border-bottom: 1px solid #ccc;
@@ -225,12 +231,129 @@ li {list-style-type: none;}
 	font-weight: bold;
 	text-decoration: underline;
 }
-/* #letter #rl_pages,
-#letter #sl_pages {
-	display:inline-block;
-	margin: 0 auto;
-} */
 
+.letterTitle:hover {
+	cursor: pointer;
+	text-decoration: underline;
+}
+#letterModalBg {
+	display: none;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0,0,0,0.3);
+	z-index: 5;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+#letterModal {
+	width: 80%;
+	max-width: 500px;
+	height: 550px;
+	background-color: #fff;
+	border-radius: 20px;
+	position: absolute;
+	top: 30px;
+  	left: 50%;
+  	transform: translateX(-50%);
+  	padding: 60px 30px 20px; 
+}
+#letterModal li {
+	margin-bottom: 15px;
+}
+#letterModal li span {
+	display: inline-block;
+	width: 80px;
+	font-weight: bold;
+	margin-left: 10px;
+}
+#letterModal #lmSnick {
+	width: fit-content;
+	font-weight: normal;
+	margin: 0;
+}
+#letterModal #letter-content {
+	overflow: auto;
+	margin: 0 auto;
+	padding: 15px;
+	resize: none;
+	width: 100%;
+}
+#letterCloseBtn {
+	cursor: pointer;
+	position: absolute;
+	top: 20px;
+	right:20px;
+}
+#replyBtn {
+	padding: 5px 20px;
+	font-size: 0.9rem;
+}
+#letterModal ul li:nth-child(5) {
+	text-align: center;
+}
+td[data-ischeck='Y'] {
+	color: #ccc;
+}
+
+#sendLetterBg {
+	display: none;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0,0,0,0.3);
+	z-index: 5;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+#sendLetterModal {
+	width: 80%;
+	max-width: 500px;
+	height: 500px;
+	background-color: #fff;
+	border-radius: 20px;
+	position: absolute;
+	top: 30px;
+  	left: 50%;
+  	transform: translateX(-50%);
+  	padding: 60px 30px 20px; 
+}
+#sendCloseBtn {
+	cursor: pointer;
+	position: absolute;
+	top: 20px;
+	right:20px;
+}
+#sendLetterModal li {
+	margin-bottom: 15px;
+}
+#sendLetterModal li span {
+	display: inline-block;
+	width: 80px;
+	font-weight: bold;
+}
+#sendLetterModal #reply-recipient {
+	border: none;
+	font-size: 1rem;
+}
+#sendLetterModal #reply-title {
+	padding: 5px 0 5px 15px;
+	width: 100%;
+}
+#sendLetterModal #reply-content {
+	overflow: auto;
+	margin: 0 auto;
+	padding: 15px;
+	resize: none;
+	width: 100%;
+}
+#replySubmit {
+	padding: 5px 20px;
+	font-size: 0.9rem;
+}
+#sendLetterModal ul li:nth-child(4) {
+	text-align: center;
+}
 
 
 
@@ -250,6 +373,7 @@ li {list-style-type: none;}
 #mypageWrap .contents {
     padding: 25px 20px;
 }
+
 
 .contents .memberCon table {
     padding: 30px 0px;

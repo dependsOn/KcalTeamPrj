@@ -19,7 +19,7 @@
 	</select>	
 	
 	<select id="selectLetterList" parameterType="letterVO" resultType="letterVO">
-		select lnum, rnick, snick, title, content, date, ischeck
+		select lnum, rnick, snick, title, content, DATE_FORMAT(datetime, '%Y-%m-%d') as date, ischeck
 		from letter
 		where
 		<choose>
@@ -30,7 +30,7 @@
 				snick = #{snick}
 			</when>
 		</choose>
-		order by date desc
+		order by datetime desc
 		<choose>
 			<when test="rnick != null">
 				limit #{rstart},
@@ -43,15 +43,14 @@
 	</select>
 	
 	<select id="selectLetter" parameterType="letterVO" resultType="letterVO">
-		select lnum, rnick, snick, title, content, date, ischeck
+		select lnum, rnick, snick, title, content, DATE_FORMAT(datetime, '%Y-%m-%d') as date, ischeck
 		from letter
 		where lnum = #{lnum}
 	</select>
 	
-	<insert id="insertLetter" parameterType="letterVO"
-	useGeneratedKeys="true" keyProperty="num">
-		insert into letter(rnick, snick, title, content, date)
-		values(#{rnick}, #{snick}, #{title}, #{content}, #{date})
+	<insert id="insertLetter" parameterType="letterVO">
+		insert into letter(rnick, snick, title, content)
+		values(#{rnick}, #{snick}, #{title}, #{content})
 	</insert>
 	
 	<update id="updateLetter" parameterType="letterVO">
