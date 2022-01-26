@@ -42,29 +42,61 @@ public class MemberService {
 		session.invalidate();
 	}
 
+	public String checkId(MemberVO vo) {
+		String check = "possible";
+		int cnt = sqlSessionTemplate.selectOne("member.selectMemberCount", vo);
+		
+		if(cnt == 0) {
+			check = "possible";
+		}
+		else {
+			check = "impossible";
+		}
+		
+		
+		return check;
+	}
+	
+	public String checkNickname(String nickname) {
+		MemberVO vo = new MemberVO();
+		vo.setNickname(nickname);
+		
+		String check = "possible";
+		int cnt = sqlSessionTemplate.selectOne("member.selectMemberCount", vo);
+		
+		if(cnt == 0) {
+			check = "possible";
+		}
+		else {
+			check = "impossible";
+		}
+		
+		return check;
+	}
 	
 	public String checkEmail(MemberVO vo, String id) {
 		String check = "possible";
-	      
-	      System.out.println(id);
-	      if(id == "") {
-	         int cnt = sqlSessionTemplate.selectOne("member.selectMemberCount", vo);
-	         if(cnt != 0) {
-	            check = "impossible";
-	         }else {
-	            check = "possible";
-	         }
-	      }else {
-	         MemberVO vo1 = sqlSessionTemplate.selectOne("member.selectMemberList", vo);
-	         if((vo1 != null) && (vo1.getId().equals(id))) {         
-	            check = "possible";
-	         }else if((vo1 != null) && (!vo1.getId().equals(id))) {
-	            check = "impossible";
-	         }else if(vo1 == null) {
-	            check = "possible";
-	         }         
-	      }
 		
+		System.out.println(id);
+		if(id == "") {
+			int cnt = sqlSessionTemplate.selectOne("member.selectMemberCount", vo);
+			if(cnt != 0) {
+				check = "impossible";
+			}else {
+				check = "possible";
+			}
+		}else {
+			MemberVO vo1 = sqlSessionTemplate.selectOne("member.selectMemberList", vo);
+			if((vo1 != null) && (vo1.getId().equals(id))) {			
+				check = "possible";
+			}else if((vo1 != null) && (!vo1.getId().equals(id))) {
+				check = "impossible";
+			}else if(vo1 == null) {
+				check = "possible";
+			}			
+		}
+		
+				
 		return check;
 	}
 

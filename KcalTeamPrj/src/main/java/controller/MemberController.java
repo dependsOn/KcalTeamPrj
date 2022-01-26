@@ -60,6 +60,22 @@ public class MemberController {
 	}
 	
 	@ResponseBody 
+	@PostMapping("/checkId")
+	public String checkId(String id) {
+		MemberVO vo = new MemberVO();
+		vo.setId(id);
+		
+		return memberService.checkId(vo);
+	}
+	
+	@ResponseBody 
+	@PostMapping("/checkNickname")
+	public String checkNickname(String nickname) {
+		
+		return memberService.checkNickname(nickname);
+	}
+	
+	@ResponseBody 
 	@PostMapping("/checkEmail")
 	public String checkEmail(String email, String id) {
 		MemberVO vo = new MemberVO();

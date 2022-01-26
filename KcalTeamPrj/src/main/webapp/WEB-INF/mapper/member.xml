@@ -78,6 +78,9 @@
 			<if test="id != null">
 				and id like #{id}
 			</if>
+			<if test="password != null">
+				and password like #{password}
+			</if>
 			<if test="email != null">
 				and email like #{email}
 			</if>
