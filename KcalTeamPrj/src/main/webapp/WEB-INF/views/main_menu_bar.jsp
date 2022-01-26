@@ -99,8 +99,9 @@
 			$('.menu').removeClass('active');
 			
 			let curPage = "<c:out value = '${param.curPage}' />";
+			let choice = "#";
 			
-			$('#'+curPage).addClass('active');
+			$(choice + curPage).addClass('active');
 		});
     </script>
 </body>

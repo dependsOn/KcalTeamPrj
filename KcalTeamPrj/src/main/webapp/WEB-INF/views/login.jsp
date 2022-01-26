@@ -89,10 +89,8 @@
 
 <body>
 	<div class="wrap">
-	
 		<div class="login">
 			<h2>확찐자구조대</h2>
-			
 		
 			<form action="${path}/member/login" method="post">
 				<div class="login_id">
@@ -110,14 +108,11 @@
 				</div>
 					
 				<div class="a_box">
-					<i class="fas fa-address-card">
-					</i><a href=""> 회원가입</a> /
-				
-					<i class="fas fa-search"></i>
-					<a href="">아이디 찾기</a> / 
-					<i class="fas fa-key"> </i>
-					<a href="">비밀번호 찾기</a>
-					
+					<ul>
+						<li><i class="fas fa-address-card"></i><span> 회원가입</span></li>
+						<li><i class="fas fa-search"></i><span> 아이디 찾기</span></li>
+						<li><i class="fas fa-key"></i><span> 비밀번호 찾기</span></li>
+					</ul>
 				</div>
 	
 				<div class="submit">
@@ -126,16 +121,17 @@
 				</div>
 			</form>
 			
-				  <div class="login_sns">
-            <li><a href=""><i class="fab fa-instagram"></i></a></li>
-            <li><a href=""><i class="fab fa-facebook-f"></i></a></li>
-            <li><a href=""><i class="fab fa-twitter"></i></a></li>
-            </div>
-            
-			
-			
-			<div id="naverIdLogin"></div>
-			
+			<div class="login_sns">
+				<ul>
+					<li><i class="fab fa-instagram-square"></i></li>
+					<li><i class="fab fa-facebook-square"></i></li>
+					<li><i class="fab fa-twitter-square"></i></li>
+				</ul>
+			</div>
+
+			<div id="naverIdLogin">
+
+			</div>
 		</div>
 	</div>
 </body>
