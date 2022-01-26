@@ -103,7 +103,14 @@
 				<div class="lcon send" id="send"></div>
 			</div>
 
-			<div id="myPost" class="content"></div>
+			<div id="myPost" class="content">
+				<ul class="myPostTabs">
+					<li class="ptab" data-tab="receive">자유게시판</li>
+					<li class="ptab" data-tab="send">고민 & 질문</li>
+					<li class="ptab" data-tab="send">팁 & 노하우</li>
+					<li class="ptab" data-tab="send">운동메이트</li>
+				</ul>
+			</div>
 
 			<div id="myComments" class="content"></div>
 
@@ -386,11 +393,6 @@
     		   $("#reply-content").val("");
 	       })
 	       
-	       
-	       
-	        
-	        
-	
 	        // 주소검색 클릭시 주소찾기 팝업
 	        $(".findAddr").click(function() {
 	            new daum.Postcode({
