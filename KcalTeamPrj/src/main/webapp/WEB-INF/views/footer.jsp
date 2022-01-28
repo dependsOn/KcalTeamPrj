@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-	<link rel="stylesheet" href="${path}/css/default.css" />
+	<%-- <link rel="stylesheet" href="${path}/css/default.css" /> --%>
 	<link rel="stylesheet" href="${path}/css/footer.css" />
 	<link href="https://fonts.googleapis.com/css2?family=Dongle:wght@700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">
