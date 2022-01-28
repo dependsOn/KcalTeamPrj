@@ -8,19 +8,23 @@ footer {
     clear: both;
     font-weight: bold;
     color: rgba(255, 255, 255, 0.8);
+    padding: 0 40px;
+    padding-top: 20px;
+    box-sizing: border-box;
 }
 
 /* 첫 번째 라인 */
 .fline {
     display: flex;
+    justify-content: space-between;
 }
 
 .siteName {
     font-family: 'Dongle', sans-serif;
     font-size: 45px;
-    margin-left: 40px;
-    margin-top: 20px;
-    margin-right: 900px;
+    /* margin-left: 40px; */
+    /* margin-top: 20px; */
+    /* margin-right: 900px; */
 }
 
 .siteName > p {
@@ -30,12 +34,15 @@ footer {
 .list > ul {
     display: flex;
     font-size: 13px;
-    margin-top: 35px;
+    /* margin-top: 35px; */
+    height: 100%;
+    align-items: center;
 }
 
 .list > ul > li {
     width: 80px;
     cursor: pointer;
+    text-align: center;
 }
 
 .list > ul > li:hover {
@@ -49,13 +56,15 @@ footer {
 /* 두 번째 라인 */
 .sline {
     display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
 }
 
-.siteInfo {
+/* .siteInfo {
     margin-top: 20px;
     margin-left: 40px;
     margin-right: 900px;
-}
+} */
 
 .siteInfo > ul {
     font-size: 13px;
@@ -64,7 +73,7 @@ footer {
 }
 
 .siteIcon {
-    margin-top: 20px;
+    /* margin-top: 20px; */
 }
 
 .siteIcon > ul {

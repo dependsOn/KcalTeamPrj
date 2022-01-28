@@ -110,10 +110,20 @@
 					<li class="ptab" data-tab="tip">팁 & 노하우</li>
 					<li class="ptab" data-tab="emate">운동메이트</li>
 				</ul>
-				<div class="pcon free" id="free"></div>
-				<div class="pcon question" id="question"></div>
-				<div class="pcon tip" id="tip"></div>
-				<div class="pcon emate" id="emate"></div>
+				<table id="postCon">
+					<thead>
+						<tr>
+							<th>제목</th>
+							<th>작성일</th>
+							<th>조회</th>
+							<th>추천</th>
+						</tr>
+					</thead>
+					<tbody id="bbsListCon">
+						
+					</tbody>
+				</table>
+				<div id="bbsPage"></div>
 			</div>
 
 			<div id="myComments" class="content"></div>
@@ -152,7 +162,7 @@
 		</form>
 	</div>
 	
-	<%-- <jsp:include page="footer.jsp"></jsp:include> --%>
+	<jsp:include page="footer.jsp"></jsp:include>
 
 	<script type="text/javascript">
 		$(function(){
@@ -205,8 +215,7 @@
 	            $("#receive").addClass("selected");
 		        
 		        getLetter(1,1);
-	        });
-	        
+	        });	        
 	            
 	        
 	       // 받은쪽지함 페이징 
@@ -464,7 +473,6 @@
 		                contentType : 'application/json; charset=UTF-8',
 		        		success: function(data) {
 		        			location.href = "${path}/member/mypage?currTab=memberInfo";
-		        			
 		        			alert("회원정보가 수정되었습니다.");
 		        		},
 		        		error: function(data) {
@@ -483,7 +491,7 @@
 	        			}
 	        	
 	        	if($(".currentPw").val() != ${sessionScope.account.password}) {
-	        		alert("현재 비밀번호가 회원정보와 일치하지 않습니다.");
+	        		alert("현재 비밀번호를 정확하게 입력해주세요.");
 	        	}else if(($(".newPw").val() == "") || ($(".newPwConfirm").val() == "") || ($(".newPw").val() != $(".newPwConfirm").val())) {
 	        		alert("새 비밀번호가 일치하지 않습니다.")	;
 	        	}else {
@@ -519,6 +527,165 @@
 	        		}
 	        	}
 	        })
+	        
+	        // 작성글 불러오는 함수
+	        let getMyPost = function(category, pageNum){
+	        	$("#bbsListCon").empty();
+	        	$("#bbsPage").empty();
+	        	const bbsListCon = document.querySelector("#bbsListCon");
+	        	const bbsPage = document.querySelector("#bbsPage");
+	        	
+	        	let categoryName = "";
+		        	 if(category == "free") {
+		        		 categoryName = "자유게시판"; 
+		        	 }else if(category == "question") {
+		        		 categoryName = "고민 & 질문"; 		   		        		 
+		        	 }else if(category == "tip") {
+		        		categoryName = "팁 & 노하우"; 
+		        	 }else if(category == "emate") {
+		        		categoryName = "운동메이트"; 
+		        	 }
+	        	
+	        	let data = {
+	        			"category" : category,
+	        			"unum" : ${sessionScope.account.unum},
+	        			"pageNum" : pageNum
+	        	}
+	        	
+	        	$.ajax({
+	        		url: "${path}/bbs/bbsList",
+	        		type: "POST",	
+	        		data: data,
+	                dataType : 'json',
+	        		success: function(data) {
+
+		   	        	 for(let item of data.bbsList) {
+		   		        	 const tr = document.createElement("tr");
+		   		        	 let titleTd = document.createElement("td");
+		   		        	 let dateTd = document.createElement("td");
+		   		        	 let viewTd = document.createElement("td");
+		   		        	 let recommendTd = document.createElement("td");
+		   		        	 
+		   		        	 titleTd.setAttribute('data-bnum', item.bnum);
+		   		        	 
+		   		        	 titleTd.innerText = item.title+item.bnum;
+		   		        	 dateTd.innerText = item.createdate;
+		   		        	 viewTd.innerText = item.viewCnt;
+		   		        	 recommendTd.innerText = item.recommend;
+		   		        	 
+		   		        	 tr.append(titleTd);
+		   		        	 tr.append(dateTd);
+		   		        	 tr.append(viewTd);
+		   		        	 tr.append(recommendTd);
+		   	        		 
+		   		        	 bbsListCon.append(tr);
+		   	        	 }
+		   	        	 
+		   	        	 
+		   	        	let preBlock = document.createElement("span");
+		   	        	 preBlock.innerHTML = '<i class="fas fa-angle-double-left"></i>';
+		   	        	 if(data.minBlock-1 >= 1) {
+		   	        		preBlock.setAttribute("class", "mpPreBlock");
+		   	        		preBlock.setAttribute("data-num", data.minBlock-1);
+		   	        		preBlock.setAttribute("data-category", category);
+		   	        	 }
+	   	        		 bbsPage.append(preBlock);
+		   	        	 
+		   	        	 let prePage = document.createElement("span");
+		   	        	 prePage.innerHTML = '<i class="fas fa-angle-left"></i>';
+		   	        	 if(data.pageNum != 1) {
+		   	        		prePage.setAttribute("class", "mpPrePage");
+		   	        		prePage.setAttribute("data-num", data.pageNum-1);
+		   	        		prePage.setAttribute("data-category", category);
+		   	        	 }
+	   	        		 bbsPage.append(prePage);
+	   	        		 
+	   	        		 let maxBlock = 0;
+	   	        		 if(data.pageCnt < data.maxBlock) {
+	   	        			 maxBlock = data.pageCnt;
+	   	        		 }else {
+	   	        			 maxBlock = data.maxBlock;
+	   	        		 }
+	   	        		
+	   	        		 for(let i = data.minBlock; i <= maxBlock; i++) {
+	   	        			 let page = document.createElement("span");
+	   	        			 page.innerText = i;
+	   	        			 page.setAttribute("class", "mpPageNum");
+	   	        			 page.setAttribute("data-num", i);
+	   	        			 page.setAttribute("data-category", category);
+	   	        			 if(i == data.pageNum) {
+	   	        				 page.style.fontWeight = "bold";
+	   	        				 page.style.textDecoration = "underline";
+	   	        			 } 
+	   	        			 bbsPage.append(page);
+	   	        		 }
+
+	   	        		 let nextPage = document.createElement("span");
+		   	        	nextPage.innerHTML = '<i class="fas fa-angle-right"></i>';
+		   	        	 if(data.pageNum != data.pageCnt) {
+		   	        		nextPage.setAttribute("class", "mpNextPage");
+		   	        		nextPage.setAttribute("data-num", data.pageNum+1);
+		   	        		nextPage.setAttribute("data-category", category);
+		   	        	 }
+	   	        		 bbsPage.append(nextPage);
+	   	        		 
+	   	        		let nextBlock = document.createElement("span");
+	   	        		nextBlock.innerHTML = '<i class="fas fa-angle-double-right"></i>';
+		   	        	 if(data.maxBlock < data.pageCnt) {
+		   	        		nextBlock.setAttribute("class", "mpNextBlock");
+		   	        		nextBlock.setAttribute("data-num", data.maxBlock+1);
+		   	        		nextBlock.setAttribute("data-category", category);
+		   	        	 }
+	   	        		 bbsPage.append(nextBlock);
+		   	        	 
+	   	        		 
+	        		},
+	        		error: function(data) {
+	        			alert("error");
+	        		}
+	        	})
+	        	
+	        }
+	        
+	        // 작성글 페이지 숫자 클릭시
+	        $(document).on('click', '.mpPageNum', function(){
+   				getMyPost($(this).data("category"), $(this).data("num"));
+   			})
+   			
+   			// 작성글 페이지블럭 <<
+   			 $(document).on('click', '.mpPreBlock', function(){
+   				getMyPost($(this).data("category"), $(this).data("num"));
+   			 })
+   			// 작성글 페이지블럭 <
+   			 $(document).on('click', '.mpPrePage', function(){
+   				getMyPost($(this).data("category"), $(this).data("num"));
+   			 })
+   			// 작성글 페이지블럭 >
+   			 $(document).on('click', '.mpNextPage', function(){
+   				getMyPost($(this).data("category"), $(this).data("num"));
+   			 })
+   			// 작성글 페이지블럭 >>
+   			 $(document).on('click', '.mpNextBlock', function(){
+   				getMyPost($(this).data("category"), $(this).data("num"));
+   			 })
+	        
+	        // 작성글 클릭
+	        $(".tab[data-tab='myPost']").click(function(){	
+	        	$(".ptab").removeClass("selected");
+	        	$(".ptab[data-tab='free']").addClass("selected");
+	        	 getMyPost("free", 1);
+	         })
+	         
+	         // 작성글 하위탭 클릭
+	         $(document).on('click', '.myPostTabs .ptab', function(){
+	        	 $(".ptab").removeClass("selected");
+	        	 $(this).addClass("selected");
+	        	 let tabId = $(this).attr("data-tab");
+	        	 getMyPost(tabId, 1);
+	         })
+	         
+	        
+	        
 	        
 	    })
 	</script>

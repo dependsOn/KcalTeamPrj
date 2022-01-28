@@ -26,8 +26,8 @@ li {list-style-type: none;}
     max-width: 1140px;
     margin: 0 auto;
     display: flex;
-
     margin-top: 70px;
+    margin-bottom: 50px;
 }
 
 #mypageWrap .tabs {
@@ -231,6 +231,13 @@ li {list-style-type: none;}
 	font-weight: bold;
 	text-decoration: underline;
 }
+#letter #rl_pages,
+#letter #sl_pages {
+	display: flex;
+	justify-content: space-between;
+	width: 250px;
+	margin: 0 auto;
+}
 
 .letterTitle:hover {
 	cursor: pointer;
@@ -354,6 +361,71 @@ td[data-ischeck='Y'] {
 #sendLetterModal ul li:nth-child(4) {
 	text-align: center;
 }
+
+
+#myPost .myPostTabs {
+	display: flex;
+	width: 100%;
+}
+#myPost .myPostTabs .ptab {
+	flex-grow: 1;
+	cursor: pointer;
+	text-align: center;
+	padding: 10px 0;
+}
+#myPost .myPostTabs .ptab.selected {
+    font-weight: bold;
+}
+#myPost #postCon {
+	width: 100%;
+	border-collapse: collapse;
+	margin-bottom: 20px;
+}
+#postCon thead {
+	background-color: #eee;
+}
+#postCon th {
+	padding: 10px 0;
+}
+#postCon td {
+	text-align: center;
+	padding: 10px 0;
+	border-bottom: 1px solid #ccc;
+}
+#postCon tr td:nth-child(1) {
+	text-align: left;
+	padding-left: 20px;
+}
+#postCon tr td:nth-child(1):hover {
+	text-decoration: underline;
+	cursor: pointer;
+}
+#postCon tr td:nth-child(2) {
+	width: 140px;
+}
+#postCon tr td:nth-child(3),
+#postCon tr td:nth-child(4) {
+	width: 50px;
+}
+#bbsPage {
+	display: flex;
+	width: 250px;
+	justify-content: space-between;
+	margin: 0 auto;
+}
+.mpPageNum,
+.mpPreBlock,
+.mpPrePage,
+.mpNextBlock,
+.mpNextPage {
+	cursor: pointer;
+	display: inline-block;
+	
+}
+
+
+
+	
 
 
 

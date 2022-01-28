@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+ <mapper namespace="bbs">
+	<select id="selectBBSCount" parameterType="bbsVO" resultType="int">
+		select count(*)
+		from bbs
+		where isdelete = 'N'
+			<if test="category != null">
+				and category = #{category}
+			</if>
+			<if test="region != null">
+				and region = #{region}
+			</if>
+			<if test="unum != 0">
+				and unum = #{unum}
+			</if>
+			<if test="id != null">
+				and id = #{id}
+			</if>
+			<if test="nickname != null">
+				and nickname = #{nickname}
+			</if>
+			<if test="isreport != null">
+				and isreport = #{isreport}
+			</if>
+			<if test="isopen != null">
+				and isopen = #{isopen}
+			</if>
+		<!-- <choose>
+			<when test="title != null and content != null">
+				and (title like #{title} or content like #{content})
+			</when>
+			<when test="title == null and content != null">
+				and content like #{content}
+			</when>
+			<when test="title != null and content == null">
+				and title like #{title}
+			</when>
+		</choose> -->
+	</select>	
+	
+	<select id="selectBBSList" parameterType="bbsVO" resultType="bbsVO">
+		select bnum, category, region, unum, id, nickname, DATE_FORMAT(create_date, '%Y-%m-%d') as createdate, title, content,
+			   view_cnt, recommend, isdelete, isreport, isopen
+		from bbs
+		where isdelete = 'N'
+			<if test="category != null">
+				and category = #{category}
+			</if>
+			<if test="region != null">
+				and region = #{region}
+			</if>
+			<if test="unum != 0">
+				and unum = #{unum}
+			</if>
+			<if test="id != null">
+				and id = #{id}
+			</if>
+			<if test="nickname != null">
+				and nickname = #{nickname}
+			</if>
+			<if test="isreport != null">
+				and isreport = #{isreport}
+			</if>
+			<if test="isopen != null">
+				and isopen = #{isopen}
+			</if>
+		<!-- <choose>
+			<when test="title != null and content != null">
+				and (title like #{title} or content like #{content})
+			</when>
+			<when test="title == null and content != null">
+				and content like #{content}
+			</when>
+			<when test="title != null and content == null">
+				and title like #{title}
+			</when>
+		</choose> -->
+		order by create_date desc
+		limit #{start}, #{count}
+	</select>
+	
+	<select id="selectBBS" parameterType="bbsVO" resultType="bbsVO">
+		select bnum, category, region, unum, id, nickname, DATE_FORMAT(create_date, '%Y-%m-%d') as createdate, title, content,
+			   view_cnt, recommend, isdelete, isreport, isopen
+		from bbs
+		where isdelete = 'N'
+		and bnum = #{bnum}
+	</select>
+	
+	<!-- <insert id="insertBBS" parameterType="bbsVO">
+		
+	</insert>
+	
+	<update id="updateBBS" parameterType="bbsVO">
+		
+	</update> -->
+	
+</mapper>

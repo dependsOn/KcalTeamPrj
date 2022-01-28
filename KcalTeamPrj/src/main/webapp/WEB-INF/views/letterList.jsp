@@ -50,7 +50,6 @@
    %>
    <div>
    		<button type="button" class="letterDelete">선택쪽지 삭제</button>
-   		<button type="button" class="newLetter">새 쪽지</button>
    </div>
    <input type="hidden" value="${rnum}" id="r_num" />
    <input type="hidden" value="${rminBlock}" id="r_minBlock" />
@@ -64,7 +63,6 @@
 	   		<span id="r_preBlock" class="clickable"><i class="fas fa-angle-double-left"></i></span>
 	   	</c:otherwise>
 	   </c:choose>
-	   &nbsp;&nbsp;
 	   <c:choose>
 	      <c:when test="${rnum == 1}">
 	         <span><i class="fas fa-angle-left"></i></span>
@@ -73,7 +71,6 @@
 	         <span id="r_pre" class="clickable"><i class="fas fa-angle-left"></i></span>
 	      </c:otherwise>
 	   </c:choose>
-	   &nbsp;&nbsp;
 	   <c:forEach begin="${rminBlock}" end="${(rtotal < rmaxBlock) ? rtotal : rmaxBlock}" step="1" var="i">
 	      <c:choose>
 	         <c:when test="${rnum == i}">
@@ -85,7 +82,6 @@
 	      </c:choose>
 	
 	   </c:forEach>
-	   &nbsp;&nbsp;
 	   <c:choose>
 	      <c:when test="${rnum == rtotal}">
 	         <span><i class="fas fa-angle-right"></i></span>
@@ -94,7 +90,6 @@
 	         <span id="r_next" class="clickable"><i class="fas fa-angle-right"></i></i></span>    
 	      </c:otherwise>
 	   </c:choose>
-	   &nbsp;&nbsp;
 	   <c:choose>
 		   	<c:when test="${rmaxBlock >= rtotal}">
 		   		<span><i class="fas fa-angle-double-right"></i></span>
@@ -146,7 +141,6 @@
    %>
    <div>
    		<button type="button" class="letterDelete">선택쪽지 삭제</button>
-   		<button type="button" class="newLetter">새 쪽지</button>
    </div>
    <input type="hidden" value="${snum}" id="s_num" />
    <input type="hidden" value="${sminBlock}" id="s_minBlock" />
@@ -160,7 +154,6 @@
 	   		<span id="s_preBlock" class="clickable"><i class="fas fa-angle-double-left"></i></span>
 	   	</c:otherwise>
 	   </c:choose>
-	   &nbsp;&nbsp;
 	   <c:choose>
 	      <c:when test="${snum == 1}">
 	         <span><i class="fas fa-angle-left"></i></span>
@@ -169,7 +162,6 @@
 	         <span id="s_pre" class="clickable"><i class="fas fa-angle-left"></i></span>
 	      </c:otherwise>
 	   </c:choose>
-	   &nbsp;&nbsp;
 	   <c:forEach begin="${sminBlock}" end="${(stotal  <smaxBlock) ? stotal : smaxBlock}" step="1" var="i">
 	      <c:choose>
 	         <c:when test="${snum == i}">
@@ -181,7 +173,6 @@
 	      </c:choose>
 	
 	   </c:forEach>
-	   &nbsp;&nbsp;
 	   <c:choose>
 	      <c:when test="${snum == stotal}">
 	         <span><i class="fas fa-angle-right"></i></span>
@@ -190,7 +181,6 @@
 	         <span id="s_next" class="clickable"><i class="fas fa-angle-right"></i></span>    
 	      </c:otherwise>
 	   </c:choose>
-	   &nbsp;&nbsp;
 	   <c:choose>
 		   	<c:when test="${smaxBlock >= stotal}">
 		   		<span><i class="fas fa-angle-double-right"></i></span>
