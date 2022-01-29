@@ -16,7 +16,7 @@
 </head>
 <body>
 	<div class="container">
-		<jsp:include page="main_menu_bar.jsp"></jsp:include>
+		<jsp:include page="community_header.jsp"></jsp:include>
 		<div class="adNLogin">
             <div class="ad">
                 <img src="${path}/images/main/main3.jpg" alt="">

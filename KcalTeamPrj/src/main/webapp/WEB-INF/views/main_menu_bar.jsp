@@ -103,7 +103,7 @@
 			});
 			
 			$("#cmBtn").click(function(){
-				location.href = '${path}/community/goCommunity';
+				location.href = '${path}/community/main';
 			});
 			
 			
