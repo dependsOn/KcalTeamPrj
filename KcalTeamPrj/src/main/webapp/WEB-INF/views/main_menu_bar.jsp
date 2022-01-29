@@ -93,7 +93,7 @@
 			});
 			
 			$("#cmBtn").click(function(){
-				location.href = '${path}/community/community';
+				location.href = '${path}/community/goCommunity';
 			});
 			
 			$('.menu').removeClass('active');

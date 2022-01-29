@@ -11,6 +11,6 @@ public class CommunityController {
 	@GetMapping("/goCommunity")
 	public String goCommunity() {
 		
-		return "";
+		return "community";
 	}
 }
