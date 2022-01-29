@@ -18,7 +18,7 @@
 				<span>확찐자구조대</span>
 			</div>
 			<ul id="menu">
-				<li>커뮤니티홈</li>
+				<li class="communityMain">커뮤니티홈</li>
 				<li class="menuTab" data-category="free">자유게시판</li>
 				<li class="menuTab" data-category="question">고민 & 질문</li>
 				<li class="menuTab" data-category="tip">팁 & 노하우</li>
@@ -55,6 +55,7 @@
 	</header>
 	<script type="text/javascript">
 		$(function(){
+			
 			// 로그인상태-계정 아이콘 클릭
 			$(document).on('click', '#user-login', function(){
 				$(".ubLogin").addClass("clicked");
@@ -75,19 +76,29 @@
 				$(".ubLogout").removeClass("clicked");
 			})
 			
+			// 로고 클릭
+			$(document).on('click', '#logo', function(){
+				location.href = "${path}/index";
+			})
+			
+			// 커뮤티니홈 탭 클릭
+			/* $(document).on('click', '.communityMain', function(){
+				location.href = "${path}/community";
+			}) */
+			
 			// 쪽지 아이콘 클릭: 쪽지함 이동
 			$(document).on('click', '#letterBox', function(){
 				location.href = "${path}/member/mypage?currTab=letter";
 			})
-			
+						
 			// userBox-프로필 클릭
 			$(document).on('click', '.myProfile', function(){
-				/* location.href = "${path}/member/mypage?currTab=letter"; */
+				/* location.href = "${path}/member/"; */
 			})
 				
 			// userBox-마이페이지 클릭
 			$(document).on('click', '', function(){
-				/* location.href = "${path}/member/mypage?currTab=letter"; */
+				/* location.href = "${path}/member/mypage"; */
 			})
 			
 			// userBox-로그아웃 클릭

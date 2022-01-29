@@ -8,9 +8,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/community")
 public class CommunityController {
 	
-	@GetMapping("/goCommunity")
+	@GetMapping("/main")
 	public String goCommunity() {
 		
 		return "";
+	}
+	
+	@GetMapping("/bbs")
+	public String headerTest() {
+		return "community_bbs";
 	}
 }

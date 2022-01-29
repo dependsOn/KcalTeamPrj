@@ -16,7 +16,9 @@ public class BBSService {
 	public BBSPagingVO getBBSList(String category, int unum, int pageNum) {
 		BBSVO bvo = new BBSVO();
 		bvo.setCategory(category);
-		bvo.setUnum(unum);
+		if(unum != 0) {
+			bvo.setUnum(unum);
+		}
 		bvo.setStart((pageNum-1)*bvo.getCount());
 		
 		int postCnt = sqlSessionTemplate.selectOne("bbs.selectBBSCount", bvo);

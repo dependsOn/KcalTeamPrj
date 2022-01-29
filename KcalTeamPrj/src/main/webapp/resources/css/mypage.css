@@ -362,7 +362,6 @@ td[data-ischeck='Y'] {
 	text-align: center;
 }
 
-
 #myPost .myPostTabs {
 	display: flex;
 	width: 100%;
@@ -400,14 +399,14 @@ td[data-ischeck='Y'] {
 	text-decoration: underline;
 	cursor: pointer;
 }
-#postCon tr td:nth-child(2) {
+#postCon tr th:nth-child(2) {
 	width: 140px;
 }
-#postCon tr td:nth-child(3),
-#postCon tr td:nth-child(4) {
+#postCon tr th:nth-child(3),
+#postCon tr th:nth-child(4) {
 	width: 50px;
 }
-#bbsPage {
+#pageBox {
 	display: flex;
 	width: 250px;
 	justify-content: space-between;
@@ -420,7 +419,6 @@ td[data-ischeck='Y'] {
 .mpNextPage {
 	cursor: pointer;
 	display: inline-block;
-	
 }
 
 

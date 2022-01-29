@@ -7,6 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+	<link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon">
 	<link rel="stylesheet" href="${path}/css/default.css" />
 	<link rel="stylesheet" href="${path}/css/index.css" />
 	<link href="https://fonts.googleapis.com/css2?family=Dongle:wght@700&display=swap" rel="stylesheet">
