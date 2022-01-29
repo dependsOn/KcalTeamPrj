@@ -9,6 +9,7 @@
 <title>Insert title here</title>
 	<link rel="stylesheet" href="${path}/css/default.css" />
 	<link rel="stylesheet" href="${path}/css/main_menu_bar.css" />
+	<script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 	<link href="https://fonts.googleapis.com/css2?family=Dongle:wght@700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">
@@ -45,13 +46,22 @@
 	                <li id="login">로그인</li>
 	            </c:if>
 	        	<c:if test="${!empty sessionScope.account}">
-	                <li>${sessionScope.account.nickname}</li>
+	                <li id="nickname">${sessionScope.account.nickname}</li>
 	                <li id="logout">로그아웃</li>
 	            </c:if>
 	        </ul>
 	    </div>
+	    <div class="userBox ubLogin">
+			<span id="ubLoginClose"><i class="fas fa-times"></i></span>
+			<div id="userImg"></div>
+			<div id="userInfo">
+				<span id="ubNickname">${sessionScope.account.nickname}</span>
+				<span id="letterBox"><i class="fas fa-envelope"></i></span>
+			</div>
+			<div class="ubBtn myProfile">프로필</div>
+			<div class="ubBtn myPage">마이페이지</div>
+		</div>
 	</header>
-	
  	<script type="text/javascript">
 	 	document.getElementById('top').addEventListener('click', function() {
 	        window.scrollTo(0,0);
@@ -85,7 +95,7 @@
 			});
 			
 			$('#signUp').click(function() {
-				location.href = '${path}/member/creatMember'
+				location.href = '${path}/member/createMember'
 			});
 			
 			$("#adBtn").click(function(){
@@ -96,12 +106,41 @@
 				location.href = '${path}/community/goCommunity';
 			});
 			
+			
+			// 로그인상태-닉네임 클릭
+			$(document).on('click', '#nickname', function(){
+				$(".ubLogin").addClass("clicked");
+			})
+			
+			// 로그인상태-userBox 닫기 클릭
+			$(document).on('click', '#ubLoginClose', function(){
+				$(".ubLogin").removeClass("clicked");
+			})
+			
+			// 쪽지 아이콘 클릭: 쪽지함 이동
+			$(document).on('click', '#letterBox', function(){
+				location.href = "${path}/member/mypage?currTab=letter";
+			})
+						
+			// userBox-프로필 클릭
+			$(document).on('click', '.myProfile', function(){
+				/* location.href = "${path}/member/"; */
+			})
+				
+			// userBox-마이페이지 클릭
+			$(document).on('click', 'myPage', function(){
+				/* location.href = "${path}/member/"; */
+			})
+			
+			
 			$('.menu').removeClass('active');
 			
 			let curPage = "<c:out value = '${param.curPage}' />";
 			let choice = "#";
 			
 			$(choice + curPage).addClass('active');
+			
+			
 		});
     </script>
 </body>

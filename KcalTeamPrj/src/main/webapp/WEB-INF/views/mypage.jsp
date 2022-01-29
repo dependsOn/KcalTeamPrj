@@ -108,6 +108,7 @@
 					<li class="ptab" data-tab="free">자유게시판</li>
 					<li class="ptab" data-tab="question">고민 & 질문</li>
 					<li class="ptab" data-tab="tip">팁 & 노하우</li>
+					<li class="ptab" data-tab="review">다이어트 후기</li>
 					<li class="ptab" data-tab="emate">운동메이트</li>
 				</ul>
 				<table id="postCon">
@@ -123,7 +124,7 @@
 						
 					</tbody>
 				</table>
-				<div id="bbsPage"></div>
+				<div id="pageBox"></div>
 			</div>
 
 			<div id="myComments" class="content"></div>
@@ -205,6 +206,11 @@
 		        	}
 		        })
 	        }
+	        
+	        // 
+	        getLetter(1,1);
+	        $(".ltab[data-tab='receive']").addClass("selected");
+            $("#receive").addClass("selected");
 	        
 	     // 쪽지함 클릭
 	        $(".tab[data-tab='letter']").click(function(){
@@ -531,11 +537,11 @@
 	        // 작성글 불러오는 함수
 	        let getMyPost = function(category, pageNum){
 	        	$("#bbsListCon").empty();
-	        	$("#bbsPage").empty();
+	        	$("#pageBox").empty();
 	        	const bbsListCon = document.querySelector("#bbsListCon");
-	        	const bbsPage = document.querySelector("#bbsPage");
+	        	const pageBox = document.querySelector("#pageBox");
 	        	
-	        	let categoryName = "";
+	        	/* let categoryName = "";
 		        	 if(category == "free") {
 		        		 categoryName = "자유게시판"; 
 		        	 }else if(category == "question") {
@@ -544,7 +550,7 @@
 		        		categoryName = "팁 & 노하우"; 
 		        	 }else if(category == "emate") {
 		        		categoryName = "운동메이트"; 
-		        	 }
+		        	 } */
 	        	
 	        	let data = {
 	        			"category" : category,
@@ -558,86 +564,98 @@
 	        		data: data,
 	                dataType : 'json',
 	        		success: function(data) {
+	        			
+	        			if(data.postCnt != 0) {
 
-		   	        	 for(let item of data.bbsList) {
-		   		        	 const tr = document.createElement("tr");
-		   		        	 let titleTd = document.createElement("td");
-		   		        	 let dateTd = document.createElement("td");
-		   		        	 let viewTd = document.createElement("td");
-		   		        	 let recommendTd = document.createElement("td");
-		   		        	 
-		   		        	 titleTd.setAttribute('data-bnum', item.bnum);
-		   		        	 
-		   		        	 titleTd.innerText = item.title+item.bnum;
-		   		        	 dateTd.innerText = item.createdate;
-		   		        	 viewTd.innerText = item.viewCnt;
-		   		        	 recommendTd.innerText = item.recommend;
-		   		        	 
-		   		        	 tr.append(titleTd);
-		   		        	 tr.append(dateTd);
-		   		        	 tr.append(viewTd);
-		   		        	 tr.append(recommendTd);
+			   	        	 for(let item of data.bbsList) {
+			   		        	 const tr = document.createElement("tr");
+			   		        	 let titleTd = document.createElement("td");
+			   		        	 let dateTd = document.createElement("td");
+			   		        	 let viewTd = document.createElement("td");
+			   		        	 let recommendTd = document.createElement("td");
+			   		        	 
+			   		        	 titleTd.setAttribute('data-bnum', item.bnum);
+			   		        	 
+			   		        	 titleTd.innerText = item.title+item.bnum;
+			   		        	 dateTd.innerText = item.createdate;
+			   		        	 viewTd.innerText = item.viewCnt;
+			   		        	 recommendTd.innerText = item.recommend;
+			   		        	 
+			   		        	 tr.append(titleTd);
+			   		        	 tr.append(dateTd);
+			   		        	 tr.append(viewTd);
+			   		        	 tr.append(recommendTd);
+			   	        		 
+			   		        	 bbsListCon.append(tr);
+			   	        	 }
+			   	        	 
+			   	        	 
+			   	        	let preBlock = document.createElement("span");
+			   	        	 preBlock.innerHTML = '<i class="fas fa-angle-double-left"></i>';
+			   	        	 if(data.minBlock-1 >= 1) {
+			   	        		preBlock.setAttribute("class", "mpPreBlock");
+			   	        		preBlock.setAttribute("data-num", data.minBlock-1);
+			   	        		preBlock.setAttribute("data-category", category);
+			   	        	 }
+		   	        		 pageBox.append(preBlock);
+			   	        	 
+			   	        	 let prePage = document.createElement("span");
+			   	        	 prePage.innerHTML = '<i class="fas fa-angle-left"></i>';
+			   	        	 if(data.pageNum != 1) {
+			   	        		prePage.setAttribute("class", "mpPrePage");
+			   	        		prePage.setAttribute("data-num", data.pageNum-1);
+			   	        		prePage.setAttribute("data-category", category);
+			   	        	 }
+		   	        		 pageBox.append(prePage);
 		   	        		 
-		   		        	 bbsListCon.append(tr);
-		   	        	 }
-		   	        	 
-		   	        	 
-		   	        	let preBlock = document.createElement("span");
-		   	        	 preBlock.innerHTML = '<i class="fas fa-angle-double-left"></i>';
-		   	        	 if(data.minBlock-1 >= 1) {
-		   	        		preBlock.setAttribute("class", "mpPreBlock");
-		   	        		preBlock.setAttribute("data-num", data.minBlock-1);
-		   	        		preBlock.setAttribute("data-category", category);
-		   	        	 }
-	   	        		 bbsPage.append(preBlock);
-		   	        	 
-		   	        	 let prePage = document.createElement("span");
-		   	        	 prePage.innerHTML = '<i class="fas fa-angle-left"></i>';
-		   	        	 if(data.pageNum != 1) {
-		   	        		prePage.setAttribute("class", "mpPrePage");
-		   	        		prePage.setAttribute("data-num", data.pageNum-1);
-		   	        		prePage.setAttribute("data-category", category);
-		   	        	 }
-	   	        		 bbsPage.append(prePage);
-	   	        		 
-	   	        		 let maxBlock = 0;
-	   	        		 if(data.pageCnt < data.maxBlock) {
-	   	        			 maxBlock = data.pageCnt;
-	   	        		 }else {
-	   	        			 maxBlock = data.maxBlock;
-	   	        		 }
-	   	        		
-	   	        		 for(let i = data.minBlock; i <= maxBlock; i++) {
-	   	        			 let page = document.createElement("span");
-	   	        			 page.innerText = i;
-	   	        			 page.setAttribute("class", "mpPageNum");
-	   	        			 page.setAttribute("data-num", i);
-	   	        			 page.setAttribute("data-category", category);
-	   	        			 if(i == data.pageNum) {
-	   	        				 page.style.fontWeight = "bold";
-	   	        				 page.style.textDecoration = "underline";
-	   	        			 } 
-	   	        			 bbsPage.append(page);
-	   	        		 }
-
-	   	        		 let nextPage = document.createElement("span");
-		   	        	nextPage.innerHTML = '<i class="fas fa-angle-right"></i>';
-		   	        	 if(data.pageNum != data.pageCnt) {
-		   	        		nextPage.setAttribute("class", "mpNextPage");
-		   	        		nextPage.setAttribute("data-num", data.pageNum+1);
-		   	        		nextPage.setAttribute("data-category", category);
-		   	        	 }
-	   	        		 bbsPage.append(nextPage);
-	   	        		 
-	   	        		let nextBlock = document.createElement("span");
-	   	        		nextBlock.innerHTML = '<i class="fas fa-angle-double-right"></i>';
-		   	        	 if(data.maxBlock < data.pageCnt) {
-		   	        		nextBlock.setAttribute("class", "mpNextBlock");
-		   	        		nextBlock.setAttribute("data-num", data.maxBlock+1);
-		   	        		nextBlock.setAttribute("data-category", category);
-		   	        	 }
-	   	        		 bbsPage.append(nextBlock);
-		   	        	 
+		   	        		 let maxBlock = 0;
+		   	        		 if(data.pageCnt < data.maxBlock) {
+		   	        			 maxBlock = data.pageCnt;
+		   	        		 }else {
+		   	        			 maxBlock = data.maxBlock;
+		   	        		 }
+		   	        		
+		   	        		 for(let i = data.minBlock; i <= maxBlock; i++) {
+		   	        			 let page = document.createElement("span");
+		   	        			 page.innerText = i;
+		   	        			 page.setAttribute("class", "mpPageNum");
+		   	        			 page.setAttribute("data-num", i);
+		   	        			 page.setAttribute("data-category", category);
+		   	        			 if(i == data.pageNum) {
+		   	        				 page.style.fontWeight = "bold";
+		   	        				 page.style.textDecoration = "underline";
+		   	        			 } 
+		   	        			pageBox.append(page);
+		   	        		 }
+	
+		   	        		 let nextPage = document.createElement("span");
+			   	        	nextPage.innerHTML = '<i class="fas fa-angle-right"></i>';
+			   	        	 if(data.pageNum != data.pageCnt) {
+			   	        		nextPage.setAttribute("class", "mpNextPage");
+			   	        		nextPage.setAttribute("data-num", data.pageNum+1);
+			   	        		nextPage.setAttribute("data-category", category);
+			   	        	 }
+			   	        	pageBox.append(nextPage);
+		   	        		 
+		   	        		let nextBlock = document.createElement("span");
+		   	        		nextBlock.innerHTML = '<i class="fas fa-angle-double-right"></i>';
+			   	        	 if(data.maxBlock < data.pageCnt) {
+			   	        		nextBlock.setAttribute("class", "mpNextBlock");
+			   	        		nextBlock.setAttribute("data-num", data.maxBlock+1);
+			   	        		nextBlock.setAttribute("data-category", category);
+			   	        	 }
+			   	        	pageBox.append(nextBlock);
+	        			}else {
+	        				const tr = document.createElement("tr");
+	        				const noneTd = document.createElement("td");
+	        				noneTd.setAttribute("colspan", "4");
+	        				noneTd.innerText = "작성글이 없습니다."; 
+	        				noneTd.style.textAlign = "center";
+	        				noneTd.style.height = "450px";
+	        				
+	        				tr.append(noneTd);
+	        				bbsListCon.append(tr);
+	        			}
 	   	        		 
 	        		},
 	        		error: function(data) {
