@@ -74,7 +74,6 @@ body {
 form > ul {
     margin-top: 50px;
     margin-left: 50px;
-    margin-right: 50px;
 }
 
 form > ul > li {
@@ -84,9 +83,10 @@ form > ul > li {
 form > ul > li:nth-child(1) {
     font-size: 25px;
     font-weight: bold;
-    color: dimgray;
+    color: #ff8d64;
     margin-bottom: 50px;
 }
+
 
 form > ul > li:nth-child(4) {
     position: relative;
@@ -94,10 +94,11 @@ form > ul > li:nth-child(4) {
 }
 
 form > ul > li:nth-child(5) {
+	padding-right: 50px;
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
-    width: 300px;
+    width: 400px;
 }
 
 form > ul > li:nth-child(5) > button {
@@ -140,7 +141,8 @@ label {
     color: dimgray;
     border: 1px solid #ccc;
     border-radius: 5px;
-    margin-left: 47px;
+    margin-left: 46px;
+    
 }
 
 input:focus {
