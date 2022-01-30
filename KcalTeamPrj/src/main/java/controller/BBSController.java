@@ -22,9 +22,15 @@ public class BBSController {
 	
 	@ResponseBody
 	@PostMapping("/bbsList")
-	public ResponseEntity<BBSPagingVO> getBBSList(String category, @RequestParam(defaultValue = "0") int unum, @RequestParam(defaultValue = "1") int pageNum) {
-		BBSPagingVO bbsList = bbsService.getBBSList(category, unum, pageNum);
+	public ResponseEntity<BBSPagingVO> getBBSList(String category, int count, 
+												  @RequestParam(defaultValue = "0") int unum, 
+												  @RequestParam(defaultValue = "1") int pageNum,
+												  @RequestParam(defaultValue = "") String searchCategory,
+												  @RequestParam(defaultValue = "") String searchText) {
+		BBSPagingVO bbsList = bbsService.getBBSList(category, unum, pageNum, count, searchCategory, searchText);
 		
+//		System.out.println(searchCategory);
+//		System.out.println(searchText);
 //		System.out.println(category);
 //		System.out.println(unum);
 //		System.out.println(pageNum);

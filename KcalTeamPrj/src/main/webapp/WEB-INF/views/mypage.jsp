@@ -555,7 +555,8 @@
 	        	let data = {
 	        			"category" : category,
 	        			"unum" : ${sessionScope.account.unum},
-	        			"pageNum" : pageNum
+	        			"pageNum" : pageNum,
+	        			"count" : 10
 	        	}
 	        	
 	        	$.ajax({

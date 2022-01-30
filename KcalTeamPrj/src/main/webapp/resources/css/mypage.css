@@ -362,6 +362,9 @@ td[data-ischeck='Y'] {
 	text-align: center;
 }
 
+#myPost {
+	min-height: 600px;
+}
 #myPost .myPostTabs {
 	display: flex;
 	width: 100%;
