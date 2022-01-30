@@ -284,9 +284,9 @@
 	    }
 			
 		// 게시글 리스트 default - 자유게시판
-		getBBSList("free", 1, "", "");
+		getBBSList("${category}" , 1, "", "");
 		$(".menuTab").removeClass("selected");
-   	 	$(".menuTab[data-category='free']").addClass("selected");
+   	 	$(".menuTab[data-category='${category}']").addClass("selected");
 		
 		// 페이지 숫자 클릭
         $(document).on('click', '.PageNum', function(){
@@ -311,7 +311,7 @@
 		 
 						
 		 // 메뉴탭 클릭
-		 let currCategory = "free"; 
+		 let currCategory = "${category}"; 
 		 
          $(document).on('click', '.menuTab', function(){
         	 $(".menuTab").removeClass("selected");
@@ -331,7 +331,7 @@
         	 getNotice(noticePageNum);
         	 
         	 getBBSList(category, 1, "", "");
-         }),
+         })
          
          // 글쓰기버튼 클릭
          $("#create").click(function(){

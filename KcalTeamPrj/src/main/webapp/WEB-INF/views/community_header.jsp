@@ -82,9 +82,9 @@
 			})
 			
 			// 커뮤티니홈 탭 클릭
-			/* $(document).on('click', '.communityMain', function(){
-				location.href = "${path}/community";
-			}) */
+			$(document).on('click', '.communityMain', function(){
+				location.href = "${path}/community/main";
+			})
 			
 			// 쪽지 아이콘 클릭: 쪽지함 이동
 			$(document).on('click', '#letterBox', function(){
@@ -115,6 +115,13 @@
 			$(document).on('click', '.signup', function(){
 				location.href = "${path}/member/createMember";
 			})
+			
+			// 메뉴탭 클릭
+			 let currCategory = "free"; 
+			 
+	         $(document).on('click', '.menuTab', function(){
+	        	 location.href = "${path}/community/bbs?category="+$(this).data("category");	        	 
+	         })
 		})
 	</script>
 </body>
