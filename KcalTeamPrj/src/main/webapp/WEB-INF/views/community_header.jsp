@@ -53,6 +53,7 @@
 			<div class="ubBtn signup">회원가입</div>
 		</div>
 	</header>
+	
 	<script type="text/javascript">
 		$(function(){
 			
@@ -116,13 +117,7 @@
 				location.href = "${path}/member/createMember";
 			})
 			
-			// 메뉴탭 클릭
-			 let currCategory = "free"; 
-			 
-	         $(document).on('click', '.menuTab', function(){
-	        	 location.href = "${path}/community/bbs?category="+$(this).data("category");	        	 
-	         })
-		})
+		})	
 	</script>
 </body>
 

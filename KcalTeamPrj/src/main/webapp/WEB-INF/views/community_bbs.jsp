@@ -312,6 +312,11 @@
 						
 		 // 메뉴탭 클릭
 		 let currCategory = "${category}"; 
+		 if(currCategory == "free") { $("#categoryTitle").text("자유게시판"); }
+    	 else if(currCategory == "question") { $("#categoryTitle").text("고민&질문"); }
+    	 else if(currCategory == "tip") { $("#categoryTitle").text("팁&노하우"); }
+    	 else if(currCategory == "review") { $("#categoryTitle").text("다이어트후기"); }
+    	 else if(currCategory == "emate") { $("#categoryTitle").text("운동메이트"); }
 		 
          $(document).on('click', '.menuTab', function(){
         	 $(".menuTab").removeClass("selected");

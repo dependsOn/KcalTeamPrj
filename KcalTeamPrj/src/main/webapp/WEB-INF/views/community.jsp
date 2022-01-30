@@ -142,5 +142,17 @@
         </div>
         <jsp:include page="footer.jsp"></jsp:include>
 	</div>
+	
+	<script type="text/javascript">
+		$(function(){
+			// 메뉴탭 클릭
+			 let currCategory = "free"; 
+			 
+	         $(document).on('click', '.menuTab', function(){
+	        	 location.href = "${path}/community/bbs?category="+$(this).data("category");	        	 
+	         })
+	         
+		})
+	</script>
 </body>
 </html>
