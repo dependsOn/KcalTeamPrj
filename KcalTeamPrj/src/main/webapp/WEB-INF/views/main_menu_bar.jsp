@@ -28,7 +28,6 @@
 	        <ul>
 	            <li id='curTip' class='menu tip active' onclick='curPageFn(curTip)'>다이어트 꿀팁</li>
 	            <li id='curKcal' class='menu kcal active' onclick='curPageFn(curKcal)'>칼로리 계산기</li>
-	            <li id='curMap' class='menu map active' onclick='curPageFn(curMap)'>내 주변 시설</li>
 	            <li id='curNotice' class='menu notice active' onclick='curPageFn(curNotice)'>공지사항</li>
 	            <li id='curCs' class='menu cs active' onclick='curPageFn(curCs)'>고객센터</li>
 	        </ul>
@@ -72,8 +71,6 @@
 	 			location.href = '${path}/tip/goTip?curPage=curTip';
 	 		} else if (cur === curKcal) {
 	 			location.href = '${path}/kcal/goKcal?curPage=curKcal';
-	 		} else if (cur === curMap) {
-	 			location.href = '${path}/map/goMap?curPage=curMap';
 	 		} else if (cur === curNotice) {
 	 			location.href = '${path}/notice/goNotice?curPage=curNotice';
 	 		} else if (cur === curCs) {

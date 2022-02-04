@@ -302,8 +302,13 @@
 
 .tCImg {
     width: 300px;
-    height: 200px;
+    height: 150px;
     box-shadow: 30px 30px 10px rgba(0, 0, 0, 0.7);
+}
+
+.tCImg > img {
+    width: 100%;
+    height: 100%;
 }
 
 .tCMent {
@@ -336,7 +341,7 @@
     background: none;
     color: white;
     border: 2px solid white;
-    width: 130px;
+    width: 150px;
     height: 30px;
     border-radius: 20px;
     font-weight: bold;

@@ -65,7 +65,7 @@
 /* 가운데 메뉴 */
 .menuCenter > ul {
     display: flex;
-    width: 600px;
+    width: 500px;
     justify-content: space-between;
     font-size: 15px;
 }

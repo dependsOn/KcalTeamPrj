@@ -80,16 +80,16 @@
 	
 	            <div class="thirdContents">
 	                <div class="tCImg">
-	                    <img src="${path}/images/main/tcimg.jpg" alt="">
+	                    <img src="${path}/images/menu/noticeImg.jpg" alt="">
 	                </div>
 	                <div class="tCMent">
-	                    <p>내 주변 시설</p>
-	                    <p>내 주변 시설을 검색해 운동하자!</p>
+	                    <p>공지사항</p>
+	                    <p>공지사항을 꼭 확인하자!</p>
 	                    <p>
-	                        내 주변 시설 검색기능은 회원님의 주소를 기준으로 반경 몇km 이내에
-	                        공원, 수영장, 헬스장, 등등 운동시설 검색이 가능한 서비스입니다.
+	                        사이트를 이용하는 고객들에게 보다 나은 서비스, 개선한 부분 등을
+                         	공지사항을 통해 알려드립니다.
 	                    </p>
-	                    <button class='map' onclick='curPageFn(curMap)'>검색하러 가기</button>
+	                    <button class='notice' onclick='curPageFn(curNotice)'>공지사항 살펴보기</button>
 	                </div>
 	            </div>
 	
@@ -104,7 +104,7 @@
 	                        회원님의 궁금증을 풀어드립니다. QnA 혹은 1:1 문의를 통한 답변
 	                        궁금한게 있으시다면 문의를 남겨주세요!
 	                    </p>
-	                    <button class='cs' onclick='curPageFn(curNotice)'>문의하러 가기</button>
+	                    <button class='cs' onclick='curPageFn(curCs)'>문의하러 가기</button>
 	                </div>
 	            </div>
 	
@@ -149,11 +149,11 @@
 	    
 	    slideShow();
         
-	    /* $(function(){
-			$('.tip').click(function() {
-				location.href = '${path}/goTip?curPage=curTip';
+	    $(function(){
+			$('#communityBtn').click(function() {
+				location.href = '${path}/community/main';
 			});
-		}); */
+		});
     </script>
 </body>
 </html>
