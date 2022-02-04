@@ -87,12 +87,24 @@
 		and bnum = #{bnum}
 	</select>
 	
-	<!-- <insert id="insertBBS" parameterType="bbsVO">
-		
+	<insert id="insertBBS" parameterType="bbsVO"
+	useGeneratedKeys="true" keyProperty="bnum">
+		insert into bbs(category, unum, id, nickname, title, content
+		<if test="region != null">, region</if>
+		)
+		values(#{category}, #{unum}, #{id}, #{nickname}, #{title}, #{content}
+		<if test="region != null">, #{region}</if>
+		)
 	</insert>
 	
 	<update id="updateBBS" parameterType="bbsVO">
-		
-	</update> -->
+		update bbs
+		<set>
+			<if test="title != null">, title = #{title}</if>
+			<if test="content != null">, content = #{content}</if>
+			<if test="region != null">, region = #{region}</if>
+		</set>
+		where bnum=#{bnum}
+	</update>
 	
 </mapper>

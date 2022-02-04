@@ -1,9 +1,14 @@
 package controller;
 
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -52,4 +57,46 @@ public class BBSController {
 		
 		return entity;
 	}
+	
+	@GetMapping("/detail")
+	public String bbsDetail(Model model, BBSVO vo) {
+		
+		bbsService.selectBBS(model, vo);
+		
+		return "community_bbs_detail";
+	}
+	
+	@GetMapping("/create")
+	public String getBBSCreate(BBSVO vo) {
+		return "community_bbs_create";
+	}
+	
+	@PostMapping("/create_result")
+	public String setBBSCreate(BBSVO vo, Model model) {
+//		System.out.println(vo.getTitle());
+//		System.out.println(vo.getContent());
+//		System.out.println(vo.getOwnerid());
+//		System.out.println(vo.getOwnername());
+//		System.out.println(vo.getFilelist());
+		
+//		vo.setCreatedate(new SimpleDateFormat("yyyy-MM-dd", Locale.KOREA).format(new Date()));
+		model.addAttribute("category", vo.getCategory());
+		
+		bbsService.insertBBS(vo);
+		return "community_bbs";
+	}
+	
+	@GetMapping("/modify")
+	public String modifyBBS(@ModelAttribute BBSVO vo, Model model) {
+		bbsService.selectBBS(model, vo);
+		return "community_bbs_modify";
+	}
+	
+	@PostMapping("/community_modify_result")
+	public String modifyBBSResult(BBSVO vo, Model model) {
+		bbsService.updateBBS(vo, model);
+		return "community_bbs_detail";
+	}
+	
+	
 }

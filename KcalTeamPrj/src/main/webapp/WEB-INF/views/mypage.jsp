@@ -23,8 +23,6 @@
 			<li class="tabTitle">내 활동관리</li>
 			<li class="tab" data-tab="letter">쪽지함</li>
 			<li class="tab" data-tab="myPost">작성글</li>
-			<li class="tab" data-tab="myComments">작성댓글</li>
-			<li class="tab" data-tab="myTips">찜한 꿀팁</li>
 			<li class="tab" data-tab="myAsk">1:1 문의내역</li>
 		</ul>
 
@@ -124,12 +122,8 @@
 						
 					</tbody>
 				</table>
-				<div id="pageBox"></div>
+				<div id="bbsPageBox"></div>
 			</div>
-
-			<div id="myComments" class="content"></div>
-
-			<div id="myTips" class="content"></div>
 
 			<div id="myAsk" class="content"></div>
 		</div>
@@ -537,9 +531,9 @@
 	        // 작성글 불러오는 함수
 	        let getMyPost = function(category, pageNum){
 	        	$("#bbsListCon").empty();
-	        	$("#pageBox").empty();
+	        	$("#bbsPageBox").empty();
 	        	const bbsListCon = document.querySelector("#bbsListCon");
-	        	const pageBox = document.querySelector("#pageBox");
+	        	const bbsPageBox = document.querySelector("#bbsPageBox");
 	        	
 	        	/* let categoryName = "";
 		        	 if(category == "free") {
@@ -598,7 +592,7 @@
 			   	        		preBlock.setAttribute("data-num", data.minBlock-1);
 			   	        		preBlock.setAttribute("data-category", category);
 			   	        	 }
-		   	        		 pageBox.append(preBlock);
+		   	        		 bbsPageBox.append(preBlock);
 			   	        	 
 			   	        	 let prePage = document.createElement("span");
 			   	        	 prePage.innerHTML = '<i class="fas fa-angle-left"></i>';
@@ -607,7 +601,7 @@
 			   	        		prePage.setAttribute("data-num", data.pageNum-1);
 			   	        		prePage.setAttribute("data-category", category);
 			   	        	 }
-		   	        		 pageBox.append(prePage);
+		   	        		 bbsPageBox.append(prePage);
 		   	        		 
 		   	        		 let maxBlock = 0;
 		   	        		 if(data.pageCnt < data.maxBlock) {
@@ -626,7 +620,7 @@
 		   	        				 page.style.fontWeight = "bold";
 		   	        				 page.style.textDecoration = "underline";
 		   	        			 } 
-		   	        			pageBox.append(page);
+		   	        			bbsPageBox.append(page);
 		   	        		 }
 	
 		   	        		 let nextPage = document.createElement("span");
@@ -636,7 +630,7 @@
 			   	        		nextPage.setAttribute("data-num", data.pageNum+1);
 			   	        		nextPage.setAttribute("data-category", category);
 			   	        	 }
-			   	        	pageBox.append(nextPage);
+			   	        	bbsPageBox.append(nextPage);
 		   	        		 
 		   	        		let nextBlock = document.createElement("span");
 		   	        		nextBlock.innerHTML = '<i class="fas fa-angle-double-right"></i>';
@@ -645,7 +639,7 @@
 			   	        		nextBlock.setAttribute("data-num", data.maxBlock+1);
 			   	        		nextBlock.setAttribute("data-category", category);
 			   	        	 }
-			   	        	pageBox.append(nextBlock);
+			   	        	bbsPageBox.append(nextBlock);
 	        			}else {
 	        				const tr = document.createElement("tr");
 	        				const noneTd = document.createElement("td");

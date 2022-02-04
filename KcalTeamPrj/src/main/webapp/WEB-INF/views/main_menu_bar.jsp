@@ -13,7 +13,6 @@
 	<link href="https://fonts.googleapis.com/css2?family=Dongle:wght@700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">
-	<script type="text/javascript" src="${path}/js/jquery-3.6.0.min.js"></script>
 </head>
 <body>
 	<header class="header">

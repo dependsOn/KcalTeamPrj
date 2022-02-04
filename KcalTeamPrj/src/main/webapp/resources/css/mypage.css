@@ -409,7 +409,7 @@ td[data-ischeck='Y'] {
 #postCon tr th:nth-child(4) {
 	width: 50px;
 }
-#pageBox {
+#bbsPageBox {
 	display: flex;
 	width: 250px;
 	justify-content: space-between;

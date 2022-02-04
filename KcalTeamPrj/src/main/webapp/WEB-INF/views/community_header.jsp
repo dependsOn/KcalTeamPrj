@@ -93,7 +93,7 @@
 						
 			// userBox-프로필 클릭
 			$(document).on('click', '.myProfile', function(){
-				/* location.href = "${path}/member/"; */
+			    location.href = "${path}/profile/main?nickname=${sessionScope.account.nickname}"; 
 			})
 				
 			// userBox-마이페이지 클릭

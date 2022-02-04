@@ -39,7 +39,9 @@
 						
 					</tbody>
 				</table>
-				<button type="button" id="create">글쓰기</button>
+				<c:if test="${!empty sessionScope.account}">	          
+					<button type="button" id="create">글쓰기</button>				
+	        	</c:if>
 				<div id="pageBox"></div>
 				<div id="searchBox">
 					<select name="searchCategory" id="searchCategory">
@@ -174,6 +176,7 @@
 		   		        	 let recommendTd = document.createElement("td");
 		   		        	 
 		   		        	 titleTd.setAttribute('data-bnum', item.bnum);
+		   		        	 titleTd.setAttribute('class', "bbsTitle");
 		   		        	 ownerTd.setAttribute('data-nickname', item.nickname);
 		   		        	 
 		   		        	 bnumTd.innerText = item.bnum;
@@ -341,15 +344,11 @@
          // 글쓰기버튼 클릭
          $("#create").click(function(){
         	 console.log("글쓰기버튼 클릭");
+        	 location.href = "${path}/bbs/create";
          })
          
          // 검색버튼 클릭
          $(document).on('click', '#searchBtn', function(){
-        	 console.log("검색버튼 클릭");
-        	 console.log($("#searchCategory option:selected").val());
-        	 console.log($("#searchText").val());
-        	 console.log(currCategory);
-        	 
         	 let searchCategory = $("#searchCategory option:selected").val();
         	 let searchText = $("#searchText").val();
         	 
@@ -359,6 +358,12 @@
 	        	 getBBSList(currCategory, 1, searchCategory, searchText);        		 
         	 }
         	 
+         })
+         
+         // 제목클릭
+         $(document).on('click', '.bbsTitle', function(){
+        	let bnum = $(this).data("bnum");
+			location.href = "${path}/bbs/detail?bnum="+bnum;       	 
          })
 			
 	})

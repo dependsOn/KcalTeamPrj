@@ -10,6 +10,7 @@
 	<link rel="stylesheet" href="${path}/css/signUp.css"/>
 	<script type="text/javascript" src="${path}/js/jquery-3.6.0.min.js"></script>
 	<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+	<script type="text/javascript" src="${path}/js/jquery-3.6.0.min.js"></script>
 </head>
 <body>
 	<div class="container">

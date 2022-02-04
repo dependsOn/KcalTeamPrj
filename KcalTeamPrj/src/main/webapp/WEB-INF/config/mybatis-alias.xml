@@ -11,5 +11,8 @@
 		<typeAlias type="vo.TipVO" alias="tvo"/>
 		<typeAlias type="vo.MealcardVO" alias="mCardVO"/>
 		<typeAlias type="vo.MealinfoVO" alias="mInfoVO"/>
+		<typeAlias type="vo.FollowVO" alias="followVO"/> 
+		<typeAlias type="vo.UserpostVO" alias="userpostVO"/>
+		<typeAlias type="vo.PostfileVO" alias="postfileVO"/>
 	</typeAliases>
 </configuration>
