@@ -21,21 +21,43 @@
             <div class="ad">
                 <img src="${path}/images/main/main3.jpg" alt="">
             </div>
+            
             <c:if test="${empty sessionScope.account}">
                 <div class="login">
 	                <p>로그인 후 자유롭게 이용하세요</p>
-	                <button>로그인</button>
-	                <ul>
-	                    <li><i class="fas fa-address-card"></i>회원가입</li>
-	                    <li><i class="fas fa-search"></i>ID/PW 찾기</li>
-	                </ul>
+	                <button class="changeBtn">로그인</button>
             	</div>
-	            </c:if>
+            	
+            	<div class="loginSubmit">
+	                <div class="loginSiteName">
+	                    <p>Kcal Dynamite</p>
+	                </div>
+	                <form action="${path}/community/login" id="loginPass" method="post">
+	                    <div class="idWrite">
+	                        <label for="id">아이디</label>
+	                        <input type="text" id="id" name="id">
+	                    </div>
+	                    <div class="pwWrite">
+	                        <label for="password">비밀번호</label>
+	                        <input type="password" id="password" name="password">
+	                    </div>
+	                    <div class="logBtnBox">
+                        	<button class="logBtn">로그인</button>
+                    	</div>
+	                </form>
+	                <div class="supportBox">
+	                    <p id="goJoinMember"><i class="fas fa-address-card"></i><span> 회원가입</span></p>
+	                    <p id="goFindId"><i class="fas fa-search"></i><span> 아이디 찾기</span></p>
+	                    <p id="goFindPw"><i class="fas fa-key"></i><span> 비밀번호 찾기</span></p>
+	                </div>
+	            </div>
+            </c:if>
+            
         	<c:if test="${!empty sessionScope.account}">
                 <div class="loginAfter">
 	                <div class="logout">
 	                    <p>${sessionScope.account.nickname}</p>
-	                    <p>로그아웃</p>
+	                    <p id="logoutBtn">로그아웃</p>
 	                </div>
                 
 	                <div class="profileLine">
@@ -43,9 +65,9 @@
 	                        <img src="${path}/images/main/main3.jpg" alt="">
 	                    </div>
 	                    <div class="profileBtns">
-	                        <button>프로필</button>
-	                        <button>마이페이지</button>
-	                        <button>쪽지함</button>
+	                        <button id="goProfile">프로필</button>
+	                        <button id="goMypage">마이페이지</button>
+	                        <button id="goLetter">쪽지함</button>
 	                    </div>
 	                </div>
             	</div>
@@ -172,6 +194,52 @@
 	         $(document).on('click', '.menuTab', function(){
 	        	 location.href = "${path}/community/bbs?category="+$(this).data("category");	        	 
 	         })
+	         
+	         $(document).ready(function() {
+	        	 $('.login').show(); 
+	        	 $('.loginSubmit').hide();
+	        	 
+	        	 $('.changeBtn').click(function(){
+		        	 $ ('.login').hide(); 
+		        	 $ ('.loginSubmit').show(); 
+		        	 return false;
+	        	 });
+        	 });
+	         
+	         // 로그아웃
+	         $("#logoutBtn").click(function(){
+					location.href = '${path}/community/logout';
+			 });
+	         
+	         // 회원가입
+	         $("#goJoinMember").click(function(){
+					location.href = '${path}/member/createMember';
+			 });
+	         
+	         // ID 찾기
+	         /* $("#goFindId").click(function(){
+					location.href = '${path}/';
+			 }); */
+	         
+	         // PW 찾기
+	         /* $("#goFindPw").click(function(){
+					location.href = '${path}/';
+			 }); */
+	         
+	         // 프로필
+	         /* $("#goProfile").click(function(){
+					location.href = '${path}/';
+			 }); */
+	         
+	         // 마이페이지
+	         $("#goMypage").click(function(){
+			 		location.href = '${path}/member/mypage';
+			 });
+	         
+	         // 쪽지함
+	         $("#goLetter").click(function(){
+					location.href = '${path}/member/mypage?currTab=letter';
+			 });
 	         
 		})
 	</script>

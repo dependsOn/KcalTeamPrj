@@ -63,7 +63,6 @@
     font-size: 15px;
     font-weight: bold;
     background: none;
-    margin-bottom: 20px;
     color: dimgray;
     cursor: pointer;
     border: 2px solid #ff681f;
@@ -75,30 +74,119 @@
     background-color: white;
     color: tomato;
 }
+/* 로그인 버튼 누른 후 */
+.loginSubmit {
+    flex: 0.7;
+    border-radius: 5px;
+    background-color: white;
+    border: 2px solid #ff681f;
+}
 
-.login > ul {
-    width: 250px;
+.loginSiteName {
     display: flex;
-    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 40px;
+    font-family: 'Dongle', sans-serif;
+    font-size: 40px;
+    margin-left: 10px;
+    color: #ff681f;
+    margin-top: 5px;
 }
 
-.login > ul > li {
-    color: black;
-    font-size: 13px;
-    font-weight: bold;
-    cursor: pointer;
+#loginPass {
+    height: 110px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+#loginPass > div > input {
+    width: 170px;
+    height: 25px;
     color: dimgray;
+    border: 1px solid #ccc;
+    border-radius: 5px;
 }
 
-.login > ul > li:hover {
-    transform: scale(1.07);
+#loginPass > div > label {
+    color: dimgray;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.idWrite {
+    margin-bottom: 10px;
+}
+
+.idWrite > label {
+    margin-right: 45px;
+}
+
+.pwWrite {
+    margin-bottom: 10px;
+}
+
+.pwWrite > label {
+    margin-right: 31px;
+}
+
+.logBtnBox {
+    display: flex;
+    justify-content: right;
+    width: 100%;
+}
+
+.logBtn {
+    width: 70px;
+    height: 30px;
+    color: lightslategray;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 13px;
+    background-color: #eee;
+    margin-right: 57px;
+    cursor: pointer;
+}
+
+.logBtn:hover {
+    background-color: #ff8d64;
+    color: white;
+    cursor: pointer;
+    transition: 0.25s;
+}
+
+input:focus {
+    outline: 2px solid #ff8d64;
     transition: .5s;
 }
 
-.login > ul > li > i {
+.supportBox {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 30px;
+    color: dimgray;
     font-size: 13px;
-    margin-right: 5px;
+    font-weight: bold;
 }
+.supportBox > p > i {
+    color: black;
+    margin-right: 3px;
+}
+.supportBox > p {
+    cursor: pointer;
+    color: dimgray;
+}
+.supportBox > p:hover {
+    transform: scale(1.07);
+    color: orangered;
+    transition: .5s;
+}
+.supportBox > p:hover > i {color: orangered}
 
 /* 로그인 후 */
 .loginAfter {
