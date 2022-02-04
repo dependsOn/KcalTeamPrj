@@ -59,7 +59,8 @@ body {
 }
 
 .createTip {
-    height: 1500px;
+    height: 100%;
+    margin-bottom: 100px;
 }
 
 .createTipBox {

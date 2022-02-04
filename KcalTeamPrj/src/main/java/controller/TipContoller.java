@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -20,7 +21,7 @@ public class TipContoller {
 	@GetMapping("/goTip")
 	public String goTip(Model model, TipVO tvo) {
 		tipService.selectTipList(model, tvo);
-		
+
 		return "tip";
 	}
 	
@@ -36,10 +37,59 @@ public class TipContoller {
 	}
 	
 	@PostMapping("/create_result")
-	public String createResult(TipVO vo) {
-		
+	public String createResult(TipVO vo) {	
 		tipService.insertTip(vo);
+
+		return "redirect:/tip/goTip?curPage=curTip";
+	}
+	
+	@GetMapping("/tipDetail")
+	public String tipDetail(@ModelAttribute("tipVO") TipVO tvo) {
+		tipService.selectTip(tvo);
 		
-		return "redirect:/tip/goTip";
+		return "tipDetail";
+	}
+	
+	@GetMapping("/modify")
+	public String modify(@ModelAttribute("tipVO") TipVO tvo) {
+		tipService.selectTip(tvo);
+		
+		return "tipModify";
+	}
+	
+	@PostMapping("/modify_result")
+	public String modify_result(TipVO vo) {
+		tipService.updateTip(vo);
+		return "redirect:/tip/goTip?curPage=curTip";
+	}
+	
+	
+	@GetMapping("/deleteTip")
+	public String deleteTip(TipVO vo) {
+		tipService.deleteTip(vo);
+		
+		return "redirect:/tip/goTip?curPage=curTip";
 	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

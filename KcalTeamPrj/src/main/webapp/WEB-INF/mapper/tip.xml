@@ -6,12 +6,28 @@
   
 <mapper namespace="tip">
 	<select id="selectTipList" parameterType="tvo" resultType="tvo">
-		select tnum, category, title, contents, createdate, ownerid, ownername
+		select tnum, category, title, contents, DATE_FORMAT(createdate, "%Y-%m-%d") as createdate, ownerid, ownername, view_cnt
 		from tips
 	</select>
+	
+	<select id="selectTip" parameterType="tvo" resultType="tvo">
+		select tnum, category, title, contents, createdate, ownerid, ownername, view_cnt
+		from tips
+		where tnum=#{tnum}
+	</select>
 
-	<insert id="insertTip" parameterType="tvo">
-		insert into tips(category, title, contents, createdate, ownerid, ownername) 
-		values(#{category}, #{title}, #{contents}, #{createdate}, #{ownerid}, #{ownername})
+	<insert id="insertTip" parameterType="tvo" useGeneratedKeys="true" keyProperty="tnum">
+		insert into tips(category, title, contents, ownerid, ownername) 
+		values(#{category}, #{title}, #{contents}, #{ownerid}, #{ownername})
 	</insert>
+	
+	<update id="updateTip" parameterType="tvo">
+		update tips set title=#{title}, contents=#{contents}, view_cnt=view_cnt+1
+		where tnum=#{tnum}
+	</update>
+	
+	<delete id="deleteTip" parameterType="tvo">
+		delete from tips
+		where tnum=#{tnum}
+	</delete>
 </mapper>

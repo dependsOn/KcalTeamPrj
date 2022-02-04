@@ -12,6 +12,7 @@
 	<link href="https://fonts.googleapis.com/css2?family=Dongle:wght@700&display=swap" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
     <script src="https://kit.fontawesome.com/604dbbab30.js"></script>
 	<script type="text/javascript" src="${path}/js/jquery-3.6.0.min.js"></script>
 </head>
@@ -47,7 +48,7 @@
 		                        <img src="${path}/images/main/fcimg.jpg" alt="">
 		                        <ul>
 		                            <li>
-		                            	<p><c:out value="${tipList.title}" escapeXml="false" /></p>
+		                            	<p><a href="${path}/tip/tipDetail?tnum=${tipList.tnum}&curPage=curTip"><c:out value="${tipList.title}" escapeXml="false" /></a></p>
 		                            </li>
 		                            <li>
 		                            	<p><c:out value="${tipList.contents}" escapeXml="false" /></p>
@@ -55,8 +56,8 @@
 		                            <li>
 		                            	<p><c:out value="${tipList.createdate}" escapeXml="false" /></p>
 		                                <div>
-		                                    <i class="far fa-eye"><span> 20000</span></i>
-		                                    <i class="fas fa-heart"></i>
+		                                    <i class="xi-eye-o"><span> ${tipList.view_cnt}</span></i>
+		                                    <i class="xi-heart"></i>
 		                                </div>
 		                            </li>
 		                        </ul>
@@ -80,7 +81,7 @@
 		                        <img src="${path}/images/main/fcimg.jpg" alt="">
 		                        <ul>
 		                            <li>
-		                                <p><c:out value="${tipList.title}" escapeXml="false" /></p>
+		                                <p><a href="${path}/tip/tipDetail?tnum=${tipList.tnum}"><c:out value="${tipList.title}" escapeXml="false" /></a></p>
 		                            </li>
 		                            <li>
 		                                <p><c:out value="${tipList.contents}" escapeXml="false" /></p>
@@ -88,7 +89,7 @@
 		                            <li>
 		                                <p><c:out value="${tipList.createdate}" escapeXml="false" /></p>
 		                                <div>
-		                                    <i class="fas fa-eye" aria-hidden="true"><span> 20000</span></i>
+		                                    <i class="fas fa-eye"><span> ${tipList.view_cnt}</span></i>
 		                                    <i class="fas fa-heart"></i>
 		                                </div>
 		                            </li>
@@ -128,11 +129,57 @@
 		document.getElementById('default').click();
 		
 		document.querySelector('.createBtn').addEventListener('click', function() {
-			location.href = '${path}/tip/createTip';
+			location.href = '${path}/tip/createTip?curPage=curTip';
 		});
 	</script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -1,9 +1,5 @@
 package service;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
-
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,8 +17,27 @@ public class TipSerivce {
 		model.addAttribute("list", sqlSessionTemplate.selectList("tip.selectTipList", tvo));
 	}
 	
+	public void selectTip(TipVO tvo) {
+		TipVO vo = sqlSessionTemplate.selectOne("tip.selectTip", tvo);
+		
+		tvo.setTnum(vo.getTnum());
+		tvo.setCategory(vo.getCategory());
+		tvo.setTitle(vo.getTitle());
+		tvo.setContents(vo.getContents());
+		tvo.setCreatedate(vo.getCreatedate().substring(0, 19));
+		tvo.setOwnerid(vo.getOwnerid());
+		tvo.setOwnername(vo.getOwnername());
+	}
+	
 	public void insertTip(TipVO vo) {
-		vo.setCreatedate(new SimpleDateFormat("yyyy-MM-dd", Locale.KOREA).format(new Date()));
 		sqlSessionTemplate.insert("tip.insertTip", vo);
+	}
+	
+	public void updateTip(TipVO vo) {
+		sqlSessionTemplate.update("tip.updateTip", vo);
+	}
+	
+	public void deleteTip(TipVO vo) {
+		sqlSessionTemplate.delete("tip.deleteTip", vo);
 	}
 }

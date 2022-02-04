@@ -23,7 +23,7 @@
                 <img src="${path}/images/menu/tipImg.jpg" alt="">
                 <ul>
                     <li>Diet Tips</li>
-                    <li>꿀팁 작성하기</li>
+                    <li>꿀팁 수정하기</li>
                 </ul>
             </div>
             <div class="tipContents">
@@ -31,7 +31,7 @@
             </div>
             <div class="createTip">
                 <div class="createTipBox">
-                    <form action="${path}/tip/create_result?curPage=curTip" method="post" id="createTips">
+                    <form action="${path}/tip/modify_result?tnum=${tipVO.tnum}&curPage=curTip" method="post">
                         <ul>
                             <li>
                                 <p>게시글 작성</p>
@@ -47,14 +47,14 @@
                             </li>
                             <li>
                                 <label for="title" id="titleLabel">제목</label>
-                                <input type="text" name="title" id="title" />
+                                <input type="text" name="title" id="title" value="${tipVO.title}" />
                             </li>
                             <li>
-                                <textarea name="contents" id="contents" cols="30" rows="10"></textarea>
+                                <textarea name="contents" id="contents" cols="30" rows="10">${tipVO.contents}</textarea>
                             </li>
                             <li>
-                                <button id="cancel" type="button">취소</button>
-                                <button id="clear" type="button">작성완료</button>
+                                <button id="cancel">취소</button>
+                                <button id="submit" type="submit">수정완료</button>
                             </li>
                         </ul>
                     </form>     
@@ -73,38 +73,21 @@
 				filebrowserUploadUrl: '${path}/tip/fileUpload'
 			});
 			
-			$('#cancel').click(function() {
-				location.href = '${path}/tip/goTip?curPage=curTip';
-			});
-			
-			
 			/* let editorContent = CKEDITOR.instances.editor.getData();
 			let convertContent = editorContent.replace(/(<([^>]+)>)/ig,""); */
 		});
 		
 		const title = document.getElementById('title');
-		const createTips = document.getElementById('createTips');
+		const contents = document.getElementById('contents');
 		
-		document.getElementById('clear').addEventListener('click', function() {
-			if (title.value == "" && CKEDITOR.instances.contents.getData() == "") {
-				alert('제목과 내용을 입력해주세요');
-				return;
-			}
-			
-			if (title.value == "") {
+		document.getElementById('submit').addEventListener('click', function() {
+			if (title.value == null) {
 				alert('제목을 입력해주세요');
-				return;
-			}
-			
-			if (CKEDITOR.instances.contents.getData() == "") {
+				retrun;
+			} else if (contents.value == null) {
 				alert('내용을 입력해주세요');
-				return;
-			} 
-			
-			if (title.value != "" && CKEDITOR.instances.contents.getData() != "") {
-				alert('작성되었습니다.')
-				createTips.submit();
-			} 
+				retrun;
+			}
         });
 		
 	</script>

@@ -5,7 +5,7 @@ body {
 }
 .container {
 	width: 100%;
-	height: 2000px;
+	height: 100%;
 }
 
 .tipBox {
@@ -13,6 +13,7 @@ body {
     height: 100%;
     margin: 0 auto;
     font-family: 'Noto Sans', sans-serif;
+    margin-bottom: 120px;
 }
 
 .tipImg {
@@ -80,11 +81,12 @@ body {
 
 .titleBox {
     display: flex;
-    width: 100%;
+    width: 90%;
     justify-content: space-between;
     align-items: flex-end;
     color: dimgray;
     font-weight: bold;
+    margin: 0 auto;
     margin-top: 70px;
     border-bottom: 3px solid #ccc;
 }
@@ -92,7 +94,6 @@ body {
 .titleBox > li:nth-child(1) {
     font-size: 30px;
     margin-bottom: 20px;
-    
 }
 
 .titleBox > li:nth-child(2) {
@@ -115,39 +116,51 @@ body {
 }
 
 .contentBox {
-    width: 100%;
-    height: 280px;
+    width: 90%;
+    height: 260px;
     display: flex;
     justify-content: space-around;
     padding-top: 40px;
     border-bottom: 1px solid #ccc;
-    cursor: pointer;
-}
-
-.contentBox:hover > ul > li:nth-child(1) > p {
-    text-decoration: underline;
-    color: #ff8d64;
+    margin: 0 auto;
 }
 
 .contentBox > img {
     width: 300px;
-    height: 200px;
+    height: 180px;
 }
 
 .contentBox > ul {
-    width: 700px;
+    width: 600px;
     height: 200px;
 }
 
 .contentBox > ul > li:nth-child(1) > p {
-    width: 100%;
+	width: 100%;
     overflow: hidden;
-    margin-bottom: 35px;
     text-overflow: ellipsis;
     white-space:nowrap;
     font-size: 25px;
     font-weight: bold;
+	margin-bottom: 20px;
     color: dimgray;
+    cursor: pointer;
+}
+
+.contentBox > ul > li:nth-child(1) > p > a {
+    text-decoration: none;
+}
+
+.contentBox > ul > li:nth-child(1) > p > a:link {
+	color: dimgray;
+}
+
+.contentBox > ul > li:nth-child(1) > p > a:visited {
+	color: dimgray;
+}
+
+.contentBox > ul > li:nth-child(1) > p > a:hover {
+    color: #ff8d64;
 }
 
 .contentBox > ul > li:nth-child(2) > p {
@@ -167,10 +180,13 @@ body {
 .contentBox > ul > li:nth-child(3) {
     display: flex;
     justify-content: space-between;
+    font-size: 17px;
+    font-weight: bold;
+    color: gray;
 }
 
-.contentBox > ul > li:nth-child(3) {
-    font-size: 17px;
+.contentBox > ul > li:nth-child(3) > div > i {
+	font-size: 17px;
     font-weight: bold;
     color: gray;
 }
@@ -180,10 +196,11 @@ body {
 }
 
 .writeBox {
+    width: 90%;
     display: flex;
     justify-content: flex-end;
-    margin-top: 20px;
-    
+    margin: 0 auto;
+    margin-top: 40px;
 }
 
 .createBtn {
