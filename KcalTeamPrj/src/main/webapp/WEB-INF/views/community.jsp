@@ -21,14 +21,35 @@
             <div class="ad">
                 <img src="${path}/images/main/main3.jpg" alt="">
             </div>
-            <div class="login">
-                <p>로그인 후 자유롭게 이용하세요</p>
-                <button>로그인</button>
-                <ul>
-                    <li><i class="fas fa-address-card"></i>회원가입</li>
-                    <li><i class="fas fa-search"></i>ID/PW 찾기</li>
-                </ul>
-            </div>
+            <c:if test="${empty sessionScope.account}">
+                <div class="login">
+	                <p>로그인 후 자유롭게 이용하세요</p>
+	                <button>로그인</button>
+	                <ul>
+	                    <li><i class="fas fa-address-card"></i>회원가입</li>
+	                    <li><i class="fas fa-search"></i>ID/PW 찾기</li>
+	                </ul>
+            	</div>
+	            </c:if>
+        	<c:if test="${!empty sessionScope.account}">
+                <div class="loginAfter">
+	                <div class="logout">
+	                    <p>${sessionScope.account.nickname}</p>
+	                    <p>로그아웃</p>
+	                </div>
+                
+	                <div class="profileLine">
+	                    <div class="profileImage">
+	                        <img src="${path}/images/main/main3.jpg" alt="">
+	                    </div>
+	                    <div class="profileBtns">
+	                        <button>프로필</button>
+	                        <button>마이페이지</button>
+	                        <button>쪽지함</button>
+	                    </div>
+	                </div>
+            	</div>
+            </c:if>
         </div>
 
         <div class="peopleBox">
