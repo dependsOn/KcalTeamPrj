@@ -9,5 +9,8 @@
 		<typeAlias type="vo.LetterVO" alias="letterVO"/>
 		<typeAlias type="vo.BBSVO" alias="bbsVO"/>
 		<typeAlias type="vo.TipVO" alias="tvo"/>
+		<typeAlias type="vo.FollowVO" alias="followVO"/> 
+		<typeAlias type="vo.UserpostVO" alias="userpostVO"/>
+		<typeAlias type="vo.PostfileVO" alias="postfileVO"/>
 	</typeAliases>
 </configuration>

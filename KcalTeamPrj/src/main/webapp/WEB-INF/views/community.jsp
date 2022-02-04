@@ -235,6 +235,7 @@
 	         $("#goMypage").click(function(){
 			 		location.href = '${path}/member/mypage';
 			 });
+			 
 	         
 	         // 쪽지함
 	         $("#goLetter").click(function(){

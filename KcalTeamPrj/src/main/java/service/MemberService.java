@@ -5,6 +5,7 @@ import javax.servlet.http.HttpSession;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 
 import vo.MemberVO;
 
@@ -98,6 +99,35 @@ public class MemberService {
 		
 				
 		return check;
+	}
+	
+//	profile
+	public void selectMember(Model model, MemberVO mvo) {
+//		
+		//MemberVO mvo=sqlSessionTemplate.selectOne("member.selectMember",vo);
+		model.addAttribute("member",sqlSessionTemplate.selectOne("member.selectMember",mvo));
+	
+	}
+	
+	public String updateProfile(MemberVO mvo) {
+		
+		int i=sqlSessionTemplate.update("member.updateProfile",mvo);
+		String result = "";
+		
+		if(i>0) {
+			 result = "success";
+		}
+		return result;
+	}
+public String updateProfileImg(MemberVO mvo) {
+		
+		int i=sqlSessionTemplate.update("member.updateProfileImg",mvo);
+		String result = "";
+		
+		if(i>0) {
+			 result = "success";
+		}
+		return result;
 	}
 
 }

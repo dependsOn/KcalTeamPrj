@@ -189,4 +189,32 @@
 	<delete id="deleteMember" parameterType="mvo">
 		delete from member where unum = #{unum}
 	</delete>
+	
+	
+	<!-- profile -->
+	<select id="selectMember" parameterType="mvo" resultType="mvo">
+		select *
+		from member
+		where nickname=#{nickname}
+		<!-- where id = #{id}
+		and password = #{password} -->
+	</select>
+	
+	<update id="updateProfile" parameterType="mvo">
+	     update member set
+	     comment=#{comment},
+	     p_isopen=#{p_isopen},
+	     d_isopen=#{d_isopen},
+	     i_isopen=#{i_isopen},
+	     e_isopen=#{e_isopen}
+	     where nickname=#{nickname}
+	
+	</update>
+	<update id="updateProfileImg" parameterType="mvo">
+	     update member set 
+	     img_localname=#{img_localname},
+	     img_servername=#{img_servername}
+	     where nickname=#{nickname}
+	
+	</update>
 </mapper>
