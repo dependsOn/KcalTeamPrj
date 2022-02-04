@@ -81,7 +81,7 @@ header input {
 	border: 2px solid #ccc;
 }
 
-header #searchBtn {
+header #searchAllBtn {
 	display: inline-block;
 	width: 30px;
 	min-width: 30px;

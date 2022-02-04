@@ -9,7 +9,6 @@
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="${path}/css/community_header.css">
 <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
-<script type="text/javascript" src="${path}/js/jquery-3.6.0.min.js"></script>
 </head>
 <body>
 	<header>
@@ -26,8 +25,8 @@
 				<li class="menuTab" data-category="emate">운동메이트</li>
 			</ul>
 		<div id="header_r">
-			<input type="text" name="search" placeholder="검색어"/>
-			<button type="button" id="searchBtn"><i class="fas fa-search"></i></button>
+			<input type="text" name="searchALl" placeholder="검색어"/>
+			<button type="button" id="searchAllBtn"><i class="fas fa-search"></i></button>
 			<c:if test="${!empty sessionScope.account}">	          
 				<div id="user-login" class="user"><i class="fas fa-user fa-2x"></i></div>
 	        </c:if>
@@ -98,8 +97,8 @@
 			})
 				
 			// userBox-마이페이지 클릭
-			$(document).on('click', '', function(){
-				/* location.href = "${path}/member/mypage"; */
+			$(document).on('click', '.myPage', function(){
+				location.href = "${path}/member/mypage";
 			})
 			
 			// userBox-로그아웃 클릭
