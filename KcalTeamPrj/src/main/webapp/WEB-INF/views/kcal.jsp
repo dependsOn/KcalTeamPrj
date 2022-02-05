@@ -137,8 +137,7 @@
 			        			console.log("결과 없음");
 			        		}else {
 			        			$("#food").css("display", "block");
-			        			for(let item of data) {
-				       				/* console.log("이름: "+item.foodName+" / 1회제공량: "+item.servingSize+"g / 열량: "+item.kcal+"kcal / 번호: " +item.num); */
+			        			for(let item of data) {				       				
 				       				
 				       				const tr = document.createElement("tr");
 				   		        	 let nameTd = document.createElement("td");
@@ -147,7 +146,7 @@
 				   		        	 let intakeTd = document.createElement("td");
 				   		        	 let putTd = document.createElement("td");
 				   		        	 
-				   		        	 /*  */
+				   		        	 
 				   		        	 nameTd.innerText = item.foodName;
 				   		        	 nameTd.setAttribute('class', 'fname');
 				   		        	 sizeTd.innerText = item.servingSize + "g";
@@ -165,22 +164,7 @@
 				   		        	 let button = document.createElement("button");
 				   		        	 button.setAttribute('class', 'putBtn');
 				   		        	 button.innerText = "추가";
-				   		        	 putTd.append(button);
-				   		        	 
-				   		        	 /* titleTd.setAttribute('data-num', item.num);
-				   		        	 titleTd.setAttribute('class', "bbsTitle");
-				   		        	 ownerTd.setAttribute('data-nickname', item.nickname);
-				   		        	 
-				   		        	 bnumTd.innerText = item.bnum;
-				   		        	 if(category != "emate") {
-					   		        	 titleTd.innerText = item.title;		   		        		 
-				   		        	 }else {
-					   		        	 titleTd.innerText = "[" + item.region + "] " + item.title;		   		        		 		   		        		 
-				   		        	 }
-				   		        	 ownerTd.innerText = item.nickname;
-				   		        	 dateTd.innerText = item.createdate;
-				   		        	 viewTd.innerText = item.viewCnt;
-				   		        	 recommendTd.innerText = item.recommend; */
+				   		        	 putTd.append(button);				   		        	
 				   		        	 
 				   		        	 tr.append(nameTd);
 				   		        	 tr.append(sizeTd);

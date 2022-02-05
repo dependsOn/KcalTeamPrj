@@ -9,6 +9,7 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="${path}/css/meal_test.css"/>
 <script type="text/javascript" src="${path}/js/jquery-3.6.0.min.js"></script>
+<script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 </head>
 <body>
 	<button id="getMeal">식단</button>
@@ -17,14 +18,15 @@
 	
 	<script type="text/javascript">
 		$(function(){
-			$("#getMeal").click(function(){
+			
+			let getMeal = function(unum){
 				const content = $("#content");
 				content.empty();
 				
 				$.ajax({
 		        	url: "${path}/kcal/mealList",
 		        	type: "POST",	
-		        	data: { "unum" : 1 },
+		        	data: { "unum" : unum },
 		        	success: function(data) {
 	        			let mealList = new Array();
 	        			
@@ -86,7 +88,7 @@
 		        		
 		        		for(dateIndex in mealList) {
 		        			let dayBox = document.createElement("div");
-		        			dayBox.className = 'dayBox';
+		        			dayBox.className = 'dayBox';	        			
 		        			
 		        			let dayTop = document.createElement("div");
 		        			dayTop.className = 'dayTop';
@@ -107,6 +109,13 @@
 		        			for(cardIndex in mealList[dateIndex].mealcards) {
 		        				let mealcard = document.createElement("div");
 		        				mealcard.className = 'mealcard';
+		        				
+		        				let deleteBtn = document.createElement("span");
+			        			deleteBtn.className = 'deleteBtn';
+			        			/*  */
+			        			deleteBtn.setAttribute('data-mealnum', mealList[dateIndex].mealcards[cardIndex].mealnum);
+			        			deleteBtn.innerHTML = '<c:if test="${sessionScope.account.unum eq 1}"><i class="fas fa-times"></i></c:if>';
+			        			mealcard.append(deleteBtn);
 		        				
 		        				let mealtime = document.createElement("span");
 		        				mealtime.className = 'mealtime';
@@ -150,6 +159,30 @@
 		        		alert("error");	
 		        	}
 				})
+			}
+			
+			$("#getMeal").click(function(){
+				getMeal(1);
+			})
+			
+			$(document).on('click', '.deleteBtn', function(){
+				let mealnum = $(this).data("mealnum");
+				console.log(mealnum);
+				let deleteConfirm = confirm("삭제하시겠습니까?");
+				if(deleteConfirm) {
+					$.ajax({
+			        	url: "${path}/kcal/deleteMeal",
+			        	type: "POST",	
+			        	data: { "mealnum" : mealnum },
+			        	success: function(data) {
+			        		if(data == "success") {
+			        			getMeal(1);
+			        		}else {
+			        			alert("error");
+			        		}
+			        	}
+					})
+				}
 			})
 		})
 		

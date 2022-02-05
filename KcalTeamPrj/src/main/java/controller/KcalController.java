@@ -65,4 +65,11 @@ public class KcalController {
 		
 		return entity;
 	}
+	
+	@ResponseBody
+	@PostMapping("/deleteMeal")
+	public String deleteMealCard(int mealnum) {
+		
+		return kcalService.deleteMealCard(mealnum);
+	}
 }

@@ -21,9 +21,9 @@ a {
 
 li {list-style-type: none;}
 
-#content {
+/* #content {
 	
-}
+} */
 
 .dayBox {
 	width: 90%;
@@ -33,15 +33,14 @@ li {list-style-type: none;}
 	margin: 40px auto;
 	padding: 20px;
 }
-
 .dayTop {
 	display: flex;
 	justify-content: space-between;
 	width: 100%;
-	padding: 0 10px 20px; 
+	padding: 0 50px 20px; 
 }
 .mealDate {
-	font-size: 1.2rem;
+	font-size: 1.3rem;
 	font-weight: bold;
 }
 .todayKcal {
@@ -71,7 +70,16 @@ li {list-style-type: none;}
 	padding: 15px;
 	background-color: #f9e3d9;
 	border-radius: 20px;
+	position: relative;
 }
+.mealcard .deleteBtn {
+	cursor: pointer;
+	position: absolute;
+	top: 15px;
+	right: 15px;
+	color: #e6502b;
+}
+.mealcard .deleteBtn:hover {color: red;}
 .mealtime {
 	display: block;
 	text-align: center;

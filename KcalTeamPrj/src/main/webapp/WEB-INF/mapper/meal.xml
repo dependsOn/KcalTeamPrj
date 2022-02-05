@@ -4,16 +4,6 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
  <mapper namespace="meal">
- 	<select id="selectMealcardList" parameterType="int" resultType="mCardVO">
- 		select mealnum, unum, data, time, total_kcal
- 		from mealcard
- 		where unum = #{unum}
- 	</select>
- 	<select id="selectMealinfoList" parameterType="int" resultType="mInfoVO">
- 		select mfnum, mealnum, menu, intake, kcal
- 		from mealinfo
- 		where mealnum = #{mealnum}
- 	</select>
  	<select id="selectMeal" parameterType="int" resultType="mealVO">
  		select mealcard.mealnum, mealcard.unum,  mealcard.date, TIME_FORMAT(mealcard.time, '%H:%i') as time,
  			   mealinfo.menu, mealinfo.intake, mealinfo.kcal
@@ -34,4 +24,9 @@
 		insert into mealinfo(mealnum, menu, intake, kcal)
 		values(#{mealnum}, #{menu}, #{intake}, #{kcal})
 	</insert>
+	
+	<delete id="deleteMealcard" parameterType="int">
+		delete from mealcard where mealnum = #{mealnum}
+	</delete>
+	
  </mapper>

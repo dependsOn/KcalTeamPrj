@@ -83,5 +83,16 @@ public class KcalService {
 		return mealVO;
 	}
 
+
+	public String deleteMealCard(int mealnum) {
+		String result = "fail";
+		int i = sqlSessionTemplate.delete("meal.deleteMealcard", mealnum);
+		if(i > 0) {
+			result = "success";
+		}
+		
+		return result;
+	}
+
 	
 }
