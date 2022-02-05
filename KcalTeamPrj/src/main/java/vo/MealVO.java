@@ -1,16 +1,15 @@
 package vo;
 
-import java.util.List;
-
-public class MealcardVO {
+public class MealVO {
 	private int mealnum;
 	private int unum;
 	private String date;
 	private String time;
-	private int totalKcal;
-	private List<MealinfoVO> mealInfoList;
+	private String menu;
+	private int intake;
+	private int kcal;
 	
-	public MealcardVO() {
+	public MealVO() {
 
 	}
 
@@ -46,20 +45,28 @@ public class MealcardVO {
 		this.time = time;
 	}
 
-	public int getTotalKcal() {
-		return totalKcal;
+	public String getMenu() {
+		return menu;
 	}
 
-	public void setTotalKcal(int totalKcal) {
-		this.totalKcal = totalKcal;
+	public void setMenu(String menu) {
+		this.menu = menu;
 	}
 
-	public List<MealinfoVO> getMealInfoList() {
-		return mealInfoList;
+	public int getIntake() {
+		return intake;
 	}
 
-	public void setMealInfoList(List<MealinfoVO> mealInfoList) {
-		this.mealInfoList = mealInfoList;
+	public void setIntake(int intake) {
+		this.intake = intake;
+	}
+
+	public int getKcal() {
+		return kcal;
+	}
+
+	public void setKcal(int kcal) {
+		this.kcal = kcal;
 	}
 	
 	

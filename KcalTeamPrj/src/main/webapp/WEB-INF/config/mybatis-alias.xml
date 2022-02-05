@@ -9,6 +9,7 @@
 		<typeAlias type="vo.LetterVO" alias="letterVO"/>
 		<typeAlias type="vo.BBSVO" alias="bbsVO"/>
 		<typeAlias type="vo.TipVO" alias="tvo"/>
+		<typeAlias type="vo.MealVO" alias="mealVO"/>
 		<typeAlias type="vo.MealcardVO" alias="mCardVO"/>
 		<typeAlias type="vo.MealinfoVO" alias="mInfoVO"/>
 		<typeAlias type="vo.FollowVO" alias="followVO"/> 

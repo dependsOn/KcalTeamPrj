@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+import vo.MealVO;
 import vo.MealcardVO;
 import vo.MealinfoVO;
 import vo.MemberVO;
@@ -28,10 +29,6 @@ public class KcalService {
 		
 		MemberVO mvo = (MemberVO)session.getAttribute("account");
 		MealcardVO mealcard = new MealcardVO();
-		
-//		System.out.println(date);
-//		System.out.println(time);
-//		System.out.println("unum: " + mvo.getUnum());
 
 		mealcard.setUnum(mvo.getUnum());
 		mealcard.setDate(date);
@@ -40,7 +37,6 @@ public class KcalService {
 
 
 		int i1 = sqlSessionTemplate.insert("meal.insertMealcard", mealcard);
-//		System.out.println("mealnum: " + mealcard.getMealnum());
 		int mealnum = mealcard.getMealnum();
 
 		List<MealinfoVO> mealInfoList = new ArrayList<MealinfoVO>();
@@ -60,17 +56,12 @@ public class KcalService {
 	    	  mealinfo.setKcal(kcal);
 	    	  
 	    	  mealInfoList.add(mealinfo);
-//	          System.out.println(menu);
-//	          System.out.println(intake);
-//	          System.out.println(kcal);
 	      } 
 	      
 	      int i2 = 0;
 	      for (MealinfoVO mealInfo : mealInfoList) {
 	    	  i2 += sqlSessionTemplate.insert("meal.insertMealinfo", mealInfo);
 	      }
-	      
-//	      System.out.println(kcalAll);
 	      
 	      if (i1 > 0 && i2 > 0) {
 	    	  result = "success";
@@ -79,6 +70,17 @@ public class KcalService {
 	      }
 		
 	      return result;
+	}
+
+	
+	public List<MealVO> getMealList(int unum) {
+		List<MealVO> mealVO = new ArrayList<MealVO>();
+		
+		
+		mealVO = sqlSessionTemplate.selectList("meal.selectMeal", unum);
+		
+		
+		return mealVO;
 	}
 
 	

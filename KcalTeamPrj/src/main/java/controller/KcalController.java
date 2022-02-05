@@ -7,6 +7,8 @@ import java.util.Map;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,6 +21,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import service.KcalService;
+import vo.MealVO;
 import vo.MealcardVO;
 import vo.MealinfoVO;
 import vo.MemberVO;
@@ -43,5 +46,23 @@ public class KcalController {
 	    String result = kcalService.setMeal(foodList, kcalAll, date, time, session);
 	      
 		return result;
+	}
+	
+	
+	
+	@GetMapping("/mealTest")
+	public String mealTest() {
+		return "meal_test";
+	}
+	
+	@ResponseBody
+	@PostMapping("/mealList")
+	public ResponseEntity<List<MealVO>> getMealCard(int unum) {
+		
+		List<MealVO> mealVO =  kcalService.getMealList(unum);
+		
+		ResponseEntity<List<MealVO>> entity = new ResponseEntity<List<MealVO>>(mealVO, HttpStatus.OK);
+		
+		return entity;
 	}
 }
