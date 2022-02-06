@@ -102,9 +102,9 @@
 			})
 			
 			// userBox-로그아웃 클릭
-			/* $(document).on('click', '.logout', function(){
+			$(document).on('click', '.logout', function(){
 				location.href = "${path}/member/logout";
-			}) */
+			})
 			
 			// userBox-로그인 클릭
 			$(document).on('click', '.login', function(){

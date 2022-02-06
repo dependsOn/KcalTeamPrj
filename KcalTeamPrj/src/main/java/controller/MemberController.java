@@ -1,5 +1,6 @@
 package controller;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,8 +25,11 @@ public class MemberController {
 	
 	// 로그인
 	@GetMapping("/goLogin")
-	public String goLogin() {
-		
+	public String goLogin(HttpSession session, HttpServletRequest request) {
+		String uri = request.getHeader("Referer");
+		if(!uri.contains("/goLogin")) {
+			session.setAttribute("prevPage", request.getHeader("Referer"));
+		}
 		return "login";
 	}
 	
@@ -47,9 +51,10 @@ public class MemberController {
 	}
 	
 	@GetMapping("/logout")
-	public String logout(HttpSession session) {
+	public String logout(HttpSession session, HttpServletRequest request) {
+		String referer = request.getHeader("Referer");
 		session.invalidate();
-		return "index";
+		return "redirect:" + referer;
 	}
 	
 	// 마이페이지

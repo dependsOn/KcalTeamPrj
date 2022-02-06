@@ -48,29 +48,6 @@
 			<button id="cancel" type="button">취소</button>
 			<button id="submit" type="button">작성완료</button>
 		</div>
-		<%-- <form:form modelAttribute="BBSVO" action="${path}/bbs/create_result"
-			method="post">
-			<ul>
-				<li><form:select path="category" id="category">
-						<form:option value="free">자유게시판</form:option>
-						<form:option value="question">고민&질문</form:option>
-						<form:option value="tip">팁&노하우</form:option>
-						<form:option value="review">다이어트후기</form:option>
-						<form:option value="emate">운동메이트</form:option>
-					</form:select>
-					<form:input path="region" placeholder="지역" id="region"/>
-				</li>
-				<li><form:input path="title" placeholder="제목" /></li>
-				<li><form:textarea path="content" cols="50" rows="10" /></li>
-
-				<form:hidden path="unum" value="${sessionScope.account.unum}" />
-				<form:hidden path="id" value="${sessionScope.account.id}" />
-				<form:hidden path="nickname" value="${sessionScope.account.nickname}" />
-				<form:hidden path="filelist"/>
-
-				<li><button id="submit">전송</button></li>
-			</ul>
-		</form:form> --%>
 	</div>
 
 

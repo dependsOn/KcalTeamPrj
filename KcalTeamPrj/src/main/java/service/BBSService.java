@@ -62,6 +62,7 @@ public class BBSService {
 	}
 
 	public void selectBBS(Model model, BBSVO vo) {
+		sqlSessionTemplate.update("bbs.updateViewCnt", vo);
 		BBSVO vo2 = sqlSessionTemplate.selectOne("bbs.selectBBS", vo);
 		
 		model.addAttribute("bbsVO", vo2);

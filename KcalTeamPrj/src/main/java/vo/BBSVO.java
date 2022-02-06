@@ -10,7 +10,7 @@ public class BBSVO {
 	private String createdate;
 	private String title;
 	private String content;
-	private int viewCnt;
+	private int view_cnt;
 	private int recommend;
 	private String isdelete;
 	private String isreport;
@@ -98,13 +98,21 @@ public class BBSVO {
 		this.content = content;
 	}
 
-	public int getViewCnt() {
-		return viewCnt;
+
+	
+	public int getView_cnt() {
+		return view_cnt;
 	}
 
-	public void setViewCnt(int viewCnt) {
-		this.viewCnt = viewCnt;
+
+
+
+	public void setView_cnt(int view_cnt) {
+		this.view_cnt = view_cnt;
 	}
+
+
+
 
 	public int getRecommend() {
 		return recommend;

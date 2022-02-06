@@ -210,13 +210,13 @@ input:focus {
     border: 2px solid white;
 }
 
-.logout {
+.loginAfter .logout {
     display: flex;
     justify-content: space-between;
     margin-bottom: 20px;
 }
 
-.logout > p:nth-child(1) {
+.loginAfter .logout > p:nth-child(1) {
     margin-top: 15px;
     margin-left: 15px;
     color: dimgray;
@@ -224,7 +224,7 @@ input:focus {
     font-weight: bold;
 }
 
-.logout > p:nth-child(2) {
+.loginAfter .logout > p:nth-child(2) {
     width: 70px;
     height: 26px;
     margin-top: 5px;
@@ -238,7 +238,7 @@ input:focus {
     border-radius: 5px;
 }
 
-.logout > p:nth-child(2):hover {
+.loginAfter .logout > p:nth-child(2):hover {
     transition: .5s;
     background-color: white;
     color: tomato;

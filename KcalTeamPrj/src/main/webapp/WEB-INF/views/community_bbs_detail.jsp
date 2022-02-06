@@ -34,7 +34,7 @@
 				<li>
 					<a href="" id="ownerNickname">${bbsVO.nickname}</a>
 					<span id="createdate">${bbsVO.createdate}</span>
-					<span id="viewCnt">조회수 ${bbsVO.viewCnt}</span>
+					<span id="viewCnt">조회수 ${bbsVO.view_cnt}</span>
 				</li>
 				<li id="controllBtns">
 					<c:if test="${sessionScope.account.unum eq bbsVO.unum}">
@@ -77,9 +77,15 @@
 			})
 			
 			// 수정버튼 클릭
-	        $(document).on('click', '#modify', function(){
+	        $(document).on('click', '#modifyBBS', function(){
    				location.href = "${path}/bbs/modify?bnum=${bbsVO.bnum}";
    			})
+   			
+   			// 목록버튼 클릭
+   			$("#backToList").click(function(){
+   				window.history.back();
+   			})
+   			
 		})
 	</script>
 </body>

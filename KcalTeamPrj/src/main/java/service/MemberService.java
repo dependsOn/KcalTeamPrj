@@ -1,5 +1,6 @@
 package service;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -16,12 +17,13 @@ public class MemberService {
 	SqlSessionTemplate sqlSessionTemplate;
 	
 	public String isLogin(MemberVO vo, HttpSession session) {
+		String uri = (String)session.getAttribute("prevPage");
 		MemberVO vo1 = sqlSessionTemplate.selectOne("member.selectMemberOne", vo);
 		if((vo1 == null) || (vo1.getIsdelete().equals("Y"))) {
 			return "login";
 		}else {
 			session.setAttribute("account", vo1);
-			return "index";
+			return "redirect:"+ uri;
 		}
 	}
 	

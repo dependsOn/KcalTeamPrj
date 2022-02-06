@@ -1,5 +1,6 @@
 package controller;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,9 +33,9 @@ public class CommunityController {
 	}
 	
 	@PostMapping("/login")
-	public String login(MemberVO vo, HttpSession session) {
+	public String login(MemberVO vo, HttpSession session, HttpServletRequest request) {
 		
-		return communityService.isLogin(vo, session);
+		return communityService.isLogin(vo, session, request);
 	}
 	
 	@GetMapping("/logout")

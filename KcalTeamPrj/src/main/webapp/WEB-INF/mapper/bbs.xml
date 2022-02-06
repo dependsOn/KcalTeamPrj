@@ -106,5 +106,8 @@
 		</set>
 		where bnum=#{bnum}
 	</update>
+	<update id="updateViewCnt" parameterType="bbsVO">
+		update bbs set view_cnt = view_cnt+1 where bnum = #{bnum}
+	</update>
 	
 </mapper>

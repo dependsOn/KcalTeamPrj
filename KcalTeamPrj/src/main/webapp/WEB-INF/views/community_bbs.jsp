@@ -97,7 +97,7 @@
 		   		       	 titleTd.innerText = item.title +item.bnum;
 	   		        	 ownerTd.innerText = "관리자";
 	   		        	 dateTd.innerText = item.createdate;
-	   		        	 viewTd.innerText = item.viewCnt;
+	   		        	 viewTd.innerText = item.view_cnt;
 	   		        	 recommendTd.innerText = item.recommend;
 	   		        	 
  	   		        	 /* ntitleTd.style.color = "orangered";
@@ -187,7 +187,7 @@
 		   		        	 }
 		   		        	 ownerTd.innerText = item.nickname;
 		   		        	 dateTd.innerText = item.createdate;
-		   		        	 viewTd.innerText = item.viewCnt;
+		   		        	 viewTd.innerText = item.view_cnt;
 		   		        	 recommendTd.innerText = item.recommend;
 		   		        	 
 		   		        	 tr.append(bnumTd);

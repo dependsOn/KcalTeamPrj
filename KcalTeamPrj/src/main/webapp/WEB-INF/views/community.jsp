@@ -208,7 +208,7 @@
 	         
 	         // 로그아웃
 	         $("#logoutBtn").click(function(){
-					location.href = '${path}/community/logout';
+					location.href = '${path}/member/logout';
 			 });
 	         
 	         // 회원가입
