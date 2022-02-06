@@ -71,7 +71,8 @@ li {list-style-type: none;}
 
 #notice {
 	width: 100%;
-	border-collapse: collapse;
+	border-collapse: separate;
+	border-spacing: 0;
 }
 #notice th {
 	padding: 10px 0;

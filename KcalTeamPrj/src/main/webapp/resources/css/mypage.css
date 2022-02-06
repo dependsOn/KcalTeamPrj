@@ -192,8 +192,8 @@ li {list-style-type: none;}
 }
 #letter .lcon table {
 	width: 100%;
-	border-collapse: collapse;
-	border-spacing: 5px 0;
+	border-collapse: separate;
+	border-spacing: 0;
 	margin-top: 20px;
 }
 #letter table tbody td:nth-child(1) {
@@ -380,7 +380,8 @@ td[data-ischeck='Y'] {
 }
 #myPost #postCon {
 	width: 100%;
-	border-collapse: collapse;
+	border-collapse: separate;
+	border-spacing: 0;
 	margin-bottom: 20px;
 }
 #postCon thead {
