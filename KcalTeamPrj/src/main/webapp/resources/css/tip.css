@@ -5,7 +5,7 @@ body {
 }
 .container {
 	width: 100%;
-	height: 100%;
+	height: 2000px;
 }
 
 .tipBox {
@@ -13,7 +13,6 @@ body {
     height: 100%;
     margin: 0 auto;
     font-family: 'Noto Sans', sans-serif;
-    margin-bottom: 120px;
 }
 
 .tipImg {
@@ -75,10 +74,6 @@ body {
     color: yellow;
 }
 
-.tabContent {
-    display: none;
-}
-
 .titleBox {
     display: flex;
     width: 90%;
@@ -88,31 +83,13 @@ body {
     font-weight: bold;
     margin: 0 auto;
     margin-top: 70px;
-    border-bottom: 3px solid #ccc;
+    border-bottom: 3px solid #ff8d64;
 }
 
 .titleBox > li:nth-child(1) {
     font-size: 30px;
     margin-bottom: 20px;
-}
-
-.titleBox > li:nth-child(2) {
-    display: flex;
-    font-size: 14px;
-    font-weight: bold;
-    margin-bottom: 5px;
-}
-
-.titleBox > li:nth-child(2) > p {
-    cursor: pointer;
-}
-
-.titleBox > li:nth-child(2) > p:nth-child(1) {
-    margin-right: 10px;
-}
-
-.titleBox > li:nth-child(2) > p:hover {
-    color: orangered;
+    
 }
 
 .contentBox {
@@ -123,32 +100,34 @@ body {
     padding-top: 40px;
     border-bottom: 1px solid #ccc;
     margin: 0 auto;
+
 }
 
-.contentBox > img {
-    width: 300px;
-    height: 180px;
+.contentBox > span {
+	display:none;
 }
 
 .contentBox > ul {
-    width: 600px;
+    width: 90%;
     height: 200px;
+
 }
 
 .contentBox > ul > li:nth-child(1) > p {
-	width: 100%;
+    width: 100%;
     overflow: hidden;
+    margin-bottom: 20px;
     text-overflow: ellipsis;
     white-space:nowrap;
     font-size: 25px;
     font-weight: bold;
-	margin-bottom: 20px;
     color: dimgray;
-    cursor: pointer;
+ 
 }
 
 .contentBox > ul > li:nth-child(1) > p > a {
     text-decoration: none;
+    cursor: pointer;
 }
 
 .contentBox > ul > li:nth-child(1) > p > a:link {
@@ -163,18 +142,29 @@ body {
     color: #ff8d64;
 }
 
+.contentBox > ul > li:nth-child(2) {
+	width: 100%;
+	height: 100px;
+}
+
 .contentBox > ul > li:nth-child(2) > p {
-    font-size: 13px;
+	width:100%;
+	height: 52px;
+    font-size: 14px;
     font-weight: normal;
-    height: 60px;
-    line-height: 1.5;
     color: gray;
+    line-height: 1.2;
+    padding-left:40px;
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
-    margin-bottom: 60px;
+    margin-top:40px;
+}
+
+.contentBox > ul > li:nth-child(2) > p > img {
+	display: none;
 }
 
 .contentBox > ul > li:nth-child(3) {

@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import service.TipSerivce;
 import vo.TipVO;
@@ -19,8 +20,8 @@ public class TipContoller {
 	private TipSerivce tipService;
 	
 	@GetMapping("/goTip")
-	public String goTip(Model model, TipVO tvo) {
-		tipService.selectTipList(model, tvo);
+	public String goTip(Model model, @RequestParam(defaultValue = "1") int cnum) {
+		tipService.selectTipList(model, cnum);
 
 		return "tip";
 	}
@@ -31,11 +32,6 @@ public class TipContoller {
 		return "createTip";
 	}
 	
-	@PostMapping("/fileUpload")
-	public String fileUpload() {
-		return "";
-	}
-	
 	@PostMapping("/create_result")
 	public String createResult(TipVO vo) {	
 		tipService.insertTip(vo);
@@ -44,7 +40,8 @@ public class TipContoller {
 	}
 	
 	@GetMapping("/tipDetail")
-	public String tipDetail(@ModelAttribute("tipVO") TipVO tvo) {
+	public String tipDetail(@ModelAttribute("tipVO") TipVO tvo, TipVO vo) {
+		tipService.updateCnt(vo);
 		tipService.selectTip(tvo);
 		
 		return "tipDetail";
@@ -60,6 +57,7 @@ public class TipContoller {
 	@PostMapping("/modify_result")
 	public String modify_result(TipVO vo) {
 		tipService.updateTip(vo);
+		
 		return "redirect:/tip/goTip?curPage=curTip";
 	}
 	
@@ -70,6 +68,7 @@ public class TipContoller {
 		
 		return "redirect:/tip/goTip?curPage=curTip";
 	}
+
 }
 
 
