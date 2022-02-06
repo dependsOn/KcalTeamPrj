@@ -36,66 +36,113 @@
 				<div id="column" class="tabContent">
                     <ul class="titleBox">
                         <li>Diet Tips(칼럼)</li>
-                        <li>
-                            <p>날짜순</p>
-                            <p>조회순</p>
-                        </li>
                     </ul>
                     
-                   <c:forEach var="tipList" items="${list}">
-                   		<c:if test="${tipList.category eq 'column'}">
+                    <div class="cPageing">
+	                   	<c:forEach var="tipcList" items="${cList}">
 		                    <div class="contentBox">
-		                        <img src="${path}/images/main/fcimg.jpg" alt="">
 		                        <ul>
 		                            <li>
-		                            	<p><a href="${path}/tip/tipDetail?tnum=${tipList.tnum}&curPage=curTip"><c:out value="${tipList.title}" escapeXml="false" /></a></p>
+		                            	<p><a href="${path}/tip/tipDetail?tnum=${tipcList.tnum}&curPage=curTip"><c:out value="${tipcList.title}" escapeXml="false" /></a></p>
+		                            </li>
+		                            <li class="conBox">
+		                            	<p>${tipcList.contents}</p>
 		                            </li>
 		                            <li>
-		                            	<p><c:out value="${tipList.contents}" escapeXml="false" /></p>
-		                            </li>
-		                            <li>
-		                            	<p><c:out value="${tipList.createdate}" escapeXml="false" /></p>
+		                            	<p><c:out value="${tipcList.createdate}" escapeXml="false" /></p>
 		                                <div>
-		                                    <i class="xi-eye-o"><span> ${tipList.view_cnt}</span></i>
-		                                    <i class="xi-heart"></i>
+		                                    <i class="xi-eye-o"><span> ${tipcList.view_cnt}</span></i>
 		                                </div>
 		                            </li>
 		                        </ul>
 		                    </div>
-	                    </c:if>
-	                </c:forEach>
+		                </c:forEach>
+	                </div>
+	               <%
+						// 현재 페이지
+						int cnum = (Integer)request.getAttribute("num");
+						// 전체 데이터 개수
+						int cCount = (Integer)request.getAttribute("cCount");
+						// 전체 페이지 개수
+						int cTotal = cCount/3+((cCount%3==0)?0:1);
+						// 한 블럭에서 가장 작은 번호를 가지는 페이지 번호
+						int cMinBlock = (((cnum-1)/5)*5)+1;
+						// 한 블럭에서 가장 큰 번호를 가지는 페이지 번호
+						int cMmaxBlock = (((cnum-1)/5)+1)*5;
+						
+						pageContext.setAttribute("cTotal", cTotal);
+						pageContext.setAttribute("cMinBlock", cMinBlock);
+						pageContext.setAttribute("cMmaxBlock", cMmaxBlock);
+					%>
+					
+					<c:choose>
+						<c:when test="${(cMinBlock-1) < 1 }">
+							<span>◀◀</span>	
+						</c:when>
+						<c:otherwise>
+							<a href="${path}/tip/goTip?cnum=${cMinBlock-1}">◀◀</a>
+						</c:otherwise>
+					</c:choose>
+					&nbsp;&nbsp;
+					<c:choose>
+						<c:when test="${num==1 }">
+							<span>◀</span>
+						</c:when>
+						<c:otherwise>
+							<a href="${path}/tip/goTip?cnum=${num-1}">◀</a>
+						</c:otherwise>
+					</c:choose>
+					<c:forEach begin="${cMinBlock}" end="${(cTotal<cMmaxBlock)?cTotal:cMmaxBlock}" step="1" var="i">
+						<c:choose>
+							<c:when test="${num == i}">
+								<span>${i}</span>
+							</c:when>
+							<c:otherwise>
+								<a href="${path}/tip/goTip?cnum=${i}">${i}</a>
+							</c:otherwise>
+						</c:choose>
+					</c:forEach>
+					<c:choose>
+						<c:when test="${num == cTotal }">
+							<span>▶</span>
+						</c:when>
+						<c:otherwise>
+							<a href="${path}/tip/goTip?cnum=${num+1}">▶</a>	
+						</c:otherwise>
+					</c:choose>
+					&nbsp;&nbsp;
+					<c:choose>
+						<c:when test="${cMmaxBlock > cTotal }">
+							<span>▶▶</span>	
+						</c:when>
+						<c:otherwise>
+							<a href="${path}/tip/goTip?cnum=${cMmaxBlock+1}">▶▶</a>
+						</c:otherwise>
+					</c:choose>
                 </div>
                 
                 <div id="workout" class="tabContent">
                     <ul class="titleBox">
                         <li>Diet Tips(운동)</li>
-                        <li>
-                            <p>날짜순</p>
-                            <p>조회순</p>
-                        </li>
                     </ul>
                     
-                    <c:forEach var="tipList" items="${list}">
-	                    <c:if test="${tipList.category eq 'workout'}">
-		                    <div class="contentBox">
-		                        <img src="${path}/images/main/fcimg.jpg" alt="">
-		                        <ul>
-		                            <li>
-		                                <p><a href="${path}/tip/tipDetail?tnum=${tipList.tnum}"><c:out value="${tipList.title}" escapeXml="false" /></a></p>
-		                            </li>
-		                            <li>
-		                                <p><c:out value="${tipList.contents}" escapeXml="false" /></p>
-		                            </li>
-		                            <li>
-		                                <p><c:out value="${tipList.createdate}" escapeXml="false" /></p>
-		                                <div>
-		                                    <i class="fas fa-eye"><span> ${tipList.view_cnt}</span></i>
-		                                    <i class="fas fa-heart"></i>
-		                                </div>
-		                            </li>
-		                        </ul>
-		                    </div>
-		                </c:if>
+                    <c:forEach var="tipwList" items="${wList}">
+	                    <div class="contentBox">
+	                        <ul>
+	                            <li>
+	                                <p><a href="${path}/tip/tipDetail?tnum=${tipwList.tnum}"><c:out value="${tipwList.title}" escapeXml="false" /></a></p>
+	                            </li>
+	                            <li>
+	                            	<p>${tipwList.contents}</p>
+	                            </li>
+	                            <li>
+	                                <p><c:out value="${tipwList.createdate}" escapeXml="false" /></p>
+	                                <div>
+	                                    <i class="xi-eye-o"><span> ${tipwList.view_cnt}</span></i>
+	                                </div>
+	                            </li>
+	                        </ul>
+	                    </div>
                    	</c:forEach>
 				</div>
 			</div>
@@ -107,7 +154,7 @@
 		</div>
 		<jsp:include page="footer.jsp"></jsp:include>
 	</div>
-	
+
 	<script type="text/javascript">
 		function openCity(evt, openMenu) {
 	        let i, tabcontent, tabMenu;
@@ -130,6 +177,7 @@
 		
 		document.querySelector('.createBtn').addEventListener('click', function() {
 			location.href = '${path}/tip/createTip?curPage=curTip';
+		
 		});
 	</script>
 </body>

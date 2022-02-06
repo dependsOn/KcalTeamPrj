@@ -37,6 +37,7 @@
 	                        <div>
 	                            <button id="modify">수정</button>
 	                            <button id="delete">삭제</button>
+	                            <button id="back">글목록</button>
 	                        </div>
                         </c:if>
                     </li>
@@ -62,35 +63,6 @@
                             <c:out value="${tipVO.contents}" escapeXml="false" />
                         </p>
                     </li>
-                    <li>
-                        <button><span class="far fa-heart"></span><span> 찜하기</span></button>
-                    </li>
-                    <li>
-                        <div>
-                            <p>계랑마리</p>
-                            <p>이것은 내가 쓴 글</p>
-                            <p>2021-01-31 18:57:30</p>
-                        </div>
-
-                        <div>
-                            <p>오리기니</p>
-                            <p>이것은 내가 쓴 글2</p>
-                            <p>2021-02-01 18:57:30</p>
-                        </div>
-
-                        <div>
-                            <p>오리기니</p>
-                            <p>이것은 내가 쓴 글2</p>
-                            <p>2021-02-01 18:57:30</p>
-                        </div>
-                    </li>
-                    <li>
-                        <p>1, 2, 3, 4</p>
-                    </li>
-                    <li>
-                        <textarea name="" id="" cols="30" rows="10"></textarea>
-                        <button>댓글등록</button>
-                    </li>
                 </ul>
             </div>
         </div>
@@ -103,9 +75,13 @@
 			});
 			
 			$("#delete").click(function(){
-				if(confirm("정말로 삭제하시겠습니까?")){
+				if (confirm("정말로 삭제하시겠습니까?")){
 					location.href = "${path}/tip/deleteTip?tnum=${tipVO.tnum}";
 				}
+			});
+			
+			$("#back").click(function() {
+				location.href ="${path}/tip/goTip?curPage=curTip";
 			});
 		});
 	</script>

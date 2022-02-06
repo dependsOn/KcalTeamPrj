@@ -9,7 +9,26 @@ public class TipVO {
 	private int view_cnt;
 	private String ownerid;
 	private String ownername;
+	private int start;
+	private int count;
 	
+	public TipVO() {
+		this.start = 0;
+		this.count = 3;
+	}
+	
+	public int getStart() {
+		return start;
+	}
+	public void setStart(int start) {
+		this.start = start;
+	}
+	public int getCount() {
+		return count;
+	}
+	public void setCount(int count) {
+		this.count = count;
+	}
 	public int getTnum() {
 		return tnum;
 	}

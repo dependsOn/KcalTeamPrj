@@ -13,8 +13,18 @@ public class TipSerivce {
 	@Autowired
 	SqlSessionTemplate sqlSessionTemplate;
 	
-	public void selectTipList(Model model, TipVO tvo) {
-		model.addAttribute("list", sqlSessionTemplate.selectList("tip.selectTipList", tvo));
+	public void selectTipList(Model model, int num) {
+		TipVO vo = new TipVO();
+		vo.setStart((num-1)*vo.getCount());
+		model.addAttribute("cList", sqlSessionTemplate.selectList("tip.selectTipCList", vo));
+		model.addAttribute("cCount", sqlSessionTemplate.selectOne("tip.selectCCount", vo));
+
+		
+		TipVO vo2 = new TipVO();
+		model.addAttribute("wList", sqlSessionTemplate.selectList("tip.selectTipWList", vo2));
+		model.addAttribute("wCount", sqlSessionTemplate.selectOne("tip.selectWCount", vo2));
+		System.out.println(num);
+		model.addAttribute("num", num);
 	}
 	
 	public void selectTip(TipVO tvo) {
@@ -27,6 +37,7 @@ public class TipSerivce {
 		tvo.setCreatedate(vo.getCreatedate().substring(0, 19));
 		tvo.setOwnerid(vo.getOwnerid());
 		tvo.setOwnername(vo.getOwnername());
+		tvo.setView_cnt(vo.getView_cnt());
 	}
 	
 	public void insertTip(TipVO vo) {
@@ -35,6 +46,10 @@ public class TipSerivce {
 	
 	public void updateTip(TipVO vo) {
 		sqlSessionTemplate.update("tip.updateTip", vo);
+	}
+	
+	public void updateCnt(TipVO vo) {
+		sqlSessionTemplate.update("tip.updateCnt", vo);
 	}
 	
 	public void deleteTip(TipVO vo) {

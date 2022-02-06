@@ -53,7 +53,7 @@
                                 <textarea name="contents" id="contents" cols="30" rows="10">${tipVO.contents}</textarea>
                             </li>
                             <li>
-                                <button id="cancel">취소</button>
+                                <button id="cancel" type="button">취소</button>
                                 <button id="submit" type="submit">수정완료</button>
                             </li>
                         </ul>
@@ -70,7 +70,11 @@
 				height: 400,
 				resize_enabled : false,
 				toolbarCanCollapse : true,
-				filebrowserUploadUrl: '${path}/tip/fileUpload'
+				filebrowserUploadUrl: '${path}/tipFile/imgUpload'
+			});
+			
+			$("#cancel").click(function() {
+				location.href ="${path}/tip/goTip?curPage=curTip";
 			});
 			
 			/* let editorContent = CKEDITOR.instances.editor.getData();
