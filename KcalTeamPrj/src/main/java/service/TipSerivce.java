@@ -13,18 +13,20 @@ public class TipSerivce {
 	@Autowired
 	SqlSessionTemplate sqlSessionTemplate;
 	
-	public void selectTipList(Model model, int num) {
+	public void selectTipList(Model model, int cnum, int wnum) {
 		TipVO vo = new TipVO();
-		vo.setStart((num-1)*vo.getCount());
+		vo.setStart((cnum-1)*vo.getCount());
 		model.addAttribute("cList", sqlSessionTemplate.selectList("tip.selectTipCList", vo));
 		model.addAttribute("cCount", sqlSessionTemplate.selectOne("tip.selectCCount", vo));
 
 		
 		TipVO vo2 = new TipVO();
+		vo2.setStart((wnum-1)*vo2.getCount());
 		model.addAttribute("wList", sqlSessionTemplate.selectList("tip.selectTipWList", vo2));
 		model.addAttribute("wCount", sqlSessionTemplate.selectOne("tip.selectWCount", vo2));
-		System.out.println(num);
-		model.addAttribute("num", num);
+		
+		model.addAttribute("cnum", cnum);
+		model.addAttribute("wnum", wnum);
 	}
 	
 	public void selectTip(TipVO tvo) {
