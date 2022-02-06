@@ -20,7 +20,7 @@ public class TipContoller {
 	private TipSerivce tipService;
 	
 	@GetMapping("/goTip")
-	public String goTip(Model model, String category,
+	public String goTip(Model model, @RequestParam(defaultValue = "column") String category,
 						@RequestParam(defaultValue = "1") int cnum,
 						@RequestParam(defaultValue = "1") int wnum) {
 		tipService.selectTipList(model, cnum, wnum);

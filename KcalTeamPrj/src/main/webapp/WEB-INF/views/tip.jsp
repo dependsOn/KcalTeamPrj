@@ -29,8 +29,8 @@
 
             <div class="tipContents">
                 <div class="tipTitle">
-                    <button class="tabMenu" id="cDefault" onclick="openCity(event, 'column')">칼럼</button>
-                    <button class="tabMenu" onclick="openCity(event, 'workout')">운동</button>
+                    <button class="tabMenu" id="columnTab" >칼럼</button>
+                    <button class="tabMenu" id="workoutTab" >운동</button>
                 </div>
                 
 				<div id="column" class="tabContent">
@@ -80,7 +80,7 @@
 							<span>◀◀</span>	
 						</c:when>
 						<c:otherwise>
-							<a href="${path}/tip/goTip?cnum=${cMinBlock-1}">◀◀</a>
+							<a href="${path}/tip/goTip?cnum=${cMinBlock-1}&category=column">◀◀</a>
 						</c:otherwise>
 					</c:choose>
 					&nbsp;&nbsp;
@@ -89,7 +89,7 @@
 							<span>◀</span>
 						</c:when>
 						<c:otherwise>
-							<a href="${path}/tip/goTip?cnum=${num-1}">◀</a>
+							<a href="${path}/tip/goTip?cnum=${num-1}&category=column">◀</a>
 						</c:otherwise>
 					</c:choose>
 					<c:forEach begin="${cMinBlock}" end="${(cTotal<cMmaxBlock)?cTotal:cMmaxBlock}" step="1" var="i">
@@ -98,7 +98,7 @@
 								<span>${i}</span>
 							</c:when>
 							<c:otherwise>
-								<a href="${path}/tip/goTip?cnum=${i}">${i}</a>
+								<a href="${path}/tip/goTip?cnum=${i}&category=column">${i}</a>
 							</c:otherwise>
 						</c:choose>
 					</c:forEach>
@@ -107,7 +107,7 @@
 							<span>▶</span>
 						</c:when>
 						<c:otherwise>
-							<a href="${path}/tip/goTip?cnum=${cnum+1}">▶</a>	
+							<a href="${path}/tip/goTip?cnum=${cnum+1}&category=column">▶</a>	
 						</c:otherwise>
 					</c:choose>
 					&nbsp;&nbsp;
@@ -116,7 +116,7 @@
 							<span>▶▶</span>	
 						</c:when>
 						<c:otherwise>
-							<a href="${path}/tip/goTip?cnum=${cMmaxBlock+1}">▶▶</a>
+							<a href="${path}/tip/goTip?cnum=${cMmaxBlock+1}&category=column">▶▶</a>
 						</c:otherwise>
 					</c:choose>
                 </div>
@@ -168,7 +168,7 @@
 							<span>◀◀</span>	
 						</c:when>
 						<c:otherwise>
-							<a href="${path}/tip/goTip?wnum=${wMinBlock-1}&categry=workout">◀◀</a>
+							<a href="${path}/tip/goTip?wnum=${wMinBlock-1}&category=workout">◀◀</a>
 						</c:otherwise>
 					</c:choose>
 					&nbsp;&nbsp;
@@ -177,7 +177,7 @@
 							<span>◀</span>
 						</c:when>
 						<c:otherwise>
-							<a href="${path}/tip/goTip?wnum=${wnum-1}">◀</a>
+							<a href="${path}/tip/goTip?wnum=${wnum-1}&category=workout">◀</a>
 						</c:otherwise>
 					</c:choose>
 					<c:forEach begin="${wMinBlock}" end="${(wTotal<wMmaxBlock)?wTotal:wMmaxBlock}" step="1" var="j">
@@ -186,7 +186,7 @@
 								<span>${j}</span>
 							</c:when>
 							<c:otherwise>
-								<a href="${path}/tip/goTip?wnum=${j}">${j}</a>
+								<a href="${path}/tip/goTip?wnum=${j}&category=workout">${j}</a>
 							</c:otherwise>
 						</c:choose>
 					</c:forEach>
@@ -195,7 +195,7 @@
 							<span>▶</span>
 						</c:when>
 						<c:otherwise>
-							<a href="${path}/tip/goTip?wnum=${wnum+1}">▶</a>	
+							<a href="${path}/tip/goTip?wnum=${wnum+1}&category=workout">▶</a>	
 						</c:otherwise>
 					</c:choose>
 					&nbsp;&nbsp;
@@ -204,7 +204,7 @@
 							<span>▶▶</span>	
 						</c:when>
 						<c:otherwise>
-							<a href="${path}/tip/goTip?wnum=${wMmaxBlock+1}">▶▶</a>
+							<a href="${path}/tip/goTip?wnum=${wMmaxBlock+1}&category=workout">▶▶</a>
 						</c:otherwise>
 					</c:choose>
 				</div>
@@ -219,7 +219,7 @@
 	</div>
 
 	<script type="text/javascript">
-		function openCity(evt, openMenu) {
+		/* function openCity(evt, openMenu) {
 	        let i, tabcontent, tabMenu;
 	
 	        tabContent = document.getElementsByClassName('tabContent');
@@ -234,12 +234,44 @@
 	
 	        document.getElementById(openMenu).style.display = 'block';
 	        evt.currentTarget.className += ' active';
-	    }
+	    } */
 		
-			document.querySelector('.createBtn').addEventListener('click', function() {
+		
+	    $(function(){
+	    	if("${category}" == "column") {
+				$("#column").show();
+				$("#workout").hide();
+				$("#columnTab").addClass('active');
+				$("#workoutTab").removeClass('active');		
+			}else if("${category}" == "workout") {
+				$("#column").hide();
+				$("#workout").show();
+				$("#columnTab").removeClass('active');
+				$("#workoutTab").addClass('active');	
+			}
+	    	
+	    	$("#columnTab").click(function(){
+	    		$("#column").show();
+				$("#workout").hide();
+				$("#columnTab").addClass('active');
+				$("#workoutTab").removeClass('active');	
+	    	})
+	    	
+	    	$("#workoutTab").click(function(){
+	    		$("#column").hide();
+				$("#workout").show();
+				$("#columnTab").removeClass('active');
+				$("#workoutTab").addClass('active');
+	    	})
+	    })
+		
+		
+		
+		document.querySelector('.createBtn').addEventListener('click', function() {
 			location.href = '${path}/tip/createTip?curPage=curTip';
 		
 		});
+		
 	</script>
 </body>
 </html>
