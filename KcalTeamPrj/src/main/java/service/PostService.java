@@ -20,31 +20,43 @@ public class PostService{
 	@Autowired
 	SqlSessionTemplate sqlSessionTemplate;
 
-	public void getPostList(Model model, MemberVO mvo){
-	MemberVO vo1=sqlSessionTemplate.selectOne("member.selectMember",mvo);
-	int usernum=vo1.getUnum();
-	UserpostVO pvo=new UserpostVO();
-	pvo.setUnum(usernum);
-    List<Map<String,Object>> pvoList=sqlSessionTemplate.selectList("userpost.selectPost",pvo);    
-    for(int i=0; i<pvoList.size(); i++ ) {
+	public List<Map<String, Object>> getPostList(MemberVO mvo, int pageNum, int count) {
+		MemberVO vo1 = sqlSessionTemplate.selectOne("member.selectMember", mvo);
+		int usernum = vo1.getUnum();
+		UserpostVO pvo = new UserpostVO();
+		pvo.setUnum(usernum);
+		int postCnt =sqlSessionTemplate.selectOne("userpost.selectPostCnt", pvo);
+		int pageCnt=(postCnt / count + ((postCnt % count == 0) ? 0 : 1));
+		pvo.setPageNumber(pageNum);
+		pvo.setCount(count);
+	    pvo.setStart((pageNum - 1) * pvo.getCount());
+	    
+	   
+		//pvo.setCreatedate(new SimpleDateFormat("yyyy-MM-dd", Locale.KOREA).format(new Date()));
+		List<Map<String, Object>> pvoList = sqlSessionTemplate.selectList("userpost.selectPost", pvo);
+		pvoList.get(0).put("pageCnt", pageCnt);
+for(int i=pvo.getStart(); i< pvoList.size(); i++ ) {
 	   int pnum =(int) pvoList.get(i).get("pnum"); 
 	   
-       PostfileVO fvo=new PostfileVO();
+	  
+      PostfileVO fvo=new PostfileVO();
 	   fvo.setPnum(pnum);
        fvo=sqlSessionTemplate.selectOne("userpost.selectPostfileThumbnail",fvo);
-      
        if(fvo != null) {
-        
-    	   pvoList.get(i).put("servername", fvo.getServername());
-    	      pvoList.get(i).put("localname", fvo.getLocalname());
-       }else {
-    	   pvoList.get(i).put("servername", null);
- 	      pvoList.get(i).put("localname",null);
+       
+   	   pvoList.get(i).put("servername", fvo.getServername());
+   	   pvoList.get(i).put("localname", fvo.getLocalname());
+      }else {
+    	  pvoList.get(i).put("servername", null);
+	      pvoList.get(i).put("localname",null);
        }  
-   }
-    
-	model.addAttribute("userpostList",pvoList);
+    }
+
+		return pvoList;
+
 	}
+    
+	
     public int setPost(UserpostVO vo) {
     	sqlSessionTemplate.insert("userpost.insertPost",vo);
     	return vo.getPnum();

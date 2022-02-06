@@ -6,6 +6,20 @@ public class PostfileVO {
 	private String localname;
 	private String servername;
 	private int pnum;
+	private int pageNumber;
+	private int count;
+	public int getPageNumber() {
+		return pageNumber;
+	}
+	public void setPageNumber(int pageNumber) {
+		this.pageNumber = pageNumber;
+	}
+	public int getCount() {
+		return count;
+	}
+	public void setCount(int count) {
+		this.count = count;
+	}
 	public int getPfnum() {
 		return pfnum;
 	}

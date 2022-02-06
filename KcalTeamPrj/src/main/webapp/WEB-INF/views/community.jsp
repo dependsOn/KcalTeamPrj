@@ -227,9 +227,9 @@
 			 }); */
 	         
 	         // 프로필
-	         /* $("#goProfile").click(function(){
-					location.href = '${path}/';
-			 }); */
+	         $("#goProfile").click(function(){
+					location.href = '${path}/profile/main?nickname=${sessionScope.account.nickname}';
+			 }); 
 	         
 	         // 마이페이지
 	         $("#goMypage").click(function(){

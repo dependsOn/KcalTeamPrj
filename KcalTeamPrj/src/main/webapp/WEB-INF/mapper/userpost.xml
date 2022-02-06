@@ -8,6 +8,7 @@
 		from userpost
 		where unum=#{unum}
 	    order by pnum desc
+	    limit #{start}, #{count}
 	</select>
 	<insert id="insertPost" parameterType="userpostVO">
 	<selectKey resultType="int" keyProperty="pnum" order="AFTER">
@@ -57,4 +58,11 @@ SELECT LAST_INSERT_ID()
 	     where pnum=#{pnum}
 	
 	</update>
+	
+	<select id="selectPostCnt" parameterType="userpostVO" resultType="int">
+	     select count(*)
+	     from userpost
+	     where isdelete='N' and unum=#{unum} 
+	
+	</select>
 </mapper>
