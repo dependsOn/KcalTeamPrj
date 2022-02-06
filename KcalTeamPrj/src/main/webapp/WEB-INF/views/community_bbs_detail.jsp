@@ -25,6 +25,7 @@
 					<c:when test="${bbsVO.category eq 'tip'}">팁 & 노하우</c:when>
 					<c:when test="${bbsVO.category eq 'review'}">다이어트 후기</c:when>
 					<c:when test="${bbsVO.category eq 'emate'}">운동메이트</c:when>	
+					<c:when test="${bbsVO.category eq 'cnotice'}">커뮤니티 공지</c:when>	
 				</c:choose>
 			</div>
 			<p id="title">

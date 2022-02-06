@@ -17,10 +17,9 @@
 	<jsp:include page="community_header.jsp"></jsp:include>
 	
 	<div id="boardWrap">
-		<div id="ad"></div>
+		<!-- <div id="ad"></div> -->
 		<div id="categoryTitle">자유게시판</div>
 		<div id="bbsCon">
-			<p>카테고리 안내 문구</p>
 			<table id="bbs">
 					<thead>
 						<tr>
@@ -92,9 +91,10 @@
 	   		        	 let recommendTd = document.createElement("td");
 	   		        	 
 	   		        	 titleTd.setAttribute('data-bnum', item.bnum);
+	   		        	 titleTd.setAttribute('class', "cnoticeTitle");
 	   		        	 
 	   		        	 ntitleTd.innerText = "[공지]";
-		   		       	 titleTd.innerText = item.title +item.bnum;
+		   		       	 titleTd.innerText = item.title;
 	   		        	 ownerTd.innerText = "관리자";
 	   		        	 dateTd.innerText = item.createdate;
 	   		        	 viewTd.innerText = item.view_cnt;
@@ -146,7 +146,7 @@
 	    let getBBSList = function(category, pageNum, searchCategory, searchText){
 	    	$("#bbsList").empty();
 	    	$("#pageBox").empty();
-	    	const bbsListCon = document.querySelector("#bbsList");
+	    	const bbsList = document.querySelector("#bbsList");
 	    	const pageBox = document.querySelector("#pageBox");
 	    	
 	    	let data = {
@@ -315,11 +315,17 @@
 						
 		 // 메뉴탭 클릭
 		 let currCategory = "${category}"; 
-		 if(currCategory == "free") { $("#categoryTitle").text("자유게시판"); }
-    	 else if(currCategory == "question") { $("#categoryTitle").text("고민&질문"); }
-    	 else if(currCategory == "tip") { $("#categoryTitle").text("팁&노하우"); }
-    	 else if(currCategory == "review") { $("#categoryTitle").text("다이어트후기"); }
-    	 else if(currCategory == "emate") { $("#categoryTitle").text("운동메이트"); }
+		 if(currCategory == "free") { 
+			 $("#categoryTitle").text("자유게시판");
+		 }else if(currCategory == "question") { 
+			 $("#categoryTitle").text("고민&질문"); 
+		 }else if(currCategory == "tip") { 
+			 $("#categoryTitle").text("팁&노하우");
+		 }else if(currCategory == "review") { 
+			 $("#categoryTitle").text("다이어트후기");
+		 }else if(currCategory == "emate") { 
+			 $("#categoryTitle").text("운동메이트");
+		 }
 		 
          $(document).on('click', '.menuTab', function(){
         	 $(".menuTab").removeClass("selected");
@@ -360,8 +366,14 @@
         	 
          })
          
-         // 제목클릭
+         // 게시물 제목클릭
          $(document).on('click', '.bbsTitle', function(){
+        	let bnum = $(this).data("bnum");
+			location.href = "${path}/bbs/detail?bnum="+bnum;       	 
+         })
+         
+         // 공지 제목클릭
+         $(document).on('click', '.cnoticeTitle', function(){
         	let bnum = $(this).data("bnum");
 			location.href = "${path}/bbs/detail?bnum="+bnum;       	 
          })

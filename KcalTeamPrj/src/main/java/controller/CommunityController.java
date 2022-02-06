@@ -38,10 +38,10 @@ public class CommunityController {
 		return communityService.isLogin(vo, session, request);
 	}
 	
-	@GetMapping("/logout")
-	public String logout(HttpSession session) {
-		session.invalidate();
-		
-		return "community";
-	}
+//	@GetMapping("/logout")
+//	public String logout(HttpSession session) {
+//		session.invalidate();
+//		
+//		return "community";
+//	}
 }

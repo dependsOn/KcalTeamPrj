@@ -51,14 +51,8 @@ li {list-style-type: none;}
 }
 
 #bbsCon {
-	padding: 0 20px 50px;	
+	padding: 60px 20px;	
 	min-width: 710px;
-}
-#bbsCon p {
-	width: 100%;
-	padding: 50px 0;
-	text-align: center;
-	
 }
 #bbsCon #bbs {
 	width: 100%;

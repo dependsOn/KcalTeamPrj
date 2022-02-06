@@ -23,16 +23,23 @@
 		<beans:property name="suffix" value=".jsp"></beans:property>
 	</beans:bean>
 	
-	<!-- 정적파일 경로 세팅 -->
-	<resources location="/resources/" mapping="/**"></resources>
+	<!-- 업로드 패스 설정 -->
+	<beans:bean class="java.lang.String" id="uploadPath">
+		<beans:constructor-arg value="C:/filesave" />
+	</beans:bean>
 	
+	<!-- MultiPartResolver -->
 	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<beans:property name="maxUploadSize" value="52428800"/>
 		<beans:property name="maxUploadSizePerFile" value="52428800"/>
 		<beans:property name="maxInMemorySize" value="0"/>
 	</beans:bean>
+	
+	<resources mapping="/upload/**" location="file:///C:/filesave/"></resources>
+	
+	<!-- 정적파일 경로 세팅 -->
+	<resources location="/resources/" mapping="/**"></resources>
 </beans:beans>
-
 
 
 

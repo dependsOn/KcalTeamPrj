@@ -9,8 +9,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon">
-<link rel="stylesheet" type="text/css"
-	href="${path}/css/community_bbs_create.css">
+<link rel="stylesheet" type="text/css" href="${path}/css/community_bbs_create.css">
 <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 <script type="text/javascript" src="${path}/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" src="${path}/ckeditor/ckeditor.js"></script>
@@ -27,7 +26,7 @@
 					<input type="hidden" id="id" name="id" value="${sessionScope.account.id}">
 					<input type="hidden" id="nickname" name="nickname" value="${sessionScope.account.nickname}">
 				</li>
-				<li>
+				<li id="categoryCon">
 					<select name="category" id="category">
 							<option value="free" selected>자유게시판</option>
 							<option value="question">고민&질문</option>
@@ -46,7 +45,7 @@
 		</form>
 		<div id="btns">
 			<button id="cancel" type="button">취소</button>
-			<button id="submit" type="button">작성완료</button>
+			<button id="submit" type="button">작성</button>
 		</div>
 	</div>
 
@@ -60,7 +59,7 @@
 			// 글쓰기 눌렀을때 있었던 카테고리가 현재 카테고리 
 			let currCategory = "${currCategory}";
 			$(".menuTab[data-category="+currCategory+"]").addClass("selected");
-			console.log(currCategory);
+			
 			
 			// 헤더 탭메뉴 클릭 시
 			$(document).on('click', '.menuTab', function() {
@@ -110,14 +109,19 @@
 				}
 				
 			})
+			
+			// 취소버튼 클릭
+   			$("#cancel").click(function(){
+   				window.history.back();
+   			})
 
 			// ckeditor
 			CKEDITOR.replace('content', {
-				width : 870,
+				width : '100%',
 				height : 400,
 				resize_enabled : false,
 				toolbarCanCollapse : true,
-				filebrowserUploadUrl : '${path}/bbs/fileUpload'
+				filebrowserUploadUrl : '${path}/bbsFile/imgUpload'
 			});
 
 		})
