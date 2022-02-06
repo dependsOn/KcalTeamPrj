@@ -29,7 +29,7 @@
 
             <div class="tipContents">
                 <div class="tipTitle">
-                    <button class="tabMenu" id="default" onclick="openCity(event, 'column')">칼럼</button>
+                    <button class="tabMenu" id="cDefault" onclick="openCity(event, 'column')">칼럼</button>
                     <button class="tabMenu" onclick="openCity(event, 'workout')">운동</button>
                 </div>
                 
@@ -60,7 +60,7 @@
 	                </div>
 	               <%
 						// 현재 페이지
-						int cnum = (Integer)request.getAttribute("num");
+						int cnum = (Integer)request.getAttribute("cnum");
 						// 전체 데이터 개수
 						int cCount = (Integer)request.getAttribute("cCount");
 						// 전체 페이지 개수
@@ -85,7 +85,7 @@
 					</c:choose>
 					&nbsp;&nbsp;
 					<c:choose>
-						<c:when test="${num==1 }">
+						<c:when test="${cnum==1 }">
 							<span>◀</span>
 						</c:when>
 						<c:otherwise>
@@ -94,7 +94,7 @@
 					</c:choose>
 					<c:forEach begin="${cMinBlock}" end="${(cTotal<cMmaxBlock)?cTotal:cMmaxBlock}" step="1" var="i">
 						<c:choose>
-							<c:when test="${num == i}">
+							<c:when test="${cnum == i}">
 								<span>${i}</span>
 							</c:when>
 							<c:otherwise>
@@ -103,11 +103,11 @@
 						</c:choose>
 					</c:forEach>
 					<c:choose>
-						<c:when test="${num == cTotal }">
+						<c:when test="${cnum == cTotal }">
 							<span>▶</span>
 						</c:when>
 						<c:otherwise>
-							<a href="${path}/tip/goTip?cnum=${num+1}">▶</a>	
+							<a href="${path}/tip/goTip?cnum=${cnum+1}">▶</a>	
 						</c:otherwise>
 					</c:choose>
 					&nbsp;&nbsp;
@@ -126,24 +126,87 @@
                         <li>Diet Tips(운동)</li>
                     </ul>
                     
-                    <c:forEach var="tipwList" items="${wList}">
-	                    <div class="contentBox">
-	                        <ul>
-	                            <li>
-	                                <p><a href="${path}/tip/tipDetail?tnum=${tipwList.tnum}"><c:out value="${tipwList.title}" escapeXml="false" /></a></p>
-	                            </li>
-	                            <li>
-	                            	<p>${tipwList.contents}</p>
-	                            </li>
-	                            <li>
-	                                <p><c:out value="${tipwList.createdate}" escapeXml="false" /></p>
-	                                <div>
-	                                    <i class="xi-eye-o"><span> ${tipwList.view_cnt}</span></i>
-	                                </div>
-	                            </li>
-	                        </ul>
-	                    </div>
-                   	</c:forEach>
+                    <div class="wPageing">
+	                    <c:forEach var="tipwList" items="${wList}">
+		                    <div class="contentBox">
+		                        <ul>
+		                            <li>
+		                                <p><a href="${path}/tip/tipDetail?tnum=${tipwList.tnum}"><c:out value="${tipwList.title}" escapeXml="false" /></a></p>
+		                            </li>
+		                            <li>
+		                            	<p>${tipwList.contents}</p>
+		                            </li>
+		                            <li>
+		                                <p><c:out value="${tipwList.createdate}" escapeXml="false" /></p>
+		                                <div>
+		                                    <i class="xi-eye-o"><span> ${tipwList.view_cnt}</span></i>
+		                                </div>
+		                            </li>
+		                        </ul>
+		                    </div>
+	                   	</c:forEach>
+					</div>
+					<%
+						// 현재 페이지
+						int wnum = (Integer)request.getAttribute("wnum");
+						// 전체 데이터 개수
+						int wCount = (Integer)request.getAttribute("wCount");
+						// 전체 페이지 개수
+						int wTotal = wCount/3+((wCount%3==0)?0:1);
+						// 한 블럭에서 가장 작은 번호를 가지는 페이지 번호
+						int wMinBlock = (((wnum-1)/5)*5)+1;
+						// 한 블럭에서 가장 큰 번호를 가지는 페이지 번호
+						int wMmaxBlock = (((wnum-1)/5)+1)*5;
+						
+						pageContext.setAttribute("wTotal", wTotal);
+						pageContext.setAttribute("wMinBlock", wMinBlock);
+						pageContext.setAttribute("wMmaxBlock", wMmaxBlock);
+					%>
+					
+					<c:choose>
+						<c:when test="${(wMinBlock-1) < 1 }">
+							<span>◀◀</span>	
+						</c:when>
+						<c:otherwise>
+							<a href="${path}/tip/goTip?wnum=${wMinBlock-1}&categry=workout">◀◀</a>
+						</c:otherwise>
+					</c:choose>
+					&nbsp;&nbsp;
+					<c:choose>
+						<c:when test="${wnum==1 }">
+							<span>◀</span>
+						</c:when>
+						<c:otherwise>
+							<a href="${path}/tip/goTip?wnum=${wnum-1}">◀</a>
+						</c:otherwise>
+					</c:choose>
+					<c:forEach begin="${wMinBlock}" end="${(wTotal<wMmaxBlock)?wTotal:wMmaxBlock}" step="1" var="j">
+						<c:choose>
+							<c:when test="${wnum == j}">
+								<span>${j}</span>
+							</c:when>
+							<c:otherwise>
+								<a href="${path}/tip/goTip?wnum=${j}">${j}</a>
+							</c:otherwise>
+						</c:choose>
+					</c:forEach>
+					<c:choose>
+						<c:when test="${wnum == wTotal }">
+							<span>▶</span>
+						</c:when>
+						<c:otherwise>
+							<a href="${path}/tip/goTip?wnum=${wnum+1}">▶</a>	
+						</c:otherwise>
+					</c:choose>
+					&nbsp;&nbsp;
+					<c:choose>
+						<c:when test="${wMmaxBlock > wTotal }">
+							<span>▶▶</span>	
+						</c:when>
+						<c:otherwise>
+							<a href="${path}/tip/goTip?wnum=${wMmaxBlock+1}">▶▶</a>
+						</c:otherwise>
+					</c:choose>
 				</div>
 			</div>
 			<c:if test="${sessionScope.account.isadmin eq 'Y'}">
@@ -173,9 +236,7 @@
 	        evt.currentTarget.className += ' active';
 	    }
 		
-		document.getElementById('default').click();
-		
-		document.querySelector('.createBtn').addEventListener('click', function() {
+			document.querySelector('.createBtn').addEventListener('click', function() {
 			location.href = '${path}/tip/createTip?curPage=curTip';
 		
 		});
