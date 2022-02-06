@@ -56,7 +56,8 @@ li {list-style-type: none;}
 }
 #bbsCon #bbs {
 	width: 100%;
-	border-collapse: collapse;
+	border-collapse: separate;
+	border-spacing: 0;
 	margin-bottom: 20px;
 }
 
