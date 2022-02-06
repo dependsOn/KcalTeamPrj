@@ -13,7 +13,42 @@ private int recommend;
 private String isopen;
 private String isdelete;
 private String isreport;
+private int pageNumber;
+private int count;
+private int start;
+private int pageCnt;
+public int getPageCnt() {
+	return pageCnt;
+}
+public void setPageCnt(int pageCnt) {
+	this.pageCnt = pageCnt;
+}
+public UserpostVO() {
+	this.start = 0;
+	this.count = 8;
+}
+public int getStart() {
+	return start;
+}
 
+public void setStart(int start) {
+	this.start = start;
+}
+
+
+
+public int getPageNumber() {
+	return pageNumber;
+}
+public void setPageNumber(int pageNumber) {
+	this.pageNumber = pageNumber;
+}
+public int getCount() {
+	return count;
+}
+public void setCount(int count) {
+	this.count = count;
+}
 //private List<UserpostVO> postVoList;
 //public List<UserpostVO> getPostVoList() {
 //	return postVoList;

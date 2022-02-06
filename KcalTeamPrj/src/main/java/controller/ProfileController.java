@@ -2,6 +2,7 @@ package controller;
 
 import java.io.File;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,8 +47,24 @@ public class ProfileController {
 			followService.getFollowerList(model,fvo);
 			followService.getFolloweeList(model,fvo);
 			memberService.selectMember(model,mvo);
-			postService.getPostList(model,mvo);
 			return "myProfile";
+		}
+		// 게시물 페이징
+		@PostMapping("pofile/getuserpostList")
+		@ResponseBody
+		public ResponseEntity<List<Map<String, Object>>> getuserpostList(@RequestParam("nickname") String nickname,
+				@RequestParam int pageNum, @RequestParam int count) {
+			MemberVO mvo = new MemberVO();
+			mvo.setNickname(nickname);
+			List<Map<String, Object>> userpostList = postService.getPostList(mvo, pageNum, count);
+//			for (int i = 0; i < userpostList.size(); i++) {
+//				String ii = (String) userpostList.get(i).get("title");
+//				System.out.println(ii);
+//			}
+			ResponseEntity<List<Map<String, Object>>> entry = new ResponseEntity<List<Map<String, Object>>>(userpostList,
+					HttpStatus.OK);
+			
+			return entry;
 		}
 
 
