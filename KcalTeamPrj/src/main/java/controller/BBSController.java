@@ -67,19 +67,13 @@ public class BBSController {
 	}
 	
 	@GetMapping("/create")
-	public String getBBSCreate(BBSVO vo) {
+	public String getBBSCreate(BBSVO vo, String currCategory, Model model) {
+		model.addAttribute("currCategory", currCategory);
 		return "community_bbs_create";
 	}
 	
 	@PostMapping("/create_result")
 	public String setBBSCreate(BBSVO vo, Model model) {
-//		System.out.println(vo.getTitle());
-//		System.out.println(vo.getContent());
-//		System.out.println(vo.getOwnerid());
-//		System.out.println(vo.getOwnername());
-//		System.out.println(vo.getFilelist());
-		
-//		vo.setCreatedate(new SimpleDateFormat("yyyy-MM-dd", Locale.KOREA).format(new Date()));
 		model.addAttribute("category", vo.getCategory());
 		
 		bbsService.insertBBS(vo);

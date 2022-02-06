@@ -17,26 +17,49 @@
 	<jsp:include page="community_header.jsp"></jsp:include>
 	
 	<div id="wrap">
-		<ul>
-			<li><h4>카테고리 : ${bbsVO.category}</h4></li>
-			<li>
-				<c:if test="${!empty bbsVO.region}">
-					<h4>지역 : ${bbsVO.region}</h4>
-				</c:if>
-			</li>				
-			<li><h4>${bbsVO.title}</h4></li>
-			<li><h4>${bbsVO.nickname}</h4></li>
-			<li><h4>작성일 : ${bbsVO.createdate}</h4></li>
-			<li><h4>조회수 : ${bbsVO.viewCnt}</h4></li>
-			<li><h4>추천 : ${bbsVO.recommend}</h4></li>
-			<li><p>${bbsVO.content}</p></li>
-			<li>
-				<c:if test="${sessionScope.account.unum == bbsVO.unum}">
-					<button id="modify">수정</button>
-					<button id="delete">삭제</button>
-				</c:if>
-			</li>	
-		</ul>
+		<div id="titleBox">
+			<div id="category">
+				<c:choose>
+					<c:when test="${bbsVO.category eq 'free'}">자유게시판</c:when>
+					<c:when test="${bbsVO.category eq 'question'}">고민 & 질문</c:when>
+					<c:when test="${bbsVO.category eq 'tip'}">팁 & 노하우</c:when>
+					<c:when test="${bbsVO.category eq 'review'}">다이어트 후기</c:when>
+					<c:when test="${bbsVO.category eq 'emate'}">운동메이트</c:when>	
+				</c:choose>
+			</div>
+			<p id="title">
+				<c:if test="${!empty bbsVO.region}">[${bbsVO.region}]</c:if>&nbsp;${bbsVO.title}			
+			</p>
+			<ul id="bbsInfo">
+				<li>
+					<a href="" id="ownerNickname">${bbsVO.nickname}</a>
+					<span id="createdate">${bbsVO.createdate}</span>
+					<span id="viewCnt">조회수 ${bbsVO.viewCnt}</span>
+				</li>
+				<li id="controllBtns">
+					<c:if test="${sessionScope.account.unum eq bbsVO.unum}">
+						<button id="modifyBBS">수정</button>
+						<button id="deleteBBS">삭제</button>					
+					</c:if>
+				</li>
+			</ul>
+		</div>
+		<div id="contentBox">
+			<p id="content">
+				<c:out value="${bbsVO.content}" escapeXml="false" />
+			</p>
+			<span id="reccomend"><i class="fas fa-thumbs-up"></i>&nbsp;&nbsp;${bbsVO.recommend}</span>
+			<span id="backToList"><i class="fas fa-list"></i>&nbsp;&nbsp;목록</span>
+		</div>
+		<div id="commentBox">
+			<p id="commentCnt">댓글 0개</p>
+			<div id="newComment">
+				<textarea rows="5" id="comment"></textarea>
+				<button id="putComment">댓글 등록</button>
+			</div>
+			<div id="comments">
+			</div>
+		</div>
 	</div>
 	
 	<!-- 푸터 -->
@@ -44,6 +67,15 @@
 	
 	<script type="text/javascript">
 		$(function(){
+			// 현재 카테고리
+			let currCategory = "${bbsVO.category}";
+			$(".menuTab[data-category="+currCategory+"]").addClass("selected");
+			
+			// 헤더 탭메뉴 클릭 시
+			$(document).on('click', '.menuTab', function() {
+				location.href = "${path}/community/bbs?category=" + $(this).data("category");
+			})
+			
 			// 수정버튼 클릭
 	        $(document).on('click', '#modify', function(){
    				location.href = "${path}/bbs/modify?bnum=${bbsVO.bnum}";

@@ -15,6 +15,10 @@
 </head>
 <body>
 	<a href="${path}/kcal/mealTest">식단테스트</a>
+	
+	<header>
+		
+	</header>
 
 	<div id="mypageWrap">
 		<ul class="tabs">

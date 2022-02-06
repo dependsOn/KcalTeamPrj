@@ -344,7 +344,7 @@
          // 글쓰기버튼 클릭
          $("#create").click(function(){
         	 console.log("글쓰기버튼 클릭");
-        	 location.href = "${path}/bbs/create";
+        	 location.href = "${path}/bbs/create?currCategory=" + currCategory;
          })
          
          // 검색버튼 클릭

@@ -18,7 +18,7 @@
 }
 
 /* 로그인 전 */
-.login {
+.adNLogin .login {
     flex: 0.7;
     display: flex;
     flex-direction: column;
@@ -29,33 +29,33 @@
     border: 2px solid #ff681f;
 }
 
-.login:hover {
+.adNLogin .login:hover {
     background-color: #fa7e40;
     transition: 1s;
 }
 
-.login:hover > p {
+.adNLogin .login:hover > p {
     color: white;
     transition: .5s;
 }
 
-.login:hover > button {
+.adNLogin .login:hover > button {
     border: 3px solid white;
     color: white;
 }
 
-.login:hover > ul > li {
+.adNLogin .login:hover > ul > li {
     color: white;
 }
 
-.login > p {
+.adNLogin .login > p {
     color: dimgray;
     font-weight: bold;
     font-size: 15px;
     margin-bottom: 20px;
 }
 
-.login > button {
+.adNLogin .login > button {
     width: 250px;
     height: 40px;
     border-radius: 5px;
@@ -68,7 +68,7 @@
     border: 2px solid #ff681f;
 }
 
-.login > button:hover {
+.adNLogin .login > button:hover {
     transform: scale(1.07);
     transition: 1s;
     background-color: white;

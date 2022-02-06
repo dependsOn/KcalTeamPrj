@@ -29,11 +29,19 @@ public class BBSService {
 		if (searchCategory.equals("all")) {
 			bvo.setTitle("%" + searchText + "%");
 			bvo.setContent("%" + searchText + "%");
+			if(category.equals("emate")) { 
+				bvo.setRegion("%" + searchText + "%"); 
+			}
+			
 		} else if (searchCategory.equals("title")) {
 			bvo.setTitle("%" + searchText + "%");
+			if(category.equals("emate")) { 
+				bvo.setRegion("%" + searchText + "%"); 
+			}
 		} else if (searchCategory.equals("content")) {
 			bvo.setContent("%" + searchText + "%");
 		}
+		
 
 		int postCnt = sqlSessionTemplate.selectOne("bbs.selectBBSCount", bvo);
 
@@ -49,7 +57,6 @@ public class BBSService {
 	}
 
 	public void insertBBS(BBSVO vo) {
-
 		sqlSessionTemplate.insert("bbs.insertBBS", vo);
 
 	}

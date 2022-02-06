@@ -135,3 +135,35 @@ li {list-style-type: none;}
 	cursor: pointer;
 	display: inline-block;
 }
+
+
+#searchBox {
+	text-align: center;
+	margin-top: 20px;
+}
+#searchCategory {
+	width: 100px;
+	height: 30px;
+	border-radius: 10px;
+	border: 1px solid #b7b7b7;
+	padding-left: 10px;
+}
+#searchText {
+	height: 30px;
+	border-radius: 10px;
+	border: 1px solid #b7b7b7;
+	margin: 0 5px;
+	padding-left: 10px;
+}
+#searchText:focus {
+	outline: 1px solid orangered;
+}
+#searchBtn {
+	width: 45px;
+	height: 30px;
+	border-radius: 10px;
+	border: none;
+	background-color: orangered;
+	color: #fff;
+	font-weight: bold;
+}

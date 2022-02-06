@@ -45,7 +45,7 @@
                 	
 	                <div id="myMeal">
 	                	<p id="myMealTitle">선택한 음식</p>
-	                	<p id="myMealMent">음식 검색 후 섭취량을 입력하고 추가 버튼을 클릭하세요.</p>
+	                	<p id="myMealMent">음식 검색 후 섭취량을 입력하고<br>추가 버튼을 클릭하세요.</p>
 	                	<table id="menuList">
 	                	</table>
 	                	<div id="btns">
@@ -54,24 +54,26 @@
 	                	</div>
 	                </div>
 	                
-                	<div id="searchBox">
-                		<input type="text" id="inputFood" />
-						<button type="button" id="searchFood">검색</button>
-                	</div>
-                    
-					<table id="food">
-						<thead>
-							<tr>
-								<th>음식명</th>
-								<th>1회 제공량</th>
-								<th>칼로리</th>
-								<th>섭취량(g)</th>
-								<th></th>
-							</tr>
-						</thead>
-						<tbody id="foodList">
-						</tbody>
-					</table>
+	                <div id="searchCon">
+	                	<div id="searchBox">
+	                		<input type="text" id="inputFood" placeholder="음식 이름 입력"/>
+							<button type="button" id="searchFood">검색</button>
+	                	</div>
+	                    
+						<table id="food">
+							<thead>
+								<tr>
+									<th>음식명</th>
+									<th>1회 제공량</th>
+									<th>칼로리</th>
+									<th>섭취량(g)</th>
+									<th></th>
+								</tr>
+							</thead>
+							<tbody id="foodList">
+							</tbody>
+						</table>
+					</div>
                 </div>
             </div>
         </div>

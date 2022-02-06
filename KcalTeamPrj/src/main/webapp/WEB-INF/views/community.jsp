@@ -196,11 +196,11 @@
 	         })
 	         
 	         $(document).ready(function() {
-	        	 $('.login').show(); 
+	        	 $('.adNLogin .login').show(); 
 	        	 $('.loginSubmit').hide();
 	        	 
 	        	 $('.changeBtn').click(function(){
-		        	 $ ('.login').hide(); 
+		        	 $ ('.adNLogin .login').hide(); 
 		        	 $ ('.loginSubmit').show(); 
 		        	 return false;
 	        	 });

@@ -11,9 +11,6 @@
 			<if test="category != null">
 				and category = #{category}
 			</if>
-			<if test="region != null">
-				and region = #{region}
-			</if>
 			<if test="unum != 0">
 				and unum = #{unum}
 			</if>
@@ -37,6 +34,9 @@
 			</if>
 			<if test="title != null and content == null">
 				and title like #{title}
+			</if>
+			<if test="region != null">
+				or region like #{region}
 			</if>
 	</select>	
 	
@@ -48,9 +48,6 @@
 			<if test="category != null">
 				and category = #{category}
 			</if>
-			<if test="region != null">
-				and region = #{region}
-			</if>
 			<if test="unum != 0">
 				and unum = #{unum}
 			</if>
@@ -74,6 +71,9 @@
 			</if>
 			<if test="title != null and content == null">
 				and title like #{title}
+			</if>
+			<if test="region != null">
+				or region like #{region}
 			</if>
 		order by create_date desc
 		limit #{start}, #{count}
