@@ -2,6 +2,8 @@ package controller;
 
 
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -90,6 +92,12 @@ public class BBSController {
 		int bnum = vo.getBnum();
 		bbsService.updateBBS(vo, model);
 		return "redirect:/bbs/detail?bnum=" + bnum;
+	}
+	
+	@GetMapping("/delete")
+	public String deleteBBS(BBSVO vo, String category, HttpSession session) {
+		bbsService.deleteBBS(vo, session);
+		return "redirect:/community/bbs?category=" + category;
 	}
 	
 	

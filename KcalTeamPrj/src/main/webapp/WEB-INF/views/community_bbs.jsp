@@ -80,6 +80,7 @@
 	    		data: data,
 	            dataType : 'json',
 	    		success: function(data) {
+	    			if(data.postCnt != 0) {
 
 	   	        	 for(let item of data.bbsList) {
 	   		        	 const tr = document.createElement("tr");
@@ -124,6 +125,8 @@
 	   	        	
 	   	        	tr.append(td);
 	   	        	noticeList.append(tr);
+	   	        	
+	    			}
 	   	        	
 	    		},
 	    		error: function(data) {

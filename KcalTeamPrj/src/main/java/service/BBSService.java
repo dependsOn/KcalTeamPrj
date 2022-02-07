@@ -1,6 +1,8 @@
 package service;
 
 
+import javax.servlet.http.HttpSession;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -8,6 +10,7 @@ import org.springframework.ui.Model;
 
 import vo.BBSPagingVO;
 import vo.BBSVO;
+import vo.MemberVO;
 
 @Service
 public class BBSService {
@@ -73,6 +76,13 @@ public class BBSService {
 	public void updateBBS(BBSVO vo, Model model) {
 		
 		sqlSessionTemplate.update("bbs.updateBBS", vo);
+		
+	}
+
+	public void deleteBBS(BBSVO vo, HttpSession session) {
+		MemberVO mvo = (MemberVO)session.getAttribute("account");
+		vo.setUnum(mvo.getUnum());
+		sqlSessionTemplate.delete("bbs.deleteBBS", vo);
 		
 	}
 }

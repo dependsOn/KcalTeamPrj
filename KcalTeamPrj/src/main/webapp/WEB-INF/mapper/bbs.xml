@@ -110,4 +110,9 @@
 		update bbs set view_cnt = view_cnt+1 where bnum = #{bnum}
 	</update>
 	
+	<delete id="deleteBBS" parameterType="bbsVO">
+		update bbs set isdelete='Y' 
+		where bnum=#{bnum} and unum=#{unum}
+	</delete>
+	
 </mapper>

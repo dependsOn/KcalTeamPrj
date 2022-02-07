@@ -52,15 +52,29 @@
 			<span id="reccomend"><i class="fas fa-thumbs-up"></i>&nbsp;&nbsp;${bbsVO.recommend}</span>
 			<span id="backToList"><i class="fas fa-list"></i>&nbsp;&nbsp;목록</span>
 		</div>
-		<div id="commentBox">
-			<p id="commentCnt">댓글 0개</p>
-			<div id="newComment">
-				<textarea rows="5" id="comment"></textarea>
-				<button id="putComment">댓글 등록</button>
+		<div id="replyBox">
+			<p id="replyCnt">댓글 0개</p>
+			<div id="newReply">
+				<textarea rows="5" id="reply"></textarea>
+				<button id="putReply">댓글 등록</button>
 			</div>
-			<div id="comments">
+			<div id="replyList">
+			
+				<!-- <div class="oneReply">
+					<span class="rpNickname">닉네임</span>
+					<span class="rpDate">2022-02-07</span>
+					<p class="rpContent"p>댓글내용</p>
+					<div>
+						<span class="rpModify">수정</span>
+						<span class="rpDelete">삭제</span>
+					</div>
+				</div> -->
+			
 			</div>
 		</div>
+		
+		
+		
 	</div>
 	
 	<!-- 푸터 -->
@@ -81,13 +95,29 @@
 	        $(document).on('click', '#modifyBBS', function(){
    				location.href = "${path}/bbs/modify?bnum=${bbsVO.bnum}";
    			})
+			
+			// 삭제버튼 클릭
+	        $(document).on('click', '#deleteBBS', function(){
+	        	let chk = confirm("삭제하시겠습니까?");
+	        	if(chk) {
+	   				location.href = "${path}/bbs/delete?bnum=${bbsVO.bnum}&category=${bbsVO.category}";	        		
+	        	}
+	        	
+   			})
    			
    			// 목록버튼 클릭
    			$("#backToList").click(function(){
-   				/* window.history.back(); */
    				location.href = "${path}/community/bbs?category=${bbsVO.category}";
    			})
    			
+   			
+   			
+			
+			
+			
+			
+			
+			
 		})
 	</script>
 </body>
