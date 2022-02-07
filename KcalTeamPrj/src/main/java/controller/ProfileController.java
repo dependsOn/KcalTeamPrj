@@ -82,8 +82,9 @@ public class ProfileController {
 		public String updateMember(
 				@RequestPart(value = "uploadFile",required = false) MultipartFile uploadFile,
 				@RequestPart(value = "data") MemberVO vo,
-				Model model) throws Exception{
-			String path="/Users/hwang-yeonghyeon/git/KcalTeamPrj/KcalTeamPrj/src/main/webapp/resources/images/myprofile";
+				Model model, HttpSession session) throws Exception{
+			// 프로필 사진 파일 저장경로
+			String path="C:\\Users\\wjdal\\git\\KcalTeamPrj\\KcalTeamPrj\\src\\main\\webapp\\resources\\images\\myprofile";
 			
 
 
@@ -105,9 +106,13 @@ public class ProfileController {
 					
 					memberService.updateProfile(vo);
 				}
+		
+				
+				MemberVO vo1 = (MemberVO)session.getAttribute("account");
+				vo1.setImg_servername(vo.getImg_servername());
 				return "success";
 			
-			
+		
 		}
 		
 		@PostMapping("post/userpost")
