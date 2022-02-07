@@ -23,13 +23,46 @@
 	parameterType : 내가 DB에 요청하는 데이터 유형 ex) String, int, vo ..
 	resultType :  DB에서 사용자에게 보내는 데이터 유형 -->
 	
-	<select id="selectCsqnaList" parameterType="csqnaVO" resultType="csqnaVO">
+	<!-- <select id="selectCsqnaList" parameterType="csqnaVO" resultType="csqnaVO">
 		select *
 		from csqna
 		where
-		<!-- limit (#{page}-1)*10+1, 10 -->
+		limit (#{page}-1)*10+1, 10
 		csqna_seq between  (#{currentPage}-1)*10+1 and #{currentPage}*10
-		<!-- limit a,b 일때 a기준으로 b만큼 가져오겠다 -->
-		<!-- between a and b 일때 a~b 까지 가져오겠다 --> 
+		limit a,b 일때 a기준으로 b만큼 가져오겠다
+		between a and b 일때 a~b 까지 가져오겠다 
+	</select> -->
+	
+	<select id="selectCsqnaCount" parameterType="csqnaVO" resultType="int">
+		select count(*) from csqna
+		<where>
+			<if test="csqna_seq != 0">
+				and csqna_seq = #{csqna_seq}
+			</if>
+			<if test="nickname != null">
+				and nickname = #{nickname}
+			</if>
+		</where>
+	</select>
+	
+	<select id="selectCsqnaList" parameterType="csqnaVO" resultType="csqnaVO">
+		select csqna_seq, nickname, password, title, contents
+		from csqna
+		<where>
+			<if test="csqna_seq != 0">
+				and csqna_seq = #{csqna_seq}
+			</if>
+			<if test="nickname != null">
+				and nickname = #{nickname}
+			</if>
+		</where>
+		ORDER BY csqna_seq desc
+		limit #{start}, #{count}
+	</select>
+	
+	<select id="selectCsqna" parameterType="csqnaVO" resultType="csqnaVO">
+		select csqna_seq, nickname, password, title, contents
+		from csqna
+		where csqna_seq = #{csqna_seq}
 	</select>
 </mapper>

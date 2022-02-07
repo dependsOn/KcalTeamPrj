@@ -4,28 +4,24 @@ import java.util.List;
 
 public class CsqnaVO {
 	
-		//csqnaSeq = BIGINT·Î ÁöÁ¤Çß±â¿¡ int 
+		//csqnaSeq = BIGINTï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ß±â¿¡ int 
 	private int csqnaSeq;
-		// ³ª¸ÓÁö´Â ¹®ÀÚÀÌ±â¿¡ String
+		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ì±â¿¡ String
 	private String nickname;
 	private String password;
 	private String title;
 	private String contents;
-	private int currentPage = 1;
+	private int start;
+	private int count;
+	
 	
 
-	
-	//csqna¸¦ ListÈ­ ½ÃÅ³ ¶§ ¾²´Â °ø½Ä / µÚ¿¡ csQnaList´Â ³»°¡ Á¤ÇÑ ÀÌ¸§
-	private List<CsqnaVO> csQnaList;
-	
-	
-	public List<CsqnaVO> getCsQnaList() {
-		return csQnaList;
+	public CsqnaVO() {
+		super();
+		this.start = 0;
+		this.count = 10;
 	}
-	public void setCsQnaList(List<CsqnaVO> csQnaList) {
-		this.csQnaList = csQnaList;
-	}
-	// ¾Æ·¡´Â getters and setters
+	// ï¿½Æ·ï¿½ï¿½ï¿½ getters and setters
 	public int getCsqnaSeq() {
 		return csqnaSeq;
 	}
@@ -56,13 +52,20 @@ public class CsqnaVO {
 	public void setContents(String contents) {
 		this.contents = contents;
 	}
+	public int getStart() {
+		return start;
+	}
+	public void setStart(int start) {
+		this.start = start;
+	}
+	public int getCount() {
+		return count;
+	}
+	public void setCount(int count) {
+		this.count = count;
+	}
 
-	public int getCurrentPage() {
-		return currentPage;
-	}
-	public void setCurrentPage(int currentPage) {
-		this.currentPage = currentPage;
-	}
+	
 
 	
 	
