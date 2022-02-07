@@ -17,5 +17,6 @@
 		<typeAlias type="vo.PostfileVO" alias="postfileVO"/>		
 		<typeAlias type="vo.BBSReplyVO" alias="replyVO"/>		
 		<typeAlias type="vo.RandomMemberVO" alias="rmVO"/>		
+		<typeAlias type="vo.CsqnaVO" alias="csqnaVO"/>
 	</typeAliases>
 </configuration>
