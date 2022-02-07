@@ -217,4 +217,12 @@
 	     where nickname=#{nickname}
 	
 	</update>
+	
+	
+	<!-- randomSelect -->
+	<select id="selectRandomMember" resultType="rmVO">
+		select nickname, img_servername
+		from member
+		order by rand() limit 6
+	</select>
 </mapper>

@@ -1,5 +1,9 @@
 package service;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -9,7 +13,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import vo.BBSVO;
+import vo.FollowVO;
 import vo.MemberVO;
+import vo.RandomMemberVO;
 
 @Service
 public class CommunityService {
@@ -41,6 +47,26 @@ public class CommunityService {
 		vo.setCategory("review");
 		model.addAttribute("review", sqlSessionTemplate.selectList("bbs.selectBBSList", vo));
 		
+	}
+
+	public void getRandomMemberList(Model model) {
+		List<RandomMemberVO> rmvoList = sqlSessionTemplate.selectList("member.selectRandomMember");
+		
+		for(RandomMemberVO rmvo : rmvoList) { 
+			FollowVO fvo = new FollowVO();
+			fvo.setFollower_n(rmvo.getNickname());
+			fvo.setFollowee_n(rmvo.getNickname());
+			
+			Map<String, Object> map = sqlSessionTemplate.selectOne("follow.countFollow",fvo);
+			
+			int followerCnt = Integer.parseInt(map.get("followerCnt").toString());
+			int followingCnt = Integer.parseInt(map.get("followeeCnt").toString());
+			
+			rmvo.setFollowerCnt(followerCnt);
+			rmvo.setFollowingCnt(followingCnt);
+		}
+		
+		model.addAttribute("randomList", rmvoList);
 	}
 	
 	

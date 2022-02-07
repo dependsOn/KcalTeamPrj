@@ -117,12 +117,14 @@
 	        scrollbar: true        
 	    });
 	    
+	    
+	    // 음식 검색
 	    $(function(){
 			$("#searchFood").click(function(){
 				$("#food").css("display", "none");
 				
 				if($("#inputFood").val() == "") {
-					alert("검색어를 입력하세요.");
+					alert("검색 결과가 없습니다.");
 				}else {
 					
 					$("#foodList").empty();

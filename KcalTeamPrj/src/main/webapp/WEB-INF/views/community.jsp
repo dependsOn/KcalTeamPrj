@@ -82,52 +82,82 @@
 
         <div class="peopleList">
             <ul>
-                <li>
-                    <img src="${path}/images/main/main1.jpg" alt="">
-                    <p>계랑마리</p>
+                <li class="randomProfile" data-nickname="${randomList[0].nickname}">
+                	<c:if test="${empty randomList[0].img_servername}">
+                		<img src="${path}/images/myprofile/default-profile.png" alt="" />
+                	</c:if>
+                	<c:if test="${!empty randomList[0].img_servername}">
+                		<img src="${path}/images/myprofile/${randomList[0].img_servername}" alt="" />
+                	</c:if>                
+                    <p>${randomList[0].nickname}</p>
                     <ul>
-                        <li>팔로우<span> 10000</span></li>
-                        <li>팔로워<span> 10000</span></li>
+                        <li>팔로우<span> ${randomList[0].followingCnt}</span></li>
+                        <li>팔로워<span> ${randomList[0].followerCnt}</span></li>
                     </ul>
                 </li>
-                <li>
-                    <img src="${path}/images/menu/kcalImg.jpg" alt="">
-                    <p>종훈짱123</p>
+                <li class="randomProfile" data-nickname="${randomList[1].nickname}">
+                    <c:if test="${empty randomList[1].img_servername}">
+                		<img src="${path}/images/myprofile/default-profile.png" alt="" />
+                	</c:if>
+                	<c:if test="${!empty randomList[1].img_servername}">
+                		<img src="${path}/images/myprofile/${randomList[1].img_servername}" alt="" />
+                	</c:if>                
+                    <p>${randomList[1].nickname}</p>
                     <ul>
-                        <li>팔로우<span> 20000</span></li>
-                        <li>팔로워<span> 20000</span></li>
+                        <li>팔로우<span> ${randomList[1].followingCnt}</span></li>
+                        <li>팔로워<span> ${randomList[1].followerCnt}</span></li>
                     </ul>
                 </li>
-                <li>
-                    <img src="${path}/images/main/fourcimg.jpg" alt="">
-                    <p>얼음공듀</p>
+                <li class="randomProfile" data-nickname="${randomList[2].nickname}">
+                    <c:if test="${empty randomList[2].img_servername}">
+                		<img src="${path}/images/myprofile/default-profile.png" alt="" />
+                	</c:if>
+                	<c:if test="${!empty randomList[2].img_servername}">
+                		<img src="${path}/images/myprofile/${randomList[2].img_servername}" alt="" />
+                	</c:if>                
+                    <p>${randomList[2].nickname}</p>
                     <ul>
-                        <li>팔로우<span> 30000</span></li>
-                        <li>팔로워<span> 30000</span></li>
+                        <li>팔로우<span> ${randomList[2].followingCnt}</span></li>
+                        <li>팔로워<span> ${randomList[2].followerCnt}</span></li>
                     </ul>
                 </li>
-                <li>
-                    <img src="${path}/images/menu/noticeImg.jpg" alt="">
-                    <p>앵무새앵무새</p>
+                <li class="randomProfile" data-nickname="${randomList[3].nickname}">
+                    <c:if test="${empty randomList[3].img_servername}">
+                		<img src="${path}/images/myprofile/default-profile.png" alt="" />
+                	</c:if>
+                	<c:if test="${!empty randomList[3].img_servername}">
+                		<img src="${path}/images/myprofile/${randomList[3].img_servername}" alt="" />
+                	</c:if>                
+                    <p>${randomList[3].nickname}</p>
                     <ul>
-                        <li>팔로우<span> 40000</span></li>
-                        <li>팔로워<span> 40000</span></li>
+                        <li>팔로우<span> ${randomList[3].followingCnt}</span></li>
+                        <li>팔로워<span> ${randomList[3].followerCnt}</span></li>
                     </ul>
                 </li>
-                <li>
-                    <img src="${path}/images/main/main3.jpg" alt="">
-                    <p>핑크겅듀</p>
+                <li class="randomProfile" data-nickname="${randomList[4].nickname}">
+                    <c:if test="${empty randomList[4].img_servername}">
+                		<img src="${path}/images/myprofile/default-profile.png" alt="" />
+                	</c:if>
+                	<c:if test="${!empty randomList[4].img_servername}">
+                		<img src="${path}/images/myprofile/${randomList[4].img_servername}" alt="" />
+                	</c:if>                
+                    <p>${randomList[4].nickname}</p>
                     <ul>
-                        <li>팔로우<span> 50000</span></li>
-                        <li>팔로워<span> 50000</span></li>
+                        <li>팔로우<span> ${randomList[4].followingCnt}</span></li>
+                        <li>팔로워<span> ${randomList[4].followerCnt}</span></li>
                     </ul>
                 </li>
-                <li>
-                    <img src="${path}/images/main/main2.jpg" alt="">
-                    <p>먹방BJ</p>
+                <li class="randomProfile" data-nickname="${randomList[5].nickname}">
+                    <c:if test="${empty randomList[5].img_servername}">
+                		<img src="${path}/images/myprofile/default-profile.png" alt="" />
+                	</c:if>
+                	<c:if test="${!empty randomList[5].img_servername}">
+                		<img src="${path}/images/myprofile/${randomList[5].img_servername}" alt="" />
+                	</c:if>                
+                    <p>${randomList[5].nickname}</p>
                     <ul>
-                        <li>팔로우<span> 50000</span></li>
-                        <li>팔로워<span> 50000</span></li>
+                        <li>팔로우<span> ${randomList[5].followingCnt}</span></li>
+                        <li>팔로워<span> ${randomList[5].followerCnt}</span></li>
                     </ul>
                 </li>
             </ul>
@@ -266,6 +296,12 @@
         
 	         $(document).on('click', '.bbsTitle', function(){
 	        	 location.href = "${path}/bbs/detail?bnum=" + $(this).data("bnum");         
+	         })
+	         
+	         
+	         // 랜덤프로필 클릭 시 해당 프로필페이지로 이동
+	         $(".randomProfile").click(function() {
+	        	 location.href = "${path}/profile/main?nickname=" + $(this).data("nickname");
 	         })
 		
 		})

@@ -24,6 +24,7 @@ public class CommunityController {
 	@GetMapping("/main")
 	public String goCommunity(Model model) {
 		communityService.getRecentBBSList(model);
+		communityService.getRandomMemberList(model);
 		return "community";
 	}
 	

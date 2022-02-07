@@ -83,7 +83,7 @@ public class ProfileController {
 				@RequestPart(value = "uploadFile",required = false) MultipartFile uploadFile,
 				@RequestPart(value = "data") MemberVO vo,
 				Model model) throws Exception{
-			String path="/Users/hwang-yeonghyeon/git/KcalTeamPrj/KcalTeamPrj/src/main/webapp/resources/images/myprofile";
+			String path="C:\\Users\\YooJeong\\git\\KcalTeamPrj\\KcalTeamPrj\\src\\main\\webapp\\resources\\images\\myprofile";
 			
 
 
@@ -115,7 +115,7 @@ public class ProfileController {
 		public String userpost(@RequestPart(value = "postfiles",required = false) MultipartFile[] fileList,
 				@RequestPart(value = "userpost") UserpostVO vo,
 				Model model) throws Exception{
-			String path="/Users/hwang-yeonghyeon/git/KcalTeamPrj/KcalTeamPrj/src/main/webapp/resources/images/postfile";
+			String path="C:\\Users\\YooJeong\\git\\KcalTeamPrj\\KcalTeamPrj\\src\\main\\webapp\\resources\\images\\postfile";
 			int i=postService.setPost(vo);
 			
 			
