@@ -83,7 +83,8 @@ public class ProfileController {
 				@RequestPart(value = "uploadFile",required = false) MultipartFile uploadFile,
 				@RequestPart(value = "data") MemberVO vo,
 				Model model, HttpSession session) throws Exception{
-			String path="C:\\Users\\YooJeong\\git\\KcalTeamPrj\\KcalTeamPrj\\src\\main\\webapp\\resources\\images\\myprofile";
+			// 프로필 사진 파일 저장경로
+			String path="C:\\Users\\wjdal\\git\\KcalTeamPrj\\KcalTeamPrj\\src\\main\\webapp\\resources\\images\\myprofile";
 			
 
 

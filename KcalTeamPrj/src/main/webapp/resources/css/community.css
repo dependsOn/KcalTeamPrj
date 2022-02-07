@@ -201,13 +201,21 @@ input:focus {
     color: white;
 }
 
-.loginAfter:hover > .logout > p {
+.loginAfter:hover > .logout > p:nth-child(1) {
+    color: white;
+}
+
+.loginAfter:hover > .logout > p:nth-child(2) {
     color: white;
 }
 
 .loginAfter:hover > .profileLine > .profileBtns > button {
     color:white;
     border: 2px solid white;
+}
+
+.loginAfter:hover > .profileLine > .profileImage > img {
+	background-color: white;
 }
 
 .loginAfter .logout {
@@ -264,6 +272,7 @@ input:focus {
     width: 100%;
     height: 100%;
     border-radius: 50%;
+    background-color: #fa7e40;
 }
 
 .profileBtns {
