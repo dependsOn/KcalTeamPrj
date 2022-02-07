@@ -30,13 +30,13 @@
 	<div id="mypageWrap">
 		<ul class="tabs">
 			<li class="tabTitle">회원정보관리</li>
-			<li class="tab" data-tab="memberInfo">회원정보</li>
-			<li class="tab" data-tab="modifyPw">비밀번호변경</li>
-			<li class="tab" data-tab="withdraw">회원탈퇴</li>
+			<li class="tab" data-tab="memberInfo"><span><i class="fas fa-users"></i></span>회원정보</li>
+			<li class="tab" data-tab="modifyPw"><span><i class="fas fa-lock"></i></span>비밀번호변경</li>
+			<li class="tab" data-tab="withdraw"><span><i class="fas fa-sign-out-alt"></i></span>회원탈퇴</li>
 			<li class="tabTitle">내 활동관리</li>
-			<li class="tab" data-tab="letter">쪽지함</li>
-			<li class="tab" data-tab="myPost">작성글</li>
-			<li class="tab" data-tab="myAsk">1:1 문의내역</li>
+			<li class="tab" data-tab="letter"><span><i class="far fa-envelope"></i></span>쪽지함</li>
+			<li class="tab" data-tab="myPost"><span><i class="far fa-edit"></i></span>작성글</li>
+			<li class="tab" data-tab="myAsk"><span><i class="far fa-comment-dots"></i></span>1:1 문의내역</li>
 		</ul>
 
 		<div class="contents">

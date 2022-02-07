@@ -105,10 +105,18 @@ header #header_r {
     padding-left: 20%;
     font-size: 1rem;
     cursor: pointer;
+    color: #444444;
 }
 #mypageWrap .tabs .tab.selected {
     font-weight: bold;
     color: #e6502b;
+}
+
+#mypageWrap .tabs .tab span {
+	display: inline-block;
+	width: 20px;
+	text-align: center;
+	margin-right: 5px;
 }
 
 

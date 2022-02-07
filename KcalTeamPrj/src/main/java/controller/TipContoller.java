@@ -25,7 +25,6 @@ public class TipContoller {
 						@RequestParam(defaultValue = "1") int wnum) {
 		tipService.selectTipList(model, cnum, wnum);
 		model.addAttribute("category", category);
-		System.out.println(category);
 		return "tip";
 	}
 	
