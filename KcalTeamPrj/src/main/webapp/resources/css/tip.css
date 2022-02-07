@@ -212,3 +212,129 @@ body {
     cursor: pointer;
     transition: 0.25s;
 }
+
+.pageMoveBox {
+	width:90%;
+	margin: 0 auto;
+	margin-top: 100px;
+}
+
+.pageMove {
+	display:flex;
+	align-items: center;
+	width:310px;
+	margin: 0 auto;
+}
+
+#cantPrev {
+	text-align: center;
+	width:31px;
+	height:31px;
+	line-height: 1.05;
+	font-size: 23px;
+	border-radius: 5px;
+	color:black;
+	margin: 0 3px;
+	font-weight: bold;
+	margin-right:20px;
+	border: 1px solid #ccc;
+}
+
+#canPrev {
+	text-align: center;
+	width:31px;
+	height:31px;
+	line-height: 1.05;
+	font-size: 23px;
+	border-radius: 5px;
+	color:black;
+	margin: 0 3px;
+	font-weight: bold;
+	margin-right:20px;
+	border: 1px solid #ccc;
+}
+
+#cantNext {
+	text-align: center;
+	width:31px;
+	height:31px;
+	line-height: 1.05;
+	font-size: 23px;
+	border-radius: 5px;
+	color:black;
+	margin: 0 3px;
+	font-weight: bold;
+	margin-left:20px;
+	border: 1px solid #ccc;
+}
+
+#canNext {
+	text-align: center;
+	width:31px;
+	height:31px;
+	line-height: 1.05;
+	font-size: 23px;
+	border-radius: 5px;
+	color:black;
+	margin: 0 3px;
+	font-weight: bold;
+	margin-left:20px;
+	border: 1px solid #ccc;
+}
+
+#canNext:hover {
+	color: orangered;
+	border: 1px solid orangered;
+}
+
+#canPrev:hover {
+	color: orangered;
+	border: 1px solid orangered;
+}
+
+.numCantMove {
+	text-align: center;
+	width:31px;
+	height:31px;
+	line-height: 1.7;
+	font-size: 17px;
+	border-radius: 5px;
+	background-color: #fd642d;
+	color:white;
+	margin: 0 3px;
+	font-weight: bold;
+}
+
+.numMove {
+	text-align: center;
+	width:31px;
+	height:31px;
+	border: 1px solid #ccc;
+	line-height: 1.6;
+	font-size: 17px;
+	border-radius: 5px;
+	margin: 0 3px;
+	font-weight: bold;
+}
+
+.pageMove > a {
+    text-decoration: none;
+}
+
+.pageMove > a:link {
+	color: dimgray;
+}
+
+.pageMove > a:visited {
+	color: dimgray;
+}
+
+.pageMove > a:hover {
+    color: orangered;
+}
+
+
+
+
+
+

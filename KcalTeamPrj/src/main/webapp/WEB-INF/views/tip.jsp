@@ -75,50 +75,54 @@
 						pageContext.setAttribute("cMmaxBlock", cMmaxBlock);
 					%>
 					
-					<c:choose>
-						<c:when test="${(cMinBlock-1) < 1 }">
-							<span>◀◀</span>	
-						</c:when>
-						<c:otherwise>
-							<a href="${path}/tip/goTip?cnum=${cMinBlock-1}&category=column">◀◀</a>
-						</c:otherwise>
-					</c:choose>
-					&nbsp;&nbsp;
-					<c:choose>
-						<c:when test="${cnum==1 }">
-							<span>◀</span>
-						</c:when>
-						<c:otherwise>
-							<a href="${path}/tip/goTip?cnum=${num-1}&category=column">◀</a>
-						</c:otherwise>
-					</c:choose>
-					<c:forEach begin="${cMinBlock}" end="${(cTotal<cMmaxBlock)?cTotal:cMmaxBlock}" step="1" var="i">
-						<c:choose>
-							<c:when test="${cnum == i}">
-								<span>${i}</span>
-							</c:when>
-							<c:otherwise>
-								<a href="${path}/tip/goTip?cnum=${i}&category=column">${i}</a>
-							</c:otherwise>
-						</c:choose>
-					</c:forEach>
-					<c:choose>
-						<c:when test="${cnum == cTotal }">
-							<span>▶</span>
-						</c:when>
-						<c:otherwise>
-							<a href="${path}/tip/goTip?cnum=${cnum+1}&category=column">▶</a>	
-						</c:otherwise>
-					</c:choose>
-					&nbsp;&nbsp;
-					<c:choose>
-						<c:when test="${cMmaxBlock > cTotal }">
-							<span>▶▶</span>	
-						</c:when>
-						<c:otherwise>
-							<a href="${path}/tip/goTip?cnum=${cMmaxBlock+1}&category=column">▶▶</a>
-						</c:otherwise>
-					</c:choose>
+					<div class="pageMoveBox">
+						<div class="pageMove">
+							<c:choose>
+								<c:when test="${(cMinBlock-1) < 1 }">
+									<span id="cantPrev">&#8249;</span>	
+								</c:when>
+								<c:otherwise>
+									<a href="${path}/tip/goTip?cnum=${cMinBlock-1}&category=column" id="canPrev">&#8249;</a>
+								</c:otherwise>
+							</c:choose>
+							
+							<%-- <c:choose>
+								<c:when test="${cnum==1 }">
+									<span>◀</span>
+								</c:when>
+								<c:otherwise>
+									<a href="${path}/tip/goTip?cnum=${num-1}&category=column">◀</a>
+								</c:otherwise>
+							</c:choose> --%>
+							<c:forEach begin="${cMinBlock}" end="${(cTotal<cMmaxBlock)?cTotal:cMmaxBlock}" step="1" var="i">
+								<c:choose>
+									<c:when test="${cnum == i}">
+										<span class="numCantMove">${i}</span>
+									</c:when>
+									<c:otherwise>
+										<a href="${path}/tip/goTip?cnum=${i}&category=column" class="numMove">${i}</a>
+									</c:otherwise>
+								</c:choose>
+							</c:forEach>
+							<%-- <c:choose>
+								<c:when test="${cnum == cTotal }">
+									<span>▶</span>
+								</c:when>
+								<c:otherwise>
+									<a href="${path}/tip/goTip?cnum=${cnum+1}&category=column">▶</a>	
+								</c:otherwise>
+							</c:choose> --%>
+							
+							<c:choose>
+								<c:when test="${cMmaxBlock > cTotal }">
+									<span id="cantNext">&#8250;</span>	
+								</c:when>
+								<c:otherwise>
+									<a href="${path}/tip/goTip?cnum=${cMmaxBlock+1}&category=column" id="canNext">&#8250;</a>
+								</c:otherwise>
+							</c:choose>
+						</div>
+					</div>
                 </div>
                 
                 <div id="workout" class="tabContent">
@@ -163,50 +167,54 @@
 						pageContext.setAttribute("wMmaxBlock", wMmaxBlock);
 					%>
 					
-					<c:choose>
-						<c:when test="${(wMinBlock-1) < 1 }">
-							<span>◀◀</span>	
-						</c:when>
-						<c:otherwise>
-							<a href="${path}/tip/goTip?wnum=${wMinBlock-1}&category=workout">◀◀</a>
-						</c:otherwise>
-					</c:choose>
-					&nbsp;&nbsp;
-					<c:choose>
-						<c:when test="${wnum==1 }">
-							<span>◀</span>
-						</c:when>
-						<c:otherwise>
-							<a href="${path}/tip/goTip?wnum=${wnum-1}&category=workout">◀</a>
-						</c:otherwise>
-					</c:choose>
-					<c:forEach begin="${wMinBlock}" end="${(wTotal<wMmaxBlock)?wTotal:wMmaxBlock}" step="1" var="j">
-						<c:choose>
-							<c:when test="${wnum == j}">
-								<span>${j}</span>
-							</c:when>
-							<c:otherwise>
-								<a href="${path}/tip/goTip?wnum=${j}&category=workout">${j}</a>
-							</c:otherwise>
-						</c:choose>
-					</c:forEach>
-					<c:choose>
-						<c:when test="${wnum == wTotal }">
-							<span>▶</span>
-						</c:when>
-						<c:otherwise>
-							<a href="${path}/tip/goTip?wnum=${wnum+1}&category=workout">▶</a>	
-						</c:otherwise>
-					</c:choose>
-					&nbsp;&nbsp;
-					<c:choose>
-						<c:when test="${wMmaxBlock > wTotal }">
-							<span>▶▶</span>	
-						</c:when>
-						<c:otherwise>
-							<a href="${path}/tip/goTip?wnum=${wMmaxBlock+1}&category=workout">▶▶</a>
-						</c:otherwise>
-					</c:choose>
+					<div class="pageMoveBox">
+						<div class="pageMove">
+							<c:choose>
+								<c:when test="${(wMinBlock-1) < 1 }">
+									<span id="cantPrev">&#8249;</span>	
+								</c:when>
+								<c:otherwise>
+									<a href="${path}/tip/goTip?wnum=${wMinBlock-1}&category=workout" id="canPrev">&#8249;</a>
+								</c:otherwise>
+							</c:choose>
+							
+							<%-- <c:choose>
+								<c:when test="${wnum==1 }">
+									<span>◀</span>
+								</c:when>
+								<c:otherwise>
+									<a href="${path}/tip/goTip?wnum=${wnum-1}&category=workout">◀</a>
+								</c:otherwise>
+							</c:choose> --%>
+							<c:forEach begin="${wMinBlock}" end="${(wTotal<wMmaxBlock)?wTotal:wMmaxBlock}" step="1" var="j">
+								<c:choose>
+									<c:when test="${wnum == j}">
+										<span class="numCantMove">${j}</span>
+									</c:when>
+									<c:otherwise>
+										<a href="${path}/tip/goTip?wnum=${j}&category=workout" class="numMove">${j}</a>
+									</c:otherwise>
+								</c:choose>
+							</c:forEach>
+							<%-- <c:choose>
+								<c:when test="${wnum == wTotal }">
+									<span>▶</span>
+								</c:when>
+								<c:otherwise>
+									<a href="${path}/tip/goTip?wnum=${wnum+1}&category=workout">▶</a>	
+								</c:otherwise>
+							</c:choose> --%>
+							
+							<c:choose>
+								<c:when test="${wMmaxBlock > wTotal }">
+									<span id="cantNext">&#8250;</span>	
+								</c:when>
+								<c:otherwise>
+									<a href="${path}/tip/goTip?wnum=${wMmaxBlock+1}&category=workout" id="canNext">&#8250;</a>
+								</c:otherwise>
+							</c:choose>
+						</div>
+					</div>	
 				</div>
 			</div>
 			<c:if test="${sessionScope.account.isadmin eq 'Y'}">
@@ -243,7 +251,7 @@
 				$("#workout").hide();
 				$("#columnTab").addClass('active');
 				$("#workoutTab").removeClass('active');		
-			}else if("${category}" == "workout") {
+			} else if("${category}" == "workout") {
 				$("#column").hide();
 				$("#workout").show();
 				$("#columnTab").removeClass('active');
@@ -269,7 +277,6 @@
 		
 		document.querySelector('.createBtn').addEventListener('click', function() {
 			location.href = '${path}/tip/createTip?curPage=curTip';
-		
 		});
 		
 	</script>
