@@ -191,7 +191,16 @@
 			// 페이지블럭 >>
 			 $(document).on('click', '.NextBlock', function(){
 				 getBBSList($(this).data("num"));
-			 })	
+			 })
+			 
+			 $('#create').click(function() {
+					location.href = "${path}/notice/create?curPage=curNotice";
+			 });
+			 
+			 $(document).on('click', '.bbsTitle', function(){
+		        	let bnum = $(this).data("bnum");
+					location.href = "${path}/notice/detail?bnum="+bnum+"&curPage=curNotice";       	 
+	         });
 		})
 	</script>
 </body>
