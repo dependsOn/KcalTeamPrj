@@ -62,7 +62,12 @@
                 
 	                <div class="profileLine">
 	                    <div class="profileImage">
-	                        <img src="${path}/images/main/main3.jpg" alt="">
+		                    <c:if test="${empty sessionScope.account.img_localname}">
+		                        <img src="${path}/images/postfile/default-profile.png" alt="">
+	                        </c:if>
+	                        <c:if test="${!empty sessionScope.account.img_localname}">
+		                        <img src="${path}/images/myprofile/${sessionScope.account.img_servername}" alt="">
+	                        </c:if>
 	                    </div>
 	                    <div class="profileBtns">
 	                        <button id="goProfile">프로필</button>
