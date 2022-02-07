@@ -53,28 +53,14 @@
 			<span id="backToList"><i class="fas fa-list"></i>&nbsp;&nbsp;목록</span>
 		</div>
 		<div id="replyBox">
-			<p id="replyCnt">댓글 0개</p>
+			<p id="replyCnt">댓글</p>
 			<div id="newReply">
 				<textarea rows="5" id="reply"></textarea>
 				<button id="putReply">댓글 등록</button>
 			</div>
 			<div id="replyList">
-			
-				<!-- <div class="oneReply">
-					<span class="rpNickname">닉네임</span>
-					<span class="rpDate">2022-02-07</span>
-					<p class="rpContent"p>댓글내용</p>
-					<div>
-						<span class="rpModify">수정</span>
-						<span class="rpDelete">삭제</span>
-					</div>
-				</div> -->
-			
 			</div>
-		</div>
-		
-		
-		
+		</div>		
 	</div>
 	
 	<!-- 푸터 -->
@@ -112,10 +98,175 @@
    			
    			
    			
-			
-			
-			
-			
+   			// 댓글 불러오는 함수
+			let getReplyList = function() {
+				$.ajax({
+					url:"${path}/reply/get/${bbsVO.bnum}",
+					type:"GET",
+					dataType : "json",
+					success : function(data){
+						console.log(data);
+						const replyList = document.querySelector("#replyList");
+						for(const item of data){						
+							
+							const oneReply = document.createElement("div");
+							oneReply.setAttribute("class", "oneReply");
+							const rpNickname = document.createElement("span");
+							rpNickname.innerText = item.nickname;
+							rpNickname.setAttribute("date-nickname", item.nickname);
+							rpNickname.setAttribute("class", "rpNickname");
+							const rpDate = document.createElement("span");
+							rpDate.innerText = item.createdate;
+							rpDate.setAttribute("class", "rpDate");
+							const rpContent = document.createElement("p");
+							rpContent.innerText = item.content;
+							rpContent.setAttribute("class", "rpContent");	
+							
+							
+							// 해당 유저가 쓴 댓글일 경우
+							if("${sessionScope.account.unum}" == String(item.unum)){
+								const replyController = document.createElement("div");
+								replyController.setAttribute("class", "replyController");
+								
+								// 수정 버튼
+								const rpModify = document.createElement("span");
+								rpModify.innerText = "수정";
+								rpModify.setAttribute("class", "rpModify");
+								
+								rpModify.addEventListener("click", function(){
+									
+									const editReply = document.createElement("div");
+									editReply.setAttribute("class", "editReply");
+									const editTA = document.createElement("textarea");
+									editTA.setAttribute("class", "editTA");
+									editTA.value = rpContent.innerText;
+									
+									const editController = document.createElement("div");
+									editController.setAttribute("class", "editController")
+									const editModify = document.createElement("span");
+									editModify.innerText = "수정완료";
+									editModify.setAttribute("class", "editModify");
+									const editCancel = document.createElement("span");
+									editCancel.innerText = "취소";
+									editCancel.setAttribute("class", "editCancel");
+									
+									editController.append(editModify);
+									editController.append(editCancel);
+									editReply.append(editTA);
+									editReply.append(editController);
+									
+									rpContent.after(editReply);
+									rpContent.style.display = "none";
+									replyController.style.display = "none";
+									
+								
+									// 취소 버튼 클릭 시 이벤트
+									editCancel.addEventListener("click", function(){
+										rpContent.style.display = "block";
+										replyController.style.display = "flex";									
+										editReply.remove();
+									});
+									
+									// 수정완료 버튼 클릭 시 이벤트
+									editModify.addEventListener("click", function(){
+										if(confirm("수정하시겠습니까?")){
+											let content = editTA.value;
+											
+											const modify_data = {content, rnum:item.rnum};
+											
+											$.ajax({
+												url:"${path}/reply/update",
+												type:"PATCH",
+												data:JSON.stringify(modify_data),
+												contentType : "application/json; charset=utf-8",
+												dataType : "json",
+												success:function(data){
+													console.log(data);
+													rpContent.innerText = data.content;
+													rpContent.style.display = "block";
+													replyController.style.display = "flex";
+													editReply.remove();
+												}
+											});
+										}
+									});
+								});
+								
+								replyController.append(rpModify);
+								
+								// 삭제 버튼
+								const rpDelete = document.createElement("span");
+								rpDelete.innerText = "삭제";
+								rpDelete.setAttribute("class", "rpDelete");
+								
+								rpDelete.addEventListener("click", function(){
+									let yn = confirm("삭제하시겠습니까?");
+									if(yn){
+										let reply_data = {rnum:item.rnum};
+										
+										$.ajax({
+											url:"${path}/reply/delete",
+											type:"DELETE",
+											data:JSON.stringify(reply_data),
+											contentType : "application/json; charset=utf-8",
+											dataType : "html",
+											success:function(data){
+												oneReply.remove();
+											}
+										});
+									}
+								});
+								
+								replyController.append(rpDelete);
+								
+								oneReply.append(replyController);
+								
+							}
+							oneReply.prepend(rpContent);
+							oneReply.prepend(rpDate);
+							oneReply.prepend(rpNickname);
+							
+							
+							
+							replyList.append(oneReply);
+						}
+					}
+				});
+			}
+   			
+			// 댓글 불러오기
+			getReplyList();
+   			
+   			// 댓글입력 클릭 시
+   			$("#putReply").click(function(){
+   				if("${sessionScope.account.unum}" == "") {
+   					alert("댓글작성은 로그인 후 가능합니다.");
+   				}else {
+   					let content = $("#reply").val();
+   					
+   					if(content.length > 0){
+   						
+   						if(confirm("댓글을 등록하시겠습니까?")) {
+   							let reply_data = {content, bnum :"${bbsVO.bnum}"};
+   	   						
+   	   						$.ajax({
+   	   							url:"${path}/reply/set",
+   	   							type:"POST",
+   	   							data:JSON.stringify(reply_data),
+   	   							contentType : "application/json; charset=utf-8",
+   	   							dataType : "json",
+   	   							success:function(data){
+   	   								getReplyList();
+   	   							}
+   	   						});
+   						}
+   						
+   					}else{
+   						alert("내용을 입력해주세요.");
+   					}
+   				}   				
+				
+			});
 			
 			
 		})

@@ -25,7 +25,7 @@ li {list-style-type: none;}
 #wrap {
 	width: 100%;
     max-width: 1200px;
-    margin: 0 auto;
+    margin: 0 auto 100px;
     padding: 30px;
 }
 
@@ -128,7 +128,7 @@ li {list-style-type: none;}
 	margin: 20px; 
 }
 #newReply {
-	margin: 0 20px 20px;
+	margin: 0 20px;
 }
 #reply {
 	display: block;
@@ -158,16 +158,16 @@ li {list-style-type: none;}
 
 #replyList {
 	margin: 0 20px;
-	background-color: #f8dfd3;
+	/* background-color: #f8dfd3; */
 	border-radius: 5px;
 }
 .oneReply {
 	padding: 15px;
 	border-bottom: 1px solid #e38d64;
 }
-#replyList .oneReply:last-child {
-	border-bottom: none;
-}
+/* #replyList .oneReply:first-child {
+	border-top: 1px solid #e38d64;
+} */
 .rpNickname {margin-left: 20px;}
 .rpNickname:hover {
 	cursor: pointer;
@@ -177,9 +177,9 @@ li {list-style-type: none;}
 .rpNickname,
 .rpDate {
 	margin-right: 20px;
+	color: #fc6a0a;
+	font-size: 1rem;	
 	font-weight: bold;
-	color: orangered;
-	font-size: 1.1rem;	
 }
 .rpContent {
 	display: block;
@@ -191,7 +191,7 @@ li {list-style-type: none;}
 .rpContent:focus {
 	outline: #e6502b;
 }
-.editReply div {
+.replyController {
 	display: flex;
 	justify-content: flex-end;		
 }
@@ -203,12 +203,26 @@ li {list-style-type: none;}
 	padding: 15px;
 	border-radius: 5px;
 	resize: none;
+	margin-top: 15px;
+	border: 2px solid #f2c9b5;
 }
 .editTA:focus {
 	outline: none;
 }
 .rpModify,
 .rpDelete {
+	cursor: pointer;
+	text-decoration: underline;
+	color: orangered;
+	font-weight: bold;
+	margin: 0 5px;
+}
+.editController {
+	display: flex;
+	justify-content: flex-end;		
+}
+.editModify,
+.editCancel {
 	cursor: pointer;
 	text-decoration: underline;
 	color: orangered;
