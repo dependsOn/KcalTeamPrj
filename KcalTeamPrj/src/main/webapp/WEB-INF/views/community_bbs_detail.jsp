@@ -49,11 +49,11 @@
 			<p id="content">
 				<c:out value="${bbsVO.content}" escapeXml="false" />
 			</p>
-			<span id="reccomend"><i class="fas fa-thumbs-up"></i>&nbsp;&nbsp;${bbsVO.recommend}</span>
+			<span id="recommend"><i class="fas fa-thumbs-up"></i>&nbsp;&nbsp;<span id="recommendCnt">${bbsVO.recommend}</span></span>
 			<span id="backToList"><i class="fas fa-list"></i>&nbsp;&nbsp;목록</span>
 		</div>
 		<div id="replyBox">
-			<p id="replyCnt">댓글</p>
+			<p id="replyCnt">댓글 ${replyCnt}개</p>
 			<div id="newReply">
 				<textarea rows="5" id="reply"></textarea>
 				<button id="putReply">댓글 등록</button>
@@ -268,6 +268,25 @@
 				
 			});
 			
+   			
+   			// 추천 클릭
+   			$("#recommend").click(function(){
+   				if("${sessionScope.account.unum}" == "") {
+   					alert("비회원은 추천이 불가능합니다.");
+   				}else {
+   					$.ajax({
+   						url:"${path}/bbs/recommend",
+   						type:"POST",
+   						data: { bnum : ${bbsVO.bnum} },
+   						success:function(data){
+   							if(data == "success") {
+   								let recommendCnt = Number($("#recommendCnt").text());
+   								$("#recommendCnt").text(recommendCnt + 1);
+   							}
+   						}
+   					});
+   				}
+   			})
 			
 		})
 	</script>

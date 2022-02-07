@@ -7,16 +7,20 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import service.CsService;
 import service.LetterService;
+import vo.CsqnaPagingVO;
 import vo.CsqnaVO;
 import vo.LetterVO;
 
@@ -31,15 +35,15 @@ public class CsController {
 	
 	@GetMapping("/goCs")
 	public String goCs(Model model,CsqnaVO vo) {
-		//1. ·Î±×ÀÎ ÇÑ È¸¿ø¸¸ ÀÛ¼º ÇÒ ¼ö ÀÖÀ½
-		//2. ·Î±×ÀÎ ¾ÈÇÑ È¸¿øÀÌ¸é ÀÌÀüÆäÀÌÁö·Î ÀÌµ¿
+		//1. ï¿½Î±ï¿½ï¿½ï¿½ ï¿½ï¿½ È¸ï¿½ï¿½ï¿½ï¿½ ï¿½Û¼ï¿½ ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+		//2. ï¿½Î±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ È¸ï¿½ï¿½ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½
 		
-		//CSService¿¡¼­ È£ÃâÇÑ selectCsqnaList ¸Þ¼ÒµåÀÇ µ¥ÀÌÅÍ ÇüÅÂ´Â CsqnaVO·Î µÇ¾îÀÖ¾î¼­ µ¥ÀÌÅÍ Å¸ÀÔÀ» µ¿ÀÏÇÏ°Ô ¸ÂÃçÁÖ±â À§ÇØ ¸Ç ¾Õ¿¡ CsqnaVO ÀÛ¼º 
-		CsqnaVO qnavo = csService.selectCsqnaList(vo);
-		List<CsqnaVO> volist = qnavo.getCsQnaList();
+		//CSServiceï¿½ï¿½ï¿½ï¿½ È£ï¿½ï¿½ï¿½ï¿½ selectCsqnaList ï¿½Þ¼Òµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Â´ï¿½ CsqnaVOï¿½ï¿½ ï¿½Ç¾ï¿½ï¿½Ö¾î¼­ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Å¸ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ö±ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Õ¿ï¿½ CsqnaVO ï¿½Û¼ï¿½ 
+//		CsqnaVO qnavo = csService.selectCsqnaList(vo);
+//		List<CsqnaVO> volist = qnavo.getCsQnaList();
 		
-		//model.addAttribute("¾à¾î",µ¥ÀÌÅÍ);
-		model.addAttribute("list",volist);
+		//model.addAttribute("ï¿½ï¿½ï¿½",ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½);
+//		model.addAttribute("list",volist);
 		return "cs";
 	}
 
@@ -54,6 +58,26 @@ public class CsController {
 		System.out.println(vo.getContents());		
 		csService.insertCsqna(vo);
 		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	@ResponseBody
+	@PostMapping("/csqnaList")
+	public ResponseEntity<CsqnaPagingVO> getBBSList(@RequestParam(defaultValue = "") String nickname, 
+												   @RequestParam(defaultValue = "1") int pageNum) {
+		CsqnaPagingVO csqnaList = csService.getCsqnaList(nickname, pageNum);
+		
+		ResponseEntity<CsqnaPagingVO> entity = new ResponseEntity<CsqnaPagingVO>(csqnaList, HttpStatus.OK); 
+		
+		return entity;
 	}
 	
 	

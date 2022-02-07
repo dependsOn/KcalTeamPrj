@@ -4,7 +4,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
+import vo.CsqnaPagingVO;
 import vo.CsqnaVO;
 
 
@@ -15,12 +15,12 @@ public class CsService {
 	SqlSessionTemplate sqlSessionTemplate;
 	
 	//@Autowired
-	//javaÆÄÀÏ ¶Ç´Â class ÆÄÀÏÀ» ÅëÀ¸·Î °¡Á®¿Í¼­ ±× ¾È¿¡ ÀÖ´Â ¸Þ¼Òµå¸¦ »ç¿ëÇÏ°í ½ÍÀ»¶§ @Autowired¸¦ ¼±¾ð ÇÑ µÚ ÀÚ¹ÙÆÄÀÏ ¶Ç´Â classÆÄÀÏ¸í ÀÛ¼º ÈÄ ¾à¾î(º°¸í)ÀÛ¼º
-	//MemberService -> java(¶Ç´Â class) ÆÄÀÏ¸í
-	//memberService - > ¾à¾î
+	//javaï¿½ï¿½ï¿½ï¿½ ï¿½Ç´ï¿½ class ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Í¼ï¿½ ï¿½ï¿½ ï¿½È¿ï¿½ ï¿½Ö´ï¿½ ï¿½Þ¼Òµå¸¦ ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ @Autowiredï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ ï¿½Ú¹ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ç´ï¿½ classï¿½ï¿½ï¿½Ï¸ï¿½ ï¿½Û¼ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½)ï¿½Û¼ï¿½
+	//MemberService -> java(ï¿½Ç´ï¿½ class) ï¿½ï¿½ï¿½Ï¸ï¿½
+	//memberService - > ï¿½ï¿½ï¿½
 	//MemberService memberSerivce;
 	
-	//Autowired ¼±¾ð ¾ÈÇÒ½Ã °¢ ¸Þ¼­µå¿¡ ¼±¾ðÀ» ÇØÁà¾ß ÇÔ
+	//Autowired ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ò½ï¿½ ï¿½ï¿½ ï¿½Þ¼ï¿½ï¿½å¿¡ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
 	
 	// 	ex) 
 	// 	public void insertCsqna(CsqnaVO vo) {
@@ -29,25 +29,55 @@ public class CsService {
 
 	
 	
-			//xml ¼±¾ðÇÑ csqna 
+			//xml ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ csqna 
 	public void insertCsqna(CsqnaVO vo) {
 		sqlSessionTemplate.insert("csqna.insertCsqna", vo);
 	}
 	
 	
-//CsqnaVO.javaÀÇ <List>ÀÇ VO         »ç¿ëÀÚ·ÎºÎÅÍ ¹ÞÀº VO
-	public CsqnaVO selectCsqnaList(CsqnaVO vo) {
+//CsqnaVO.javaï¿½ï¿½ <List>ï¿½ï¿½ VO         ï¿½ï¿½ï¿½ï¿½Ú·Îºï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ VO
+//	public CsqnaVO selectCsqnaList(CsqnaVO vo) {
 		
 		
 		
-		//³»°¡ Á¤ÇÏ´Â ¾à¾î qnaVO ³ª¸ÓÁö´Â ±×³É °ø½Ä ±×³É ¾²´Â°Í
-		CsqnaVO qnaVO = new CsqnaVO();
+		//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ qnaVO ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½×³ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½×³ï¿½ ï¿½ï¿½ï¿½Â°ï¿½
+//		CsqnaVO qnaVO = new CsqnaVO();
 		
-	//À§¿¡ ¾à¾î
-		qnaVO.setCsQnaList(sqlSessionTemplate.selectList("csqna.selectCsqnaList", vo));
+	//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
+//		qnaVO.setCsQnaList(sqlSessionTemplate.selectList("csqna.selectCsqnaList", vo));
+//		
+//		//ï¿½ï¿½Æ²ï¿½Î·ï¿½ 
+//		return qnaVO;
+//	}
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+	public CsqnaPagingVO getCsqnaList(String nickname, int pageNum) {
 		
-		//ÄÁÆ²·Î·¯ 
-		return qnaVO;
+		CsqnaVO cqvo = new CsqnaVO();
+		cqvo.setNickname(nickname);
+		cqvo.setStart((pageNum - 1) * cqvo.getCount());
+		
+		int postCnt = sqlSessionTemplate.selectOne("csqna.selectCsqnaCount", cqvo);
+		
+		CsqnaPagingVO cqpVO = new CsqnaPagingVO();
+		cqpVO.setCsqnaList(sqlSessionTemplate.selectList("csqna.selectCsqnaList", cqvo));
+		cqpVO.setPageNum(pageNum);
+		cqpVO.setPostCnt(postCnt);
+		cqpVO.setPageCnt(postCnt / 10 + ((postCnt % 10 == 0) ? 0 : 1));
+		cqpVO.setMinBlock((((pageNum - 1) / 5) * 5) + 1);
+		cqpVO.setMaxBlock(((pageNum - 1) / 5 + 1) * 5);
+		
+		return cqpVO;
 	}
 
 }

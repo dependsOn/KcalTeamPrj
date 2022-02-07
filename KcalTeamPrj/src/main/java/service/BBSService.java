@@ -70,7 +70,11 @@ public class BBSService {
 		sqlSessionTemplate.update("bbs.updateViewCnt", vo);
 		BBSVO vo2 = sqlSessionTemplate.selectOne("bbs.selectBBS", vo);
 		
+		int bnum = vo2.getBnum();
+		int replyCnt = sqlSessionTemplate.selectOne("reply.selectReplyCount", bnum);
+		
 		model.addAttribute("bbsVO", vo2);
+		model.addAttribute("replyCnt", replyCnt);
 	}
 
 	public void updateBBS(BBSVO vo, Model model) {
@@ -84,5 +88,15 @@ public class BBSService {
 		vo.setUnum(mvo.getUnum());
 		sqlSessionTemplate.delete("bbs.deleteBBS", vo);
 		
+	}
+
+	public String updateRecommend(int bnum) {	
+		String result = "";
+		int i = sqlSessionTemplate.update("updateRecommend", bnum);
+		if(i > 0) {
+			result = "success";
+		}
+		
+		return result;
 	}
 }

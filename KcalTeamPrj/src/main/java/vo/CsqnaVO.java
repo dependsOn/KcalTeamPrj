@@ -5,7 +5,7 @@ import java.util.List;
 public class CsqnaVO {
 	
 		//csqnaSeq = BIGINT�� �����߱⿡ int 
-	private int csqnaSeq;
+	private int csqna_seq;
 		// �������� �����̱⿡ String
 	private String nickname;
 	private String password;
@@ -22,15 +22,18 @@ public class CsqnaVO {
 		this.count = 10;
 	}
 	// �Ʒ��� getters and setters
-	public int getCsqnaSeq() {
-		return csqnaSeq;
+	public int getCsqna_seq() {
+		return csqna_seq;
 	}
-	public void setCsqnaSeq(int csqnaSeq) {
-		this.csqnaSeq = csqnaSeq;
+	
+	public void setCsqna_seq(int csqna_seq) {
+		this.csqna_seq = csqna_seq;
 	}
+	
 	public String getNickname() {
 		return nickname;
 	}
+
 	public void setNickname(String nickname) {
 		this.nickname = nickname;
 	}

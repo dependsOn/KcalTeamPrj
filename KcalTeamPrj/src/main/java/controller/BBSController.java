@@ -81,6 +81,13 @@ public class BBSController {
 		return "redirect:/community/bbs?category=" + category;
 	}
 	
+	@ResponseBody
+	@PostMapping("/recommend")
+	public String updateRecommend(int bnum) {
+		
+		return bbsService.updateRecommend(bnum);
+	}
+	
 	
 	
 }

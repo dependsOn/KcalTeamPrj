@@ -138,7 +138,21 @@
 				<div id="bbsPageBox"></div>
 			</div>
 
-			<div id="myAsk" class="content"></div>
+			<div id="myAsk" class="content">
+				<span id="askTitle">1:1 문의내역</span>
+				<table id="askCon">
+					<thead>
+						<tr>
+							<th>제목</th>
+							<th>작성자</th>
+						</tr>
+					</thead>
+					<tbody id="askListCon">
+						
+					</tbody>
+				</table>
+				<div id="askPageBox"></div>
+			</div>
 		</div>
 	</div>
 	
@@ -739,9 +753,146 @@
 	        	 location.href = "${path}/bbs/detail?bnum=" + $(this).data("bnum");
 	         })
 	         
+	         
+	         
+	         // 문의글 불러오는 함수
+	         let getQnaList = function(pageNum) {
+   				$("#askListCon").empty();
+	        	$("#askPageBox").empty();
+	        	const askListCon = document.querySelector("#askListCon");
+	        	const askPageBox = document.querySelector("#askPageBox");
+	        	
+	        	let data = {
+	        			"nickname" : "${sessionScope.account.nickname}",
+	        			"pageNum" : pageNum
+	        	}
+	        	
+	        	$.ajax({
+	        		url: "${path}/cs/csqnaList",
+	        		type: "POST",	
+	        		data: data,
+	                dataType : 'json',
+	        		success: function(data) {
+	        			
+	        			if(data.postCnt != 0) {
+
+			   	        	 for(let item of data.csqnaList) {
+			   		        	 const tr = document.createElement("tr");
+			   		        	 let titleTd = document.createElement("td");
+			   		        	 let nicknameTd = document.createElement("td");
+			   		        	 
+			   		        	 titleTd.setAttribute('data-seq', item.csqna_seq);
+			   		        	 titleTd.setAttribute('class', "csqnaTitle");
+			   		        	 
+			   		        	 titleTd.innerText = item.title;
+			   		        	 nicknameTd.innerText = item.nickname;
+			   		        	 
+			   		        	 tr.append(titleTd);
+			   		        	 tr.append(nicknameTd);
+			   	        		 
+			   		        	askListCon.append(tr);
+			   	        	 }
+			   	        	 
+			   	        	 
+			   	        	let preBlock = document.createElement("span");
+			   	        	 preBlock.innerHTML = '<i class="fas fa-angle-double-left"></i>';
+			   	        	 if(data.minBlock-1 >= 1) {
+			   	        		preBlock.setAttribute("class", "cqPreBlock");
+			   	        		preBlock.setAttribute("data-num", data.minBlock-1);
+			   	        	 }
+		   	        		 askPageBox.append(preBlock);
+			   	        	 
+			   	        	 let prePage = document.createElement("span");
+			   	        	 prePage.innerHTML = '<i class="fas fa-angle-left"></i>';
+			   	        	 if(data.pageNum != 1) {
+			   	        		prePage.setAttribute("class", "cqPrePage");
+			   	        		prePage.setAttribute("data-num", data.pageNum-1);
+			   	        	 }
+			   	        	askPageBox.append(prePage);
+		   	        		 
+		   	        		 let maxBlock = 0;
+		   	        		 if(data.pageCnt < data.maxBlock) {
+		   	        			 maxBlock = data.pageCnt;
+		   	        		 }else {
+		   	        			 maxBlock = data.maxBlock;
+		   	        		 }
+		   	        		
+		   	        		 for(let i = data.minBlock; i <= maxBlock; i++) {
+		   	        			 let page = document.createElement("span");
+		   	        			 page.innerText = i;
+		   	        			 page.setAttribute("class", "cqPageNum");
+		   	        			 page.setAttribute("data-num", i);
+		   	        			 if(i == data.pageNum) {
+		   	        				 page.style.fontWeight = "bold";
+		   	        				 page.style.color = "orangered";
+		   	        				 page.style.textDecoration = "underline";
+		   	        			 } 
+		   	        			askPageBox.append(page);
+		   	        		 }
+	
+		   	        		 let nextPage = document.createElement("span");
+			   	        	nextPage.innerHTML = '<i class="fas fa-angle-right"></i>';
+			   	        	 if(data.pageNum != data.pageCnt) {
+			   	        		nextPage.setAttribute("class", "cqNextPage");
+			   	        		nextPage.setAttribute("data-num", data.pageNum+1);
+			   	        	 }
+			   	        	askPageBox.append(nextPage);
+		   	        		 
+		   	        		let nextBlock = document.createElement("span");
+		   	        		nextBlock.innerHTML = '<i class="fas fa-angle-double-right"></i>';
+			   	        	 if(data.maxBlock < data.pageCnt) {
+			   	        		nextBlock.setAttribute("class", "cqNextBlock");
+			   	        		nextBlock.setAttribute("data-num", data.maxBlock+1);
+			   	        	 }
+			   	        	askPageBox.append(nextBlock);
+	        			}else {
+	        				const tr = document.createElement("tr");
+	        				const noneTd = document.createElement("td");
+	        				noneTd.setAttribute("colspan", "2");
+	        				noneTd.innerText = "작성글이 없습니다."; 
+	        				noneTd.style.textAlign = "center";
+	        				noneTd.style.height = "450px";
+	        				
+	        				tr.append(noneTd);
+	        				askListCon.append(tr);
+	        			}
+	   	        		 
+	        		},
+	        		error: function(data) {
+	        			alert("error");
+	        		}
+	        	})
+   			 }
 	        
+   			 
+	        getQnaList(1);
 	         
-	         
+	     	// 문의글 페이지 숫자 클릭시
+	        $(document).on('click', '.cqPageNum', function(){
+	        	getQnaList($(this).data("num"));
+   			})
+   			// 문의글 페이지블럭 <<
+   			 $(document).on('click', '.cqPreBlock', function(){
+   				getQnaList($(this).data("num"));
+   			 })
+   			// 문의글 페이지블럭 <
+   			 $(document).on('click', '.cqPrePage', function(){
+   				getQnaList($(this).data("num"));
+   			 })
+   			// 문의글 페이지블럭 >
+   			 $(document).on('click', '.cqNextPage', function(){
+   				getQnaList($(this).data("num"));
+   			 })
+   			// 문의글 페이지블럭 >>
+   			 $(document).on('click', '.cqNextBlock', function(){
+   				getQnaList($(this).data("num"));
+   			 })
+   			 
+   			 
+   			 // 문의글 제목 클릭
+	         $(document).on('click', '.csqnaTitle', function(){
+	        	 location.href = "${path}/cs/detail?csqna_seq=" + $(this).data("seq");
+	         })
 	        
 	    })
 	</script>

@@ -109,6 +109,9 @@
 	<update id="updateViewCnt" parameterType="bbsVO">
 		update bbs set view_cnt = view_cnt+1 where bnum = #{bnum}
 	</update>
+	<update id="updateRecommend" parameterType="int">
+		update bbs set recommend = recommend+1 where bnum = #{bnum}
+	</update>
 	
 	<delete id="deleteBBS" parameterType="bbsVO">
 		update bbs set isdelete='Y' 
