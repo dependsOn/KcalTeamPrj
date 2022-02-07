@@ -66,7 +66,7 @@
 	<script type="text/javascript">
 		$(function() {
 			CKEDITOR.replace('contents', {
-				width:870,
+				width:'100%',
 				height: 400,
 				resize_enabled : false,
 				toolbarCanCollapse : true,
