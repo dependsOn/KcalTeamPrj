@@ -178,6 +178,7 @@
 		   		        	 titleTd.setAttribute('data-bnum', item.bnum);
 		   		        	 titleTd.setAttribute('class', "bbsTitle");
 		   		        	 ownerTd.setAttribute('data-nickname', item.nickname);
+		   		        	 ownerTd.setAttribute('class', "owner");
 		   		        	 
 		   		        	 bnumTd.innerText = item.bnum;
 		   		        	 if(category != "emate") {
@@ -369,7 +370,13 @@
          // 게시물 제목클릭
          $(document).on('click', '.bbsTitle', function(){
         	let bnum = $(this).data("bnum");
-			location.href = "${path}/bbs/detail?bnum="+bnum;       	 
+			location.href = "${path}/bbs/detail?bnum=" + bnum;       	 
+         })
+         
+         // 게시물 작성자 클릭
+         $(document).on('click', '.owner', function(){
+        	let nickname = $(this).data("nickname");
+			location.href = "${path}/profile/main?nickname=" + nickname;       	 
          })
          
          // 공지 제목클릭

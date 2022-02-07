@@ -56,9 +56,11 @@ public class BBSService {
 		return bpvo;
 	}
 
-	public void insertBBS(BBSVO vo) {
+	public int insertBBS(BBSVO vo) {
 		sqlSessionTemplate.insert("bbs.insertBBS", vo);
-
+		int bnum = vo.getBnum();
+		
+		return bnum;
 	}
 
 	public void selectBBS(Model model, BBSVO vo) {

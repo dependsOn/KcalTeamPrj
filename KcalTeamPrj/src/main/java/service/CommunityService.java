@@ -19,7 +19,7 @@ public class CommunityService {
 		String referer = request.getHeader("Referer");
 		MemberVO vo1 = sqlSessionTemplate.selectOne("member.selectMemberOne", vo);
 		if((vo1 == null) || (vo1.getIsdelete().equals("Y"))) {
-			return "redirect:/community";
+			return "redirect:/community/main";
 		}else {
 			session.setAttribute("account", vo1);
 			return "redirect:" + referer;

@@ -75,9 +75,8 @@ public class BBSController {
 	@PostMapping("/create_result")
 	public String setBBSCreate(BBSVO vo, Model model) {
 		model.addAttribute("category", vo.getCategory());
-		
-		bbsService.insertBBS(vo);
-		return "community_bbs";
+		int bnum = bbsService.insertBBS(vo);
+		return "redirect:/bbs/detail?bnum=" + bnum;
 	}
 	
 	@GetMapping("/modify")
@@ -86,10 +85,11 @@ public class BBSController {
 		return "community_bbs_modify";
 	}
 	
-	@PostMapping("/community_modify_result")
+	@PostMapping("/modify_result")
 	public String modifyBBSResult(BBSVO vo, Model model) {
+		int bnum = vo.getBnum();
 		bbsService.updateBBS(vo, model);
-		return "community_bbs_detail";
+		return "redirect:/bbs/detail?bnum=" + bnum;
 	}
 	
 	

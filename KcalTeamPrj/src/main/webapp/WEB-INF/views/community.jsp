@@ -135,7 +135,7 @@
 
         <div class="bbsHotBox">
             <div class="bTitle">
-                <p>Hot 게시글</p>
+                <p>최신글</p>
             </div>
         </div>
 
@@ -143,7 +143,7 @@
             <ul>
                 <li class="bOne">
                     <p>자유게시판</p>
-                    <ul>
+                    <ul id="freeUL">
                         <li>나랑놀사람 ~~~알수없는 알고리즘    border: 1px solid black;    border: 1px solid black;    border: 1px solid black;    border: 1px solid black;    border: 1px solid black;</li>
                         <li>누가 나좀 살려줘 ~알수없는 알고리즘</li>
                         <li>내가 이구역 미친X알수없는 알고리즘</li>
@@ -153,7 +153,7 @@
                 </li>
                 <li class="bTwo">
                     <p>고민 & 질문</p>
-                    <ul>
+                    <ul id="questionUL">
                         <li>나랑놀사람 ~~~알수없는 알고리즘</li>
                         <li>누가 나좀 살려줘 ~알수없는 알고리즘</li>
                         <li>내가 이구역 미친X알수없는 알고리즘</li>
@@ -163,7 +163,7 @@
                 </li>
                 <li class="bThree">
                     <p>팁 & 노하우</p>
-                    <ul>
+                    <ul id="tipUL">
                         <li>나랑놀사람 ~~~알수없는 알고리즘</li>
                         <li>누가 나좀 살려줘 ~알수없는 알고리즘</li>
                         <li>내가 이구역 미친X알수없는 알고리즘</li>
@@ -173,7 +173,7 @@
                 </li>
                 <li>
                     <p>다이어트 후기</p>
-                    <ul>
+                    <ul id="reviewUL">
                         <li>나랑놀사람 ~~~알수없는 알고리즘</li>
                         <li>누가 나좀 살려줘 ~알수없는 알고리즘</li>
                         <li>내가 이구역 미친X알수없는 알고리즘</li>
@@ -242,6 +242,9 @@
 					location.href = '${path}/member/mypage?currTab=letter';
 			 });
 	         
+	         
+	         
+	         // 최신글
 		})
 	</script>
 </body>

@@ -14,10 +14,17 @@
 	src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 </head>
 <body>
-	<a href="${path}/kcal/mealTest">식단테스트</a>
+	<%-- <a href="${path}/kcal/mealTest">식단테스트</a> --%>
 	
 	<header>
-		
+		<div id="logo">
+			<img src="${path}/images/logoImg/logo.png" alt="로고">
+			<span>확찐자구조대</span>
+		</div>
+		<div id="header_r">
+			<span id="communityHome">커뮤니티홈</span>
+			<span id="myProfile">프로필</span>
+		</div>
 	</header>
 
 	<div id="mypageWrap">
@@ -167,6 +174,22 @@
 
 	<script type="text/javascript">
 		$(function(){
+			//로고 클릭
+			$("#logo").click(function(){
+				location.href = "${path}/index";
+			})
+			
+			// 커뮤니티홈 클릭
+	         $("#communityHome").click(function(){
+	        	 location.href = "${path}/community/main";
+	         })
+
+	         // 마이프로필 클릭
+	         $("#myProfile").click(function(){
+	        	 location.href = "${path}/profile/main?nickname=${sessionScope.account.nickname}";
+	         })
+	        
+			
 			$(".tab[data-tab='${currTab}']").addClass("selected");
             $("#${currTab}").addClass("selected");
 			
@@ -412,6 +435,12 @@
     		   $("#reply-content").val("");
 	       })
 	       
+	       // 쪽지함 리스트 닉네임 클릭
+	       $(document).on('click', '.lnickname', function(){
+	    	   location.href = "${path}/profile/main?nickname=" + $(this).data("nickname");
+	       })
+	       
+	       
 	        // 주소검색 클릭시 주소찾기 팝업
 	        $(".findAddr").click(function() {
 	            new daum.Postcode({
@@ -576,10 +605,11 @@
 			   		        	 let recommendTd = document.createElement("td");
 			   		        	 
 			   		        	 titleTd.setAttribute('data-bnum', item.bnum);
+			   		        	 titleTd.setAttribute('class', "bbsTitle");
 			   		        	 
-			   		        	 titleTd.innerText = item.title+item.bnum;
+			   		        	 titleTd.innerText = item.title;
 			   		        	 dateTd.innerText = item.createdate;
-			   		        	 viewTd.innerText = item.viewCnt;
+			   		        	 viewTd.innerText = item.view_cnt;
 			   		        	 recommendTd.innerText = item.recommend;
 			   		        	 
 			   		        	 tr.append(titleTd);
@@ -624,6 +654,7 @@
 		   	        			 page.setAttribute("data-category", category);
 		   	        			 if(i == data.pageNum) {
 		   	        				 page.style.fontWeight = "bold";
+		   	        				 page.style.color = "orangered";
 		   	        				 page.style.textDecoration = "underline";
 		   	        			 } 
 		   	        			bbsPageBox.append(page);
@@ -703,8 +734,14 @@
 	        	 getMyPost(tabId, 1);
 	         })
 	         
+	         // 작성글 제목 클릭
+	         $(document).on('click', '.bbsTitle', function(){
+	        	 location.href = "${path}/bbs/detail?bnum=" + $(this).data("bnum");
+	         })
+	         
 	        
-	        
+	         
+	         
 	        
 	    })
 	</script>

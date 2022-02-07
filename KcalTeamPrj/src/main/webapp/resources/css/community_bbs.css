@@ -90,6 +90,12 @@ li {list-style-type: none;}
 	width: 70px;
 }
 
+.owner:hover {
+	font-weight: bold;
+	color: orangered;
+	cursor: pointer;
+}
+
 .moreNotice {
 	font-size: 0.9rem;
 	color: orangered;

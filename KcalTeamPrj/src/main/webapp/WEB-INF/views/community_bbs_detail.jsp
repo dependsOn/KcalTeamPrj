@@ -33,7 +33,7 @@
 			</p>
 			<ul id="bbsInfo">
 				<li>
-					<a href="" id="ownerNickname">${bbsVO.nickname}</a>
+					<a href="${path}/profile/main?nickname=${bbsVO.nickname}" id="ownerNickname">${bbsVO.nickname}</a>
 					<span id="createdate">${bbsVO.createdate}</span>
 					<span id="viewCnt">조회수 ${bbsVO.view_cnt}</span>
 				</li>
@@ -84,7 +84,8 @@
    			
    			// 목록버튼 클릭
    			$("#backToList").click(function(){
-   				window.history.back();
+   				/* window.history.back(); */
+   				location.href = "${path}/community/bbs?category=${bbsVO.category}";
    			})
    			
 		})

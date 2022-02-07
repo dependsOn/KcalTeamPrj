@@ -120,7 +120,7 @@ li {list-style-type: none;}
 	border: 2px solid #E27451;
 }
 #inputFood:focus {
-	outline: 2px solid #E27451;
+	outline: none;
 }
 #searchFood {
 	background-color: #E27451;

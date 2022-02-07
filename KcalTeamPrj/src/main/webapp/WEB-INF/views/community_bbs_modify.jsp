@@ -19,13 +19,14 @@
 	<jsp:include page="community_header.jsp"></jsp:include>
 	
 	<div id="wrap">
-		<form action="${path}/bbs/create_result" method="post" id="modifyBBS">
+		<form action="${path}/bbs/modify_result" method="post" id="modifyBBS">
 			<ul>
 				<li>
 					<input type="hidden" id="unum" name="unum" value="${sessionScope.account.unum}">
 					<input type="hidden" id="bnum" name="bnum" value="${bbsVO.bnum}">
 				</li>
 				<li id="categoryCon">
+					
 					<span id="category">
 						<c:choose>
 							<c:when test="${bbsVO.category eq 'free'}">자유게시판</c:when>
@@ -76,7 +77,7 @@
 				}else if(CKEDITOR.instances.content.getData() == "") {
 					alert('내용을 입력해주세요.');
 				}else {
-					let chk = confirm("작성완료 하시겠습니까?"); 
+					let chk = confirm("수정하시겠습니까?"); 
 					if(chk) {
 						$("#modifyBBS").submit();
 					}
