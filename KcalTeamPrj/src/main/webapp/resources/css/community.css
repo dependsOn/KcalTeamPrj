@@ -390,8 +390,75 @@ input:focus {
     color: #fa7e40;
     margin-bottom: 10px;
 }
-
 .bbsBox {
+	width: 80%;
+	margin: 0 auto;
+	margin-bottom: 150px;
+	
+	display: flex;
+	flex-wrap: wrap;
+}
+.bbsBox > div {
+	padding: 0 20px;
+	display: inline-block;
+	width: 50%;
+	margin-bottom: 80px;
+	
+}
+.titleCon {
+	padding: 15px;
+	background-color: rgb(255, 215, 194);
+	
+	display: flex;
+	justify-content: space-between;
+	border-radius: 10px 10px 0 0;
+}
+.cateTitle {
+	font-size: 1.3rem;
+    font-weight: bold;
+    color: #586570;
+    width: 100%;
+    padding-left: 20px;
+}
+.more {
+	color: #586570;
+	font-size: 0.9rem;
+	display: inline-block;
+	font-weight: bold;
+	width: 80px;
+	display: flex;
+	align-items: center;
+}
+.more:hover {
+	color: #fa6f2c;
+	cursor: pointer;
+}
+
+
+.bbsBox ul {
+	padding: 0 10px;
+	border: 2px solid rgb(255, 215, 194);
+	border-top: none;
+	border-radius: 0 0 10px 10px;
+}
+.bbsBox ul li {
+	padding: 12px 10px;
+	border-bottom: 1px solid #ccc;
+	white-space: nowrap;
+ 	overflow: hidden;
+	text-overflow: ellipsis;
+	color: #464646;
+}
+.bbsBox ul li:last-child {
+	border-bottom: none;
+}
+.bbsBox ul li:hover {
+	font-weight: bold;
+	cursor: pointer;
+}
+
+
+/* .bbsBox {
     width: 80%;
     margin: 0 auto;
     margin-bottom: 150px;
@@ -448,4 +515,4 @@ input:focus {
 
 .bbsBox > ul > li > ul > li:hover {
     color: #fa7e40;
-}
+} */

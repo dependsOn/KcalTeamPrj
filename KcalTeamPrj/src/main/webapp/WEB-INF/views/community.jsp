@@ -140,48 +140,61 @@
         </div>
 
         <div class="bbsBox">
-            <ul>
-                <li class="bOne">
-                    <p>자유게시판</p>
-                    <ul id="freeUL">
-                        <li>나랑놀사람 ~~~알수없는 알고리즘    border: 1px solid black;    border: 1px solid black;    border: 1px solid black;    border: 1px solid black;    border: 1px solid black;</li>
-                        <li>누가 나좀 살려줘 ~알수없는 알고리즘</li>
-                        <li>내가 이구역 미친X알수없는 알고리즘</li>
-                        <li>알수없는 알고리즘알수없는 알고리즘</li>
-                        <li>따라알수없는 알고리즘</li>
-                    </ul>
-                </li>
-                <li class="bTwo">
-                    <p>고민 & 질문</p>
-                    <ul id="questionUL">
-                        <li>나랑놀사람 ~~~알수없는 알고리즘</li>
-                        <li>누가 나좀 살려줘 ~알수없는 알고리즘</li>
-                        <li>내가 이구역 미친X알수없는 알고리즘</li>
-                        <li>알수없는 알고리즘알수없는 알고리즘</li>
-                        <li>따라알수없는 알고리즘</li>
-                    </ul>
-                </li>
-                <li class="bThree">
-                    <p>팁 & 노하우</p>
-                    <ul id="tipUL">
-                        <li>나랑놀사람 ~~~알수없는 알고리즘</li>
-                        <li>누가 나좀 살려줘 ~알수없는 알고리즘</li>
-                        <li>내가 이구역 미친X알수없는 알고리즘</li>
-                        <li>알수없는 알고리즘알수없는 알고리즘</li>
-                        <li>따라알수없는 알고리즘</li>
-                    </ul>
-                </li>
-                <li>
-                    <p>다이어트 후기</p>
-                    <ul id="reviewUL">
-                        <li>나랑놀사람 ~~~알수없는 알고리즘</li>
-                        <li>누가 나좀 살려줘 ~알수없는 알고리즘</li>
-                        <li>내가 이구역 미친X알수없는 알고리즘</li>
-                        <li>알수없는 알고리즘알수없는 알고리즘</li>
-                        <li>따라알수없는 알고리즘</li>
-                    </ul>
-                </li>
-            </ul>
+        	<div id="free">
+        		<div class="titleCon">
+        			<span class="cateTitle">자유게시판</span>
+        			<span class="more" data-category="free">더보기&nbsp;<i class="fas fa-plus"></i></span>
+        		</div>
+        		<ul id="freeList">
+        			<li class="bbsTitle" data-bnum="${free[0].bnum}">${free[0].title}</li>
+        			<li class="bbsTitle" data-bnum="${free[1].bnum}">${free[1].title}</li>
+        			<li class="bbsTitle" data-bnum="${free[2].bnum}">${free[2].title}</li>
+        			<li class="bbsTitle" data-bnum="${free[3].bnum}">${free[3].title}</li>
+        			<li class="bbsTitle" data-bnum="${free[4].bnum}">${free[4].title}</li>
+        		</ul>
+        	</div>
+        	
+        	<div id="question">
+        		<div class="titleCon">
+        			<span class="cateTitle">고민&질문</span>
+        			<span class="more" data-category="question">더보기&nbsp;<i class="fas fa-plus"></i></span>
+        		</div>
+        		<ul id="questionList">
+        			<li class="bbsTitle" data-bnum="${question[0].bnum}">${question[0].title}</li>
+        			<li class="bbsTitle" data-bnum="${question[1].bnum}">${question[1].title}</li>
+        			<li class="bbsTitle" data-bnum="${question[2].bnum}">${question[2].title}</li>
+        			<li class="bbsTitle" data-bnum="${question[3].bnum}">${question[3].title}</li>
+        			<li class="bbsTitle" data-bnum="${question[4].bnum}">${question[4].title}</li>
+        		</ul>
+        	</div>
+        	
+        	<div id="tip">
+        		<div class="titleCon">
+        			<span class="cateTitle">팁&노하우</span>
+        			<span class="more" data-category="tip">더보기&nbsp;<i class="fas fa-plus"></i></span>
+        		</div>
+        		<ul id="tipList">
+        			<li class="bbsTitle" data-bnum="${tip[0].bnum}">${tip[0].title}</li>
+        			<li class="bbsTitle" data-bnum="${tip[1].bnum}">${tip[1].title}</li>
+        			<li class="bbsTitle" data-bnum="${tip[2].bnum}">${tip[2].title}</li>
+        			<li class="bbsTitle" data-bnum="${tip[3].bnum}">${tip[3].title}</li>
+        			<li class="bbsTitle" data-bnum="${tip[4].bnum}">${tip[4].title}</li>
+        		</ul>
+        	</div>
+        	
+        	<div id="review">
+        		<div class="titleCon">
+        			<span class="cateTitle">다이어트후기</span>
+        			<span class="more" data-category="review">더보기&nbsp;<i class="fas fa-plus"></i></span>
+        		</div>
+        		<ul id="freeList">
+        			<li class="bbsTitle" data-bnum="${review[0].bnum}">${review[0].title}</li>
+        			<li class="bbsTitle" data-bnum="${review[1].bnum}">${review[1].title}</li>
+        			<li class="bbsTitle" data-bnum="${review[2].bnum}">${review[2].title}</li>
+        			<li class="bbsTitle" data-bnum="${review[3].bnum}">${review[3].title}</li>
+        			<li class="bbsTitle" data-bnum="${review[4].bnum}">${review[4].title}</li>
+        		</ul>
+        	</div>
         </div>
         <jsp:include page="footer.jsp"></jsp:include>
 	</div>
@@ -244,7 +257,17 @@
 	         
 	         
 	         
-	         // 최신글
+	         // 최신글 더보기 클릭
+	         $(".more").click(function() {
+	        	 location.href = "${path}/community/bbs?category=" + $(this).data("category");
+	         })
+	         
+	         // 게시물 제목클릭
+        
+	         $(document).on('click', '.bbsTitle', function(){
+	        	 location.href = "${path}/bbs/detail?bnum=" + $(this).data("bnum");         
+	         })
+		
 		})
 	</script>
 </body>

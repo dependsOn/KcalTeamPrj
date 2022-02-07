@@ -73,8 +73,7 @@ body {
 }
 
 form > ul {
-    margin-top: 50px;
-    margin-left: 50px;
+    margin: 50px;
 }
 
 form > ul > li {
@@ -88,6 +87,10 @@ form > ul > li:nth-child(1) {
     margin-bottom: 50px;
 }
 
+form > ul > li:nth-child(3) {
+	display: flex;
+	justify-content: space-between;
+}
 
 form > ul > li:nth-child(4) {
     position: relative;
@@ -137,13 +140,16 @@ label {
 }
 
 #title {
-    width: 790px;
     height: 30px;
     color: dimgray;
     border: 1px solid #ccc;
     border-radius: 5px;
     margin-left: 46px;
-    
+    flex-grow: 1;
+}
+#titleLabel {
+	display: flex;
+	align-items: center;
 }
 
 input:focus {

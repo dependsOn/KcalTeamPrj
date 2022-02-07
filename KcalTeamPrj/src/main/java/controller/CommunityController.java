@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import service.BBSService;
 import service.CommunityService;
 import vo.MemberVO;
 
@@ -21,8 +22,8 @@ public class CommunityController {
 	CommunityService communityService;
 	
 	@GetMapping("/main")
-	public String goCommunity() {
-		
+	public String goCommunity(Model model) {
+		communityService.getRecentBBSList(model);
 		return "community";
 	}
 	
@@ -37,11 +38,4 @@ public class CommunityController {
 		
 		return communityService.isLogin(vo, session, request);
 	}
-	
-//	@GetMapping("/logout")
-//	public String logout(HttpSession session) {
-//		session.invalidate();
-//		
-//		return "community";
-//	}
 }

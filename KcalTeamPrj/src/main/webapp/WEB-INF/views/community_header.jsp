@@ -25,8 +25,8 @@
 				<li class="menuTab" data-category="emate">운동메이트</li>
 			</ul>
 		<div id="header_r">
-			<input type="text" name="searchALl" placeholder="검색어"/>
-			<button type="button" id="searchAllBtn"><i class="fas fa-search"></i></button>
+			<!-- <input type="text" name="searchALl" placeholder="검색어"/>
+			<button type="button" id="searchAllBtn"><i class="fas fa-search"></i></button> -->
 			<c:if test="${!empty sessionScope.account}">	          
 				<div id="user-login" class="user"><i class="fas fa-user fa-2x"></i></div>
 	        </c:if>
