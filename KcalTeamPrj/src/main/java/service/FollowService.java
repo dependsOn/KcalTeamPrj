@@ -1,5 +1,6 @@
 package service;
 
+import java.util.List;
 import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -28,12 +29,32 @@ public class FollowService {
 		
 	}
 	
-	public void getFollowerList(Model model, FollowVO fvo) {
-		model.addAttribute("followerList",sqlSessionTemplate.selectList("follow.followerList",fvo));
+	public void getFollowerList(Model model, FollowVO fvo, String accnick) {
+		
+		
+		List<FollowVO> fvoList=sqlSessionTemplate.selectList("follow.followerList",fvo);
+		String a = "false";
+		for (FollowVO item : fvoList) {
+		    if (item.getFollower_n().equals(accnick)) {
+		       a="true";
+		        break;
+		    }
+		}
+	     if(accnick.equals(fvo.getFollowee_n())) {
+	    	a="mine";
+	        
+	    }
+		
+		
+		
+		model.addAttribute("followcheck",a);
+		model.addAttribute("followerList",fvoList);
 	}
 	public void getFolloweeList(Model model, FollowVO fvo) {
+		
 		model.addAttribute("followeeList",sqlSessionTemplate.selectList("follow.followeeList",fvo));
 	}
+	
 	public void updateFollowImg(MemberVO mvo) {
 		FollowVO fvo1=new FollowVO();
 		FollowVO fvo2=new FollowVO();
@@ -50,6 +71,18 @@ public class FollowService {
 	public void deleteFollow(FollowVO vo) {
 		sqlSessionTemplate.delete("follow.deleteFollow",vo);
 		
+	}
+	public void selectfollowee(MemberVO evo,MemberVO rvo) {
+		   evo = sqlSessionTemplate.selectOne("member.selectMember",evo);
+		   FollowVO fvo=new FollowVO();
+		   fvo.setFollower(rvo.getUnum());
+		   fvo.setFollowee(evo.getUnum());
+		   fvo.setFollower_n(rvo.getNickname());
+		   fvo.setFollowee_n(evo.getNickname());
+		   fvo.setErimg_localname(rvo.getImg_localname());
+		   fvo.setErimg_servername(rvo.getImg_servername());
+		   fvo.setEeimg_localname(evo.getImg_localname());
+		   fvo.setEeimg_servername(evo.getImg_servername());
 	}
 	
 	

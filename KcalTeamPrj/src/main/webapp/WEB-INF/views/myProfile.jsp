@@ -9,276 +9,21 @@
 <meta charset="UTF-8">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="${path}/css/myprofile.css">
+	<script type="text/javascript" src="${path}/js/jquery-3.6.0.min.js"></script>
+
 
 <title>Insert title here</title>
 <style>
-body {
-	width: 80%;
-	margin: 0 auto;
-}
-
-#section2, #section3, #section4 {
-	display: none;
-}
-
-.radioBtn {
-	display: none;
-}
-
-ul {
-	list-style: none;
-}
-
-#profile {
-	display: flex;
-}
-
-#profileImg {
-	width: 100px;
-	height: 100px;
-	border: 1px solid black;
-	border-radius: 70%;
-	margin-left: 10vw;
-	background-size: contain;
-	background-repeat: no-repeat;
-	background-position: center;
-}
-
 .defaultImg {
 	background-Image: url('${path}/images/myprofile/default-profile.png')
-}
-
-#followDiv {
-	display: flex;
-}
-
-#profileEx {
-	margin-left: 5vw;
-}
-
-#menuBar {
-	display: flex;
-	padding: 0;
-	justify-content: space-between;
-}
-
-#menuBar li {
-	width: 25%;
-	text-align: center;
-	border: 1px solid black;
-}
-
-.menuBarH3 {
-	display: block;
-	margin: 0;
-	padding: 7% 0;
-}
-
-.main {
-	width: 90%;
-	margin: 0 auto;
-	border: 1px solid black;
-}
-
-ul {
-	list-style: none;
-}
-
-#modalOverlay {
-	width: 100%;
-	height: 100%;
-	position: absolute;
-	background-color: rgba(0, 0, 0, 0.5);
-	top: 0;
-	left: 0;
-	display: none;
-	z-index: 2;
-}
-
-.modal {
-	display: none;
-	position: absolute;
-	width: 400px;
-	height: 200px;
-	top: 30%;
-	left: 50%;
-	transform: translate(-50%, -70%);
-	border: 1px solid black;
-	z-index: 200;
-	background-color: white;
-}
-
-textarea {
-	resize: none;
-}
-
-.modalTitle {
-	text-align: center;
-}
-
-.hr {
-	background-color: gray;
-	width: 90%;
-	height: 2px;
-	margin: 0 auto;
-}
-
-.fa-times {
-	position: absolute;
-	top: 5%;
-	right: 5%;
-	font-size: 30px;
-}
-
-#profileDiv {
-	width: 90%;
-	margin: 0 auto;
-}
-
-#updateComment {
-	width: 350px;
-	margin: 0 auto;
-}
-
-#proImgPreview {
-	width: 60px;
-	height: 60px;
-	border-radius: 70%;
-	border: 1px solid black;
-	display: inline-block;
-	background-size: contain;
-	background-repeat: no-repeat;
-	background-position: center;
-}
-
-#profileImgSet {
-	display: none;
-}
-
-#profileImgSetLB {
-	border: 1px solid black;
-}
-
-#proImgDiv {
-	
-}
-
-#userpostUl {
-	display: grid;
-	grid-template-columns: repeat(2, 1fr);
-	padding: 0;
-}
-
-#userpostUl>li {
-	border: 1px solid black;
-	margin: 40px;
-}
-
-#imageModal {
-	text-align: center;
-	height: 700px;
-	display: none;
-	position: absolute;
-	width: 400px;
-	top: 30%;
-	left: 50%;
-	transform: translate(-50%, -30%);
-	border: 1px solid black;
-	z-index: 200;
-	background-color: white;
-}
-
-#imageModal>img {
-	width: 350px;
-	height: 500px;
-	object-fit: contain;
-}
-
-#wrapper {
-	position: relative;
-}
-
-#writeBtn {
-	position: absolute;
-	top: 2vh;
-	right: 5vw;
-}
-
-#writeDiv {
-	display: none;
-	position: absolute;
-	width: 100%;
-	height: 900px;
-	background-color: white;
-	top: 0;
-	left: 0;
-}
-
-.postImgDiv {
-	width: 100px;
-	height: 100px;
-	border: 1px solid black;
-	background: url('${path}/images/myprofile/default-profile.png');
-	background-size: contain;
-	background-repeat: no-repeat;
-	background-position: center;
-	margin-right: 15px;
-}
-
-.postfiles {
-	display: none;
-}
-
-#postfileUl {
-	display: flex;
-}
-
-#postThumbnailDf {
-	width: 150px;
-	height: 150px;
-	border: 1px solid black;
-	background: url('${path}/images/myprofile/default-profile.png');
-	background-size: contain;
-	background-repeat: no-repeat;
-	background-position: center;
-}
-
-#postThumbnail {
-	width: 150px;
-	height: 150px;
-	border: 1px solid black;
-	background-size: contain;
-	background-repeat: no-repeat;
-	background-position: center;
-}
-
-.followImg {
-	width: 60px;
-	height: 60px;
-	border-radius: 70%;
-	border: 1px solid black;
-	display: inline-block;
-	background-size: contain;
-	background-repeat: no-repeat;
-	background-position: center;
-}
-
-#followerModal, #followeeModal {
-	height: 700px;
-	overflow: scroll;
-	transform: translate(-50%, -30%);
-}
-
-.displayNone {
-	display: none;
 }
 </style>
 </head>
 
 <body>
-	<header> 헤더 </header>
+<div id="wrapper">
+	<jsp:include page="community_header.jsp"></jsp:include>
 
 	<div id="profile">
 
@@ -292,15 +37,24 @@ textarea {
 			<div>
 
 				<div>
-					<p style="display: inline-block;">${member.nickname}</p>
-					<i class="far fa-envelope"></i> <i class="fas fa-user-cog"
-						id="profileSet"></i>
+					<p id="usernick" style="display: inline-block;">${member.nickname}</p>
+					
+				    <c:if test="${sessionScope.account.nickname ne member.nickname}">
+				    <span><i class="far fa-envelope" id="messageModal"></i></span> 
+				    </c:if>
+					<c:if test="${sessionScope.account.nickname eq member.nickname}">
+					<span><i class="far fa-envelope" id="messageBtn"></i></span> 
+					<span id="profileSet">
+					<i class="fas fa-user-cog"></i>
+					</span>
+					</c:if>
+					
 				</div>
 			</div>
 			<div id="modalOverlay"></div>
 			<div id="followDiv">
-				<p id="followerBtn">팔로워 ${followerCnt}</p>
-				<p id="followeeBtn">팔로우 ${followeeCnt}</p>
+				<p class="followCnt" id="followerBtn">팔로워 ${followerCnt}</p>
+				<p class="followCnt" id="followeeBtn">팔로우 ${followeeCnt}</p>
 			</div>
 			<div>
 				<p>
@@ -313,7 +67,22 @@ textarea {
 				</p>
 			</div>
 		</div>
-
+	<div id="gofollowDiv">
+	
+	<c:choose>
+	<c:when test="${followcheck eq 'true' }">
+	<button id="followDeleteBtn">팔로우 취소</button>
+	</c:when>
+	<c:when test="${followcheck eq 'false' }">
+	<button id="followBtn">팔로우 하기</button>
+	</c:when>
+	<c:when test="${followcheck eq 'mine' }">
+	
+	</c:when>
+	
+	</c:choose>
+	
+	</div>
 	</div>
 
 	<div id="imageModal" class="modal">
@@ -325,13 +94,13 @@ textarea {
 		<c:if test="${!empty member.img_localname}">
 			<img src="${path}/images/myprofile/${member.img_servername}" alt="" />
 		</c:if>
-		<i class="fas fa-times"></i>
+		<span class="closeBtn"><i class="fas fa-times"></i></span>
 
 
 	</div>
 	<div id="followerModal" class="modal">
 		<h2 class="modalTitle">팔로워리스트</h2>
-		<i class="fas fa-times"></i>
+		<span class="closeBtn"><i class="fas fa-times"></i></span>
 		<div class="hr"></div>
 		<ul>
 			<c:forEach var="item" items="${followerList}">
@@ -348,7 +117,7 @@ textarea {
 	</div>
 	<div id="followeeModal" class="modal">
 		<h2 class="modalTitle">팔로우리스트</h2>
-		<i class="fas fa-times"></i>
+		<span class="closeBtn"><i class="fas fa-times"></i></span>
 		<div class="hr"></div>
 		<ul>
 			<c:forEach var="item" items="${followeeList}">
@@ -365,11 +134,10 @@ textarea {
 
 		</ul>
 	</div>
-	<div id="profileModal" class="modal"
-		style="height: 700px; transform: translate(-50%, -30%);">
+	<div id="profileModal" class="modal">
 		<div id="profileDiv">
 			<h2 class="modalTitle">프로필 설정</h2>
-			<i class="fas fa-times"></i>
+			<span class="closeBtn"><i class="fas fa-times"></i></span>
 			<div class="hr"></div>
 
 			<h3>프로필 사진</h3>
@@ -439,20 +207,32 @@ textarea {
 				<h3 class="menuBarH3">운동계획표</h3>
 		</label><input class="radioBtn" type="radio" name="menu" id="menu4" value=4></li>
 	</ul>
-	<div id="wrapper">
-		<!-- 게시물 작성 div -->
+	<!-- 게시물 클릭 시 뷰 -->
+<div id="postDetail" class="displayNone">
+			<h2 id="postTitleD"></h2>
+			<p id="postDateD"></p>
+			<div id="postImgD"></div>
+			<p id="postContentD"></p>
+			<div id="postVRD">
+				<button id="listBtn">목록보기</button>
+			</div>
+			</div>
+	
+	<!-- 게시물 작성 div -->
 		<div id="writeDiv">
-			<h3>게시물 작성</h3>
-			<h4>제목</h4>
+			<h3 id="wpWrite">게시물 작성</h3>
+			<h4 id="wpTitle">제목</h4>
 			<input name="postTitle" id="postTitle" type="text" />
-			<h4>게시글 공개 여부</h4>
+			
+			<h4 id="contenth4">내용</h4>
+			<textarea name="postContent" id="postContent" cols="120" rows="40"></textarea>
+			
+			<h4 id="wpYN">게시글 공개 여부</h4>
 			<label for="post_isopenY">Yes</label><input type="radio"
 				id="post_isopenY" name="post_isopen" value="Y" checked /> <label
 				for="post_isopenN">No</label><input type="radio" name="post_isopen"
 				id="post_isopenN" value="N" />
-			<h4>내용</h4>
-			<textarea name="postContent" id="postContent" cols="120" rows="40"></textarea>
-			<p>사진 파일은 최대 3개까지 가능합니다.</p>
+				<p>사진 파일은 최대 3개까지 가능합니다.</p>
 			<ul id="postfileUl">
 
 				<li><label for="postfile1"><div id="postfile1Img"
@@ -465,46 +245,40 @@ textarea {
 							class="postImgDiv"></div></label><input type="file" class="postfiles"
 					id="postfile3" /></li>
 			</ul>
+			<div id="postBtns">
 			<button id="postSave">글 작성</button>
 			<button id="postCancle">취소</button>
-
-		</div>
-		<!-- 게시물 클릭 시 뷰 -->
-		<div id="postDetail" class="displayNone">
-			<h2 id="postTitleD"></h2>
-			<p id="postDateD"></p>
-			<div id="postImgD"></div>
-			<p id="postContentD"></p>
-			<div id="postVRD">
-				<button id="listBtn">목록보기</button>
 			</div>
 
-
 		</div>
+	
+		
+		
 		<!-- 게시 -->
 		<section id="section1" class="main">
-			<button id="writeBtn">글쓰기</button>
+	<div id="section1Content">
+	<c:if test="${sessionScope.account.nickname eq member.nickname}">
+	        <button id="modifyBtn">수정하기<i class="fas fa-cog"></i></button>
+			<button id="writeBtn">글쓰기<i class="fas fa-pen"></i></button>
+			</c:if>
 			
-			<ul id="userpostUl">
 			
-			</ul>
 			<c:if test="${'N' eq member.p_isopen }">
 				<p>비공개입니다.</p>
 
 			</c:if>
 			<c:if test="${'Y' eq member.p_isopen}">
-				<c:if test="${empty userpostList}">
-					<p>게시물이 없습니다.</p>
-				</c:if>
-
-				<c:if test="${null ne userpostList}">
+				
 					<ul id="userpostUl">
 					</ul>
-				</c:if>
+
 			</c:if>
 			<div id="pageBox"></div>
 
+</div>
 
+
+		
 		</section>
 		<section id="section2" class="main">
 
@@ -523,7 +297,7 @@ textarea {
 
 
 
-	<footer></footer>
+	<jsp:include page="footer.jsp"></jsp:include>
 
 	<script type="text/javascript">
 		$(function() {
@@ -536,6 +310,7 @@ textarea {
 				$("#postDetail").hide();
 
 			});
+			
 			$("#profileImg").click(function(){
 				$("#modalOverlay").show();
 				$("#imageModal").show();
@@ -555,11 +330,11 @@ textarea {
 				$("#modalOverlay").show();
 				$("#profileModal").show();
 			});
-
-			$(".fa-times").click(function() {
+          /* modal x버튼 */
+			$(".closeBtn").click(function() {
 				$("#modalOverlay").hide();
 				$(".modal").hide();
-				$("#profileModal").load(location.reload());
+				  /* $("#profileModal").load(window.location.href+' #profileModal');   */
 				
 			});
 			$("#modalOverlay").click(function() {
@@ -632,7 +407,7 @@ textarea {
 			}
 			/*userpost 글쓰기 */
 			$("#writeBtn").click(function(){
-				$("#section1").hide();
+			    $("#section1").hide(); 
 				$("#writeDiv").show();
 			});
 			$("#postCancle").click(function(){
@@ -657,6 +432,49 @@ function readPostInputFile(input, id){
 
 				
 			}
+/* 게시물 클릭 시 */
+ $(document).on('click', '.userpostLi', function(){
+	$("#postImgD").empty();
+	$("#postDetail").show();
+	$("#section1").hide();
+	let pnumval=$(this).children().last().val();
+	let pnum={"pnum":pnumval};
+	$.ajax({
+		url:'${path}/post/userpostView',
+		type:"POST",
+		data: JSON.stringify(pnum),
+		contentType:"application/json; charset=utf-8;", 
+		
+		success: function(data){
+			
+			$("#postTitleD").html(data.title);
+	        $("#postDateD").html(data.createdate);
+	        $("#postContentD").html(data.content);
+	     
+			$.ajax({
+				url:'${path}/post/userpostViewImg',
+				type:"POST",
+				data: JSON.stringify(pnum),
+				contentType:"application/json; charset=utf-8;",
+				
+				success: function(data){
+					
+					$(data).each(function(){
+						
+						$("#postImgD").append("<img src='${path}/images/postfile/"+this.servername+"'></img>");
+						});
+				},
+				error: function(){
+					alert("stringify error");
+				}
+			});
+		},
+		error: function(){
+			alert("stringify error");
+		}
+	});  
+	});
+
 			/* 글 작성 버튼 */
 			$("#postSave").click(function(){
 				let userpost={
@@ -700,48 +518,7 @@ function readPostInputFile(input, id){
 			
 			});
 			
-			/* 게시물 클릭 시 */
-			$(".userpostDiv").click(function(){
-				$("#postImgD").empty();
-				$("#postDetail").show();
-				$("#section1").hide();
-				let pnumval=$(this).children().last().val();
-				let pnum={"pnum":pnumval};
-				$.ajax({
-					url:'${path}/post/userpostView',
-					type:"POST",
-					data: JSON.stringify(pnum),
-					contentType:"application/json; charset=utf-8;",
-					/* datatype: 'json' */
-					success: function(data){
-						
-						$("#postTitleD").html(data.title);
-				        $("#postDateD").html(data.createdate);
-				        $("#postContentD").html(data.content);
-				     
-						$.ajax({
-							url:'${path}/post/userpostViewImg',
-							type:"POST",
-							data: JSON.stringify(pnum),
-							contentType:"application/json; charset=utf-8;",
-							
-							success: function(data){
-								
-								$(data).each(function(){
-									
-									$("#postImgD").append("<img src='${path}/images/postfile/"+this.servername+"'></img>");
-									});
-							},
-							error: function(){
-								alert("stringify error");
-							}
-						});
-					},
-					error: function(){
-						alert("stringify error");
-					}
-				});
-			});
+		
 			$("#listBtn").click(function(){
 				$("#postDetail").hide();
 				$("#section1").show();
@@ -764,6 +541,7 @@ function readPostInputFile(input, id){
 					contentType:"application/json; charset=utf-8;",
 					/* datatype: 'json' */
 					success: function(){
+						
 					    
 					},
 					error: function(){
@@ -773,7 +551,7 @@ function readPostInputFile(input, id){
 			 
 
 		});
-        
+         /* 페이징 처리 후 게시물 보여주기 */
 			let getuserpostList=function(pageNum){
 				$("#userpostUl").empty();
 				
@@ -791,34 +569,81 @@ function readPostInputFile(input, id){
 		    		data: data,
 		            dataType : 'json',
 		    		success: function(data) {
-		    		
+		    		  if(data[0].pageCnt==0){
+		    			  const li= document.createElement("li");
+		    			  let title=document.createElement("h3");
+		    			  title.setAttribute("class","nopost");
+		    			  title.innerText="게시물이 없습니다."
+		    			  li.append(title);
+		    			  userpostUl.append(li);
+		    		  }else{
+		    			  
+		    		  
 		    			for(let item of data){             
 		    				
 		    				const li = document.createElement("li");
-		    				
 		    				let title=document.createElement("h3");
 		    				let createdate=document.createElement("p");
+		    				let flexWrap=document.createElement("div");
 		    				let postThumbnail=document.createElement("div");
+		    				let flexDiv=document.createElement("div");
+		    				let contentTitle=document.createElement("h3")
 		    				let content=document.createElement("p");
 		    				let viewrec=document.createElement("p");
+		    				let input=document.createElement("input");
+		    				let deleteBtn=document.createElement("span");
+		    				let modifyBtn=document.createElement("span");
+		    				
+		    				li.setAttribute("class","userpostLi");
+		    				if(item.servername==null){
+		    					 postThumbnail.setAttribute("style","background-Image:url('${path}/images/postfile/default-profile.png')");  
+		    				}else{
+		    					
+		    					 postThumbnail.setAttribute("style","background-Image:url('${path}/images/postfile/"+item.servername+"')");  	    				
+		                         				
+		    				}
+		    				
+		    				postThumbnail.setAttribute("class","postThumbnail");
 		    				
 		    				
-		    				 title.innerText = item.title;
-			   		         createdate.innerText = item.createdate;
-			   		         postThumbnail.innerText = item.servername;
+		    				title.innerText = item.title;
+		    				var timestamp=item.createdate;
+		    				var date = new Date(timestamp);
+		    				deleteBtn.innerHTML = '<i class="far fa-trash-alt userControll" id="postDeleteBtn"></i>';
+		    				modifyBtn.innerHTML = '<i class="fas fa-edit userControll" id="postModifyBtn"></i>';
+			   		         createdate.innerText = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
+			   		        contentTitle.innerText="게시물 내용";
 			   		         content.innerText = item.content;
-			   		         viewrec.innerText = "조회수 "+item.view_cnt+"추천수 "+item.recommend;
+			   		         viewrec.innerText = "조회수 "+item.view_cnt+" 추천수 "+item.recommend;
+			   		         
+			   		        flexDiv.append(contentTitle);
+			   		        flexDiv.append(content);
+			   		        /* flexDiv.append(viewrec); */
+			   		        flexWrap.append(postThumbnail);
+			   		        flexWrap.append(flexDiv);
+			   		        input.setAttribute("value",item.pnum);
+			   		        input.setAttribute("style","display:none");
+			   		      flexDiv.setAttribute("style","margin-left:40px; padding-top:10px"); 
+			   		     flexWrap.setAttribute("style","display:flex; margin-left:20px");
+			   		     title.setAttribute("style","margin:10px 5px 3px 20px");
+			   		   viewrec.setAttribute("style","position:absolute; right:10px; bottom:10px"); 
+			   		li.setAttribute("style","position:relative; z-index:2");
+			   		createdate.setAttribute("class","createdate");
 		    				
 			   		      li.append(title);
 			   		      li.append(createdate);
-			   		      li.append(postThumbnail);
-			   		      li.append(content);
+			   		      li.append(flexWrap);
 			   		      li.append(viewrec);
+			   		      li.append(deleteBtn);
+			   		      li.append(modifyBtn);
+			   		      /* input이 가장 마지막으로 append 해야함 */
+			   		      li.append(input);
+			   		   
 			   		   userpostUl.append(li);
                               }
 		    			
 		    			 let prePage = document.createElement("span");
-		   	        	 prePage.innerHTML = '<i class="fas fa-chevron-left"></i>';
+		   	        	 prePage.innerHTML = '<span class="leftBtn"><i class="fas fa-arrow-alt-circle-left pageBtn"></i></span>';
 		   	        	 if(pageNum != 1) {
 		   	        		prePage.setAttribute("class", "PrePage");
 		   	        		prePage.setAttribute("data-num", pageNum-1);
@@ -826,16 +651,19 @@ function readPostInputFile(input, id){
 		   	        		
 		   	        	 }
 	   	        		 pageBox.append(prePage);
+	   	        		 
 		    			
 		    			 let nextPage = document.createElement("span");
-			   	        	nextPage.innerHTML = '<i class="fas fa-chevron-right"></i>';
+			   	        	nextPage.innerHTML = '<span class="rightBtn"><i class="fas fa-arrow-alt-circle-right pageBtn"></i></span>';
 			   	        	 if(pageNum != data[0].pageCnt) {
 			   	        		nextPage.setAttribute("class", "NextPage");
 			   	        		nextPage.setAttribute("data-num", pageNum+1);
 			   	        		
 			   	        	 }
 			   	        	pageBox.append(nextPage);
-		    			 },
+			   	        	
+		    			 }
+		    		},
 		    		
 					error: function(){
 						alert("stringify error");
@@ -850,11 +678,48 @@ function readPostInputFile(input, id){
 			 $(document).on('click', '.NextPage', function(){
 				 getuserpostList($(this).data("num"));
 			 })
+			 
 			
 			getuserpostList(1);
+			 $("#modifyBtn").click(function(){
+            	 $(".userControll").toggle();
+				 
+			 });
 			
+			 $("#followBtn").click(function(){
+				 let followdata={"nickname":'${member.nickname}'}
+				 
+				 $.ajax({
+						url:'${path}/follow/signupfollow',
+						type:"POST",
+						data: JSON.stringify(followdata),
+						contentType:"application/json; charset=utf-8;",
+						/* datatype: 'json' */
+						success: function(){
+							
+						    
+						},
+						error: function(){
+							alert("stringify error");
+						}
+			 });
+			 });
+             $("#followDeleteBtn").click(function(){
+				 
+			 });
+             $("#messageBtn").click(function(){
+				 
+			 });
+             $("#messageModal").click(function(){
+				 
+			 });
+             
+              $(document).on('click', '#postDeleteBtn', function(){
+				 getuserpostList($(this).data("num"));
+			 });
 		    		
 		});
+		
 	</script>
 </body>
 

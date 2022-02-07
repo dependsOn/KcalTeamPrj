@@ -1,9 +1,12 @@
 package controller;
 
 import java.io.File;
+import java.lang.reflect.Member;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.context.annotation.SessionScope;
 import org.springframework.web.multipart.MultipartFile;
 
 import vo.FollowVO;
@@ -37,16 +41,21 @@ public class ProfileController {
 		PostService postService;
 
 		@GetMapping("profile/main")
-		public String test1(Model model,@RequestParam("nickname") String nickname){
+		public String test1(Model model,@RequestParam("nickname") String nickname, HttpSession session){
+			MemberVO memvo=(MemberVO) session.getAttribute("account");
+			
+			String accnick=memvo.getNickname();
+			
 		    FollowVO fvo=new FollowVO();
 		    MemberVO mvo=new MemberVO();
 		    mvo.setNickname(nickname);
 		    fvo.setFollower_n(nickname);
 		    fvo.setFollowee_n(nickname);
 			followService.getFollowCnt(model,fvo);
-			followService.getFollowerList(model,fvo);
+			followService.getFollowerList(model,fvo,accnick);
 			followService.getFolloweeList(model,fvo);
 			memberService.selectMember(model,mvo);
+			
 			return "myProfile";
 		}
 		// 게시물 페이징
@@ -106,7 +115,7 @@ public class ProfileController {
 		public String userpost(@RequestPart(value = "postfiles",required = false) MultipartFile[] fileList,
 				@RequestPart(value = "userpost") UserpostVO vo,
 				Model model) throws Exception{
-			String path="/Users/hwang-yeonghyeon/spring_eclipse/MVC-workspace/TestTeamProject/src/main/webapp/resources/images/postfile";
+			String path="/Users/hwang-yeonghyeon/git/KcalTeamPrj/KcalTeamPrj/src/main/webapp/resources/images/postfile";
 			int i=postService.setPost(vo);
 			
 			
@@ -160,5 +169,12 @@ public class ProfileController {
 		public void deleteFollow(@RequestBody FollowVO vo) {
 			
 			followService.deleteFollow(vo);
+		}
+		@PostMapping("follow/signupfollow")
+		@ResponseBody
+		public void signupFollow(@RequestBody MemberVO evo,HttpSession session) {
+			MemberVO rvo=(MemberVO) session.getAttribute("account");
+			
+			followService.selectfollowee(evo,rvo);
 		}
 }

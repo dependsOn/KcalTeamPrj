@@ -26,16 +26,29 @@ public class PostService{
 		UserpostVO pvo = new UserpostVO();
 		pvo.setUnum(usernum);
 		int postCnt =sqlSessionTemplate.selectOne("userpost.selectPostCnt", pvo);
-		int pageCnt=(postCnt / count + ((postCnt % count == 0) ? 0 : 1));
+		int pageCnt;
+	    if(postCnt<1) {
+	    	 pageCnt=0;
+	    	 List listNull = new ArrayList<Object>(); 
+	    	 Map<String, Object> map = new HashMap<String, Object>();
+
+	    	 map.put("pageCnt", pageCnt);
+	    	 listNull.add(map);
+	    	 return listNull;
+	    }else {
+	    	 pageCnt=(postCnt / count + ((postCnt % count == 0) ? 0 : 1));
+	    }
+		
 		pvo.setPageNumber(pageNum);
 		pvo.setCount(count);
 	    pvo.setStart((pageNum - 1) * pvo.getCount());
 	    
 	   
 		//pvo.setCreatedate(new SimpleDateFormat("yyyy-MM-dd", Locale.KOREA).format(new Date()));
-		List<Map<String, Object>> pvoList = sqlSessionTemplate.selectList("userpost.selectPost", pvo);
+	    List<Map<String, Object>> pvoList = sqlSessionTemplate.selectList("userpost.selectPost", pvo);
 		pvoList.get(0).put("pageCnt", pageCnt);
-for(int i=pvo.getStart(); i< pvoList.size(); i++ ) {
+		
+for(int i=0; i< pvoList.size(); i++ ) {
 	   int pnum =(int) pvoList.get(i).get("pnum"); 
 	   
 	  
