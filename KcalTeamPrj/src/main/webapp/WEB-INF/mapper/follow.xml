@@ -50,5 +50,13 @@
 	   
 	
 	</delete>
+	<update id="updateFollow" parameterType="followVO">
+	  
+	    insert into
+	      follow(follower, followee, follower_n, followee_n, eeimg_localname, eeimg_servername, erimg_localname, erimg_servername)
+	      values(#{follower}, #{followee}, #{follower_n}, #{followee_n},#{eeimg_localname},#{eeimg_servername}, #{erimg_localname},#{erimg_servername}  )
+	      
+	</update>
+	
 	
 </mapper>

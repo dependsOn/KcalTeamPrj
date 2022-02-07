@@ -83,6 +83,7 @@ public class FollowService {
 		   fvo.setErimg_servername(rvo.getImg_servername());
 		   fvo.setEeimg_localname(evo.getImg_localname());
 		   fvo.setEeimg_servername(evo.getImg_servername());
+		   sqlSessionTemplate.insert("follow.updateFollow",fvo);
 	}
 	
 	

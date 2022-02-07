@@ -255,12 +255,13 @@
 		
 		
 		<!-- 게시 -->
+		<c:choose>
+		<c:when test="${sessionScope.account.nickname ne member.nickname}">
 		<section id="section1" class="main">
 	<div id="section1Content">
-	<c:if test="${sessionScope.account.nickname eq member.nickname}">
-	        <button id="modifyBtn">수정하기<i class="fas fa-cog"></i></button>
-			<button id="writeBtn">글쓰기<i class="fas fa-pen"></i></button>
-			</c:if>
+	
+	       
+			
 			
 			
 			<c:if test="${'N' eq member.p_isopen }">
@@ -274,12 +275,21 @@
 
 			</c:if>
 			<div id="pageBox"></div>
-
 </div>
-
-
-		
+	
 		</section>
+		</c:when>
+		<c:when test="${sessionScope.account.nickname eq member.nickname}">
+		<section id="section1" class="main">
+		 <button id="modifyBtn">수정하기<i class="fas fa-cog"></i></button>
+			<button id="writeBtn">글쓰기<i class="fas fa-pen"></i></button>
+		<ul id="userpostUl">
+					</ul>
+			<div id="pageBox"></div>
+		</section>
+		
+		</c:when>
+		</c:choose>
 		<section id="section2" class="main">
 
 			<p>91022</p>
@@ -540,9 +550,13 @@ function readPostInputFile(input, id){
 					data: JSON.stringify(deletefollow),
 					contentType:"application/json; charset=utf-8;",
 					/* datatype: 'json' */
-					success: function(){
-						
-					    
+					success: function(result){
+ 						if (result=="success") {
+	                        /*   alert("팔로우가 삭제되었습니다.");
+	   						location.reload(); */
+	                      }else{
+	                    	  alert("ERROR");
+	                      }
 					},
 					error: function(){
 						alert("stringify error");
@@ -695,8 +709,13 @@ function readPostInputFile(input, id){
 						data: JSON.stringify(followdata),
 						contentType:"application/json; charset=utf-8;",
 						/* datatype: 'json' */
-						success: function(){
-							
+						success:function(result) {
+		                      if (result=="success") {
+		                          alert("팔로우 신청이 완료되었습니다.");
+		   						location.reload();
+		                      }else{
+		                    	  alert("ERROR");
+		                      }
 						    
 						},
 						error: function(){
@@ -705,6 +724,32 @@ function readPostInputFile(input, id){
 			 });
 			 });
              $("#followDeleteBtn").click(function(){
+
+ 				let deletefollow={
+ 						"follower_n":'${sessionScope.account.nickname}',
+ 						"followee_n":'${member.nickname}'
+ 						}
+ 				
+ 				
+ 				$.ajax({
+ 					url:'${path}/follow/deletefollow',
+ 					type:"POST",
+ 					data: JSON.stringify(deletefollow),
+ 					contentType:"application/json; charset=utf-8;",
+ 					/* datatype: 'json' */
+ 					success: function(result){
+ 						if (result=="success") {
+	                          alert("팔로우가 삭제되었습니다.");
+	   						location.reload();
+	                      }else{
+	                    	  alert("ERROR");
+	                      }
+ 					    
+ 					},
+ 					error: function(){
+ 						alert("stringify error");
+ 					}
+ 			})
 				 
 			 });
              $("#messageBtn").click(function(){
@@ -715,7 +760,7 @@ function readPostInputFile(input, id){
 			 });
              
               $(document).on('click', '#postDeleteBtn', function(){
-				 getuserpostList($(this).data("num"));
+				 
 			 });
 		    		
 		});
