@@ -36,7 +36,14 @@
 		</div>
 		<div class="userBox ubLogin">
 			<span id="ubLoginClose"><i class="fas fa-times"></i></span>
-			<div id="userImg"></div>
+			<div id="userImg">
+				<c:if test="${empty sessionScope.account.img_servername}">
+                		<img src="${path}/images/myprofile/default-profile.png" alt="" />
+                </c:if>
+                <c:if test="${!empty sessionScope.account.img_servername}">
+                		<img src="${path}/images/myprofile/${sessionScope.account.img_servername}" alt="" />
+                </c:if> 
+			</div>
 			<div id="userInfo">
 				<span id="nickname">${sessionScope.account.nickname}</span>
 				<span id="letterBox"><i class="fas fa-envelope"></i></span>
@@ -115,6 +122,7 @@
 			$(document).on('click', '.signup', function(){
 				location.href = "${path}/member/createMember";
 			})
+			
 			
 		})	
 	</script>

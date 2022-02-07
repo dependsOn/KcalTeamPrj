@@ -62,10 +62,10 @@
                 
 	                <div class="profileLine">
 	                    <div class="profileImage">
-		                    <c:if test="${empty sessionScope.account.img_localname}">
-		                        <img src="${path}/images/postfile/default-profile.png" alt="">
+		                    <c:if test="${empty sessionScope.account}">
+		                        <img src="${path}/images/myprofile/default-profile.png" alt="">
 	                        </c:if>
-	                        <c:if test="${!empty sessionScope.account.img_localname}">
+	                        <c:if test="${!empty sessionScope.account}">
 		                        <img src="${path}/images/myprofile/${sessionScope.account.img_servername}" alt="">
 	                        </c:if>
 	                    </div>
@@ -88,12 +88,14 @@
         <div class="peopleList">
             <ul>
                 <li class="randomProfile" data-nickname="${randomList[0].nickname}">
-                	<c:if test="${empty randomList[0].img_servername}">
-                		<img src="${path}/images/myprofile/default-profile.png" alt="" />
-                	</c:if>
-                	<c:if test="${!empty randomList[0].img_servername}">
-                		<img src="${path}/images/myprofile/${randomList[0].img_servername}" alt="" />
-                	</c:if>                
+                	<span class="rprofileImg">
+	                	<c:if test="${empty randomList[0].img_servername}">
+	                		<img src="${path}/images/myprofile/default-profile.png" alt="" />
+	                	</c:if>
+	                	<c:if test="${!empty randomList[0].img_servername}">
+	                		<img src="${path}/images/myprofile/${randomList[0].img_servername}" alt="" />
+	                	</c:if>  
+                	</span>              
                     <p>${randomList[0].nickname}</p>
                     <ul>
                         <li>팔로우<span> ${randomList[0].followingCnt}</span></li>
@@ -101,12 +103,14 @@
                     </ul>
                 </li>
                 <li class="randomProfile" data-nickname="${randomList[1].nickname}">
-                    <c:if test="${empty randomList[1].img_servername}">
-                		<img src="${path}/images/myprofile/default-profile.png" alt="" />
-                	</c:if>
-                	<c:if test="${!empty randomList[1].img_servername}">
-                		<img src="${path}/images/myprofile/${randomList[1].img_servername}" alt="" />
-                	</c:if>                
+                	<span class="rprofileImg">
+	                    <c:if test="${empty randomList[1].img_servername}">
+	                		<img src="${path}/images/myprofile/default-profile.png" alt="" />
+	                	</c:if>
+	                	<c:if test="${!empty randomList[1].img_servername}">
+	                		<img src="${path}/images/myprofile/${randomList[1].img_servername}" alt="" />
+	                	</c:if>  
+	                </span>              
                     <p>${randomList[1].nickname}</p>
                     <ul>
                         <li>팔로우<span> ${randomList[1].followingCnt}</span></li>
@@ -114,12 +118,14 @@
                     </ul>
                 </li>
                 <li class="randomProfile" data-nickname="${randomList[2].nickname}">
-                    <c:if test="${empty randomList[2].img_servername}">
-                		<img src="${path}/images/myprofile/default-profile.png" alt="" />
-                	</c:if>
-                	<c:if test="${!empty randomList[2].img_servername}">
-                		<img src="${path}/images/myprofile/${randomList[2].img_servername}" alt="" />
-                	</c:if>                
+                	<span class="rprofileImg">
+	                    <c:if test="${empty randomList[2].img_servername}">
+	                		<img src="${path}/images/myprofile/default-profile.png" alt="" />
+	                	</c:if>
+	                	<c:if test="${!empty randomList[2].img_servername}">
+	                		<img src="${path}/images/myprofile/${randomList[2].img_servername}" alt="" />
+	                	</c:if>
+	                </span>                
                     <p>${randomList[2].nickname}</p>
                     <ul>
                         <li>팔로우<span> ${randomList[2].followingCnt}</span></li>
@@ -127,12 +133,14 @@
                     </ul>
                 </li>
                 <li class="randomProfile" data-nickname="${randomList[3].nickname}">
-                    <c:if test="${empty randomList[3].img_servername}">
-                		<img src="${path}/images/myprofile/default-profile.png" alt="" />
-                	</c:if>
-                	<c:if test="${!empty randomList[3].img_servername}">
-                		<img src="${path}/images/myprofile/${randomList[3].img_servername}" alt="" />
-                	</c:if>                
+                	<span class="rprofileImg">
+	                    <c:if test="${empty randomList[3].img_servername}">
+	                		<img src="${path}/images/myprofile/default-profile.png" alt="" />
+	                	</c:if>
+	                	<c:if test="${!empty randomList[3].img_servername}">
+	                		<img src="${path}/images/myprofile/${randomList[3].img_servername}" alt="" />
+	                	</c:if>  
+	                </span>              
                     <p>${randomList[3].nickname}</p>
                     <ul>
                         <li>팔로우<span> ${randomList[3].followingCnt}</span></li>
@@ -140,12 +148,14 @@
                     </ul>
                 </li>
                 <li class="randomProfile" data-nickname="${randomList[4].nickname}">
-                    <c:if test="${empty randomList[4].img_servername}">
-                		<img src="${path}/images/myprofile/default-profile.png" alt="" />
-                	</c:if>
-                	<c:if test="${!empty randomList[4].img_servername}">
-                		<img src="${path}/images/myprofile/${randomList[4].img_servername}" alt="" />
-                	</c:if>                
+                	<span class="rprofileImg">
+	                    <c:if test="${empty randomList[4].img_servername}">
+	                		<img src="${path}/images/myprofile/default-profile.png" alt="" />
+	                	</c:if>
+	                	<c:if test="${!empty randomList[4].img_servername}">
+	                		<img src="${path}/images/myprofile/${randomList[4].img_servername}" alt="" />
+	                	</c:if> 
+	                </span>               
                     <p>${randomList[4].nickname}</p>
                     <ul>
                         <li>팔로우<span> ${randomList[4].followingCnt}</span></li>
@@ -153,12 +163,14 @@
                     </ul>
                 </li>
                 <li class="randomProfile" data-nickname="${randomList[5].nickname}">
-                    <c:if test="${empty randomList[5].img_servername}">
-                		<img src="${path}/images/myprofile/default-profile.png" alt="" />
-                	</c:if>
-                	<c:if test="${!empty randomList[5].img_servername}">
-                		<img src="${path}/images/myprofile/${randomList[5].img_servername}" alt="" />
-                	</c:if>                
+                	<span class="rprofileImg">
+	                    <c:if test="${empty randomList[5].img_servername}">
+	                		<img src="${path}/images/myprofile/default-profile.png" alt="" />
+	                	</c:if>
+	                	<c:if test="${!empty randomList[5].img_servername}">
+	                		<img src="${path}/images/myprofile/${randomList[5].img_servername}" alt="" />
+	                	</c:if>
+	                </span>                
                     <p>${randomList[5].nickname}</p>
                     <ul>
                         <li>팔로우<span> ${randomList[5].followingCnt}</span></li>
