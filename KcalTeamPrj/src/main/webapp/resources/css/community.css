@@ -366,6 +366,7 @@ input:focus {
 	height: 70px;
 	overflow:hidden;
 	border-radius: 50%;
+    margin-bottom: 15px;
 }
 
 .rprofileImg img {
