@@ -14,7 +14,7 @@
 		<typeAlias type="vo.MealinfoVO" alias="mInfoVO"/>
 		<typeAlias type="vo.FollowVO" alias="followVO"/> 
 		<typeAlias type="vo.UserpostVO" alias="userpostVO"/>
-		<typeAlias type="vo.PostfileVO" alias="postfileVO"/>
-		
+		<typeAlias type="vo.PostfileVO" alias="postfileVO"/>		
+		<typeAlias type="vo.BBSReplyVO" alias="replyVO"/>		
 	</typeAliases>
 </configuration>
