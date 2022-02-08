@@ -90,6 +90,7 @@
 		on b.bnum = r.bnum
 		where b.isdelete = 'N'
 		and b.bnum = #{bnum}
+		AND r.isdelete = 'N'
 	</select>
 	
 	<insert id="insertBBS" parameterType="bbsVO"

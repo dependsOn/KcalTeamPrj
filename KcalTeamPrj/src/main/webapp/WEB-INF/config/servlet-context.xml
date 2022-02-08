@@ -39,6 +39,18 @@
 	
 	<!-- 정적파일 경로 세팅 -->
 	<resources location="/resources/" mapping="/**"></resources>
+	
+	
+	
+	
+	<!--  -->
+	<interceptors>
+		<interceptor>
+			<mapping path="/profile/**"/>
+			<beans:bean class="interceptor.ProfileInterceptor"/>
+		</interceptor>
+	</interceptors>
+	
 </beans:beans>
 
 

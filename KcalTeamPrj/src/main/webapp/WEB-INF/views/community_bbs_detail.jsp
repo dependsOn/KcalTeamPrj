@@ -106,6 +106,7 @@
 					dataType : "json",
 					success : function(data){
 						console.log(data);
+						$("#replyList").empty();
 						const replyList = document.querySelector("#replyList");
 						for(const item of data){						
 							
@@ -256,6 +257,8 @@
    	   							contentType : "application/json; charset=utf-8",
    	   							dataType : "json",
    	   							success:function(data){
+   	   								$("#reply").val("");
+   	   								$("#replyList").empty();
    	   								getReplyList();
    	   							}
    	   						});
