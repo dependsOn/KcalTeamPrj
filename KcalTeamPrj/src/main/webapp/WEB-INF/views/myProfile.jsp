@@ -9,9 +9,21 @@
 <meta charset="UTF-8">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
-	<link rel="stylesheet" href="${path}/css/meal_test.css"/>
-	<link rel="stylesheet" type="text/css" href="${path}/css/myprofile.css">
-	<script type="text/javascript" src="${path}/js/jquery-3.6.0.min.js"></script>
+<link rel="stylesheet" href="${path}/css/default.css" />
+<link rel="stylesheet" type="text/css"
+	href="${path}/css/myProfile_re.css">
+<link
+	href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap"
+	rel="stylesheet">
+<link rel="stylesheet"
+	href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
+<script src="https://kit.fontawesome.com/604dbbab30.js"
+	crossorigin="anonymous"></script>
+<link rel="stylesheet" href="${path}/css/meal_test.css" />
+<link rel="stylesheet" type="text/css" href="${path}/css/myprofile.css">
+<script type="text/javascript" src="${path}/js/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
 
 <title>Insert title here</title>
@@ -23,209 +35,220 @@
 </head>
 
 <body>
-<jsp:include page="community_header.jsp"></jsp:include>
-<div id="wrapper">
-	
+	<jsp:include page="community_header.jsp"></jsp:include>
+	<div id="wrapper">
 
-	<div id="profile">
 
-		<div id="profileImg"
-			<c:if test="${empty member.img_localname}">class="defaultImg"</c:if>
-			<c:if test="${!empty member.img_localname}">style="background:url('${path}/images/myprofile/${member.img_servername}') no-repeat center center; background-size:contain;"
+		<div id="profile">
+
+			<div id="profileImg"
+				<c:if test="${empty member.img_localname}">class="defaultImg"</c:if>
+				<c:if test="${!empty member.img_localname}">style="background:url('${path}/images/myprofile/${member.img_servername}') no-repeat center center; background-size:contain;"
 			 </c:if>></div>
 
 
-		<div id="profileEx">
-			<div>
-
+			<div id="profileEx">
 				<div>
-					<p id="usernick" style="display: inline-block;">${member.nickname}</p>
-					
-				    <c:if test="${sessionScope.account.nickname ne member.nickname}">
-				    <span id="messageModal"><i  class="fas fa-comments messageBtns"></i></span> 
-				    </c:if>
-					<c:if test="${sessionScope.account.nickname eq member.nickname}">
-					<span id="messageBtn"><i class="far fa-envelope messageBtns" ></i></span> 
-					<span id="profileSet">
-					<i class="fas fa-user-cog"></i>
-					</span>
-					</c:if>
-					
+
+					<div>
+						<p id="usernick" style="display: inline-block;">${member.nickname}</p>
+
+						<c:if test="${sessionScope.account.nickname ne member.nickname}">
+							<span id="messageModal"><i
+								class="fas fa-comments messageBtns"></i></span>
+						</c:if>
+						<c:if test="${sessionScope.account.nickname eq member.nickname}">
+							<span id="messageBtn"><i
+								class="far fa-envelope messageBtns"></i></span>
+							<span id="profileSet"> <i class="fas fa-user-cog"></i>
+							</span>
+						</c:if>
+
+					</div>
 				</div>
-			</div>
-			<div id="modalOverlay"></div>
-			<div id="followDiv">
-				<p class="followCnt" id="followerBtn">팔로워 ${followerCnt}</p>
-				<p class="followCnt" id="followeeBtn">팔로우 ${followeeCnt}</p>
-			</div>
-			<div>
-				<p>
-					<c:if test="${null eq member.comment}">
+				<div id="modalOverlay"></div>
+				<div id="followDiv">
+					<p class="followCnt" id="followerBtn">팔로워 ${followerCnt}</p>
+					<p class="followCnt" id="followeeBtn">팔로우 ${followeeCnt}</p>
+				</div>
+				<div>
+					<p>
+						<c:if test="${null eq member.comment}">
                         자기소개가 없습니다.
                     </c:if>
-					<c:if test="${null ne member.comment}">
+						<c:if test="${null ne member.comment}">
                         ${member.comment}
                     </c:if>
-				</p>
+					</p>
+				</div>
+			</div>
+			<div id="gofollowDiv">
+
+				<c:choose>
+					<c:when test="${followcheck eq 'true' }">
+						<button id="followDeleteBtn">팔로우 취소</button>
+					</c:when>
+					<c:when test="${followcheck eq 'false' }">
+						<button id="followBtn">팔로우 하기</button>
+					</c:when>
+					<c:when test="${followcheck eq 'mine' }">
+
+					</c:when>
+
+				</c:choose>
+
 			</div>
 		</div>
-	<div id="gofollowDiv">
-	
-	<c:choose>
-	<c:when test="${followcheck eq 'true' }">
-	<button id="followDeleteBtn">팔로우 취소</button>
-	</c:when>
-	<c:when test="${followcheck eq 'false' }">
-	<button id="followBtn">팔로우 하기</button>
-	</c:when>
-	<c:when test="${followcheck eq 'mine' }">
-	
-	</c:when>
-	
-	</c:choose>
-	
-	</div>
-	</div>
-	<div id="imageModal" class="modal">
+		
+		
+		
+		
+		<div id="imageModal" class="modal">
 
-		<c:if test="${empty member.img_localname}">
-			<img src="${path}/images/myprofile/default-profile.png" alt="" />
+			<c:if test="${empty member.img_localname}">
+				<img src="${path}/images/myprofile/default-profile.png" alt="" />
 
-		</c:if>
-		<c:if test="${!empty member.img_localname}">
-			<img src="${path}/images/myprofile/${member.img_servername}" alt="" />
-		</c:if>
-		<span class="closeBtn"><i class="far fa-times-circle"></i></span>
+			</c:if>
+			<c:if test="${!empty member.img_localname}">
+				<img src="${path}/images/myprofile/${member.img_servername}" alt="" />
+			</c:if>
+			<span class="closeBtn"><i class="far fa-times-circle"></i></span>
 
 
-	</div>
-	<div id="followerModal" class="modal">
-		<h2 class="modalTitle">팔로워리스트</h2>
-		<span class="closeBtn"><i class="far fa-times-circle"></i></span>
-		<div class="hr"></div>
-		<ul>
-			<c:forEach var="item" items="${followerList}">
-				<li><div
-						<c:if test="${empty item.erimg_servername}">class="defaultImg followImg"</c:if>
-						<c:if test="${!empty item.erimg_servername}">class="followImg" style="background-Image:url('${path}/images/myprofile/${item.erimg_servername}');"
-			 </c:if>></div>
-
-					<a href="main?nickname=${item.follower_n}">${item.follower_n}</a> <c:if
-						test=""></c:if></li>
-			</c:forEach>
-
-		</ul>
-	</div>
-	<div id="followeeModal" class="modal">
-		<h2 class="modalTitle">팔로우리스트</h2>
-		<span class="closeBtn"><i class="far fa-times-circle"></i></span>
-		<div class="hr"></div>
-		<ul>
-			<c:forEach var="item" items="${followeeList}">
-				<li><div
-						<c:if test="${empty item.eeimg_servername}">class="defaultImg followImg"</c:if>
-						<c:if test="${!empty item.eeimg_servername}">class="followImg" style="background-Image:url('${path}/images/myprofile/${item.eeimg_servername}');"
-			 </c:if>></div>
-					<a href="main?nickname=${item.followee_n}">${item.followee_n}</a>
-					<button id="followCancle">팔로우 취소</button> <input type="text"
-					id=followerNick class="displayNone" value="${item.follower_n}" /> <input
-					type="text" id=followeeNick class="displayNone"
-					value="${item.followee_n}" /></li>
-			</c:forEach>
-
-		</ul>
-	</div>
-	<div id="profileModal" class="modal">
-		<div id="profileDiv">
-			<h2 class="modalTitle">프로필 설정</h2>
+		</div>
+		<div id="followerModal" class="modal">
+			<h2 class="modalTitle">팔로워리스트</h2>
 			<span class="closeBtn"><i class="far fa-times-circle"></i></span>
 			<div class="hr"></div>
-
-			<h3>프로필 사진</h3>
-			<div id="proImgDiv">
-				<div id="proImgPreview"
-					<c:if test="${empty member.img_localname}">class="defaultImg"</c:if>
-					<c:if test="${!empty member.img_localname}">style="background:url('${path}/images/myprofile/${member.img_servername}') no-repeat center center; background-size:contain;"
-			 </c:if>>
-				</div>
-				<label id="profileImgSetLB" for="profileImgSet">프로필 사진 변경</label> <input
-					type="file" id="profileImgSet" name="profileImgSet" />
-			</div>
-			<h3>자기소개</h3>
-			<textarea name="comment" id="comment" cols="40" rows="10">${member.comment}</textarea>
-			<h3>공개 여부</h3>
-			<div class="hr" style="width: 100%;"></div>
 			<ul>
-				<li>게시물 <input type="radio" name="p_isopen" id="ra_py"
-					value="Y" <c:if test="${'Y' eq member.p_isopen}">checked</c:if>><label
-					for="ra_py">공개</label> <input type="radio" name="p_isopen"
-					id="ra_pn" value="N"
-					<c:if test="${'N' eq member.p_isopen}">checked</c:if>><label
-					for="ra_pn">비공개</label>
-				</li>
-				<li>식단기록 <input type="radio" name="d_isopen" id="ra_dy"
-					value="Y" <c:if test="${'Y' eq member.d_isopen}">checked</c:if>><label
-					for="ra_dy">공개</label> <input type="radio" name="d_isopen"
-					id="ra_dn" value="N"
-					<c:if test="${'N' eq member.d_isopen}">checked</c:if>><label
-					for="ra_dn">비공개</label>
-				</li>
-				<li>인바디기록 <input type="radio" name="i_isopen" id="ra_iy"
-					value="Y" <c:if test="${'Y' eq member.i_isopen}">checked</c:if>><label
-					for="ra_iy">공개</label> <input type="radio" name="i_isopen"
-					id="ra_in" value="N"
-					<c:if test="${'N' eq member.i_isopen}">checked</c:if>><label
-					for="ra_in">비공개</label>
-				</li>
-				<li>운동계획표 <input type="radio" name="e_isopen" id="ra_ey"
-					value="Y" <c:if test="${'Y' eq member.e_isopen}">checked</c:if>><label
-					for="ra_ey">공개</label> <input type="radio" name="e_isopen"
-					id="ra_en" value="N"
-					<c:if test="${'N' eq member.e_isopen}">checked</c:if>><label
-					for="ra_en">비공개</label>
-				</li>
+				<c:forEach var="item" items="${followerList}">
+					<li><div
+							<c:if test="${empty item.erimg_servername}">class="defaultImg followImg"</c:if>
+							<c:if test="${!empty item.erimg_servername}">class="followImg" style="background-Image:url('${path}/images/myprofile/${item.erimg_servername}');"
+			 </c:if>></div>
+
+						<a href="main?nickname=${item.follower_n}">${item.follower_n}</a>
+						<c:if test=""></c:if></li>
+				</c:forEach>
 
 			</ul>
-
-			<button type="button" id="profileSetBtn">저장</button>
 		</div>
+		<div id="followeeModal" class="modal">
+			<h2 class="modalTitle">팔로우리스트</h2>
+			<span class="closeBtn"><i class="far fa-times-circle"></i></span>
+			<div class="hr"></div>
+			<ul>
+				<c:forEach var="item" items="${followeeList}">
+					<li><div
+							<c:if test="${empty item.eeimg_servername}">class="defaultImg followImg"</c:if>
+							<c:if test="${!empty item.eeimg_servername}">class="followImg" style="background-Image:url('${path}/images/myprofile/${item.eeimg_servername}');"
+			 </c:if>></div>
+						<a href="main?nickname=${item.followee_n}">${item.followee_n}</a>
+						<button id="followCancle">팔로우 취소</button> <input type="text"
+						id=followerNick class="displayNone" value="${item.follower_n}" />
+						<input type="text" id=followeeNick class="displayNone"
+						value="${item.followee_n}" /></li>
+				</c:forEach>
 
-	</div>
-	<!-- <div id="sendLetterDiv" class="modal">
+			</ul>
+		</div>
+		<div id="profileModal" class="modal">
+			<div id="profileDiv">
+				<h2 class="modalTitle">프로필 설정</h2>
+				<span class="closeBtn"><i class="far fa-times-circle"></i></span>
+				<div class="hr"></div>
+
+				<h3>프로필 사진</h3>
+				<div id="proImgDiv">
+					<div id="proImgPreview"
+						<c:if test="${empty member.img_localname}">class="defaultImg"</c:if>
+						<c:if test="${!empty member.img_localname}">style="background:url('${path}/images/myprofile/${member.img_servername}') no-repeat center center; background-size:contain;"
+			 </c:if>>
+					</div>
+					<label id="profileImgSetLB" for="profileImgSet">프로필 사진 변경</label> <input
+						type="file" id="profileImgSet" name="profileImgSet" />
+				</div>
+				<h3>자기소개</h3>
+				<textarea name="comment" id="comment" cols="40" rows="10">${member.comment}</textarea>
+				<h3>공개 여부</h3>
+				<div class="hr" style="width: 100%;"></div>
+				<ul>
+					<li>게시물 <input type="radio" name="p_isopen" id="ra_py"
+						value="Y" <c:if test="${'Y' eq member.p_isopen}">checked</c:if>><label
+						for="ra_py">공개</label> <input type="radio" name="p_isopen"
+						id="ra_pn" value="N"
+						<c:if test="${'N' eq member.p_isopen}">checked</c:if>><label
+						for="ra_pn">비공개</label>
+					</li>
+					<li>식단기록 <input type="radio" name="d_isopen" id="ra_dy"
+						value="Y" <c:if test="${'Y' eq member.d_isopen}">checked</c:if>><label
+						for="ra_dy">공개</label> <input type="radio" name="d_isopen"
+						id="ra_dn" value="N"
+						<c:if test="${'N' eq member.d_isopen}">checked</c:if>><label
+						for="ra_dn">비공개</label>
+					</li>
+					<li>인바디기록 <input type="radio" name="i_isopen" id="ra_iy"
+						value="Y" <c:if test="${'Y' eq member.i_isopen}">checked</c:if>><label
+						for="ra_iy">공개</label> <input type="radio" name="i_isopen"
+						id="ra_in" value="N"
+						<c:if test="${'N' eq member.i_isopen}">checked</c:if>><label
+						for="ra_in">비공개</label>
+					</li>
+					<li>운동계획표 <input type="radio" name="e_isopen" id="ra_ey"
+						value="Y" <c:if test="${'Y' eq member.e_isopen}">checked</c:if>><label
+						for="ra_ey">공개</label> <input type="radio" name="e_isopen"
+						id="ra_en" value="N"
+						<c:if test="${'N' eq member.e_isopen}">checked</c:if>><label
+						for="ra_en">비공개</label>
+					</li>
+
+				</ul>
+
+				<button type="button" id="profileSetBtn">저장</button>
+			</div>
+
+		</div>
+		<!-- <div id="sendLetterDiv" class="modal">
 	<h3>cksnlcxnklas</h3>
 	</div> -->
-	
-	<div id="sendLetterDiv" class="modal">
-		<form action="${path}/letter/replyLetter"  id="sendLetterModal"  method="POST">
-			<span id="sendCloseBtn" class="closeBtn"><i class="far fa-times-circle"></i></span>
-			<ul>
-				<li><span>받는이</span><input value="${member.nickname}" type="text" id="reply-recipient" name="rnick" readonly/></li>
-				<li><input type="text" id="reply-title" name="title" placeholder="제목"/></li>
-				<li><textarea rows="17" id="reply-content" name="content" placeholder="내용"></textarea></li>
-				<li><button type="button" id="replySubmit">전송</button></li>
-			</ul>
-			<input type="hidden" name="snick" value="${sessionScope.account.nickname}" />
-		</form>
-		</div> 
+
+		<div id="sendLetterDiv" class="modal">
+			<form action="${path}/letter/replyLetter" id="sendLetterModal"
+				method="POST">
+				<span id="sendCloseBtn" class="closeBtn"><i
+					class="far fa-times-circle"></i></span>
+				<ul>
+					<li><span>받는이</span><input value="${member.nickname}"
+						type="text" id="reply-recipient" name="rnick" readonly /></li>
+					<li><input type="text" id="reply-title" name="title"
+						placeholder="제목" /></li>
+					<li><textarea rows="17" id="reply-content" name="content"
+							placeholder="내용"></textarea></li>
+					<li><button type="button" id="replySubmit">전송</button></li>
+				</ul>
+				<input type="hidden" name="snick"
+					value="${sessionScope.account.nickname}" />
+			</form>
+		</div>
 
 
-	<ul id="menuBar">
-		<li id="menuBar1"><label for="menu1">
-				<h3 class="menuBarH3">게시물</h3>
-		</label><input class="radioBtn" type="radio" name="menu" id="menu1" value=1
-			checked></li>
-		<li id="menuBar2"><label for="menu2">
-				<h3 class="menuBarH3">식단기록</h3>
-		</label><input class="radioBtn" type="radio" name="menu" id="menu2" value=2></li>
-		<li id="menuBar3"><label for="menu3">
-				<h3 class="menuBarH3">인바디 기록</h3>
-		</label><input class="radioBtn" type="radio" name="menu" id="menu3" value=3></li>
-		<li id="menuBar4"><label for="menu4">
-				<h3 class="menuBarH3">운동계획표</h3>
-		</label><input class="radioBtn" type="radio" name="menu" id="menu4" value=4></li>
-	</ul>
-	<!-- 게시물 클릭 시 뷰 -->
-<div id="postDetail" class="displayNone">
+		<ul id="menuBar">
+			<li id="menuBar1"><label for="menu1">
+					<h3 class="menuBarH3">게시물</h3>
+			</label><input class="radioBtn" type="radio" name="menu" id="menu1" value=1
+				checked></li>
+			<li id="menuBar2"><label for="menu2">
+					<h3 class="menuBarH3">식단기록</h3>
+			</label><input class="radioBtn" type="radio" name="menu" id="menu2" value=2></li>
+			<li id="menuBar3"><label for="menu3">
+					<h3 class="menuBarH3">인바디 기록</h3>
+			</label><input class="radioBtn" type="radio" name="menu" id="menu3" value=3></li>
+			<li id="menuBar4"><label for="menu4">
+					<h3 class="menuBarH3">운동계획표</h3>
+			</label><input class="radioBtn" type="radio" name="menu" id="menu4" value=4></li>
+		</ul>
+		<!-- 게시물 클릭 시 뷰 -->
+		<div id="postDetail" class="displayNone">
 			<h2 id="postTitleD"></h2>
 			<p id="postDateD"></p>
 			<div id="postImgD"></div>
@@ -233,23 +256,23 @@
 			<div id="postVRD">
 				<button id="listBtn">목록보기</button>
 			</div>
-			</div>
-	
-	<!-- 게시물 작성 div -->
+		</div>
+
+		<!-- 게시물 작성 div -->
 		<div id="writeDiv">
 			<h3 id="wpWrite"></h3>
 			<h4 id="wpTitle">제목</h4>
 			<input name="postTitle" id="postTitle" type="text" />
-			
+
 			<h4 id="contenth4">내용</h4>
 			<textarea name="postContent" id="postContent" cols="120" rows="40"></textarea>
-			
+
 			<h4 id="wpYN">게시글 공개 여부</h4>
 			<label for="post_isopenY">Yes</label><input type="radio"
 				id="post_isopenY" name="post_isopen" value="Y" checked /> <label
 				for="post_isopenN">No</label><input type="radio" name="post_isopen"
 				id="post_isopenN" value="N" />
-				<p>사진 파일은 최대 3개까지 가능합니다.</p>
+			<p>사진 파일은 최대 3개까지 가능합니다.</p>
 			<ul id="postfileUl">
 
 				<li><label for="postfile1"><div id="postfile1Img"
@@ -263,54 +286,67 @@
 					id="postfile3" /></li>
 			</ul>
 			<div id="postBtns">
-			<!-- <button id="postSave"></button> -->
-			<button id="postCancle">취소</button>
+				<!-- <button id="postSave"></button> -->
+				<button id="postCancle">취소</button>
 			</div>
 
 		</div>
-	
-		
-		
+
+
+
 		<!-- 게시 -->
 		<c:choose>
-		<c:when test="${sessionScope.account.nickname ne member.nickname}">
-		<section id="section1" class="main">
-	
-	
-	       
-			
-			
-			
-			<c:if test="${'N' eq member.p_isopen }">
-				<p>비공개입니다.</p>
+			<c:when test="${sessionScope.account.nickname ne member.nickname}">
+				<section id="section1" class="main">
 
-			</c:if>
-			<c:if test="${'Y' eq member.p_isopen}">
-				
+
+
+
+
+
+					<c:if test="${'N' eq member.p_isopen }">
+						<p>비공개입니다.</p>
+
+					</c:if>
+					<c:if test="${'Y' eq member.p_isopen}">
+
+						<ul id="userpostUl">
+						</ul>
+
+					</c:if>
+					<div id="pageBox"></div>
+
+
+				</section>
+			</c:when>
+			<c:when test="${sessionScope.account.nickname eq member.nickname}">
+				<section id="section1" class="main">
+					<button id="modifyBtn">
+						수정하기<i class="fas fa-cog"></i>
+					</button>
+					<button id="writeBtn">
+						글쓰기<i class="fas fa-pen"></i>
+					</button>
 					<ul id="userpostUl">
 					</ul>
+					<div id="pageBox"></div>
+				</section>
 
-			</c:if>
-			<div id="pageBox"></div>
-
-	
-		</section>
-		</c:when>
-		<c:when test="${sessionScope.account.nickname eq member.nickname}">
-		<section id="section1" class="main">
-		 <button id="modifyBtn">수정하기<i class="fas fa-cog"></i></button>
-			<button id="writeBtn">글쓰기<i class="fas fa-pen"></i></button>
-		<ul id="userpostUl">
-					</ul>
-			<div id="pageBox"></div>
-		</section>
-		
-		</c:when>
+			</c:when>
 		</c:choose>
 		<section id="section2" class="main">
-<!-- <button id="getMeal">식단</button> -->
-		<div id="content">
-     	</div>
+			<!-- <button id="getMeal">식단</button> -->
+			<div id="mealController">
+		<ul id="searchDate">
+			<li><input type="text" id="datepicker_start" class="datepicker"/></li>
+			<li>~</li>
+			<li><input type="text" id="datepicker_end" class="datepicker" /></li>
+			<li><button id="searchDateBtn">검색</button></li>
+		</ul>
+		<button id="kcalCalc">식단입력 바로가기 <i class="fas fa-sign-in-alt"></i></button>
+	</div>
+	
+			<div id="content"></div>
 		</section>
 		<section id="section3" class="main">
 			<p>91022</p>
@@ -328,10 +364,44 @@
 	<jsp:include page="footer.jsp"></jsp:include>
 
 	<script type="text/javascript">
+
+	// 날짜선택 달력
+    $(".datepicker").datepicker({ 
+		changeMonth: true, 
+		changeYear: true, 
+		minDate: '-50y', 
+		nextText: '다음 달', 
+		prevText: '이전 달', 
+		yearRange: 'c-50:c+20', 
+		showButtonPanel: true, 
+		currentText: '오늘 날짜', 
+		closeText: '닫기', 
+		dateFormat: "yy-mm-dd", 
+		showAnim: "slide", 
+		showMonthAfterYear: true, 
+		dayNamesMin: ['월', '화', '수', '목', '금', '토', '일'],
+		monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'] 
+	});
+	
+	
+  // 달력 초기값 설정: 일주일 전 ~ 오늘
+    $('#datepicker_start').datepicker('setDate', '-7D');
+    $('#datepicker_end').datepicker('setDate', 'today');
+	 
+    // 시작일 종료일
+	let startDate = $("#datepicker_start").val();
+	let endDate = $("#datepicker_end").val();
+		
+	
+	
+	
+	
+	
+	
 		$(function() {
-			$("#getMeal").click(function(){
+			/* $("#getMeal").click(function(){
 				getMeal(1);
-			})
+			}) */
 			$("input:radio[name=menu]").click(function() {
 				let checkValue = $("input:radio[name=menu]:checked").val();
 				$(".main").hide();
@@ -944,139 +1014,155 @@ function readPostInputFile(input, id){
           	
             	  
               });
-              let getMeal = function(unum){
+              
+           // 내 식단 리스트 불러오는 함수
+  			let getMeal = function(unum){
   				const content = $("#content");
   				content.empty();
+  				
+  				let data = {
+  						"unum" : unum,
+  						"startDate" : startDate,
+  						"endDate" : endDate
+  				}
   				
   				$.ajax({
   		        	url: "${path}/kcal/mealList",
   		        	type: "POST",	
-  		        	data: { "unum" : unum },
+  		        	data: data,
   		        	success: function(data) {
+  		        		
+  	        			if(data.length == 0) {
+  	        				let mealNone = document.createElement("div");
+  	        				mealNone.innerText = "해당 날짜에 저장된 식단이 없습니다.";
+  	        				mealNone.className = 'mealNone';
+  	        				content.append(mealNone);
+  		        		}else {
+  	        			
   	        			let mealList = new Array();
   	        			
-  		        		for(let item of data) {
-  		        			console.log(item.date);
-  		        			console.log(item.time);
-  		        			console.log(item.mealnum);
-  		        			console.log(item.menu);
-  		        			console.log(item.intake + "g");
-  		        			console.log(item.kcal + "kcal");
-  		        			
-  		        			let dateIndex = mealList.findIndex(i => i.date == item.date);
-  		        					        			
-  		        			if(dateIndex == -1) {
-  		        				let oneday = new Object();
-  		        				oneday.date = item.date;	
-  		        				let mealcards = new Array();
-  		        				oneday.mealcards = mealcards;
-  		        				oneday.todayKcal = 0;
-  		        				
-  		        				
-  		        				oneday = JSON.stringify(oneday)
-  		        				mealList.push(JSON.parse(oneday));
-  		        				
-  		        				dateIndex = mealList.findIndex(i => i.date == item.date);
-  		        				
-  		        				mealList[dateIndex].todayKcal += item.kcal;
-  		        			}else {
-  		        				mealList[dateIndex].todayKcal += item.kcal;
-  		        			}
-
-  		        			let cardIndex = mealList[dateIndex].mealcards.findIndex(i => i.mealnum == item.mealnum);
-  		        			if(cardIndex == -1) {
-  		        				let mealcard = new Object();
-  		        				mealcard.mealnum = item.mealnum;
-  		        				mealcard.time = item.time;
-  		        				let mealinfo = new Array();
-  		        				mealcard.mealinfo = mealinfo;
-  		        				mealcard.totalKcal = 0;
-  		        				
-  		        				mealcard = JSON.stringify(mealcard);
-  		        				mealList[dateIndex].mealcards.push(JSON.parse(mealcard));
-  		        				
-  		        				cardIndex = mealList[dateIndex].mealcards.findIndex(i => i.mealnum == item.mealnum);
-
-  		        				mealList[dateIndex].mealcards[cardIndex].totalKcal += item.kcal;
-  		        			}else {
-  		        				mealList[dateIndex].mealcards[cardIndex].totalKcal += item.kcal;
-  		        			}
-  		        			
-  		        			let mealinfo = new Object();
-  		        			mealinfo.menu = item.menu;
-  		        			mealinfo.intake = item.intake;
-  		        			mealinfo.kcal = item.kcal;
-  		        			
-  		        			mealinfo = JSON.stringify(mealinfo);
-  		        			mealList[dateIndex].mealcards[cardIndex].mealinfo.push(JSON.parse(mealinfo));
-  		        		}
-  		        		
-  		        		for(dateIndex in mealList) {
-  		        			let dayBox = document.createElement("div");
-  		        			dayBox.className = 'dayBox';	        			
-  		        			
-  		        			let dayTop = document.createElement("div");
-  		        			dayTop.className = 'dayTop';
-  		        			let mealDate = document.createElement("span");
-  		        			mealDate.className = 'mealDate';
-  		        			mealDate.innerText = mealList[dateIndex].date;
-  		        			let todayKcal = document.createElement("span");
-  		        			todayKcal.className = 'todayKcal';
-  		        			todayKcal.innerText = '하루 총 섭취 열량  ' + mealList[dateIndex].todayKcal + 'kcal';
-  		        			
-  		        			dayTop.append(mealDate);
-  		        			dayTop.append(todayKcal);
-  		        			dayBox.append(dayTop);
-  		        			
-  		        			let mealcards = document.createElement("div");
-  		        			mealcards.className = 'mealcards'
-  		        			
-  		        			for(cardIndex in mealList[dateIndex].mealcards) {
-  		        				let mealcard = document.createElement("div");
-  		        				mealcard.className = 'mealcard';
-  		        				
-  		        				let deleteBtn = document.createElement("span");
-  			        			deleteBtn.className = 'deleteBtn';
-  			        			/*  */
-  			        			deleteBtn.setAttribute('data-mealnum', mealList[dateIndex].mealcards[cardIndex].mealnum);
-  			        			deleteBtn.innerHTML = '<c:if test="${sessionScope.account.unum eq 1}"><i class="fas fa-times"></i></c:if>';
-  			        			mealcard.append(deleteBtn);
-  		        				
-  		        				let mealtime = document.createElement("span");
-  		        				mealtime.className = 'mealtime';
-  		        				mealtime.innerText = '식사 시간 ' + mealList[dateIndex].mealcards[cardIndex].time;
-  		        				let totalKcal = document.createElement("span");
-  		        				totalKcal.className = 'totalKcal';
-  		        				totalKcal.innerText = '총 열량 ' + mealList[dateIndex].mealcards[cardIndex].totalKcal + "kcal";
-  		        				
-  		        				let menuList = document.createElement("div");
-  		        				menuList.className = 'menuList';
-  		        				let table = document.createElement("table");		        				
-  		        				for(menuIndex in mealList[dateIndex].mealcards[cardIndex].mealinfo) {
-  		        					let tr = document.createElement("tr");
-  		        					let menuTd = document.createElement("td");
-  		        					menuTd.innerText = mealList[dateIndex].mealcards[cardIndex].mealinfo[menuIndex].menu;
-  		        					let intakeTd = document.createElement("td");
-  		        					intakeTd.innerText = mealList[dateIndex].mealcards[cardIndex].mealinfo[menuIndex].intake + "g";
-  		        					let kcalTd = document.createElement("td");
-  		        					kcalTd.innerText = mealList[dateIndex].mealcards[cardIndex].mealinfo[menuIndex].kcal + "kcal";
-  		        					
-  		        					tr.append(menuTd);
-  		        					tr.append(intakeTd);
-  		        					tr.append(kcalTd);
-  		        					
-  		        					table.append(tr);
-  		        					menuList.append(table);
-  		        				}
-  		        				
-  		        				mealcard.append(mealtime);	
-  		        				mealcard.append(menuList);
-  		        				mealcard.append(totalKcal);
-  		        				mealcards.append(mealcard);
-  		        				dayBox.append(mealcards);
-  		        			}
-  		        			
-  		        			content.append(dayBox);
+  			        		for(let item of data) {
+  			        			console.log(item.date);
+  			        			console.log(item.time);
+  			        			console.log(item.mealnum);
+  			        			console.log(item.menu);
+  			        			console.log(item.intake + "g");
+  			        			console.log(item.kcal + "kcal");
+  			        			
+  			        			let dateIndex = mealList.findIndex(i => i.date == item.date);
+  			        					        			
+  			        			if(dateIndex == -1) {
+  			        				let oneday = new Object();
+  			        				oneday.date = item.date;	
+  			        				let mealcards = new Array();
+  			        				oneday.mealcards = mealcards;
+  			        				oneday.todayKcal = 0;
+  			        				
+  			        				
+  			        				oneday = JSON.stringify(oneday)
+  			        				mealList.push(JSON.parse(oneday));
+  			        				
+  			        				dateIndex = mealList.findIndex(i => i.date == item.date);
+  			        				
+  			        				mealList[dateIndex].todayKcal += item.kcal;
+  			        			}else {
+  			        				mealList[dateIndex].todayKcal += item.kcal;
+  			        			}
+  	
+  			        			let cardIndex = mealList[dateIndex].mealcards.findIndex(i => i.mealnum == item.mealnum);
+  			        			if(cardIndex == -1) {
+  			        				let mealcard = new Object();
+  			        				mealcard.mealnum = item.mealnum;
+  			        				mealcard.time = item.time;
+  			        				let mealinfo = new Array();
+  			        				mealcard.mealinfo = mealinfo;
+  			        				mealcard.totalKcal = 0;
+  			        				
+  			        				mealcard = JSON.stringify(mealcard);
+  			        				mealList[dateIndex].mealcards.push(JSON.parse(mealcard));
+  			        				
+  			        				cardIndex = mealList[dateIndex].mealcards.findIndex(i => i.mealnum == item.mealnum);
+  	
+  			        				mealList[dateIndex].mealcards[cardIndex].totalKcal += item.kcal;
+  			        			}else {
+  			        				mealList[dateIndex].mealcards[cardIndex].totalKcal += item.kcal;
+  			        			}
+  			        			
+  			        			let mealinfo = new Object();
+  			        			mealinfo.menu = item.menu;
+  			        			mealinfo.intake = item.intake;
+  			        			mealinfo.kcal = item.kcal;
+  			        			
+  			        			mealinfo = JSON.stringify(mealinfo);
+  			        			mealList[dateIndex].mealcards[cardIndex].mealinfo.push(JSON.parse(mealinfo));
+  			        		}
+  			        		
+  			        		for(dateIndex in mealList) {
+  			        			let dayBox = document.createElement("div");
+  			        			dayBox.className = 'dayBox';	        			
+  			        			
+  			        			let dayTop = document.createElement("div");
+  			        			dayTop.className = 'dayTop';
+  			        			let mealDate = document.createElement("span");
+  			        			mealDate.className = 'mealDate';
+  			        			mealDate.innerText = mealList[dateIndex].date;
+  			        			let todayKcal = document.createElement("span");
+  			        			todayKcal.className = 'todayKcal';
+  			        			todayKcal.innerText = '하루 총 섭취 열량  ' + mealList[dateIndex].todayKcal + 'kcal';
+  			        			
+  			        			dayTop.append(mealDate);
+  			        			dayTop.append(todayKcal);
+  			        			dayBox.append(dayTop);
+  			        			
+  			        			let mealcards = document.createElement("div");
+  			        			mealcards.className = 'mealcards'
+  			        			
+  			        			for(cardIndex in mealList[dateIndex].mealcards) {
+  			        				let mealcard = document.createElement("div");
+  			        				mealcard.className = 'mealcard';
+  			        				
+  			        				let deleteBtn = document.createElement("span");
+  				        			deleteBtn.className = 'deleteBtn';
+  				        			deleteBtn.setAttribute('data-mealnum', mealList[dateIndex].mealcards[cardIndex].mealnum);
+  				        			deleteBtn.innerHTML = '<c:if test="${sessionScope.account.unum eq 1}"><i class="fas fa-times"></i></c:if>';
+  				        			mealcard.append(deleteBtn);
+  			        				
+  			        				let mealtime = document.createElement("span");
+  			        				mealtime.className = 'mealtime';
+  			        				mealtime.innerText = '식사 시간 ' + mealList[dateIndex].mealcards[cardIndex].time;
+  			        				let totalKcal = document.createElement("span");
+  			        				totalKcal.className = 'totalKcal';
+  			        				totalKcal.innerText = '총 열량 ' + mealList[dateIndex].mealcards[cardIndex].totalKcal + "kcal";
+  			        				
+  			        				let menuList = document.createElement("div");
+  			        				menuList.className = 'menuList';
+  			        				let table = document.createElement("table");		        				
+  			        				for(menuIndex in mealList[dateIndex].mealcards[cardIndex].mealinfo) {
+  			        					let tr = document.createElement("tr");
+  			        					let menuTd = document.createElement("td");
+  			        					menuTd.innerText = mealList[dateIndex].mealcards[cardIndex].mealinfo[menuIndex].menu;
+  			        					let intakeTd = document.createElement("td");
+  			        					intakeTd.innerText = mealList[dateIndex].mealcards[cardIndex].mealinfo[menuIndex].intake + "g";
+  			        					let kcalTd = document.createElement("td");
+  			        					kcalTd.innerText = mealList[dateIndex].mealcards[cardIndex].mealinfo[menuIndex].kcal + "kcal";
+  			        					
+  			        					tr.append(menuTd);
+  			        					tr.append(intakeTd);
+  			        					tr.append(kcalTd);
+  			        					
+  			        					table.append(tr);
+  			        					menuList.append(table);
+  			        				}
+  			        				
+  			        				mealcard.append(mealtime);	
+  			        				mealcard.append(menuList);
+  			        				mealcard.append(totalKcal);
+  			        				mealcards.append(mealcard);
+  			        				dayBox.append(mealcards);
+  			        			}
+  			        			
+  			        			content.append(dayBox);
+  			        		}
   		        		}
   		        		
   		        	},
@@ -1085,11 +1171,22 @@ function readPostInputFile(input, id){
   		        	}
   				})
   			}
-  			
-  		/* 	$("#getMeal").click(function(){
+
+  		/* 	// 식단탭 눌렀을때
+  			$(document).on('click', '#getMeal', function(){
   				getMeal(1);
   			}) */
   			getMeal(1);
+
+  			// 기간 설정해서 검색
+  			$(document).on('click', '#searchDateBtn', function(){
+  				startDate = $("#datepicker_start").val();
+  				endDate = $("#datepicker_end").val();
+  				getMeal(1);
+  			})
+  			
+  			
+  			// 식단 삭제
   			$(document).on('click', '.deleteBtn', function(){
   				let mealnum = $(this).data("mealnum");
   				console.log(mealnum);
@@ -1108,7 +1205,14 @@ function readPostInputFile(input, id){
   			        	}
   					})
   				}
+  			})		
+  			
+  			
+  			// 식단검색 바로가기
+  			$(document).on('click', '#kcalCalc', function(){
+  				location.href = "${path}/kcal/goKcal?curPage=curKcal";
   			})
+  			
   			 
 		    		
 		});
