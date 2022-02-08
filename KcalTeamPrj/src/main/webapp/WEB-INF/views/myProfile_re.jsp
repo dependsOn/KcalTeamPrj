@@ -10,6 +10,7 @@
 	<link rel="stylesheet" href="${path}/css/default.css" />
 	<link rel="stylesheet" type="text/css" href="${path}/css/myProfile_re.css">
 	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
     <script src="https://kit.fontawesome.com/604dbbab30.js" crossorigin="anonymous"></script>
 	<script type="text/javascript" src="${path}/js/jquery-3.6.0.min.js"></script>
 </head>
@@ -26,8 +27,8 @@
                         <li>
                             <p>계랑마리</p>
                             <div>
-                                <i class="far fa-envelope" id="messageModal"></i>
-                                <i class="fas fa-user-cog" id="settingModal"></i>
+                                <i class="xi-mail-o" id="messageModal"></i>
+                                <i class="xi-cog" id="settingModal"></i>
                             </div>
                         </li>
                         <li>
@@ -70,8 +71,8 @@
             <!-- 게시물 -->
             <div id="section1" class="main postBox">
                 <div class="postBtnBox">
-                    <i class="far fa-edit" id="writeBtn"></i>
-                    <i class="fas fa-cog"></i>
+                    <i class="xi-pen" id="writeBtn"></i>
+                    <i class="xi-cog"></i>
                 </div>
                 <div class="postListBox">
                     <div class="postCard">
@@ -93,8 +94,8 @@
                                      들어갈 곳 입니다.이곳은 내용이 들어갈 곳 입니다.
                                 </li>
                                 <li>
-                                    <i class="far fa-eye"><span> 20000</span></i>
-                                    <i class="far fa-thumbs-up"><span> 20000</span></i>
+                                    <i class="xi-eye-o"><span> 20000</span></i>
+                                    <i class="xi-thumbs-up"><span> 20000</span></i>
                                 </li>
                             </ul>
                         </div>
@@ -119,8 +120,8 @@
                                      들어갈 곳 입니다.이곳은 내용이 들어갈 곳 입니다.
                                 </li>
                                 <li>
-                                    <i class="far fa-eye"><span> 20000</span></i>
-                                    <i class="far fa-thumbs-up"><span> 20000</span></i>
+                                    <i class="xi-eye-o"><span> 20000</span></i>
+                                    <i class="xi-thumbs-up"><span> 20000</span></i>
                                 </li>
                             </ul>
                         </div>
@@ -145,8 +146,8 @@
                                      들어갈 곳 입니다.이곳은 내용이 들어갈 곳 입니다.
                                 </li>
                                 <li>
-                                    <i class="far fa-eye"><span> 20000</span></i>
-                                    <i class="far fa-thumbs-up"><span> 20000</span></i>
+                                    <i class="xi-eye-o"><span> 20000</span></i>
+                                    <i class="xi-thumbs-up"><span> 20000</span></i>
                                 </li>
                             </ul>
                         </div>
@@ -171,8 +172,8 @@
                                      들어갈 곳 입니다.이곳은 내용이 들어갈 곳 입니다.
                                 </li>
                                 <li>
-                                    <i class="far fa-eye"><span> 20000</span></i>
-                                    <i class="far fa-thumbs-up"><span> 20000</span></i>
+                                    <i class="xi-eye-o"><span> 20000</span></i>
+                                    <i class="xi-thumbs-up"><span> 20000</span></i>
                                 </li>
                             </ul>
                         </div>
@@ -280,30 +281,30 @@
                         <li>
                             <p>게시물</p>
                             <input type="radio" name="p_isopen" id="ra_py" value="Y" checked>
-                            <label for="">공개</label>
+                            <label for="ra_py">공개</label>
                             <input type="radio" name="p_isopen" id="ra_pn" value="N">
-                            <label for="">비공개</label>
+                            <label for="ra_pn">비공개</label>
                         </li>
                         <li>
                             <p>식단기록</p>
                             <input type="radio" name="d_isopen" id="ra_dy" value="Y" checked>
-                            <label for="">공개</label>
+                            <label for="ra_dy">공개</label>
                             <input type="radio" name="d_isopen" id="ra_dn" value="N">
-                            <label for="">비공개</label>
+                            <label for="ra_dn">비공개</label>
                         </li>
                         <li>
                             <p>인바디기록</p>
                             <input type="radio" name="i_isopen" id="ra_iy" value="Y" checked>
-                            <label for="">공개</label>
+                            <label for="ra_iy">공개</label>
                             <input type="radio" name="i_isopen" id="ra_in" value="N">
-                            <label for="">비공개</label>
+                            <label for="ra_in">비공개</label>
                         </li>
                         <li>
                             <p>운동계획표</p>
                             <input type="radio" name="e_isopen" id="ra_ey" value="Y" checked>
-                            <label for="">공개</label>
+                            <label for="ra_ey">공개</label>
                             <input type="radio" name="e_isopen" id="ra_en" value="N">
-                            <label for="">비공개</label>
+                            <label for="ra_en">비공개</label>
                         </li>
                         <li>
                             <div>
@@ -493,6 +494,8 @@
         const followBox = document.getElementById('followBox');
         const follow = document.querySelector('.follow');
         const closeFollow = document.getElementById('closeFollow');
+        
+        const profileCancelBtn = document.getElementById('profileCancelBtn');
 
         settingModal.addEventListener('click', function() {
             settingBox.style.display = 'block';
@@ -500,6 +503,10 @@
 
         closeSetting.addEventListener('click', function() {
             settingBox.style.display = 'none';
+        });
+        
+        profileCancelBtn.addEventListener('click', function() {
+        	settingBox.style.display = 'none';
         });
 
         followerBox.addEventListener('click', function() {
@@ -517,7 +524,7 @@
         closeFollow.addEventListener('click', function() {
             follow.style.display = 'none';
         });
-
+        
         window.addEventListener('click', function(e) {
             if(e.target == settingBox) {
                 settingBox.style.display = 'none';

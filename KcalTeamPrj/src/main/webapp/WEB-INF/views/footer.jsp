@@ -12,6 +12,7 @@
 	<link href="https://fonts.googleapis.com/css2?family=Dongle:wght@700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
 	<script src="https://kit.fontawesome.com/604dbbab30.js" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -40,7 +41,7 @@
                 <div class="siteIcon">
                     <ul>
                         <li><i class="fab fa-facebook-square"></i></li>
-                        <li><i class="fab fa-instagram"></i></li>
+                        <li><i class="xi-instagram"></i></li>
                         <li><i class="fab fa-twitter-square"></i></li>
                         <li><i class="fab fa-youtube-square"></i></li>
                     </ul>

@@ -62,11 +62,17 @@
 .info > ul > li:nth-child(1) > div {
     display: flex;
     align-items: center;
+    margin-right: 13px;
 }
 
 .info > ul > li:nth-child(1) > div > i:nth-child(1) {
-    font-size: 25px;
-    margin-right: 13px;
+    margin-right: 10px;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.info > ul > li:nth-child(1) > div > i:nth-child(2) {
+	font-size: 26px;
     cursor: pointer;
 }
 
@@ -74,11 +80,6 @@
     transform: scale(1.1);
     color: orangered;
     transition: .5s;
-}
-
-.info > ul > li:nth-child(1) > div > i:nth-child(2) {
-    font-size: 20px;
-    cursor: pointer;
 }
 
 .info > ul > li:nth-child(2) {
@@ -262,23 +263,23 @@
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
-    margin-bottom: 45px;
+    margin-bottom: 50px;
 }
 
 .postContent > ul > li:nth-child(3) {
     display: flex;
     justify-content: flex-end;
-    font-size: 13px;
+    font-size: 15px;
     font-weight: bold;
-}
-
-.postContent > ul > li:nth-child(3) > i:nth-child(1) {
-    margin-right: 20px;
 }
 
 .postContent > ul > li:nth-child(3) > i {
     color: orangered;
     margin-right: 10px;
+}
+
+.postContent > ul > li:nth-child(3) > i:nth-child(1) {
+    margin-right: 20px;
 }
 
 .postContent > ul > li:nth-child(3) > i > span {
@@ -595,8 +596,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding-top: 15px;
-    height: 50px;
+    padding-top: 20px;
+    height: 62px;
     font-size: 20px;
     font-weight: bold;
     color: dimgray;
@@ -692,6 +693,12 @@
 
 .settingBox > ul > li:nth-child(6) > p {
     margin-right: 112px;
+}
+
+.settingBox > ul > li > input {
+	margin-right: 3px;
+	margin-top: 3px;
+	margin-left: 5px;
 }
 
 .settingBox > ul > li:nth-child(6) > label {
@@ -864,3 +871,24 @@
     object-fit: fill;
     border-radius: 50%;
 }
+
+.followList > ul > li > p {
+	cursor: pointer;
+}
+
+.followList > ul > li > p:hover {
+	transition: .3s;
+	color:orangered;
+}
+
+
+
+
+
+
+
+
+
+
+
+

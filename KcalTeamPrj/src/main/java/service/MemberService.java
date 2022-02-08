@@ -121,7 +121,7 @@ public class MemberService {
 		}
 		return result;
 	}
-public String updateProfileImg(MemberVO mvo) {
+	public String updateProfileImg(MemberVO mvo) {
 		
 		int i=sqlSessionTemplate.update("member.updateProfileImg",mvo);
 		String result = "";

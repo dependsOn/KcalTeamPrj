@@ -100,11 +100,10 @@ footer {
 }
 
 .siteIcon > ul > li:nth-child(2):hover {
-	color: orangered;
-    /* background: linear-gradient(to bottom, #833AB4, #FD1D1D, #FCA642);
+    background: linear-gradient(to bottom, #833AB4, #FD1D1D, #FCA642);
     -webkit-background-clip: text;
     background-clip: text;
-    color: transparent; */
+    color: transparent;
 }
 
 .siteIcon > ul > li:nth-child(3):hover {
