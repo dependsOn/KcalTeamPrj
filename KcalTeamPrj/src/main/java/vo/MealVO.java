@@ -8,6 +8,8 @@ public class MealVO {
 	private String menu;
 	private int intake;
 	private int kcal;
+	private String startDate;
+	private String endDate;
 	
 	public MealVO() {
 
@@ -67,6 +69,22 @@ public class MealVO {
 
 	public void setKcal(int kcal) {
 		this.kcal = kcal;
+	}
+
+	public String getStartDate() {
+		return startDate;
+	}
+
+	public void setStartDate(String startDate) {
+		this.startDate = startDate;
+	}
+
+	public String getEndDate() {
+		return endDate;
+	}
+
+	public void setEndDate(String endDate) {
+		this.endDate = endDate;
 	}
 	
 	

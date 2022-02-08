@@ -57,9 +57,9 @@ public class KcalController {
 	
 	@ResponseBody
 	@PostMapping("/mealList")
-	public ResponseEntity<List<MealVO>> getMealCard(int unum) {
+	public ResponseEntity<List<MealVO>> getMealCard(int unum, String startDate, String endDate) {
 		
-		List<MealVO> mealVO =  kcalService.getMealList(unum);
+		List<MealVO> mealVO =  kcalService.getMealList(unum, startDate, endDate);
 		
 		ResponseEntity<List<MealVO>> entity = new ResponseEntity<List<MealVO>>(mealVO, HttpStatus.OK);
 		

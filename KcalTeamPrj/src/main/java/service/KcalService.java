@@ -73,12 +73,15 @@ public class KcalService {
 	}
 
 	
-	public List<MealVO> getMealList(int unum) {
+	public List<MealVO> getMealList(int unum, String startDate, String endDate) {
+				
 		List<MealVO> mealVO = new ArrayList<MealVO>();
-		
-		
-		mealVO = sqlSessionTemplate.selectList("meal.selectMeal", unum);
-		
+		MealVO vo = new MealVO();
+		vo.setUnum(unum);
+		vo.setStartDate(startDate);
+		vo.setEndDate(endDate);
+
+		mealVO = sqlSessionTemplate.selectList("meal.selectMeal", vo);
 		
 		return mealVO;
 	}

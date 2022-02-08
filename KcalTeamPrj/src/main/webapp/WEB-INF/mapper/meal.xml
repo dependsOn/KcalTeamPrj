@@ -4,14 +4,14 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
  <mapper namespace="meal">
- 	<select id="selectMeal" parameterType="int" resultType="mealVO">
- 		select mealcard.mealnum, mealcard.unum,  mealcard.date, TIME_FORMAT(mealcard.time, '%H:%i') as time,
- 			   mealinfo.menu, mealinfo.intake, mealinfo.kcal
- 		from mealcard
- 		left join mealinfo
- 		on mealcard.mealnum = mealinfo.mealnum
- 		where unum = #{unum}
- 		order by date desc, time asc
+ 	<select id="selectMeal" parameterType="mealVO" resultType="mealVO">
+ 		SELECT c.mealnum, c.unum, c.date, TIME_FORMAT(c.time, '%H:%i') as time, i.menu, i.intake, i.kcal
+		FROM mealcard c
+		LEFT JOIN mealinfo i
+		ON c.mealnum = i.mealnum
+		WHERE unum = #{unum}
+		AND date BETWEEN #{startDate} AND #{endDate}
+		ORDER BY DATE DESC, time ASC;
  	</select>
  	
  	<insert id="insertMealcard" parameterType="mCardVO"

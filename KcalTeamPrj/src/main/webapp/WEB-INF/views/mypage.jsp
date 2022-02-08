@@ -14,8 +14,6 @@
 	src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 </head>
 <body>
-	<%-- <a href="${path}/kcal/mealTest">식단테스트</a> --%>
-	
 	<header>
 		<div id="logo">
 			<img src="${path}/images/logoImg/logo.png" alt="로고">
