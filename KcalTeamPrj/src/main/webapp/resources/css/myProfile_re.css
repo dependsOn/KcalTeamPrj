@@ -453,6 +453,8 @@
 }
 
 #writeDiv > ul > li:nth-child(4) > div > input {
+	margin-top: 3px;
+	margin-left: 5px;
     margin-right: 20px;
 }
 
@@ -803,7 +805,7 @@
 
 .followBox {
     position: absolute;
-    width: 350px;
+    width: 400px;
     height: 434px;
     top: 25%;
     left: 50%;
@@ -863,6 +865,7 @@
     height: 40px;
     border-radius: 50%;
     margin-right: 20px;
+    margin-left: 20px;
 }
 
 .followList > ul > li > div > img {
@@ -873,12 +876,35 @@
 }
 
 .followList > ul > li > p {
+    width: 180px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space:nowrap;
+    margin-right: 10px;
 	cursor: pointer;
 }
 
 .followList > ul > li > p:hover {
 	transition: .3s;
 	color:orangered;
+}
+
+.followList > ul > li > button {
+    width: 76px;
+    height: 30px;
+    font-size: 11px;
+    background-color: #eee;
+    color: black;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+}
+
+.followList > ul > li > button:hover {
+    background-color: #ff8d64;
+    color: white;
+    cursor: pointer;
+    transition: 0.25s;
 }
 
 

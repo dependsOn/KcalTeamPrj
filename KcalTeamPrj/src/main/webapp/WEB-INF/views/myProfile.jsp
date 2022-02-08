@@ -596,8 +596,8 @@ function readPostInputFile(input, id){
 		    			for(let item of data){             
 		    				
 		    				const li = document.createElement("li");
-		    				let title=document.createElement("h3");
-		    				let createdate=document.createElement("p");
+		    				let title = document.createElement("h3");
+		    				let createdate = document.createElement("p");
 		    				let flexWrap=document.createElement("div");
 		    				let postThumbnail=document.createElement("div");
 		    				let flexDiv=document.createElement("div");

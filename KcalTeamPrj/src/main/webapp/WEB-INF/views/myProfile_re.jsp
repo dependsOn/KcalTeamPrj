@@ -331,54 +331,63 @@
                                     <img src="${path}/images/main/fcimg.jpg" alt="">
                                 </div>
                                 <p>계랑마리</p>
+                                <button>팔로우 취소</button>
                             </li>
                             <li>
                                 <div>
                                     <img src="${path}/images/main/fcimg.jpg" alt="">
                                 </div>
                                 <p>계랑마리</p>
+                                <button>팔로우 취소</button>
                             </li>
                             <li>
                                 <div>
                                     <img src="${path}/images/menu/csImg.jpg" alt="">
                                 </div>
                                 <p>계랑마리</p>
+                                <button>팔로우 취소</button>
                             </li>
                             <li>
                                 <div>
                                     <img src="${path}/images/menu/csImg.jpg" alt="">
                                 </div>
                                 <p>계랑마리</p>
+                                <button>팔로우 취소</button>
                             </li>
                             <li>
                                 <div>
                                     <img src="${path}/images/menu/csImg.jpg" alt="">
                                 </div>
                                 <p>계랑마리</p>
+                                <button>팔로우 취소</button>
                             </li>
                             <li>
                                 <div>
                                     <img src="${path}/images/menu/csImg.jpg" alt="">
                                 </div>
                                 <p>계랑마리</p>
+                                <button>팔로우 취소</button>
                             </li>
                             <li>
                                 <div>
                                     <img src="${path}/images/menu/csImg.jpg" alt="">
                                 </div>
                                 <p>계랑마리</p>
+                                <button>팔로우 취소</button>
                             </li>
                             <li>
                                 <div>
                                     <img src="${path}/images/menu/csImg.jpg" alt="">
                                 </div>
                                 <p>계랑마리</p>
+                                <button>팔로우 취소</button>
                             </li>
                             <li>
                                 <div>
                                     <img src="${path}/images/menu/csImg.jpg" alt="">
                                 </div>
                                 <p>계랑마리</p>
+                                <button>팔로우 취소</button>
                             </li>
                         </ul>
                     </div>
@@ -400,54 +409,63 @@
                                     <img src="${path}/images/menu/tipImg.jpg" alt="">
                                 </div>
                                 <p>치즈계랑마리</p>
+                                <button>팔로우 취소</button>
                             </li>
                             <li>
                                 <div>
                                     <img src="${path}/images/menu/tipImg.jpg" alt="">
                                 </div>
                                 <p>치즈계랑마리</p>
+                                <button>팔로우 취소</button>
                             </li>
                             <li>
                                 <div>
                                     <img src="${path}/images/menu/tipImg.jpg" alt="">
                                 </div>
                                 <p>치즈계랑마리</p>
+                                <button>팔로우 취소</button>
                             </li>
                             <li>
                                 <div>
                                     <img src="${path}/images/menu/tipImg.jpg" alt="">
                                 </div>
                                 <p>치즈계랑마리</p>
+                                <button>팔로우 취소</button>
                             </li>
                             <li>
                                 <div>
                                     <img src="${path}/images/menu/tipImg.jpg" alt="">
                                 </div>
                                 <p>치즈계랑마리</p>
+                                <button>팔로우 취소</button>
                             </li>
                             <li>
                                 <div>
                                     <img src="${path}/images/menu/tipImg.jpg" alt="">
                                 </div>
                                 <p>치즈계랑마리</p>
+                                <button>팔로우 취소</button>
                             </li>
                             <li>
                                 <div>
                                     <img src="${path}/images/menu/tipImg.jpg" alt="">
                                 </div>
                                 <p>치즈계랑마리</p>
+                                <button>팔로우 취소</button>
                             </li>
                             <li>
                                 <div>
                                     <img src="${path}/images/menu/tipImg.jpg" alt="">
                                 </div>
                                 <p>치즈계랑마리</p>
+                                <button>팔로우 취소</button>
                             </li>
                             <li>
                                 <div>
                                     <img src="${path}/images/menu/tipImg.jpg" alt="">
                                 </div>
                                 <p>치즈계랑마리</p>
+                                <button>팔로우 취소</button>
                             </li>
                         </ul>
                     </div>
