@@ -8,6 +8,13 @@ public class PostfileVO {
 	private int pnum;
 	private int pageNumber;
 	private int count;
+	private String prev_servername;
+	public String getPrev_servername() {
+		return prev_servername;
+	}
+	public void setPrev_servername(String prev_servername) {
+		this.prev_servername = prev_servername;
+	}
 	public int getPageNumber() {
 		return pageNumber;
 	}

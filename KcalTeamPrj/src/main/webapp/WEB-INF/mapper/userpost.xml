@@ -65,4 +65,21 @@ SELECT LAST_INSERT_ID()
 	     where isdelete='N' and unum=#{unum} 
 	
 	</select>
+	  <delete id="deletePost" parameterType="userpostVO">
+         delete from userpost
+         where pnum=#{pnum}
+     </delete>
+     <delete id="deletePostFile" parameterType="postfileVO">
+         delete from postfile
+         where pnum=#{pnum}     
+      
+     </delete>
+     <update id="updatePost" parameterType="userpostVO">
+         update userpost set
+         title=#{title},
+	     content=#{content},
+	     isopen=#{isopen}
+	     where pnum=#{pnum}
+     </update>
+
 </mapper>

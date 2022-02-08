@@ -105,9 +105,9 @@ ul {
 	position: absolute;
 	width: 400px;
 	height: 700px;
-	top: 30%;
+	top: 100px;
 	left: 50%;
-	transform: translate(-50%, -65%); 
+   transform: translateX(-50%);  
 	border: 1px solid black;
 	z-index: 200;
 	background-color: white;
@@ -370,4 +370,13 @@ textarea {
 	font-size:15px;
     cursor:pointer;
     margin: 20px 20px 0 0;
+}
+
+
+#sendLetterDiv{
+	z-index:30;
+	display:none;
+}
+.messageBtns{
+	cursor:pointer
 }

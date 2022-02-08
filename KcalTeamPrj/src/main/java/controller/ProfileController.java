@@ -56,7 +56,7 @@ public class ProfileController {
 			followService.getFolloweeList(model,fvo);
 			memberService.selectMember(model,mvo);
 			
-			return "myProfile_re";
+			return "myProfile";
 		}
 		// 게시물 페이징
 		@PostMapping("pofile/getuserpostList")
@@ -84,7 +84,7 @@ public class ProfileController {
 				@RequestPart(value = "data") MemberVO vo,
 				Model model, HttpSession session) throws Exception{
 			// 프로필 사진 파일 저장경로
-			String path="C:\\Users\\wjdal\\git\\KcalTeamPrj\\KcalTeamPrj\\src\\main\\webapp\\resources\\images\\myprofile";
+			String path="/Users/hwang-yeonghyeon/git/KcalTeamPrj/KcalTeamPrj/src/main/webapp/resources/images/myprofile";
 			
 
 
@@ -120,7 +120,7 @@ public class ProfileController {
 		public String userpost(@RequestPart(value = "postfiles",required = false) MultipartFile[] fileList,
 				@RequestPart(value = "userpost") UserpostVO vo,
 				Model model) throws Exception{
-			String path="C:\\Users\\wjdal\\git\\KcalTeamPrj\\KcalTeamPrj\\src\\main\\webapp\\resources\\images\\postfile";
+			String path="/Users/hwang-yeonghyeon/git/KcalTeamPrj/KcalTeamPrj/src/main/webapp/resources/images/postfile";
 			int i=postService.setPost(vo);
 			
 			
@@ -135,6 +135,39 @@ public class ProfileController {
 					pvo.setLocalname(fileName);
 					pvo.setServername(name+"."+extension);
 					postService.postfiles(pvo);
+				
+				
+			}else {
+				System.out.println("파일이 존재하지 않습니다.");
+			}
+			
+			
+		}
+		
+		
+			return "success";
+		
+		}
+		@PostMapping("post/userpostModify")
+		@ResponseBody
+		public String userpostModify(@RequestPart(value = "postfiles",required = false) MultipartFile[] fileList,
+				@RequestPart(value = "userpost") UserpostVO vo,
+				Model model) throws Exception{
+			String path="/Users/hwang-yeonghyeon/git/KcalTeamPrj/KcalTeamPrj/src/main/webapp/resources/images/postfile";
+			int i=postService.updatePost(vo);
+			System.out.println(i);
+			
+			for(MultipartFile file : fileList) {
+				if(file!=null) {
+					PostfileVO pvo=new PostfileVO();
+					pvo.setPnum(i);
+				 String name = UUID.randomUUID().toString();
+				    String fileName = file.getOriginalFilename();
+				    String extension = fileName.substring(fileName.lastIndexOf(".")+1, fileName.length());
+					file.transferTo(new File(path, name+"."+extension));
+					pvo.setLocalname(fileName);
+					pvo.setServername(name+"."+extension);
+					postService.updatepostfiles(pvo);
 				
 				
 			}else {
@@ -167,6 +200,13 @@ public class ProfileController {
 					new ResponseEntity<List<PostfileVO>>(arr, HttpStatus.OK);
 		return entry;
 		
+		}
+		@PostMapping("post/userpostDelete")
+		@ResponseBody
+		public String userpostDelete(@RequestBody UserpostVO vo) {
+			String result=postService.deletePost(vo);
+			
+			return result;
 		}
 		
 		@PostMapping("follow/deletefollow")

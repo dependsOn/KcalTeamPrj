@@ -9,6 +9,7 @@
 <meta charset="UTF-8">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css">
+	<link rel="stylesheet" href="${path}/css/meal_test.css"/>
 	<link rel="stylesheet" type="text/css" href="${path}/css/myprofile.css">
 	<script type="text/javascript" src="${path}/js/jquery-3.6.0.min.js"></script>
 
@@ -22,8 +23,9 @@
 </head>
 
 <body>
+<jsp:include page="community_header.jsp"></jsp:include>
 <div id="wrapper">
-	<jsp:include page="community_header.jsp"></jsp:include>
+	
 
 	<div id="profile">
 
@@ -40,10 +42,10 @@
 					<p id="usernick" style="display: inline-block;">${member.nickname}</p>
 					
 				    <c:if test="${sessionScope.account.nickname ne member.nickname}">
-				    <span><i class="far fa-envelope" id="messageModal"></i></span> 
+				    <span id="messageModal"><i  class="fas fa-comments messageBtns"></i></span> 
 				    </c:if>
 					<c:if test="${sessionScope.account.nickname eq member.nickname}">
-					<span><i class="far fa-envelope" id="messageBtn"></i></span> 
+					<span id="messageBtn"><i class="far fa-envelope messageBtns" ></i></span> 
 					<span id="profileSet">
 					<i class="fas fa-user-cog"></i>
 					</span>
@@ -84,7 +86,6 @@
 	
 	</div>
 	</div>
-
 	<div id="imageModal" class="modal">
 
 		<c:if test="${empty member.img_localname}">
@@ -94,13 +95,13 @@
 		<c:if test="${!empty member.img_localname}">
 			<img src="${path}/images/myprofile/${member.img_servername}" alt="" />
 		</c:if>
-		<span class="closeBtn"><i class="fas fa-times"></i></span>
+		<span class="closeBtn"><i class="far fa-times-circle"></i></span>
 
 
 	</div>
 	<div id="followerModal" class="modal">
 		<h2 class="modalTitle">팔로워리스트</h2>
-		<span class="closeBtn"><i class="fas fa-times"></i></span>
+		<span class="closeBtn"><i class="far fa-times-circle"></i></span>
 		<div class="hr"></div>
 		<ul>
 			<c:forEach var="item" items="${followerList}">
@@ -117,7 +118,7 @@
 	</div>
 	<div id="followeeModal" class="modal">
 		<h2 class="modalTitle">팔로우리스트</h2>
-		<span class="closeBtn"><i class="fas fa-times"></i></span>
+		<span class="closeBtn"><i class="far fa-times-circle"></i></span>
 		<div class="hr"></div>
 		<ul>
 			<c:forEach var="item" items="${followeeList}">
@@ -137,7 +138,7 @@
 	<div id="profileModal" class="modal">
 		<div id="profileDiv">
 			<h2 class="modalTitle">프로필 설정</h2>
-			<span class="closeBtn"><i class="fas fa-times"></i></span>
+			<span class="closeBtn"><i class="far fa-times-circle"></i></span>
 			<div class="hr"></div>
 
 			<h3>프로필 사진</h3>
@@ -190,6 +191,22 @@
 		</div>
 
 	</div>
+	<!-- <div id="sendLetterDiv" class="modal">
+	<h3>cksnlcxnklas</h3>
+	</div> -->
+	
+	<div id="sendLetterDiv" class="modal">
+		<form action="${path}/letter/replyLetter"  id="sendLetterModal"  method="POST">
+			<span id="sendCloseBtn" class="closeBtn"><i class="far fa-times-circle"></i></span>
+			<ul>
+				<li><span>받는이</span><input value="${member.nickname}" type="text" id="reply-recipient" name="rnick" readonly/></li>
+				<li><input type="text" id="reply-title" name="title" placeholder="제목"/></li>
+				<li><textarea rows="17" id="reply-content" name="content" placeholder="내용"></textarea></li>
+				<li><button type="button" id="replySubmit">전송</button></li>
+			</ul>
+			<input type="hidden" name="snick" value="${sessionScope.account.nickname}" />
+		</form>
+		</div> 
 
 
 	<ul id="menuBar">
@@ -220,7 +237,7 @@
 	
 	<!-- 게시물 작성 div -->
 		<div id="writeDiv">
-			<h3 id="wpWrite">게시물 작성</h3>
+			<h3 id="wpWrite"></h3>
 			<h4 id="wpTitle">제목</h4>
 			<input name="postTitle" id="postTitle" type="text" />
 			
@@ -246,7 +263,7 @@
 					id="postfile3" /></li>
 			</ul>
 			<div id="postBtns">
-			<button id="postSave">글 작성</button>
+			<!-- <button id="postSave"></button> -->
 			<button id="postCancle">취소</button>
 			</div>
 
@@ -258,7 +275,7 @@
 		<c:choose>
 		<c:when test="${sessionScope.account.nickname ne member.nickname}">
 		<section id="section1" class="main">
-	<div id="section1Content">
+	
 	
 	       
 			
@@ -275,7 +292,7 @@
 
 			</c:if>
 			<div id="pageBox"></div>
-</div>
+
 	
 		</section>
 		</c:when>
@@ -291,8 +308,9 @@
 		</c:when>
 		</c:choose>
 		<section id="section2" class="main">
-
-			<p>91022</p>
+<!-- <button id="getMeal">식단</button> -->
+		<div id="content">
+     	</div>
 		</section>
 		<section id="section3" class="main">
 			<p>91022</p>
@@ -311,7 +329,9 @@
 
 	<script type="text/javascript">
 		$(function() {
-		
+			$("#getMeal").click(function(){
+				getMeal(1);
+			})
 			$("input:radio[name=menu]").click(function() {
 				let checkValue = $("input:radio[name=menu]:checked").val();
 				$(".main").hide();
@@ -417,13 +437,26 @@
 			}
 			/*userpost 글쓰기 */
 			$("#writeBtn").click(function(){
+				$("#postBtns").empty();
+				let postSave=document.createElement("button");
+				let postCancle=document.createElement("button");
+				
+				postCancle.setAttribute("id","postCancle");
+				$("#postBtns").append(postCancle);
+				postSave.setAttribute("id","postSave");
+				$("#postBtns").prepend(postSave);
 			    $("#section1").hide(); 
 				$("#writeDiv").show();
+				$("#wpWrite").text("게시물 작성");
+				$("#postSave").text("글 작성");
+				$("#postCancle").text("취소");
 			});
-			$("#postCancle").click(function(){
-				$("#writeDiv").hide();
-				$("#writeDiv").load(location.reload());
-			});
+			
+			$(document).on('click', '#postCancle', function(){
+				 $("#writeDiv").hide();
+					$("#writeDiv").load(location.reload());
+			 
+			 });
 			$(".postfiles").change(function(e){
 				let id=e.target.getAttribute('id');
 				 readPostInputFile(this,id); 
@@ -443,11 +476,11 @@ function readPostInputFile(input, id){
 				
 			}
 /* 게시물 클릭 시 */
- $(document).on('click', '.userpostLi', function(){
+ $(document).on('click', '#flexWrap', function(){
 	$("#postImgD").empty();
 	$("#postDetail").show();
 	$("#section1").hide();
-	let pnumval=$(this).children().last().val();
+	let pnumval=$(this).data("pnum");
 	let pnum={"pnum":pnumval};
 	$.ajax({
 		url:'${path}/post/userpostView',
@@ -484,49 +517,46 @@ function readPostInputFile(input, id){
 		}
 	});  
 	});
-
-			/* 글 작성 버튼 */
-			$("#postSave").click(function(){
-				let userpost={
-						"unum":'${member.unum}',
-	                	"content":$("#postContent").val(),
-	                	"title":$("#postTitle").val(),
-	                	"isopen":$("input:radio[name=post_isopen]:checked").val(),
-	                	
-				}
-				 const fileInput =$(".postfiles");
-                const formData = new FormData();
-                for (var i = 0; i < fileInput.length; i++) {
-                	if (fileInput[i].files.length > 0) {
-                		for (var j = 0; j < fileInput[i].files.length; j++) {           			
-                			// formData에 'postfile'이라는 키값으로 fileInput 값을 append 시킨다.  
-                			formData.append('postfiles', $('.postfiles')[i].files[j]);
-                		}
-                	}
-                }
-                formData.append('userpost', new Blob([ JSON.stringify(userpost)], {type : "application/json"}));
-			    
-                $.ajax({
-                    url: '${path}/post/userpost',
-                    data: formData,
-                    contentType: false,               
-                    processData: false,  
-                    type: "POST",
-                    enctype : 'multipart/form-data',  
-                    success: function(result) {
-                      if (result=="success") {
-                       alert("게시물이 작성되었습니다.");
-						location.reload();
-                      } else {
-                       alert("실패");
-                       }
-                    }
-              });
-			
-			
-			
-			
-			});
+ /* 글 작성 버튼 */
+ $(document).on('click', '#postSave', function(){
+	 let userpost={
+				"unum":'${member.unum}',
+         	"content":$("#postContent").val(),
+         	"title":$("#postTitle").val(),
+         	"isopen":$("input:radio[name=post_isopen]:checked").val(),
+         	
+		}
+		 const fileInput =$(".postfiles");
+     const formData = new FormData();
+     for (var i = 0; i < fileInput.length; i++) {
+     	if (fileInput[i].files.length > 0) {
+     		for (var j = 0; j < fileInput[i].files.length; j++) {           			
+     			// formData에 'postfile'이라는 키값으로 fileInput 값을 append 시킨다.  
+     			formData.append('postfiles', $('.postfiles')[i].files[j]);
+     		}
+     	}
+     }
+     formData.append('userpost', new Blob([ JSON.stringify(userpost)], {type : "application/json"}));
+	    
+     $.ajax({
+         url: '${path}/post/userpost',
+         data: formData,
+         contentType: false,               
+         processData: false,  
+         type: "POST",
+         enctype : 'multipart/form-data',  
+         success: function(result) {
+           if (result=="success") {
+            alert("게시물이 작성되었습니다.");
+				location.reload();
+           } else {
+            alert("실패");
+            }
+         }
+   });
+	
+	 
+ });
 			
 		
 			$("#listBtn").click(function(){
@@ -535,7 +565,7 @@ function readPostInputFile(input, id){
 			});
 			
 			/* 팔로우 취소 */
-			$("#followCancle").click(function(){
+			$(document).on('click', '#followCancle', function(){
 				
 				
 				let deletefollow={
@@ -596,8 +626,8 @@ function readPostInputFile(input, id){
 		    			for(let item of data){             
 		    				
 		    				const li = document.createElement("li");
-		    				let title = document.createElement("h3");
-		    				let createdate = document.createElement("p");
+		    				let title=document.createElement("h3");
+		    				let createdate=document.createElement("p");
 		    				let flexWrap=document.createElement("div");
 		    				let postThumbnail=document.createElement("div");
 		    				let flexDiv=document.createElement("div");
@@ -623,8 +653,8 @@ function readPostInputFile(input, id){
 		    				title.innerText = item.title;
 		    				var timestamp=item.createdate;
 		    				var date = new Date(timestamp);
-		    				deleteBtn.innerHTML = '<i class="far fa-trash-alt userControll" id="postDeleteBtn"></i>';
-		    				modifyBtn.innerHTML = '<i class="fas fa-edit userControll" id="postModifyBtn"></i>';
+		    				deleteBtn.innerHTML = '<i class="far fa-trash-alt userControll"></i>';
+		    				modifyBtn.innerHTML = '<i class="fas fa-edit userControll"></i>';
 			   		         createdate.innerText = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate();
 			   		        contentTitle.innerText="게시물 내용";
 			   		         content.innerText = item.content;
@@ -639,10 +669,17 @@ function readPostInputFile(input, id){
 			   		        input.setAttribute("style","display:none");
 			   		      flexDiv.setAttribute("style","margin-left:40px; padding-top:10px"); 
 			   		     flexWrap.setAttribute("style","display:flex; margin-left:20px");
+			   		     flexWrap.setAttribute("id","flexWrap");
+			   		     flexWrap.setAttribute("data-pnum", item.pnum);
 			   		     title.setAttribute("style","margin:10px 5px 3px 20px");
 			   		   viewrec.setAttribute("style","position:absolute; right:10px; bottom:10px"); 
 			   		li.setAttribute("style","position:relative; z-index:2");
 			   		createdate.setAttribute("class","createdate");
+			   		deleteBtn.setAttribute("id","postDeleteBtn");
+			   		modifyBtn.setAttribute("id","postModifyBtn");
+			   		deleteBtn.setAttribute("data-pnum", item.pnum);
+   	        		modifyBtn.setAttribute("data-pnum", item.pnum);
+   	        		
 		    				
 			   		      li.append(title);
 			   		      li.append(createdate);
@@ -650,7 +687,6 @@ function readPostInputFile(input, id){
 			   		      li.append(viewrec);
 			   		      li.append(deleteBtn);
 			   		      li.append(modifyBtn);
-			   		      /* input이 가장 마지막으로 append 해야함 */
 			   		      li.append(input);
 			   		   
 			   		   userpostUl.append(li);
@@ -752,16 +788,328 @@ function readPostInputFile(input, id){
  			})
 				 
 			 });
-             $("#messageBtn").click(function(){
-				 
+              $("#messageBtn").click(function(){
+            	  let send = confirm("마이페이지 쪽지함으로 이동하시겠습까?");
+     	    	   if(send) {
+            	  location.href = '${path}/member/mypage?currTab=letter';
+     	    	   }
+			  });
+              $("#messageModal").click(function(){
+            	  $("#sendLetterDiv").show();
+            	  $("#modalOverlay").show();
 			 });
-             $("#messageModal").click(function(){
-				 
+              $("#replySubmit").click(function(){
+            	  let send = confirm("쪽지를 전송하시겠습니까?");
+      	    	   if(send) {
+      	    		   $.ajax({
+      	    			   url: "${path}/letter/replyLetter",
+      	                   type:   "POST",
+      	                   data: $("#sendLetterModal").serialize(), 
+      	                   success: function(data){
+      	                	   if(data == "s") {
+      	                		   alert("쪽지를 성공적으로 전송했습니다.");
+      				    		  
+      				    		   $("#reply-title").val("");
+      				    		   $("#reply-content").val("");				    		   
+      	                	   }else {
+      	                		   alert("error");
+      	                	   }
+      	                   }
+      	    		   })
+      	    		   
+      	    	   }
 			 });
+            
              
               $(document).on('click', '#postDeleteBtn', function(){
-				 
-			 });
+            	  let pnumval=$(this).data("pnum");
+            	  console.log(pnumval);
+                	let pnum={"pnum":pnumval};
+            	  let send = confirm("게시물을 삭제하시겠습니까?");
+            	  if(send) {
+     	    		   $.ajax({
+     	    			  url:'${path}/post/userpostDelete',
+     	           		type:"POST",
+     	           	contentType: 'application/json; charset=utf-8',
+     	           		data: JSON.stringify(pnum),
+     	                   success: function(data){
+     	                	   if(data == "delete") {
+     	                		   alert("게시물이 삭제되었습니다.");
+     	                		  location.reload();
+     				    		  		    		   
+     	                	   }else {
+     	                		   alert("error");
+     	                	   }
+     	                   },	error: function(){
+             					alert("stringify error");
+             				}
+                        })
+                    }
+             			});
+             		
+              
+          
+              $(document).on('click', '#postModifyBtn', function(){
+            	  $("#postBtns").empty();
+            	  $("#section1").hide(); 
+  				$("#writeDiv").show();
+  				$("#wpWrite").text("게시물 수정");
+  				
+  				let postModify=document.createElement("button");
+  				let postCancle=document.createElement("button");
+				postModify.setAttribute("id","postModify");
+				postModify.setAttribute("data-pnum",$(this).data("pnum"));
+				postCancle.setAttribute("id","postCancle");
+				$("#postBtns").prepend(postModify);
+				$("#postBtns").append(postCancle);
+				$("#postCancle").text("취소");
+				
+				$("#postModify").text("글 수정");
+  				
+  				let pnumval=$(this).data("pnum");
+  				let pnum={"pnum":pnumval};
+  				$.ajax({
+  					url:'${path}/post/userpostView',
+  					type:"POST",
+  					data: JSON.stringify(pnum),
+  					contentType:"application/json; charset=utf-8;", 
+  					
+  					success: function(data){
+  						
+  						$("input:radio[name ='post_isopen']:input[value="+data.isopen+"]").attr("checked", true);
+
+  				      $("#postTitle").val(data.title);
+  				      $("#postContent").val(data.content);
+  				     
+  						  $.ajax({
+  							url:'${path}/post/userpostViewImg',
+  							type:"POST",
+  							data: JSON.stringify(pnum),
+  							contentType:"application/json; charset=utf-8;",
+  							
+  							success: function(data){
+  								
+  								$(data).each(function(){
+  									
+  									$("#postImgD").append("<img src='${path}/images/postfile/"+this.servername+"'></img>");
+  									});
+  							},
+  							error: function(){
+  								alert("stringify error");
+  							}
+  						}); 
+  					},
+  					error: function(){
+  						alert("stringify error");
+  					}
+  				});  
+  				
+ 			 });
+              $(document).on('click', '#postModify', function(){
+            	  let userpost={
+          				"pnum":$(this).data("pnum"),
+                   	"content":$("#postContent").val(),
+                   	"title":$("#postTitle").val(),
+                   	"isopen":$("input:radio[name=post_isopen]:checked").val(),
+                   	
+          		}
+          		 const fileInput =$(".postfiles");
+               const formData = new FormData();
+               for (var i = 0; i < fileInput.length; i++) {
+               	if (fileInput[i].files.length > 0) {
+               		for (var j = 0; j < fileInput[i].files.length; j++) {           			
+               			// formData에 'postfile'이라는 키값으로 fileInput 값을 append 시킨다.  
+               			formData.append('postfiles', $('.postfiles')[i].files[j]);
+               		}
+               	}
+               }
+               formData.append('userpost', new Blob([ JSON.stringify(userpost)], {type : "application/json"}));
+          	    
+               $.ajax({
+                   url: '${path}/post/userpostModify',
+                   data: formData,
+                   contentType: false,               
+                   processData: false,  
+                   type: "POST",
+                   enctype : 'multipart/form-data',  
+                   success: function(result) {
+                     if (result=="success") {
+                      alert("게시물이 수정되었습니다.");
+          				location.reload();
+                     } else {
+                      alert("실패");
+                      }
+                   }
+             });
+          	
+            	  
+              });
+              let getMeal = function(unum){
+  				const content = $("#content");
+  				content.empty();
+  				
+  				$.ajax({
+  		        	url: "${path}/kcal/mealList",
+  		        	type: "POST",	
+  		        	data: { "unum" : unum },
+  		        	success: function(data) {
+  	        			let mealList = new Array();
+  	        			
+  		        		for(let item of data) {
+  		        			console.log(item.date);
+  		        			console.log(item.time);
+  		        			console.log(item.mealnum);
+  		        			console.log(item.menu);
+  		        			console.log(item.intake + "g");
+  		        			console.log(item.kcal + "kcal");
+  		        			
+  		        			let dateIndex = mealList.findIndex(i => i.date == item.date);
+  		        					        			
+  		        			if(dateIndex == -1) {
+  		        				let oneday = new Object();
+  		        				oneday.date = item.date;	
+  		        				let mealcards = new Array();
+  		        				oneday.mealcards = mealcards;
+  		        				oneday.todayKcal = 0;
+  		        				
+  		        				
+  		        				oneday = JSON.stringify(oneday)
+  		        				mealList.push(JSON.parse(oneday));
+  		        				
+  		        				dateIndex = mealList.findIndex(i => i.date == item.date);
+  		        				
+  		        				mealList[dateIndex].todayKcal += item.kcal;
+  		        			}else {
+  		        				mealList[dateIndex].todayKcal += item.kcal;
+  		        			}
+
+  		        			let cardIndex = mealList[dateIndex].mealcards.findIndex(i => i.mealnum == item.mealnum);
+  		        			if(cardIndex == -1) {
+  		        				let mealcard = new Object();
+  		        				mealcard.mealnum = item.mealnum;
+  		        				mealcard.time = item.time;
+  		        				let mealinfo = new Array();
+  		        				mealcard.mealinfo = mealinfo;
+  		        				mealcard.totalKcal = 0;
+  		        				
+  		        				mealcard = JSON.stringify(mealcard);
+  		        				mealList[dateIndex].mealcards.push(JSON.parse(mealcard));
+  		        				
+  		        				cardIndex = mealList[dateIndex].mealcards.findIndex(i => i.mealnum == item.mealnum);
+
+  		        				mealList[dateIndex].mealcards[cardIndex].totalKcal += item.kcal;
+  		        			}else {
+  		        				mealList[dateIndex].mealcards[cardIndex].totalKcal += item.kcal;
+  		        			}
+  		        			
+  		        			let mealinfo = new Object();
+  		        			mealinfo.menu = item.menu;
+  		        			mealinfo.intake = item.intake;
+  		        			mealinfo.kcal = item.kcal;
+  		        			
+  		        			mealinfo = JSON.stringify(mealinfo);
+  		        			mealList[dateIndex].mealcards[cardIndex].mealinfo.push(JSON.parse(mealinfo));
+  		        		}
+  		        		
+  		        		for(dateIndex in mealList) {
+  		        			let dayBox = document.createElement("div");
+  		        			dayBox.className = 'dayBox';	        			
+  		        			
+  		        			let dayTop = document.createElement("div");
+  		        			dayTop.className = 'dayTop';
+  		        			let mealDate = document.createElement("span");
+  		        			mealDate.className = 'mealDate';
+  		        			mealDate.innerText = mealList[dateIndex].date;
+  		        			let todayKcal = document.createElement("span");
+  		        			todayKcal.className = 'todayKcal';
+  		        			todayKcal.innerText = '하루 총 섭취 열량  ' + mealList[dateIndex].todayKcal + 'kcal';
+  		        			
+  		        			dayTop.append(mealDate);
+  		        			dayTop.append(todayKcal);
+  		        			dayBox.append(dayTop);
+  		        			
+  		        			let mealcards = document.createElement("div");
+  		        			mealcards.className = 'mealcards'
+  		        			
+  		        			for(cardIndex in mealList[dateIndex].mealcards) {
+  		        				let mealcard = document.createElement("div");
+  		        				mealcard.className = 'mealcard';
+  		        				
+  		        				let deleteBtn = document.createElement("span");
+  			        			deleteBtn.className = 'deleteBtn';
+  			        			/*  */
+  			        			deleteBtn.setAttribute('data-mealnum', mealList[dateIndex].mealcards[cardIndex].mealnum);
+  			        			deleteBtn.innerHTML = '<c:if test="${sessionScope.account.unum eq 1}"><i class="fas fa-times"></i></c:if>';
+  			        			mealcard.append(deleteBtn);
+  		        				
+  		        				let mealtime = document.createElement("span");
+  		        				mealtime.className = 'mealtime';
+  		        				mealtime.innerText = '식사 시간 ' + mealList[dateIndex].mealcards[cardIndex].time;
+  		        				let totalKcal = document.createElement("span");
+  		        				totalKcal.className = 'totalKcal';
+  		        				totalKcal.innerText = '총 열량 ' + mealList[dateIndex].mealcards[cardIndex].totalKcal + "kcal";
+  		        				
+  		        				let menuList = document.createElement("div");
+  		        				menuList.className = 'menuList';
+  		        				let table = document.createElement("table");		        				
+  		        				for(menuIndex in mealList[dateIndex].mealcards[cardIndex].mealinfo) {
+  		        					let tr = document.createElement("tr");
+  		        					let menuTd = document.createElement("td");
+  		        					menuTd.innerText = mealList[dateIndex].mealcards[cardIndex].mealinfo[menuIndex].menu;
+  		        					let intakeTd = document.createElement("td");
+  		        					intakeTd.innerText = mealList[dateIndex].mealcards[cardIndex].mealinfo[menuIndex].intake + "g";
+  		        					let kcalTd = document.createElement("td");
+  		        					kcalTd.innerText = mealList[dateIndex].mealcards[cardIndex].mealinfo[menuIndex].kcal + "kcal";
+  		        					
+  		        					tr.append(menuTd);
+  		        					tr.append(intakeTd);
+  		        					tr.append(kcalTd);
+  		        					
+  		        					table.append(tr);
+  		        					menuList.append(table);
+  		        				}
+  		        				
+  		        				mealcard.append(mealtime);	
+  		        				mealcard.append(menuList);
+  		        				mealcard.append(totalKcal);
+  		        				mealcards.append(mealcard);
+  		        				dayBox.append(mealcards);
+  		        			}
+  		        			
+  		        			content.append(dayBox);
+  		        		}
+  		        		
+  		        	},
+  		        	error: function(data) {
+  		        		alert("error");	
+  		        	}
+  				})
+  			}
+  			
+  		/* 	$("#getMeal").click(function(){
+  				getMeal(1);
+  			}) */
+  			getMeal(1);
+  			$(document).on('click', '.deleteBtn', function(){
+  				let mealnum = $(this).data("mealnum");
+  				console.log(mealnum);
+  				let deleteConfirm = confirm("삭제하시겠습니까?");
+  				if(deleteConfirm) {
+  					$.ajax({
+  			        	url: "${path}/kcal/deleteMeal",
+  			        	type: "POST",	
+  			        	data: { "mealnum" : mealnum },
+  			        	success: function(data) {
+  			        		if(data == "success") {
+  			        			getMeal(1);
+  			        		}else {
+  			        			alert("error");
+  			        		}
+  			        	}
+  					})
+  				}
+  			})
+  			 
 		    		
 		});
 		

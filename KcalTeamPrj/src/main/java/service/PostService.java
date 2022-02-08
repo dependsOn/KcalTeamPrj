@@ -75,9 +75,19 @@ for(int i=0; i< pvoList.size(); i++ ) {
     	return vo.getPnum();
     	
     }
+   
     
     public void postfiles(PostfileVO vo) {
     	sqlSessionTemplate.insert("userpost.insertPostfile",vo);
+    }
+    public int updatePost(UserpostVO vo) {
+    	sqlSessionTemplate.update("userpost.updatePost",vo);
+    	return vo.getPnum();
+    	
+    }
+    public void updatepostfiles(PostfileVO vo) {
+    	sqlSessionTemplate.delete("userpost.deletePostFile",vo);
+    	postfiles(vo);
     }
     
     public UserpostVO userpostView(UserpostVO vo) {
@@ -104,6 +114,12 @@ for(int i=0; i< pvoList.size(); i++ ) {
     	
     	
     	
+    }
+    
+    public String deletePost(UserpostVO vo) {
+    	sqlSessionTemplate.delete("userpost.deletePost",vo);
+    	String result="delete";
+    	return result;
     }
 
 }
