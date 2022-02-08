@@ -156,6 +156,7 @@ li {list-style-type: none;}
 	border-collapse: separate;
 	border-spacing: 0;
 }
+#food tr, th, td {width: 100%;}
 #food::-webkit-scrollbar {
     width: 10px;
 }
