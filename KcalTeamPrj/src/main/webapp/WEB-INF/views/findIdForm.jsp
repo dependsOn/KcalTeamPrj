@@ -7,29 +7,36 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-	<link rel="stylesheet" href="${path}/css/notice.css"/>
+	<link rel="stylesheet" href="${path}/css/default.css"/>
+	<link rel="stylesheet" href="${path}/css/findIdForm.css"/>
 	<script type="text/javascript" src="${path}/js/jquery-3.6.0.min.js"></script>
 </head>
 <body>
-	 <div>
-      <div>
-        <form action="${path}/member/findId" method="post">
-          <div>
-            <h3>아이디 찾기</h3>
-          </div>
-          <div>
-            <p>
-              <label>Email</label>
-              <input type="text" id="email" name="email" required />
-            </p>
-            <p>
-              <button type="submit" id="findBtn">find</button>
-              <button type="button" onclick="history.go(-1);">Cancel</button>
-            </p>
-          </div>
-        </form>
-      </div>
-    </div>
+	 <div class="container">
+	 	<jsp:include page="main_menu_bar.jsp"></jsp:include>
+	 	<div class="findIdContainer">
+            <div class="findBox">
+                <ul>
+                    <li>
+                        <p>ID 찾기</p>
+                    </li>
+                    <li>
+                        <p>이메일을 입력하면 ID를 알려드립니다.</p>
+                        <div>
+                            <label>Email</label>
+                            <input type="text" id="email" name="email" placeholder="이메일을 입력해주세요." required />
+                        </div>
+                        <div>
+                            <button type="button" onclick="history.go(-1);">취소</button>
+                            <button type="submit" id="findBtn">찾기</button>
+                            
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <jsp:include page="footer.jsp"></jsp:include>
+	 </div>
     
     <script type="text/javascript">
 
