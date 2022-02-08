@@ -56,7 +56,7 @@ public class ProfileController {
 			followService.getFolloweeList(model,fvo);
 			memberService.selectMember(model,mvo);
 			
-			return "myProfile";
+			return "myProfile_re";
 		}
 		// 게시물 페이징
 		@PostMapping("pofile/getuserpostList")
@@ -120,7 +120,7 @@ public class ProfileController {
 		public String userpost(@RequestPart(value = "postfiles",required = false) MultipartFile[] fileList,
 				@RequestPart(value = "userpost") UserpostVO vo,
 				Model model) throws Exception{
-			String path="/Users/hwang-yeonghyeon/git/KcalTeamPrj/KcalTeamPrj/src/main/webapp/resources/images/postfile";
+			String path="C:\\Users\\wjdal\\git\\KcalTeamPrj\\KcalTeamPrj\\src\\main\\webapp\\resources\\images\\postfile";
 			int i=postService.setPost(vo);
 			
 			
