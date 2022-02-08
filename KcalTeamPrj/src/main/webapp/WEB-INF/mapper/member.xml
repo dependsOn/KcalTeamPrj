@@ -64,7 +64,13 @@
 			   p_isopen, d_isopen, i_isopen, e_isopen, isdelete, isadmin, img_localname, img_servername
 		from member
 		where id = #{id}
-		and password = #{password}
+		<if test="email != null">
+			and email = #{email}
+		</if>
+		<if test="password != null">
+			and password = #{password}
+		</if>
+
 	</select>
 	
 	<select id="selectMemberList" parameterType="mvo" resultType="mvo">
@@ -224,5 +230,10 @@
 		select nickname, img_servername
 		from member
 		order by rand() limit 6
+	</select>
+	
+	 <!-- 아이디 찾기 -->
+	<select id="findId" parameterType="String" resultType="String">
+		select id from member where email = #{email}
 	</select>
 </mapper>

@@ -60,8 +60,8 @@
 	                                <li>
 	                                    <label class="addr1Label"><span>* </span>주소</label>
 	                                    
-	                                    <input type="text" id="addr1" name="addr1">
-	                                    <input type="text" id="addr2" name="addr2">
+	                                    <input type="text" id="addr1" name="addr1" readonly>
+	                                    <input type="text" id="addr2" name="addr2" readonly>
 	                                    <button type="button" id="findAddr" class="Btn">주소찾기</button>
 	                                </li>
 	                                <li>

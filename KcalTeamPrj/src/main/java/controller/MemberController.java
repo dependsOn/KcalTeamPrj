@@ -1,15 +1,20 @@
 package controller;
 
+import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -22,6 +27,9 @@ public class MemberController {
 	
 	@Autowired
 	MemberService memberService;
+	
+	@Autowired
+	JavaMailSender mailSender; 
 	
 	// 로그인
 	@GetMapping("/goLogin")
@@ -105,4 +113,64 @@ public class MemberController {
 		memberService.deleteMember(vo, session);
 		return "index";
 	}
+	
+	@RequestMapping(value = "/signUp", method = RequestMethod.GET)
+	@ResponseBody
+	public String signUp(@RequestParam("email") String email) throws Exception {
+		int serti = (int) ((Math.random() * (99999 - 10000 + 1)) + 10000);
+
+		String from = "miraclo999@naver.com";// 보내는 이 메일주소
+		String to = email;
+		String title = "회원가입시 필요한 인증번호 입니다.";
+		String content = "[인증번호] " + serti + " 입니다. <br/> 인증번호 확인란에 기입해주십시오.";
+		String num = "";
+		try {
+			MimeMessage mail = mailSender.createMimeMessage();
+			MimeMessageHelper mailHelper = new MimeMessageHelper(mail, true, "UTF-8");
+
+			mailHelper.setFrom(from);
+			mailHelper.setTo(to);
+			mailHelper.setSubject(title);
+			mailHelper.setText(content, true);
+
+			mailSender.send(mail);
+			num = Integer.toString(serti);
+
+		} catch (Exception e) {
+			num = "error";
+		}
+		return num;
+	}
+	
+	@ResponseBody
+	@PostMapping("/findPW")
+	public String findPW(String id, String email) {
+		System.out.println(id);
+		System.out.println(email);
+		
+		MemberVO vo = new MemberVO();	    
+	   
+		return memberService.findPW(id, email, vo);
+	}
+	
+
+	// 아이디 찾기 폼
+	@GetMapping("/findIdForm")
+	public String findIdForm() {
+		
+		return "findIdForm";
+	}
+
+	@PostMapping("/findId")
+	public String findId(HttpServletResponse response, @RequestParam("email") String email, Model md) throws Exception {
+		md.addAttribute("id", memberService.findId(response, email));
+		return "findId";
+	}
+	
+	// 비밀번호 찾기 폼
+	@GetMapping("/findPwForm")
+	public String findPwForm() {
+		return "findPwForm";
+	}
+	
 }
