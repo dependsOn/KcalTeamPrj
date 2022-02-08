@@ -70,11 +70,7 @@ public class BBSService {
 		sqlSessionTemplate.update("bbs.updateViewCnt", vo);
 		BBSVO vo2 = sqlSessionTemplate.selectOne("bbs.selectBBS", vo);
 		
-		int bnum = vo2.getBnum();
-		int replyCnt = sqlSessionTemplate.selectOne("reply.selectReplyCount", bnum);
-		
 		model.addAttribute("bbsVO", vo2);
-		model.addAttribute("replyCnt", replyCnt);
 	}
 
 	public void updateBBS(BBSVO vo, Model model) {

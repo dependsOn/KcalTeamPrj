@@ -101,6 +101,8 @@
 	   		        	 viewTd.innerText = item.view_cnt;
 	   		        	 recommendTd.innerText = item.recommend;
 	   		        	 
+	   		        	 
+	   		        	 
  	   		        	 /* ntitleTd.style.color = "orangered";
  	   		        	 titleTd.style.color = "orangered"; */
 	   		        	 
@@ -194,6 +196,12 @@
 		   		        	 viewTd.innerText = item.view_cnt;
 		   		        	 recommendTd.innerText = item.recommend;
 		   		        	 
+		   		        	 // 제목 옆에 댓글 수
+		   		        	 let replyCnt = document.createElement("span");
+		   		        	 replyCnt.innerText = item.replyCnt;
+		   		        	 replyCnt.setAttribute('class', "replyCnt");
+		   		        	 titleTd.append(replyCnt); 
+		   		        		   		        	
 		   		        	 tr.append(bnumTd);
 		   		        	 tr.append(titleTd);
 		   		        	 tr.append(ownerTd);

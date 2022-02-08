@@ -17,10 +17,12 @@ public class BBSVO {
 	private String isopen;
 	private int start;
 	private int count;
+	private int replyCnt;
 	
 	public BBSVO() {
 		this.start = 0;
 		this.count = 10;
+		this.replyCnt = 0;
 	}
 	
 	
@@ -160,6 +162,20 @@ public class BBSVO {
 
 	public void setCount(int count) {
 		this.count = count;
+	}
+
+
+
+
+	public int getReplyCnt() {
+		return replyCnt;
+	}
+
+
+
+
+	public void setReplyCnt(int replyCnt) {
+		this.replyCnt = replyCnt;
 	}
 	
 	

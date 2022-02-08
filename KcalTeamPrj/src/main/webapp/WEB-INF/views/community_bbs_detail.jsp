@@ -53,7 +53,7 @@
 			<span id="backToList"><i class="fas fa-list"></i>&nbsp;&nbsp;목록</span>
 		</div>
 		<div id="replyBox">
-			<p id="replyCnt">댓글 ${replyCnt}개</p>
+			<p id="replyCnt">댓글 ${bbsVO.replyCnt}개</p>
 			<div id="newReply">
 				<textarea rows="5" id="reply"></textarea>
 				<button id="putReply">댓글 등록</button>

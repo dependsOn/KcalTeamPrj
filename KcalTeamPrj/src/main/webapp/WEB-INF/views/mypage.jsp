@@ -626,6 +626,12 @@
 			   		        	 viewTd.innerText = item.view_cnt;
 			   		        	 recommendTd.innerText = item.recommend;
 			   		        	 
+			   		       		// 제목 옆에 댓글 수
+			   		        	 let replyCnt = document.createElement("span");
+			   		        	 replyCnt.innerText = item.replyCnt;
+			   		        	 replyCnt.setAttribute('class', "replyCnt");
+			   		        	 titleTd.append(replyCnt);
+			   		        	 
 			   		        	 tr.append(titleTd);
 			   		        	 tr.append(dateTd);
 			   		        	 tr.append(viewTd);

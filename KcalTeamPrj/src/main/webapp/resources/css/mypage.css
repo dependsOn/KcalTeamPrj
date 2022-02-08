@@ -529,6 +529,13 @@ td[data-ischeck='Y'] {
 	display: inline-block;
 }
 
+.replyCnt {
+	color: orangered;
+	font-weight: bold;
+	display: inline-block;
+	padding: 0 10px;
+}
+
 
 
 #askTitle {
