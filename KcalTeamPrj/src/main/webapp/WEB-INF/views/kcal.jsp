@@ -41,6 +41,9 @@
 		                		<button id="saveBtn">내 식단에 저장</button>
                 			</div>
 	        			</c:if>
+	        			<c:if test="${empty sessionScope.account}">
+	        				<p>* 식단저장은 <a href="${path}/member/goLogin">로그인</a> 후 가능합니다.</p>
+	        			</c:if>
                 	</div>
                 	
 	                <div id="myMeal">
@@ -139,6 +142,7 @@
 			        	success: function(data) {
 			        		if(data.length == 0){
 			        			console.log("결과 없음");
+			        			alert("검색결과가 없습니다.");
 			        		}else {
 			        			$("#food").css("display", "block");
 			        			for(let item of data) {				       				

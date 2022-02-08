@@ -85,6 +85,20 @@ li {list-style-type: none;}
 	margin-top: 15px;
 }
 
+#calcResult > p:nth-child(2) {
+	color: red;
+	font-size: 0.8rem;
+	text-align: center;
+	margin-top: 15px;
+}
+#calcResult > p:nth-child(2) a {
+	text-decoration: underline;
+	color: orangered;
+}
+#calcResult > p:nth-child(2) a:hover {
+	font-weight: bold;
+}
+
 #datepicker,
 #timepicker {
 	width: 100px;
@@ -137,7 +151,7 @@ li {list-style-type: none;}
 	max-height: 500px;
 	overflow: auto;
 	width: 100%;
-	table-layout: fixed;
+	/* table-layout: fixed; */
 	padding: 10px 20px;
 	border-collapse: separate;
 	border-spacing: 0;
