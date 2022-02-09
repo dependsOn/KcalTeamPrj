@@ -21,14 +21,21 @@
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach var="item" items="${receiveLetterList}">
+				<c:if test="${!empty receiveLetterList}">
+					<c:forEach var="item" items="${receiveLetterList}">
+						<tr>
+							<td><input type="checkbox" name="delete" value="${item.lnum}"/></td>
+							<td class="letterTitle readLetter" data-lnum="${item.lnum}" data-ischeck="${item.ischeck}">${item.title}</td>
+							<td data-nickname="${item.snick}" class="lnickname">${item.snick}</td>
+							<td>${item.date}</td>
+						</tr>
+					</c:forEach>
+				</c:if>
+				<c:if test="${empty receiveLetterList}">
 					<tr>
-						<td><input type="checkbox" name="delete" value="${item.lnum}"/></td>
-						<td class="letterTitle readLetter" data-lnum="${item.lnum}" data-ischeck="${item.ischeck}">${item.title}</td>
-						<td data-nickname="${item.snick}" class="lnickname">${item.snick}</td>
-						<td>${item.date}</td>
+						<td class="letterNone" colspan="4">받은 쪽지가 없습니다.</td>
 					</tr>
-				</c:forEach>
+				</c:if>
 			</tbody>
 		</table>
 	<%
@@ -54,51 +61,54 @@
    <input type="hidden" value="${rnum}" id="r_num" />
    <input type="hidden" value="${rminBlock}" id="r_minBlock" />
    <input type="hidden" value="${rmaxBlock}" id="r_maxBlock" />
-   <div id="rl_pages">
-	   <c:choose>
-	   	<c:when test="${rminBlock-1 < 1}">
-	   		<span><i class="fas fa-angle-double-left"></i></span>
-	   	</c:when>
-	   	<c:otherwise>
-	   		<span id="r_preBlock" class="clickable"><i class="fas fa-angle-double-left"></i></span>
-	   	</c:otherwise>
-	   </c:choose>
-	   <c:choose>
-	      <c:when test="${rnum == 1}">
-	         <span><i class="fas fa-angle-left"></i></span>
-	      </c:when>
-	      <c:otherwise>
-	         <span id="r_pre" class="clickable"><i class="fas fa-angle-left"></i></span>
-	      </c:otherwise>
-	   </c:choose>
-	   <c:forEach begin="${rminBlock}" end="${(rtotal < rmaxBlock) ? rtotal : rmaxBlock}" step="1" var="i">
-	      <c:choose>
-	         <c:when test="${rnum == i}">
-	            <span class="r_currPage">${i}</span>
-	         </c:when>
-	         <c:otherwise>
-	            <span class="r_page" style="cursor:pointer;">${i}</span>
-	         </c:otherwise>
-	      </c:choose>
-	
-	   </c:forEach>
-	   <c:choose>
-	      <c:when test="${rnum == rtotal}">
-	         <span><i class="fas fa-angle-right"></i></span>
-	      </c:when>
-	      <c:otherwise>
-	         <span id="r_next" class="clickable"><i class="fas fa-angle-right"></i></i></span>    
-	      </c:otherwise>
-	   </c:choose>
-	   <c:choose>
-		   	<c:when test="${rmaxBlock >= rtotal}">
-		   		<span><i class="fas fa-angle-double-right"></i></span>
+   
+   <c:if test="${!empty sendLetterList}">
+	   <div id="rl_pages">
+		   <c:choose>
+		   	<c:when test="${rminBlock-1 < 1}">
+		   		<span><i class="fas fa-angle-double-left"></i></span>
 		   	</c:when>
 		   	<c:otherwise>
-		   		<span id="r_nextBlock" class="clickable"><i class="fas fa-angle-double-right"></i></span>
-			</c:otherwise>
-	   </c:choose>
-   </div>
+		   		<span id="r_preBlock" class="clickable"><i class="fas fa-angle-double-left"></i></span>
+		   	</c:otherwise>
+		   </c:choose>
+		   <c:choose>
+		      <c:when test="${rnum == 1}">
+		         <span><i class="fas fa-angle-left"></i></span>
+		      </c:when>
+		      <c:otherwise>
+		         <span id="r_pre" class="clickable"><i class="fas fa-angle-left"></i></span>
+		      </c:otherwise>
+		   </c:choose>
+		   <c:forEach begin="${rminBlock}" end="${(rtotal < rmaxBlock) ? rtotal : rmaxBlock}" step="1" var="i">
+		      <c:choose>
+		         <c:when test="${rnum == i}">
+		            <span class="r_currPage">${i}</span>
+		         </c:when>
+		         <c:otherwise>
+		            <span class="r_page" style="cursor:pointer;">${i}</span>
+		         </c:otherwise>
+		      </c:choose>
+		
+		   </c:forEach>
+		   <c:choose>
+		      <c:when test="${rnum == rtotal}">
+		         <span><i class="fas fa-angle-right"></i></span>
+		      </c:when>
+		      <c:otherwise>
+		         <span id="r_next" class="clickable"><i class="fas fa-angle-right"></i></i></span>    
+		      </c:otherwise>
+		   </c:choose>
+		   <c:choose>
+			   	<c:when test="${rmaxBlock >= rtotal}">
+			   		<span><i class="fas fa-angle-double-right"></i></span>
+			   	</c:when>
+			   	<c:otherwise>
+			   		<span id="r_nextBlock" class="clickable"><i class="fas fa-angle-double-right"></i></span>
+				</c:otherwise>
+		   </c:choose>
+	   </div>
+   </c:if>
 	</div>
 	
 	<div id="sl">
@@ -112,14 +122,21 @@
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach var="item" items="${sendLetterList}">
+				<c:if test="${!empty sendLetterList}">
+					<c:forEach var="item" items="${sendLetterList}">
+						<tr>
+							<td><input type="checkbox" name="delete" value="${item.lnum}"/></td>
+							<td class="letterTitle" data-lnum="${item.lnum}">${item.title}</td>
+							<td data-nickname="${item.rnick}" class="lnickname">${item.rnick}</td>
+							<td>${item.date}</td>
+						</tr>
+					</c:forEach>
+				</c:if>
+				<c:if test="${empty sendLetterList}">
 					<tr>
-						<td><input type="checkbox" name="delete" value="${item.lnum}"/></td>
-						<td class="letterTitle" data-lnum="${item.lnum}">${item.title}</td>
-						<td data-nickname="${item.rnick}" class="lnickname">${item.rnick}</td>
-						<td>${item.date}</td>
+						<td class="letterNone" colspan="4">보낸 쪽지가 없습니다.</td>
 					</tr>
-				</c:forEach>
+				</c:if>
 			</tbody>
 		</table>
 		<%
@@ -145,51 +162,56 @@
    <input type="hidden" value="${snum}" id="s_num" />
    <input type="hidden" value="${sminBlock}" id="s_minBlock" />
    <input type="hidden" value="${smaxBlock}" id="s_maxBlock" />
-   <div id="sl_pages">
-	   <c:choose>
-	   	<c:when test="${sminBlock-1 < 1}">
-	   		<span><i class="fas fa-angle-double-left"></i></span>
-	   	</c:when>
-	   	<c:otherwise>
-	   		<span id="s_preBlock" class="clickable"><i class="fas fa-angle-double-left"></i></span>
-	   	</c:otherwise>
-	   </c:choose>
-	   <c:choose>
-	      <c:when test="${snum == 1}">
-	         <span><i class="fas fa-angle-left"></i></span>
-	      </c:when>
-	      <c:otherwise>
-	         <span id="s_pre" class="clickable"><i class="fas fa-angle-left"></i></span>
-	      </c:otherwise>
-	   </c:choose>
-	   <c:forEach begin="${sminBlock}" end="${(stotal  <smaxBlock) ? stotal : smaxBlock}" step="1" var="i">
-	      <c:choose>
-	         <c:when test="${snum == i}">
-	            <span class="s_currPage">${i}</span>
-	         </c:when>
-	         <c:otherwise>
-	            <span class="s_page" style="cursor:pointer;">${i}</span>
-	         </c:otherwise>
-	      </c:choose>
-	
-	   </c:forEach>
-	   <c:choose>
-	      <c:when test="${snum == stotal}">
-	         <span><i class="fas fa-angle-right"></i></span>
-	      </c:when>
-	      <c:otherwise>
-	         <span id="s_next" class="clickable"><i class="fas fa-angle-right"></i></span>    
-	      </c:otherwise>
-	   </c:choose>
-	   <c:choose>
-		   	<c:when test="${smaxBlock >= stotal}">
-		   		<span><i class="fas fa-angle-double-right"></i></span>
+   
+   <c:if test="${!empty sendLetterList}">
+   
+	   <div id="sl_pages">
+		   <c:choose>
+		   	<c:when test="${sminBlock-1 < 1}">
+		   		<span><i class="fas fa-angle-double-left"></i></span>
 		   	</c:when>
 		   	<c:otherwise>
-		   		<span id="s_nextBlock" class="clickable"><i class="fas fa-angle-double-right"></i></span>
-			</c:otherwise>
-	   </c:choose>
-   </div>
+		   		<span id="s_preBlock" class="clickable"><i class="fas fa-angle-double-left"></i></span>
+		   	</c:otherwise>
+		   </c:choose>
+		   <c:choose>
+		      <c:when test="${snum == 1}">
+		         <span><i class="fas fa-angle-left"></i></span>
+		      </c:when>
+		      <c:otherwise>
+		         <span id="s_pre" class="clickable"><i class="fas fa-angle-left"></i></span>
+		      </c:otherwise>
+		   </c:choose>
+		   <c:forEach begin="${sminBlock}" end="${(stotal  <smaxBlock) ? stotal : smaxBlock}" step="1" var="i">
+		      <c:choose>
+		         <c:when test="${snum == i}">
+		            <span class="s_currPage">${i}</span>
+		         </c:when>
+		         <c:otherwise>
+		            <span class="s_page" style="cursor:pointer;">${i}</span>
+		         </c:otherwise>
+		      </c:choose>
+		
+		   </c:forEach>
+		   <c:choose>
+		      <c:when test="${snum == stotal}">
+		         <span><i class="fas fa-angle-right"></i></span>
+		      </c:when>
+		      <c:otherwise>
+		         <span id="s_next" class="clickable"><i class="fas fa-angle-right"></i></span>    
+		      </c:otherwise>
+		   </c:choose>
+		   <c:choose>
+			   	<c:when test="${smaxBlock >= stotal}">
+			   		<span><i class="fas fa-angle-double-right"></i></span>
+			   	</c:when>
+			   	<c:otherwise>
+			   		<span id="s_nextBlock" class="clickable"><i class="fas fa-angle-double-right"></i></span>
+				</c:otherwise>
+		   </c:choose>
+	   </div>
+   
+   </c:if>
 	</div>
 </body>
 </html>

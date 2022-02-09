@@ -509,7 +509,7 @@
 	        		alert("상세주소를 입력해주세요.");
 	        	}else if(($(".isPossible").val() == "impossible") || ($(".email").val() == "")) {
 	        		alert("이메일 입력란을 확인해주세요.");
-	        	}else if($(".password").val() != ${sessionScope.account.password}) {
+	        	}else if($(".password").val() != "${sessionScope.account.password}") {
 	        		alert("비밀번호가 일치하지 않습니다.");
 	        	}else {
 	        		$.ajax({
@@ -537,7 +537,7 @@
 	        			"password" : $(".newPw").val()
 	        			}
 	        	
-	        	if($(".currentPw").val() != ${sessionScope.account.password}) {
+	        	if($(".currentPw").val() != "${sessionScope.account.password}") {
 	        		alert("현재 비밀번호를 정확하게 입력해주세요.");
 	        	}else if(($(".newPw").val() == "") || ($(".newPwConfirm").val() == "") || ($(".newPw").val() != $(".newPwConfirm").val())) {
 	        		alert("새 비밀번호가 일치하지 않습니다.")	;
@@ -563,7 +563,7 @@
 	        
 	        // 회원탈퇴	        
 	        $(".withdraw").click(function(){
-	        	if($(".wdPassword").val() != ${sessionScope.account.password}) {
+	        	if($(".wdPassword").val() != "${sessionScope.account.password}") {
 	        		alert("비밀번호가 일치하지 않습니다.");
 	        	}else if($(".confirmWord").val() != "회원탈퇴") {
 	        		alert("탈퇴문구를 정확히 입력하세요.");

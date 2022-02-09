@@ -594,6 +594,10 @@ td[data-ischeck='Y'] {
 	display: inline-block;
 }
 
+.letterNone {
+	height: 350px;
+}
+
 
 
 
@@ -616,5 +620,7 @@ td[data-ischeck='Y'] {
 .contents .memberCon table {
     padding: 30px 0px;
 }
+
+
 
 }

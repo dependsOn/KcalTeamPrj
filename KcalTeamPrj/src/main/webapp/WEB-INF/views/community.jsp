@@ -62,10 +62,10 @@
                 
 	                <div class="profileLine">
 	                    <div class="profileImage">
-		                    <c:if test="${empty sessionScope.account}">
+		                    <c:if test="${empty sessionScope.account.img_servername}">
 		                        <img src="${path}/images/myprofile/default-profile.png" alt="">
 	                        </c:if>
-	                        <c:if test="${!empty sessionScope.account}">
+	                        <c:if test="${!empty sessionScope.account.img_servername}">
 		                        <img src="${path}/images/myprofile/${sessionScope.account.img_servername}" alt="">
 	                        </c:if>
 	                    </div>
