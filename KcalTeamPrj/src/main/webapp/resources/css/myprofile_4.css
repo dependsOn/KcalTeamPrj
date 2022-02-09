@@ -69,7 +69,7 @@ ul {
 
 
 .defaultImg {
-	background-Image: url('${path}/images/myprofile/default-profile.png')
+	background-Image: url('${path}/images/myprofile/default-profile.png');
 }
 
 #followDiv {
@@ -136,12 +136,11 @@ ul {
 	height: 700px;
 	top: 100px;
 	left: 50%;
-   transform: translateX(-50%);  
+    transform: translateX(-50%);  
 	border: 1px solid black;
 	z-index: 200;
 	background-color: white;
-	overflow: scroll;
-	border-radius:10px;
+	overflow: no-scroll;
 }
 
 
@@ -150,6 +149,8 @@ ul {
 	height: 500px;
 	object-fit: contain;
 }
+
+
 
 textarea {
 	resize: none;
@@ -160,7 +161,7 @@ textarea {
 }
 
 .hr {
-	background-color: gray;
+	background-color: #ccc;
 	width: 90%;
 	height: 2px;
 	margin: 0 auto;
@@ -326,11 +327,12 @@ textarea {
 	width: 60px;
 	height: 60px;
 	border-radius: 70%;
-	border: 1px solid black;
+	border: 1px solid #ccc;
 	display: inline-block;
-	background-size: contain;
+	background-size: cover;
 	background-repeat: no-repeat;
 	background-position: center;
+	margin-right:40px;
 }
 
 .userpostLi{
@@ -430,7 +432,8 @@ textarea {
 #writeBtn {
 	
 	float:right;
-	margin: 20px 10px 0 10px ;
+	margin-top: 20px;
+	margin-right: 20px;
 	
 	height: auto;
 	font-size:15px;
@@ -562,7 +565,8 @@ textarea {
 	
 }
 .modalTitle{
-	margin-top:15px;
+	margin-top:10px;
+	margin-bottom: 10px;
 	font-size:20px;
 	color: dimgray;
 }
@@ -573,6 +577,7 @@ textarea {
 	font-size:20px;
 }
 #modifyBtn:hover, #writeBtn:hover{
+	transition:0.3s;
 	color:orangered;
 }
 #profileSetUl>li{
@@ -603,42 +608,54 @@ textarea {
 
 #followerModal>ul>li, #followeeModal>ul>li{
 	width:90%;
-	margin:0 auto 5px auto;
-	border-bottom:1px solid dimgray;
-	position:relative;
-	
+	margin:0 auto 10px auto;
+	border-bottom:1px solid #ccc;
+	display:flex;
+	padding-bottom: 10px;
+	align-items: center;
 } 
-#followerModal>ul, #followeeModal>ul{
-	
-	
-	margin-top:20px;
 
-}
-.followA{
-	position:absolute;
-	top:20px;
-	left:100px;
-	color:dimgray;
+#followerModal>ul, #followeeModal > ul {
+	height: 447px;
 	
+}
+
+#followerModal {
+	overflow: scroll;
+}
+
+#followeeModal {
+	overflow-y: scroll;
+}
+
+#followerModal>ul, #followeeModal > ul > li:nth-child(1){
+	margin-top: 20px;
+}
+
+.followA{
+	width: 145px;
+	color:dimgray;
+	margin-right: 5px;
 }
 .followA:hover, postVRD>span>i:hover{
+	transition: .5s;
 	color:orangered;
 	
 }
 .followCancle{
-	position:absolute;
-	top:25px;
-	left:280px;
-	color:dimgray;
+	color: lightslategray;
 	border:none;
-	background-color:#ccc;
+	background-color:#eee;
 	cursor:pointer;
-	width:70px;
-	height:20px;
+	width: 95px;
+	height:35px;
 	border-radius:5px;
 }
+
 .followCancle:hover{
-	color:black;
+	transition: .3s;
+	background-color:#ff8d64;
+	color: white;
 }
 #postCancle{
 	margin-left:20px;

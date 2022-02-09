@@ -19,7 +19,7 @@
 		<jsp:include page="community_header.jsp"></jsp:include>
 		<div class="adNLogin">
             <div class="ad">
-                <img src="${path}/images/main/main3.jpg" alt="">
+                <img src="${path}/images/main/ad.jpg" alt="">
             </div>
             
             <c:if test="${empty sessionScope.account}">
