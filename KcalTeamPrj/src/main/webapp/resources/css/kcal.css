@@ -83,6 +83,10 @@ li {list-style-type: none;}
 	color: black;
 }
 
+#calcResultMent > span {
+	color: red;
+}
+
 #calcResult #saveBox {
 	display: flex;
 	justify-content: center;

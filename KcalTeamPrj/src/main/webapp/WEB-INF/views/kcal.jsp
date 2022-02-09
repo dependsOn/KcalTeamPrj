@@ -290,7 +290,7 @@
 	        		kcalAll += jsonArray[i].kcal;
 	        	}
 	        	
-	        	$("#calcResultMent").text("선택한 음식들의 총 칼로리는 " + kcalAll + "kcal 입니다.");
+	        	$("#calcResultMent").html("선택한 음식들의 총 칼로리는 <span>" + kcalAll + "kcal</span> 입니다.");
 	        })
 	        
 	        // 저장하기 버튼 
