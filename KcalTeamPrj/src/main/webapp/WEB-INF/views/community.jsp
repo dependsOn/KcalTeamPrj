@@ -81,7 +81,7 @@
 
         <div class="peopleBox">
             <div class="pTitle">
-                <p>오늘의 피플</p>
+                <p>실시간 피플</p>
             </div>
         </div>
 
