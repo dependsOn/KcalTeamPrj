@@ -46,7 +46,7 @@
 		                            	<p><a href="${path}/tip/tipDetail?tnum=${tipcList.tnum}&curPage=curTip"><c:out value="${tipcList.title}" escapeXml="false" /></a></p>
 		                            </li>
 		                            <li class="conBox">
-		                            	<p><c:out value="${tipcList.contents}" escapeXml="false" /></p>
+		                            	<c:out value="${tipcList.contents}" escapeXml="false" />
 		                            </li>
 		                            <li>
 		                            	<p><c:out value="${tipcList.createdate}" escapeXml="false" /></p>
