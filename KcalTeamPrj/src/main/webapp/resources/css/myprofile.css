@@ -29,17 +29,21 @@ ul {
 #profile {
 	display: flex;
 	margin-bottom: 20px;
+	height:300px;
 }
 
 #profileImg {
-	width: 100px;
-	height: 100px;
-	border: 1px solid black;
+	width: 200px;
+	height: 200px;
+	margin: 500px;
 	border-radius: 70%;
-	margin-left: 10vw;
+	/* margin-left: 10vw; */
 	background-size: contain;
 	background-repeat: no-repeat;
 	background-position: center;
+	 margin-left: 150px;
+    margin-right: 80px;
+    border: 1px solid red;
 }
 
 .defaultImg {
