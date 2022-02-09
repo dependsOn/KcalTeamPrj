@@ -7,7 +7,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-	<link rel="stylesheet" href="${path}/css/notice.css"/>
+	<link rel="stylesheet" href="${path}/css/default.css"/>
+	<link rel="stylesheet" href="${path}/css/afterIdForm.css"/>
 	<script type="text/javascript" src="${path}/js/jquery-3.6.0.min.js"></script>
 	<script>
 	$(function(){
@@ -20,24 +21,24 @@
 	
 </head>
 <body>
-	 <div >
-		<div>
-			<div >
-				<h3>아이디 찾기 검색결과</h3>
-			</div>
-			<div>
-				<h5>
-					${ id }
-				</h5>
-				<p >
-					<button type="button" id=loginBtn >Login</button>
-					<button type="button" onclick="history.go(-1);">Cancel</button>
-				</p>
-			</div>
-		</div>
-	</div>
-
-
-
+	 <div class="conatainer">
+	 	<jsp:include page="main_menu_bar.jsp"></jsp:include>
+        <div class="afterIdContainer">
+            <div class="afterBox">
+                <ul>
+                    <li>
+                        <p>아이디 찾기</p>
+                    </li>
+                    <li>
+                        <div>
+                            <p>회원님의 아이디는 <span>${id}</span> 입니다.</p>
+                        </div>
+                        <button id="loginBtn">로그인</button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <jsp:include page="footer.jsp"></jsp:include>
+    </div>
 </body>
 </html>

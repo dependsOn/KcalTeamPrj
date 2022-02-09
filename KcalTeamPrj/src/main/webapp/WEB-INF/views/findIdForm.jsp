@@ -45,11 +45,6 @@
 			location.href = "${path}/member/findId?email=" + $("#email").val();
 		})
 	})
-	
-
-	
-	
-	
 	</script>
 </body>
 </html>
