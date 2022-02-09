@@ -143,5 +143,6 @@
     line-height: 1.7;
     font-size: 14px;
     margin-bottom:50px;
+    word-wrap: break-word;
 }
 
