@@ -8,7 +8,6 @@ public class CsqnaVO {
 	private int csqna_seq;
 		// �������� �����̱⿡ String
 	private String nickname;
-	private String password;
 	private String title;
 	private String contents;
 	private int start;
@@ -37,12 +36,8 @@ public class CsqnaVO {
 	public void setNickname(String nickname) {
 		this.nickname = nickname;
 	}
-	public String getPassword() {
-		return password;
-	}
-	public void setPassword(String password) {
-		this.password = password;
-	}
+
+
 	public String getTitle() {
 		return title;
 	}

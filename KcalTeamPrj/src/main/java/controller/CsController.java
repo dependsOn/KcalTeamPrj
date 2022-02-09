@@ -53,7 +53,6 @@ public class CsController {
 	@PostMapping("/insertCsqna")
 	public void insertCsqna(CsqnaVO vo) {
 		System.out.println(vo.getNickname());
-		System.out.println(vo.getPassword());
 		System.out.println(vo.getTitle());
 		System.out.println(vo.getContents());		
 		csService.insertCsqna(vo);

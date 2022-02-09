@@ -108,7 +108,7 @@
 			
 			
 			// 로그인상태-닉네임 클릭
-			$(document).on('click', '#mhNnickname', function(){
+			$(document).on('click', '#mhNickname', function(){
 				$(".ubLogin").addClass("clicked");
 			})
 			

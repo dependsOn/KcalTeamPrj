@@ -46,7 +46,7 @@
 	</select>
 	
 	<select id="selectCsqnaList" parameterType="csqnaVO" resultType="csqnaVO">
-		select csqna_seq, nickname, password, title, contents
+		select csqna_seq, nickname, title, contents
 		from csqna
 		<where>
 			<if test="csqna_seq != 0">
@@ -61,7 +61,7 @@
 	</select>
 	
 	<select id="selectCsqna" parameterType="csqnaVO" resultType="csqnaVO">
-		select csqna_seq, nickname, password, title, contents
+		select csqna_seq, nickname, title, contents
 		from csqna
 		where csqna_seq = #{csqna_seq}
 	</select>
