@@ -1341,6 +1341,10 @@ function readPostInputFile(input, id){
   				location.href = "${path}/kcal/goKcal?curPage=curKcal";
   			})
   			
+  			// 헤더메뉴 클릭
+  			$(document).on('click', '.menuTab', function(){
+	        	 location.href = "${path}/community/bbs?category="+$(this).data("category");	        	 
+	         })
   			 
 		    		
 		});
