@@ -81,5 +81,10 @@ SELECT LAST_INSERT_ID()
 	     isopen=#{isopen}
 	     where pnum=#{pnum}
      </update>
+     <update id="updateRec" parameterType="userpostVO">
+         update userpost set
+         recommend=recommend+1
+	     where pnum=#{pnum}
+     </update>
 
 </mapper>

@@ -121,5 +121,9 @@ for(int i=0; i< pvoList.size(); i++ ) {
     	String result="delete";
     	return result;
     }
+    public void updateRec(UserpostVO vo) {
+    	sqlSessionTemplate.update("userpost.updateRec",vo);
+    	
+    }
 
 }

@@ -16,7 +16,7 @@
 	href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
 <link rel="stylesheet" href="${path}/css/meal_test.css" />
 <link rel="stylesheet" type="text/css"
-	href="${path}/css/myprofile_3.css">
+	href="${path}/css/myprofile_4.css">
 <script src="https://kit.fontawesome.com/604dbbab30.js"
 	crossorigin="anonymous"></script>
 
@@ -64,6 +64,20 @@
 								class="fas fa-user-cog prosetBtn"></i>
 							</span>
 						</c:if>
+						<c:choose>
+					<c:when test="${followcheck eq 'true' }">
+						
+						<span><i class="fas fa-user-minus followBtns prosetBtn" id="followDeleteBtn"></i></span>
+					</c:when>
+					<c:when test="${followcheck eq 'false' }">
+						
+						<span><i class="fas fa-user-plus followBtns prosetBtn" id="followBtn"></i></span>
+					</c:when>
+					<c:when test="${followcheck eq 'mine' }">
+
+					</c:when>
+
+				</c:choose>
 
 					</div>
 				</div>
@@ -82,23 +96,26 @@
                     </c:if>
 					</p>
 				</div>
-			</div>
-			<div id="gofollowDiv">
+				<div id="gofollowDiv">
 
-				<c:choose>
+				<%-- <c:choose>
 					<c:when test="${followcheck eq 'true' }">
-						<button id="followDeleteBtn">팔로우 취소</button>
+						
+						<span><i class="fas fa-user-minus followBtns" id="followDeleteBtn"></i></span>
 					</c:when>
 					<c:when test="${followcheck eq 'false' }">
-						<button id="followBtn">팔로우 하기</button>
+						
+						<span><i class="fas fa-user-plus followBtns" id="followBtn"></i></span>
 					</c:when>
 					<c:when test="${followcheck eq 'mine' }">
 
 					</c:when>
 
-				</c:choose>
+				</c:choose> --%>
 
 			</div>
+			</div>
+			
 		</div>
 
 
@@ -189,7 +206,7 @@
 							<c:if test="${'N' eq member.d_isopen}">checked</c:if>><label
 							for="ra_dn">비공개</label>
 						</li>
-						<li>인바디기록 <input style="margin-left:70px" type="radio" name="i_isopen" id="ra_iy"
+						<%-- <li>인바디기록 <input style="margin-left:70px" type="radio" name="i_isopen" id="ra_iy"
 							value="Y" <c:if test="${'Y' eq member.i_isopen}">checked</c:if>><label
 							for="ra_iy">공개</label> <input type="radio" name="i_isopen"
 							id="ra_in" value="N"
@@ -202,10 +219,10 @@
 							id="ra_en" value="N"
 							<c:if test="${'N' eq member.e_isopen}">checked</c:if>><label
 							for="ra_en">비공개</label>
-						</li>
+						</li> --%>
 
 					</ul>
-					<div class="hr" style="width: 100%;"></div>
+					<div class="hr" style="width: 100%; margin-top:20px;"></div>
                    <div id="settingBtns">
 					<button type="button" id="profileSetBtn">저장</button>
 					<button type="button" id="profileCancleBtn">취소</button>
@@ -268,12 +285,12 @@
 			<h2 id="postTitleD"></h2>
 			<p id="postDateD"></p>
 			</div>
-			<div style="width:100%" class="hr"></div>
+			<div style="width:100%; background-color:orangered" class="hr"></div>
 			<div id="postImgD"></div>
 			<p id="postContentD"></p>
+			<div style="width:100%; background-color:orangered" class="hr"></div>
 			<div id="postVRD">
-				<span id="recBtn"><i class="xi-thumbs-up"></i></span>
-				<span id="listBtn"><i class="fas fa-list"></i></span>
+				
 			</div>
 		</div>
 
@@ -314,13 +331,18 @@
 
 
 		<!-- 게시물 -->
+		<!-- section1 -->
 		<c:choose>
 			<c:when test="${sessionScope.account.nickname ne member.nickname}">
 				<section id="section1" class="main">
 
 
 					<c:if test="${'N' eq member.p_isopen }">
-						<p>비공개입니다.</p>
+					
+						<ul>
+						<li class="noShow">
+						<h3>비공개입니다.</h3>
+						</li></ul>
 
 					</c:if>
 					<c:if test="${'Y' eq member.p_isopen}">
@@ -347,9 +369,42 @@
 
 			</c:when>
 		</c:choose>
-		<section id="section2" class="main">
-			<!-- <button id="getMeal">식단</button> -->
-			<div id="mealController">
+		
+		<!-- section2 -->
+		<c:choose>
+			<c:when test="${sessionScope.account.nickname ne member.nickname}">
+				<section id="section2" class="main">
+
+
+					<c:if test="${'N' eq member.d_isopen }">
+					
+						<ul>
+						<li class="noShow">
+						<h3>비공개입니다.</h3>
+						</li></ul>
+
+					</c:if>
+					<c:if test="${'Y' eq member.d_isopen}">
+             <div id="mealController">
+				<ul id="searchDate">
+					<li><input type="text" id="datepicker_start"
+						class="datepicker" /></li>
+					<li>~</li>
+					<li><input type="text" id="datepicker_end" class="datepicker" /></li>
+					<li><button id="searchDateBtn">검색</button></li>
+				</ul>
+				
+			</div>
+						<div id="content"></div>
+					</c:if>
+
+
+
+				</section>
+			</c:when>
+			<c:when test="${sessionScope.account.nickname eq member.nickname}">
+				<section id="section2" class="main">
+                 <div id="mealController">
 				<ul id="searchDate">
 					<li><input type="text" id="datepicker_start"
 						class="datepicker" /></li>
@@ -363,13 +418,11 @@
 			</div>
 
 			<div id="content"></div>
-		</section>
-		<!-- <section id="section3" class="main">
-			<p>91022</p>
-		</section>
-		<section id="section4" class="main">
-			<p>99199</p>
-		</section> -->
+				</section>
+
+			</c:when>
+		</c:choose>
+		
 	</div>
 
 
@@ -479,9 +532,10 @@
                 	"comment":$("#comment").val(),
                 	"p_isopen":$("input:radio[name=p_isopen]:checked").val(),
                 	"d_isopen":$("input:radio[name=d_isopen]:checked").val(),
-                	"i_isopen":$("input:radio[name=i_isopen]:checked").val(),
-                	"e_isopen":$("input:radio[name=e_isopen]:checked").val()
-                	
+                	/* "i_isopen":$("input:radio[name=i_isopen]:checked").val(),
+                	"e_isopen":$("input:radio[name=e_isopen]:checked").val() */
+                	"i_isopen":'Y',
+                	"e_isopen":'Y'
                 } 
                 const profileImg =$("#profileImgSet");
                 const formData = new FormData();
@@ -572,9 +626,22 @@ function readPostInputFile(input, id){
 			}
 /* 게시물 클릭 시 */
  $(document).on('click', '#flexWrap', function(){
+	 $("#postVRD").empty();
 	$("#postImgD").empty();
 	$("#postDetail").show();
 	$("#section1").hide();
+	let recBtn=document.createElement("span");
+	let listBtn=document.createElement("span");
+	
+	recBtn.setAttribute("data-pnum",$(this).data("pnum"));
+	recBtn.setAttribute("id","recBtn");
+	listBtn.setAttribute("id","listBtn");
+	
+	recBtn.innerHTML="<i class='xi-thumbs-up'></i>";
+	listBtn.innerHTML="<i class='fas fa-list'></i>";
+	$("#postVRD").prepend(recBtn);
+	$("#postVRD").append(listBtn);
+	
 	let pnumval=$(this).data("pnum");
 	let pnum={"pnum":pnumval};
 	$.ajax({
@@ -600,6 +667,9 @@ function readPostInputFile(input, id){
 					$(data).each(function(){
 						
 						$("#postImgD").append("<img src='${path}/images/postfile/"+this.servername+"'></img>");
+						let recBtn=document.createElement("button");
+						
+						
 						});
 				},
 				error: function(){
@@ -612,6 +682,29 @@ function readPostInputFile(input, id){
 		}
 	});  
 	});
+ $(document).on('click', '#recBtn', function(){
+	 let pnumval=$(this).data("pnum");
+		let pnum={"pnum":pnumval};
+		console.log(pnum);
+		$.ajax({
+			url:'${path}/post/userpostRec',
+			type:"POST",
+			data: JSON.stringify(pnum),
+			contentType:"application/json; charset=utf-8;", 
+			
+			success: function(result){
+				if(result=="success"){
+					alert("추천되었습니다.")
+					location.reload();
+				}
+		     
+			},
+			error: function(){
+				alert("stringify error");
+			}
+		});  
+	 
+ });
  /* 글 작성 버튼 */
  $(document).on('click', '#postSave', function(){
 	 let userpost={
@@ -654,7 +747,7 @@ function readPostInputFile(input, id){
  });
 			
 		
-			$("#listBtn").click(function(){
+ $(document).on('click', '#listBtn', function(){
 				$("#postDetail").hide();
 				$("#section1").show();
 			});
@@ -711,8 +804,9 @@ function readPostInputFile(input, id){
 		    		  if(data[0].pageCnt==0){
 		    			  const li= document.createElement("li");
 		    			  let title=document.createElement("h3");
+		    			  li.setAttribute("class","nopostLi")
 		    			  title.setAttribute("class","nopost");
-		    			  title.innerText="게시물이 없습니다."
+		    			  title.innerText="게시물이 없습니다.";
 		    			  li.append(title);
 		    			  userpostUl.append(li);
 		    		  }else{
@@ -735,7 +829,7 @@ function readPostInputFile(input, id){
 		    				
 		    				li.setAttribute("class","userpostLi");
 		    				if(item.servername==null){
-		    					 postThumbnail.setAttribute("style","background-Image:url('${path}/images/postfile/default-profile.png')");  
+		    					 postThumbnail.setAttribute("style","background-Image:url('${path}/images/postfile/default.png')");  
 		    				}else{
 		    					
 		    					 postThumbnail.setAttribute("style","background-Image:url('${path}/images/postfile/"+item.servername+"')");  	    				
@@ -832,6 +926,8 @@ function readPostInputFile(input, id){
 			 });
 			
 			 $("#followBtn").click(function(){
+				 let send = confirm("팔로우를 신청하시겠습니까?");
+  	    	   if(send) {
 				 let followdata={"nickname":'${member.nickname}'}
 				 
 				 $.ajax({
@@ -852,10 +948,15 @@ function readPostInputFile(input, id){
 						error: function(){
 							alert("stringify error");
 						}
-			 });
+				 
+			 })
+  	    	   }
 			 });
              $("#followDeleteBtn").click(function(){
-
+            	  let send = confirm("팔로우를 취소하시겠습니까?");
+    	    	   if(send) {
+           	  
+    	    	   
  				let deletefollow={
  						"follower_n":'${sessionScope.account.nickname}',
  						"followee_n":'${member.nickname}'
@@ -870,7 +971,7 @@ function readPostInputFile(input, id){
  					/* datatype: 'json' */
  					success: function(result){
  						if (result=="success") {
-	                          alert("팔로우가 삭제되었습니다.");
+	                          alert("팔로우가 취소되었습니다.");
 	   						location.reload();
 	                      }else{
 	                    	  alert("ERROR");
@@ -880,7 +981,9 @@ function readPostInputFile(input, id){
  					error: function(){
  						alert("stringify error");
  					}
+ 				
  			})
+    	    	   }
 				 
 			 });
               $("#messageBtn").click(function(){

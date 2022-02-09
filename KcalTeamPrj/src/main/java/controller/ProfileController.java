@@ -227,4 +227,14 @@ public class ProfileController {
 		
 			return result;
 		}
+		@PostMapping("post/userpostRec")
+		@ResponseBody
+		public String updateRec(@RequestBody UserpostVO vo) {
+			
+			
+			postService.updateRec(vo);
+		String result="success";
+		
+			return result;
+		}
 }
