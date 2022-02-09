@@ -216,13 +216,16 @@ body {
 .pageMoveBox {
 	width:90%;
 	margin: 0 auto;
-	margin-top: 100px;
+	margin-top: 60px;
+	display:flex;
+	justify-content: center;
 }
 
 .pageMove {
 	display:flex;
+	justify-content: center;
 	align-items: center;
-	width:310px;
+	width:100%;
 	margin: 0 auto;
 }
 

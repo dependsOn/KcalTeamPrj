@@ -57,6 +57,11 @@
 		                        </ul>
 		                    </div>
 		                </c:forEach>
+		                <c:if test="${sessionScope.account.isadmin eq 'Y'}">
+			                <div class="writeBox">
+			                	<button class="createBtn">작성하기</button>
+			            	</div>
+			            </c:if>
 	                </div>
 	               <%
 						// 현재 페이지
@@ -149,6 +154,11 @@
 		                        </ul>
 		                    </div>
 	                   	</c:forEach>
+	                   	<c:if test="${sessionScope.account.isadmin eq 'Y'}">
+			                <div class="writeBox">
+			                	<button class="createBtn">작성하기</button>
+			            	</div>
+			            </c:if>
 					</div>
 					<%
 						// 현재 페이지
@@ -217,11 +227,7 @@
 					</div>	
 				</div>
 			</div>
-			<c:if test="${sessionScope.account.isadmin eq 'Y'}">
-                <div class="writeBox">
-                	<button class="createBtn">작성하기</button>
-            	</div>
-            </c:if>
+			
 		</div>
 		<jsp:include page="footer.jsp"></jsp:include>
 	</div>
