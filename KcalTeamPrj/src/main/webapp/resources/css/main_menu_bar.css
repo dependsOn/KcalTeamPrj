@@ -200,8 +200,13 @@
 	width: 80px;
 	height: 80px;
 	border-radius: 40px;
-	border: 2px solid #ccc;
 	margin-bottom: 10px;
+	overflow: hidden;
+}
+.ubLogin #userImg img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
 }
 .ubLogin #ubNickname {
 	font-size: 1rem;
