@@ -40,6 +40,10 @@
 			 location.href='${path}/member/findPwForm';
 		 })
 		 
+		$("#signup").click(function(){
+			location.href = "${path}/member/createMember";
+		})
+		
 		$("#logo").click(function(){
 			location.href = "${path}";
 		})
@@ -128,7 +132,7 @@
 					
 				<div class="a_box">
 					<ul>
-						<li><i class="fas fa-address-card"></i><span> 회원가입</span></li>
+						<li><i class="fas fa-address-card"></i><span id="signup"> 회원가입</span></li>
 						<li><i class="fas fa-search"></i><span id="findIdBtn"> 아이디 찾기</span></li>
 						<li><i class="fas fa-key"></i><span id="findPwBtn"> 비밀번호 찾기</span></li>
 					</ul>
