@@ -53,7 +53,6 @@
                                 </li>
                                 <li>
                                     <p>조회<span> ${tipVO.view_cnt}</span></p>
-                                    <p>댓글<span> 115</span></p>
                                 </li>
                             </ul>
                         </div>
