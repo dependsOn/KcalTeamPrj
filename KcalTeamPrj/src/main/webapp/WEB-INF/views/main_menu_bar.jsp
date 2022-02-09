@@ -33,9 +33,6 @@
 	    </div>
 	    <div class="menuRight">
 	        <ul>
-	        	<c:if test="${sessionScope.account.isadmin eq 'Y'}">
-	                <li><button id="adBtn" class="rightBtn admin">관리자 페이지</button></li>
-	            </c:if>
 	            <li><button id="cmBtn" class="rightBtn community">커뮤니티</button></li>
 	        </ul>
 	        <ul>
