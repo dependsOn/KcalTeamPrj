@@ -83,7 +83,7 @@
 
 				<div id="csOne" class="tabContent">
 			 		<div class="oneToOne">
-			            <form action="${path}/cs/insertCsqna" id="goQuestion" method="post">
+			            <form action="${path}/cs/insertCsqna?curPage=curCs" id="goQuestion" method="post">
 			                <ul>
 			                    <li>
 			                        <p>1 : 1 문의하기</p>

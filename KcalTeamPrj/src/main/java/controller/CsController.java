@@ -43,7 +43,7 @@ public class CsController {
 	public String insertCsqna(CsqnaVO vo) {
 		csService.insertCsqna(vo);
 	
-		return "redirect:goCs";
+		return "redirect:goCs?curPage=curCs";
 	}
 
 	@ResponseBody
