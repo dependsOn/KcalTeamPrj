@@ -158,7 +158,7 @@ header .ubLogin #userImg {
 	height: 100%;
 	object-fit: cover;
 }
-.ubLogin #nickname {
+.ubLogin #ubnickname {
 	font-size: 1.1rem;
 }
 .ubLogin #letterBox {

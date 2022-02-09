@@ -32,7 +32,14 @@ public class MemberService {
 			return "login";
 		}else {
 			session.setAttribute("account", vo1);
-			return "redirect:"+ uri;
+			
+			if(uri.contains("profile")) {
+				String nickname = vo1.getNickname();
+				return "redirect:" + uri + nickname;
+			} else {
+				return "redirect:"+ uri;				
+			}
+			
 		}
 	}
 	

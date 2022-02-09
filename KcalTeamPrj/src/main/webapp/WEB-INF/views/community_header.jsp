@@ -45,7 +45,7 @@
                 </c:if> 
 			</div>
 			<div id="userInfo">
-				<span id="nickname">${sessionScope.account.nickname}</span>
+				<span id="ubnickname">${sessionScope.account.nickname}</span>
 				<span id="letterBox"><i class="fas fa-envelope"></i></span>
 			</div>
 			<div class="ubBtn myProfile">프로필</div>

@@ -37,7 +37,7 @@ public class MemberController {
 		String uri = request.getHeader("Referer");
 		if(!uri.contains("/goLogin")) {
 			session.setAttribute("prevPage", request.getHeader("Referer"));
-		}
+		} 
 		return "login";
 	}
 	
@@ -48,7 +48,12 @@ public class MemberController {
 	}
 	
 	@PostMapping("/signUp")
-	public String signUp(MemberVO vo) {
+	public String signUp(MemberVO vo, HttpServletRequest request, HttpSession session) {
+		String uri = request.getHeader("Referer");
+		if(uri.contains("/createMember")) {
+			session.setAttribute("prevPage", "/profile/main?nickname=");
+		} 
+		
 		memberService.joinMember(vo);
 		return "login";
 	}

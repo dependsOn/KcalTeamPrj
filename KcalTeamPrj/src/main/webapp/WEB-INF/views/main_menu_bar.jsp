@@ -41,7 +41,7 @@
 	                <li id="login">로그인</li>
 	            </c:if>
 	        	<c:if test="${!empty sessionScope.account}">
-	                <li id="nickname">${sessionScope.account.nickname}</li>
+	                <li id="mhNickname">${sessionScope.account.nickname}</li>
 	                <li id="logout">로그아웃</li>
 	            </c:if>
 	        </ul>
@@ -108,7 +108,7 @@
 			
 			
 			// 로그인상태-닉네임 클릭
-			$(document).on('click', '#nickname', function(){
+			$(document).on('click', '#mhNnickname', function(){
 				$(".ubLogin").addClass("clicked");
 			})
 			
