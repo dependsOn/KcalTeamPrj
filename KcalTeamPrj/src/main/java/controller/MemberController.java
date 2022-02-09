@@ -111,7 +111,7 @@ public class MemberController {
 		vo.setIsdelete("Y");
 		
 		memberService.deleteMember(vo, session);
-		return "index";
+		return "redirect:/index";
 	}
 	
 	@RequestMapping(value = "/signUp", method = RequestMethod.GET)
@@ -161,7 +161,7 @@ public class MemberController {
 		return "findIdForm";
 	}
 
-	@PostMapping("/findId")
+	@GetMapping("/findId")
 	public String findId(HttpServletResponse response, @RequestParam("email") String email, Model md) throws Exception {
 		md.addAttribute("id", memberService.findId(response, email));
 		return "findId";

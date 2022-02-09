@@ -18,17 +18,17 @@
             <div class="findBox">
                 <ul>
                     <li>
-                        <p>ID 찾기</p>
+                        <p>아이디 찾기</p>
                     </li>
                     <li>
-                        <p>이메일을 입력하면 ID를 알려드립니다.</p>
+                        <p>이메일을 입력하면 아이디를 알려드립니다.</p>
                         <div>
                             <label>Email</label>
                             <input type="text" id="email" name="email" placeholder="이메일을 입력해주세요." required />
                         </div>
                         <div>
                             <button type="button" onclick="history.go(-1);">취소</button>
-                            <button type="submit" id="findBtn">찾기</button>
+                            <button type="button" id="findBtn">찾기</button>
                             
                         </div>
                     </li>
@@ -39,14 +39,17 @@
 	 </div>
     
     <script type="text/javascript">
+	
+	$(function(){
+		$("#findBtn").click(function(){
+			location.href = "${path}/member/findId?email=" + $("#email").val();
+		})
+	})
+	
 
 	
 	
 	
-
-	
-	
-	
-</script>
+	</script>
 </body>
 </html>
