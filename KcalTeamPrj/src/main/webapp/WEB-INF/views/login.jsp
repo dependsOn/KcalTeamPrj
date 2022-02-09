@@ -35,12 +35,16 @@
 		$("#findIdBtn").click(function(){
 			 location.href='${path}/member/findIdForm';
 		 })
-	})
-	
-	$(function(){
+		 
 		$("#findPwBtn").click(function(){
 			 location.href='${path}/member/findPwForm';
 		 })
+		 
+		$("#logo").click(function(){
+			location.href = "${path}";
+		})
+		
+		$("#logo").css("cursor", "pointer");
 	})
 </script>
 <!-- <script type="text/javascript">
@@ -105,7 +109,7 @@
 <body>
 	<div class="wrap">
 		<div class="login">
-			<h2>확찐자구조대</h2>
+			<h2 id="logo">확찐자구조대</h2>
 		
 			<form action="${path}/member/login" method="post">
 				<div class="login_id">
