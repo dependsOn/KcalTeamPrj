@@ -110,18 +110,10 @@ li {list-style-type: none;}
 	margin-right: 10px;
 	border: none;
 	border-radius: 10px;
-	
-	/* background-color: #eee;
+	background-color: #eee;
 	color: lightslategray;
 	font-weight: bold;
-	cursor: pointer; */
-	
-	
-	/* width: 100px;
-	text-align: center;
-	margin-right: 10px;
-	border: none;
-	border-radius: 10px; */
+	cursor: pointer;
 }
 
 #timepicker:hover {
