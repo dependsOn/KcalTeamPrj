@@ -27,13 +27,14 @@ public class MemberService {
 	
 	public String isLogin(MemberVO vo, HttpSession session) {
 		String uri = (String)session.getAttribute("prevPage");
+		String fromSignup = (String)session.getAttribute("fromSignup");
 		MemberVO vo1 = sqlSessionTemplate.selectOne("member.selectMemberOne", vo);
 		if((vo1 == null) || (vo1.getIsdelete().equals("Y"))) {
 			return "login";
 		}else {
 			session.setAttribute("account", vo1);
 			
-			if(uri.contains("profile")) {
+			if(uri.contains("profile") && (fromSignup == "true")) {
 				String nickname = vo1.getNickname();
 				return "redirect:" + uri + nickname;
 			} else {

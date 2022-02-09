@@ -52,6 +52,7 @@ public class MemberController {
 		String uri = request.getHeader("Referer");
 		if(uri.contains("/createMember")) {
 			session.setAttribute("prevPage", "/profile/main?nickname=");
+			session.setAttribute("fromSignup", "true");
 		} 
 		
 		memberService.joinMember(vo);
