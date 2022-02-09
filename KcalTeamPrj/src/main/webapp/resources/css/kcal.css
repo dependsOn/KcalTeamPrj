@@ -66,9 +66,13 @@ li {list-style-type: none;}
 
 #calcResult {
 	width: 100%;
-	background-color: #f2c9b5;
 	padding: 40px;
 	text-align: center;
+	border-right: 2px solid #ccc;
+	border-bottom: 2px solid #ccc;
+	border-left: 2px solid #ccc;
+	border-bottom-left-radius: 10px;
+	border-bottom-right-radius: 10px;
 }
 
 #calcResultMent {
@@ -76,7 +80,7 @@ li {list-style-type: none;}
 	line-height: 70px;
 	font-size: 1.1rem;
 	font-weight: bold;
-	color: #d8501d;
+	color: black;
 }
 
 #calcResult #saveBox {
@@ -86,7 +90,7 @@ li {list-style-type: none;}
 }
 
 #calcResult > p:nth-child(2) {
-	color: red;
+	color: black;
 	font-size: 0.8rem;
 	text-align: center;
 	margin-top: 15px;
@@ -104,21 +108,55 @@ li {list-style-type: none;}
 	width: 100px;
 	text-align: center;
 	margin-right: 10px;
-	border: none;
 	border-radius: 10px;
+	background-color: #eee;
+	border: none;
+	color: lightslategray;
+	font-weight: bold;
+	cursor: pointer;
+	height: 40px;
+}
+
+#timepicker:hover {
+	background-color: #ff8d64;
+    color: white;
+    transition: 0.25s;
+}
+
+#datepicker::placeholder {
+	color: lightslategray;
+}
+
+#datepicker:hover {
+	background-color: #ff8d64;
+    transition: 0.25s;
+}
+
+#datepicker:hover::placeholder {
+	color: white;
+}
+
+#saveBox > input:focus {
+	outline: none;
 }
 
 #saveBtn {
 	cursor: pointer;
 	/* width: 130px; */
 	padding: 0 10px;
-	height: 30px;
-	font-size: 1rem;
-	background-color: #E27451;
+	height: 40px;
+	font-size: 12px;
+	background-color: #eee;
 	border: none;
-	color: #fff;
+	color: lightslategray;
 	font-weight: bold;
 	border-radius: 10px;
+}
+
+#saveBtn:hover {
+	background-color: #ff8d64;
+    color: white;
+    transition: 0.25s;
 }
 
 
@@ -207,11 +245,10 @@ li {list-style-type: none;}
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
-	margin: 20px 0;
+	margin: 50px 0;
 	padding: 15px;
-	border: 2px solid #E27451;
 	border-radius: 20px;
-	
+	border: 2px solid #ccc;
 	min-height: 150px;
 }
 #myMeal #myMealTitle {
@@ -219,7 +256,7 @@ li {list-style-type: none;}
 	text-align: center;
 	color: #E27451;
 	font-weight: bold;
-	border-bottom: 2px solid #E27451;
+	border-bottom: 2px solid #ccc;
 	margin-bottom: 15px;
 	
 }
