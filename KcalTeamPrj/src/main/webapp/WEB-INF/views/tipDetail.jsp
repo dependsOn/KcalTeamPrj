@@ -59,7 +59,8 @@
                     </li>
                     <li>
                         <p>
-                            <c:out value="${tipVO.contents}" escapeXml="false" />
+                            <%-- <c:out value="${tipVO.contents}" escapeXml="false" /> --%>
+                            ${tipVO.contents}
                         </p>
                     </li>
                 </ul>
