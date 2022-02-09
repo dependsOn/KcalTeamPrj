@@ -74,10 +74,10 @@
                         name="email"
                         title="이메일 주소를 입력해주세요."
                         required
-                      />>
-                      <span id="emailChk" class="doubleChk Btn"
-                        >인증번호 보내기</span
-                      >
+                      />
+                      <span class="emailCheckResult"></span>
+                      <input type="hidden" id="emailCheckStatus" value="impossible" />
+                      <span id="emailChk" class="doubleChk Btn">인증번호 보내기</span>
                     </li>
                     <li>
                       <label class="emailKeyLabel"
@@ -100,7 +100,7 @@
                       <span class="point successEmailChk"
                         >이메일 입력후 인증번호 보내기를 해주십시오.</span
                       >
-                      <input type="hidden" id="emailDoubleChk" />
+                      <input type="hidden" id="emailDoubleChk" value="false"/>
                     </li>
                     <li>
                       <label class="addr1Label"><span>* </span>주소</label>
@@ -191,7 +191,43 @@
           }
         });
       });
-      // 이메일 인증
+      
+      // 이메일 중복 실시간 확인
+      $("#emailChk").hide();
+      
+	  $("#email").on("keyup", function () {
+		  let email = $("#email").val();
+
+          if (email == "") {
+            $(".emailCheckResult").text("이메일을 입력해주세요.");
+            $(".emailCheckResult").css("color", "red");
+            $(".emailCheck").val("impossible");
+            $("#emailChk").hide();
+          } else {
+            $.ajax({
+              url: "${path}/member/checkEmail",
+              type: "POST",
+              data: {
+                email : email,
+              },
+              success: function (data) {
+                if (data == "possible") {
+                  $(".emailCheckResult").text("사용가능한 이메일입니다.");
+                  $(".emailCheckResult").css("color", "royalblue");
+                  $("#emailCheckStatus").val(data);
+                  $("#emailChk").show();
+                } else {
+                  $(".emailCheckResult").text("이미 사용중인 이메일입니다.");
+                  $(".emailCheckResult").css("color", "red");
+                  $("#emailCheckStatus").val(data);
+                  $("#emailChk").hide();
+                }
+              },
+            });
+          }
+	  })
+      
+      
       //이메일 인증
       var code = "";
       $("#emailChk").click(function () {
@@ -292,7 +328,9 @@
             alert("비밀번호가 일치하지 않습니다");
           } else if (nicknameCheck != "possible") {
             alert("닉네임을 확인해주세요.");
-          } else {
+          } else if (($("#emailCheckStatus").val() == "impossible") || ($("#emailDoubleChk").val() == "false")) {
+            alert("이메일을 확인해주세요.");        	  
+          } else{
             document.getElementById("signupForm").submit();
           }
         });
