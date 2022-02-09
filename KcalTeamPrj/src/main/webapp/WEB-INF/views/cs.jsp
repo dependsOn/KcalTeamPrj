@@ -27,10 +27,8 @@
 			</div>
 
 			<div class="csContents">
-
 				<div class="csTitle">
-					<button class="tabMenu" id="default"
-						onclick="openCity(event, 'csFaq')">FAQ</button>
+					<button class="tabMenu" id="default" onclick="openCity(event, 'csFaq')">FAQ</button>
 					<button class="tabMenu" onclick="openCity(event, 'csOne')">1:1문의</button>
 				</div>
 
@@ -79,101 +77,67 @@
 								</div></li>
 						</ul>
 					</div>
-
-
 				</div>
 
 
 
 				<div id="csOne" class="tabContent">
-
-					<div class="qna">
-
-
-						<form action="${path}/cs/insertCsqna" method="POST"
-							name="csqnaForm" id="csqnaForm">
-
-							<input type="hidden" name="currentPage" value="1"
-								id="currentPage" />
-							<table>
-								<thead>
-								
-									<th id="n1">닉네임</th>
-									<th id="n1">제목</th>
-									<th id="n1">내용</th>
-								</thead>
-								<tbody>
-									<c:forEach var="result" items="${list}">
-										<tr>
-											<td>${result.nickname }</td>
-											<td>${result.title }</td>
-											<td>${result.contents }</td>
-										</tr>
-									</c:forEach>
-								</tbody>
-							</table>
-							<a href="#" onclick="fn_page(1)">1</a> 
-							<a href="#" onclick="fn_page(2)">2</a>
-							<a href="#" onclick="fn_page(3)">3</a>
-							<a href="#" onclick="fn_page(4)">4</a>
-							<a href="#" onclick="fn_page(5)">5</a>
-
-
-
-							<table class="works_table" style="width: 100%;">
-
-								<colgroup>
-									<col style="width: 15%" />
-									<col />
-								</colgroup>
-
-								<tbody>
-
-									<tr
-										style="border-top: solid 2px #000000; border-bottom: solid 1px #000000;">
-										<th style="text-align: center;">닉네임</th>
-										<td>${result.input_nm }<input type="text" name="nickname"
-											id="nickname" maxlength="150" style="width: 100%" /></td>
-									</tr>
-
-									<tr
-										style="border-top: solid 2px #000000; border-bottom: solid 1px #000000;">
-										<th style="text-align: center;">비밀번호</th>
-										<td><input type="password" name="password" id="password"
-											maxlength="150" style="width: 100%" /></td>
-									</tr>
-
-									<tr
-										style="border-top: solid 2px #000000; border-bottom: solid 1px #000000;">
-										<th style="text-align: center;">제목</th>
-										<td><input type="text" name="title" id="title"
-											value="${result.title}" maxlength="150" style="width: 100%" /></td>
-									</tr>
-
-									<tr
-										style="border-top: solid 2px #000000; border-bottom: solid 1px #000000;">
-										<th style="text-align: center;">내용</th>
-										<td><textarea type="text" name="contents" id="contents"
-												maxlength="150" style="width: 100%; height: 200px;"></textarea></td>
-									</tr>
-
-									<tr>
-										<td><input id="submit_button" type="submit" value="작성하기"
-											onclick="fn_inputCs()" /></td>
-									</tr>
-								</tbody>
-
-							</table>
-
-						</form>
-					</div>
-
+			 		<div class="oneToOne">
+			            <form action="${path}/cs/insertCsqna" id="goQuestion" method="post">
+			                <ul>
+			                    <li>
+			                        <p>1 : 1 문의하기</p>
+			                    </li>
+			                    <li>
+			                        <label for="">아이디</label>
+			                        <input type="text" name="nickname" id="nickname">
+			                    </li>
+			                    <li>
+			                        <label for="">제목</label>
+			                        <input type="text" name="title" id="title">
+			                    </li>
+			                    <li>
+			                        <label for="">내용</label>
+			                        <textarea type="text" name="contents" id="contents"></textarea>
+			                    </li>
+			                    <li>
+			                    	<c:if test="${!empty sessionScope.account}">
+						                <div>
+			                            	<button type="button" id="sBtn">작성완료</button>
+			                        	</div>
+						            </c:if>
+						            <c:if test="${empty sessionScope.account}">
+						                <div>
+			                            	<p><a href="${path}/member/goLogin">로그인</a>이 필요한 서비스입니다.</p>
+			                        	</div>
+						            </c:if>
+			                    </li>
+			                </ul>
+			            </form>
+			        </div>
 				</div>
 			</div>
 		</div>
+		<jsp:include page="footer.jsp"></jsp:include>
 	</div>
 
 	<script type="text/javascript">
+	$(document).on('click', '#sBtn', function(){			
+		
+		if ($("#title").val() == "") {
+			alert('제목을 입력해주세요.');
+		} else if ($('#nickname').val() == "") {
+			alert('내용을 입력해주세요.');
+		} else if ($('#contents').val() == "") {
+			alert('내용을 입력해주세요.');
+		} else {
+			let chk = confirm("작성완료 하시겠습니까?"); 
+			if(chk) {
+				$("#goQuestion").submit();
+			}
+		}
+		
+	});
 	
 	function openCity(evt, openMenu) {
         let i, tabcontent, tabMenu;
@@ -190,54 +154,46 @@
 
         document.getElementById(openMenu).style.display = 'block';
         evt.currentTarget.className += ' active';
-        
-        
     }
 	
+	document.getElementById('default').click();
+	
 
+	/* const title = document.getElementById('nickname');
+	const title = document.getElementById('title');
+	const title = document.getElementById('contents');
+	const goQuestion = document.getElementById('goQuestion');
 
-  
-
-		function fn_page(num) {
-			var frm = document.csqnaForm;
-			frm.currentPage.value = num;
-			frm.method = "GET";
-			frm.action = "${path}/cs/goCs";
-			frm.submit();
-
-		}
-
-		function fn_inputCs() {
-			$.ajax({
-				url : "${path}/cs/insertCsqna",
-				type : "POST",
-				data : $("#csqnaForm").serialize(),
-				success : function(data) {
-					location.href = "${path}/cs/goCs";
-				}
-			})
+	document.getElementById('sBtn').addEventListener('click', function() {
+		if (nickname.value == "" && title.value == "" && contents == "") {
+			alert('닉네임, 제목, 문의내용을 입력해주세요');
+			return;
 		}
 		
+		if (nickname.value == "") {
+			alert('닉네임 입력해주세요');
+			return;
+		}
 		
-	/* 	function openCity(evt, openMenu) {
-	        let i, tabcontent, tabMenu;
-	
-	        tabContent = document.getElementsByClassName('tabContent');
-	        for (i = 0; i < tabContent.length; i++) {
-	            tabContent[i].style.display = "none";
-	        }
-	
-	        tabMenu = document.getElementsByClassName('tabMenu');
-	        for (i = 0; i < tabMenu.length; i++) {
-	            tabMenu[i].className = tabMenu[i].className.replace(' active', '');
-	        }
-	
-	        document.getElementById(openMenu).style.display = 'block';
-	        evt.currentTarget.className += ' active';
-	    }
-	
-	    document.getElementById('default').click(); */ 
+		if (title.value == "") {
+			alert('제목을 입력해주세요');
+			return;
+		}
 		
+		if (contents == "") {
+			alert('내용을 입력해주세요');
+			return;
+		} 
+		
+		if (nickname.value =! "" && title.value != "" && contents != "") {
+			alert('작성되었습니다.')
+			
+			goQuestion.submit();
+		} 
+    }); */
+	
+	
+ 
 	</script>
 	
 

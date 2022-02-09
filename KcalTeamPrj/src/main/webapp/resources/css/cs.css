@@ -136,3 +136,139 @@
 .faq input:checked + label::before { /* 내용 펼침 상태 제목 앞 화살표 */
   content: "▼";
 }
+
+/* ================================================================= */
+
+.oneToOne {
+	width: 80%;
+	height: 850px;
+	margin: 0 auto;
+	margin-top: 100px;
+	border: 2px solid #ccc;
+	border-radius: 10px;
+	margin-bottom: 50px;
+}
+
+#goQuestion {
+	width: 850px;
+	height: 100%;
+	margin: 0 auto;
+}
+
+#goQuestion > ul {
+	width: 90%;
+	margin: 0 auto;
+	margin-top: 100px;
+	display: flex;
+	justify-content: center;
+	align-self: center;
+	flex-direction: column;
+	
+}
+
+#goQuestion > ul > li {
+	display: flex;
+	align-items: center;
+	width: 100%;
+	margin-bottom: 30px;
+	color: dimgray;
+}
+
+#goQuestion > ul > li:nth-child(1) {
+	height: 50px;
+	font-size: 25px;
+	font-weight: bold;
+	border-bottom: 3px solid orangered;
+	margin-bottom: 100px;
+}
+
+#goQuestion > ul > li:nth-child(2) > label {
+	font-size: 17px;
+	margin-right: 67px;
+}
+
+#goQuestion > ul > li:nth-child(2) > input {
+	width: 180px;
+	border-radius: 5px;
+	border: 2px solid #ccc;
+}
+
+
+#goQuestion > ul > li:nth-child(3) > label {
+	font-size: 17px;
+	margin-right: 84px;
+}
+
+#goQuestion > ul > li:nth-child(3) > input {
+	width: 600px;
+	border-radius: 5px;
+	border: 2px solid #ccc;
+}
+
+#goQuestion > ul > li:nth-child(4) {
+	position: relative;
+	height: 340px;
+}
+
+#goQuestion > ul > li:nth-child(4) > label {
+	position: absolute;
+	font-size: 17px;
+	top: 0;
+	left: 0;
+}
+
+#goQuestion > ul > li:nth-child(4) > textarea {
+	position: absolute;
+	top: 0;
+	left: 118px;
+	border-radius: 5px;
+	border: 2px solid #ccc;
+	resize: none;
+	width: 600px;
+	height: 300px;
+	padding:5px;
+}
+
+#goQuestion > ul > li:nth-child(5) {
+	display: flex;
+	justify-content: center;
+}
+
+#goQuestion > ul > li:nth-child(5) > div > button {
+	width: 100px;
+    height: 40px;
+    color: lightslategray;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 13px;
+    background-color: #eee;
+    cursor: pointer;
+}
+
+#goQuestion > ul > li:nth-child(5) > div > button:hover {
+	background-color: #ff8d64;
+    color: white;
+    cursor: pointer;
+    transition: 0.25s;
+}
+
+#goQuestion > ul > li:nth-child(5) > div > p > a {
+	color: red;
+}
+
+textarea:focus {
+	transition: .5s;
+	outline: 2px solid orangered;
+}
+
+
+input:focus {
+	transition: .5s;
+	outline: 2px solid orangered;
+}
+
+input {
+	height: 30px;
+	padding-left: 7px;
+}

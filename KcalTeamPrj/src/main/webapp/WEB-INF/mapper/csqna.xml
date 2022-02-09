@@ -8,16 +8,14 @@
  <mapper namespace="csqna">
 	
 				<!--insert id값은 내가 정함  -->
-	<insert id="insertCsqna">
-	
-				<!-- nickname 같이 언더바가 없을 때는 상관없지만 언더바가 있을 땐 values에서 스네이크 사용
+	<insert id="insertCsqna" parameterType="csqnaVO">
+		insert into csqna(nickname, title, contents) 
+		values(#{nickname}, #{title}, #{contents})
+	</insert>
+	 <!-- nickname 같이 언더바가 없을 때는 상관없지만 언더바가 있을 땐 values에서 스네이크 사용
 					ex) insert into OOO(power_man)
 						values(#{powerMan),
 				  -->
-		insert into csqna(nickname, password, title, contents) 
-		values(#{nickname}, #{password}, #{title}, #{contents})
-	</insert>
-	 
 	<!-- 
 	
 	parameterType : 내가 DB에 요청하는 데이터 유형 ex) String, int, vo ..

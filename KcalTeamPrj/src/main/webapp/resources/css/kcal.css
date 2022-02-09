@@ -108,13 +108,20 @@ li {list-style-type: none;}
 	width: 100px;
 	text-align: center;
 	margin-right: 10px;
-	border-radius: 10px;
-	background-color: #eee;
 	border: none;
+	border-radius: 10px;
+	
+	/* background-color: #eee;
 	color: lightslategray;
 	font-weight: bold;
-	cursor: pointer;
-	height: 40px;
+	cursor: pointer; */
+	
+	
+	/* width: 100px;
+	text-align: center;
+	margin-right: 10px;
+	border: none;
+	border-radius: 10px; */
 }
 
 #timepicker:hover {

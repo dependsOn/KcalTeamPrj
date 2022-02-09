@@ -1,26 +1,20 @@
 package vo;
 
-import java.util.List;
-
 public class CsqnaVO {
 	
-		//csqnaSeq = BIGINT�� �����߱⿡ int 
 	private int csqna_seq;
-		// �������� �����̱⿡ String
 	private String nickname;
 	private String title;
 	private String contents;
 	private int start;
 	private int count;
 	
-	
-
 	public CsqnaVO() {
 		super();
 		this.start = 0;
 		this.count = 10;
 	}
-	// �Ʒ��� getters and setters
+
 	public int getCsqna_seq() {
 		return csqna_seq;
 	}

@@ -35,39 +35,17 @@ public class CsController {
 	
 	@GetMapping("/goCs")
 	public String goCs(Model model,CsqnaVO vo) {
-		//1. �α��� �� ȸ���� �ۼ� �� �� ����
-		//2. �α��� ���� ȸ���̸� ������������ �̵�
-		
-		//CSService���� ȣ���� selectCsqnaList �޼ҵ��� ������ ���´� CsqnaVO�� �Ǿ��־ ������ Ÿ���� �����ϰ� �����ֱ� ���� �� �տ� CsqnaVO �ۼ� 
-//		CsqnaVO qnavo = csService.selectCsqnaList(vo);
-//		List<CsqnaVO> volist = qnavo.getCsQnaList();
-		
-		//model.addAttribute("���",������);
-//		model.addAttribute("list",volist);
+
 		return "cs";
 	}
 
-	
-	
-	@ResponseBody
 	@PostMapping("/insertCsqna")
-	public void insertCsqna(CsqnaVO vo) {
-		System.out.println(vo.getNickname());
-		System.out.println(vo.getTitle());
-		System.out.println(vo.getContents());		
+	public String insertCsqna(CsqnaVO vo) {
 		csService.insertCsqna(vo);
-		
+	
+		return "redirect:goCs";
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 	@ResponseBody
 	@PostMapping("/csqnaList")
 	public ResponseEntity<CsqnaPagingVO> getBBSList(@RequestParam(defaultValue = "") String nickname, 

@@ -233,23 +233,9 @@
 	</div>
 
 	<script type="text/javascript">
-		/* function openCity(evt, openMenu) {
-	        let i, tabcontent, tabMenu;
-	
-	        tabContent = document.getElementsByClassName('tabContent');
-	        for (i = 0; i < tabContent.length; i++) {
-	            tabContent[i].style.display = "none";
-	        }
-	
-	        tabMenu = document.getElementsByClassName('tabMenu');
-	        for (i = 0; i < tabMenu.length; i++) {
-	            tabMenu[i].className = tabMenu[i].className.replace(' active', '');
-	        }
-	
-	        document.getElementById(openMenu).style.display = 'block';
-	        evt.currentTarget.className += ' active';
-	    } */
-		
+		$(document).on('click', '.createBtn', function(){
+			location.href = '${path}/tip/createTip?curPage=curTip';
+		});
 		
 	    $(function(){
 	    	if("${category}" == "column") {
@@ -277,14 +263,7 @@
 				$("#columnTab").removeClass('active');
 				$("#workoutTab").addClass('active');
 	    	})
-	    })
-		
-		
-		
-		document.querySelector('.createBtn').addEventListener('click', function() {
-			location.href = '${path}/tip/createTip?curPage=curTip';
-		});
-		
+	    })		
 	</script>
 </body>
 </html>
